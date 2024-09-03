@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://b56dj5ds4rp8e"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_3hcg4"]
+[ext_resource type="Texture2D" uid="uid://bythoa77boohw" path="res://icon.svg" id="1_3q3a1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1d72"]
+size = Vector2(36, 37)
+
+[sub_resource type="QuadMesh" id="QuadMesh_e85t3"]
+size = Vector2(1400, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
+size = Vector2(1398, 199)
+
+[node name="Scene1" type="Node2D"]
+position = Vector2(568, 318)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(0, 137)
+script = ExtResource("1_3hcg4")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+scale = Vector2(0.289063, 0.289063)
+texture = ExtResource("1_3q3a1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_v1d72")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(5, 264)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+mesh = SubResource("QuadMesh_e85t3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_fjyij")
