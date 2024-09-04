@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=9 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_3hcg4"]
 [ext_resource type="Texture2D" uid="uid://goygooi12ch" path="res://sprites/player_idle_0.png" id="2_khy4q"]
 [ext_resource type="Texture2D" uid="uid://c23aqcqw8q28r" path="res://sprites/player_idle_0_right.png" id="3_bn1vj"]
-[ext_resource type="Texture2D" uid="uid://c374smsv6tout" path="res://sprites/maps/floor_01_nobrdr.png" id="4_rxghq"]
+[ext_resource type="Texture2D" uid="uid://dstjvfa1phlf" path="res://sprites/maps/wall_01.png" id="4_84vrp"]
+[ext_resource type="Texture2D" uid="uid://dirjy71u0jxra" path="res://sprites/maps/floor_01_nobrdr32x16.png" id="5_7pkgf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1d72"]
-size = Vector2(36, 38)
+size = Vector2(36, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hunum"]
 animations = [{
@@ -36,13 +37,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
-size = Vector2(1146, 31.5)
+size = Vector2(1146, 28.5)
 
 [node name="Scene1" type="Node2D"]
 position = Vector2(568, 318)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(0, 137)
+position = Vector2(0, 357)
 script = ExtResource("1_3hcg4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
@@ -55,102 +56,32 @@ scale = Vector2(1.625, 1.625)
 sprite_frames = SubResource("SpriteFrames_hunum")
 animation = &"run_r"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="ml_01" type="StaticBody2D" parent="."]
 position = Vector2(-28, 415)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(29, -4.75)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01"]
+position = Vector2(29, -6.75)
 shape = SubResource("RectangleShape2D_fjyij")
 
-[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
+[node name="Background" type="Sprite2D" parent="ml_01"]
+z_index = -10
+position = Vector2(31.5, -501)
+scale = Vector2(4.49609, 3.75781)
+texture = ExtResource("4_84vrp")
+
+[node name="Floor" type="Node2D" parent="ml_01"]
+
+[node name="Sprite2D2" type="Polygon2D" parent="ml_01/Floor"]
 texture_filter = 1
+texture_repeat = 2
 position = Vector2(0, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(-64, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D4" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(-128, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D5" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(-192, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D6" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(-256, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D7" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(-320, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D8" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(-384, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D9" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(-448, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D18" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(-512, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D10" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(512, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D19" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(576, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D11" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(448, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D12" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(384, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D13" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(320, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D14" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(256, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D15" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(192, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D16" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(128, -5)
-texture = ExtResource("4_rxghq")
-
-[node name="Sprite2D17" type="Sprite2D" parent="StaticBody2D"]
-texture_filter = 1
-position = Vector2(64, -5)
-texture = ExtResource("4_rxghq")
+scale = Vector2(40, 2)
+texture = ExtResource("5_7pkgf")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(20, 1)
+polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 texture_filter = 1

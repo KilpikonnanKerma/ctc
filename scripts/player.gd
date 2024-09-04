@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 
 	var direction := Input.get_axis("mv_left", "mv_right")
 	if direction:
-		if Input.is_action_pressed("run"):
+		if Input.is_action_pressed("run"): #voi ns. dashata ilmassa, jos painaa shiftiä (it's not a bug it's a feature)
 			velocity.x = move_toward(velocity.x, direction * run_speed, run_speed * acceleration)
 		else:
 			velocity.x = move_toward(velocity.x, direction * WALK_SPEED, WALK_SPEED * acceleration)
