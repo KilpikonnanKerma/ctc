@@ -13,13 +13,13 @@ config_version=5
 config/name="platform"
 run/main_scene="res://scenes/scene_1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=1600
 window/size/viewport_height=900
-window/size/resizable=false
 window/stretch/mode="viewport"
 
 [input]
@@ -52,6 +52,12 @@ run={
 ]
 }
 
+[physics]
+
+common/physics_interpolation=true
+
 [rendering]
 
+occlusion_culling/jitter_projection=false
+environment/defaults/default_clear_color=Color(0.0509804, 0.0901961, 0.121569, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
