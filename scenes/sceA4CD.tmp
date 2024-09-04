@@ -1,12 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_3hcg4"]
-[ext_resource type="Texture2D" uid="uid://bythoa77boohw" path="res://icon.svg" id="1_3q3a1"]
 [ext_resource type="Texture2D" uid="uid://goygooi12ch" path="res://sprites/player_idle_0.png" id="2_khy4q"]
 [ext_resource type="Texture2D" uid="uid://c23aqcqw8q28r" path="res://sprites/player_idle_0_right.png" id="3_bn1vj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1d72"]
-size = Vector2(36, 39)
+size = Vector2(32, 39)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hunum"]
 animations = [{
@@ -35,8 +34,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="QuadMesh" id="QuadMesh_e85t3"]
+size = Vector2(1400, 200)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
-size = Vector2(1398, 348)
+size = Vector2(1398, 201)
 
 [node name="Scene1" type="Node2D"]
 position = Vector2(568, 318)
@@ -46,16 +48,11 @@ position = Vector2(0, 137)
 script = ExtResource("1_3hcg4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, 5.5)
+position = Vector2(2, 5.5)
 shape = SubResource("RectangleShape2D_v1d72")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-texture_filter = 1
-zoom = Vector2(1.5, 1.5)
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
-drag_left_margin = 0.05
-drag_right_margin = 0.05
+scale = Vector2(0.4, 0.4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
@@ -66,11 +63,9 @@ animation = &"run_r"
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(5, 264)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 74)
-shape = SubResource("RectangleShape2D_fjyij")
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+mesh = SubResource("QuadMesh_e85t3")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(0.999969, 71.5)
-scale = Vector2(10.8906, 2.69531)
-texture = ExtResource("1_3q3a1")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_fjyij")
