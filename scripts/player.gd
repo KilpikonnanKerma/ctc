@@ -23,11 +23,14 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, direction * run_speed, run_speed * acceleration)
 		else:
 			velocity.x = move_toward(velocity.x, direction * WALK_SPEED, WALK_SPEED * acceleration)
+
 		if velocity.x > 0:
-			$AnimatedSprite2D.animation = "run_l"
+			$AnimatedSprite2D.animation = "walk_r"
 		elif velocity.x < 0:
-			$AnimatedSprite2D.animation = "run_r"
+			$AnimatedSprite2D.animation = "walk_l"
 	else:
 		velocity.x = move_toward(velocity.x, 0, WALK_SPEED * deceleration)
+		if is_on_floor():
+			$AnimatedSprite2D.play("idle")
 
 	move_and_slide()
