@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=24 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_3hcg4"]
 [ext_resource type="Texture2D" uid="uid://dgiwwopxgv7qw" path="res://sprites/player_idle_0_ver2.png" id="2_nl3ny"]
@@ -8,12 +8,18 @@
 [ext_resource type="Texture2D" uid="uid://bjnt4lrca4puf" path="res://sprites/player_idle_2_ver2.png" id="4_s505m"]
 [ext_resource type="Texture2D" uid="uid://dirjy71u0jxra" path="res://sprites/maps/floor_01_nobrdr32x16.png" id="5_7pkgf"]
 [ext_resource type="Texture2D" uid="uid://blfon71mhks2m" path="res://sprites/player_idle_3_ver2.png" id="5_shntj"]
-[ext_resource type="Texture2D" uid="uid://46jbe0t57c4o" path="res://sprites/player_idle_0_right_ver2.png" id="6_h1xd8"]
-[ext_resource type="Texture2D" uid="uid://bqis2ktqbridh" path="res://sprites/player_walk_right_1c.png" id="7_sk0mn"]
-[ext_resource type="Texture2D" uid="uid://qnra4jiu2hr4" path="res://sprites/player_walk_right_2c.png" id="8_wrhv3"]
-[ext_resource type="Texture2D" uid="uid://cpip1cy4clqv8" path="res://sprites/player_walk_right_3c.png" id="9_coyeu"]
-[ext_resource type="Texture2D" uid="uid://bao8lgrqq0htw" path="res://sprites/player_walk_right_4c.png" id="10_euvqs"]
-[ext_resource type="Texture2D" uid="uid://dvme2tnlny2yw" path="res://sprites/player_walk_right_5c.png" id="11_1prv5"]
+[ext_resource type="Texture2D" uid="uid://dbyxvaxeavi0d" path="res://sprites/player/player_walk_left_0.png" id="6_jjsks"]
+[ext_resource type="Texture2D" uid="uid://7dq2oceoysr6" path="res://sprites/player/player_walk_left_1.png" id="7_11yhl"]
+[ext_resource type="Texture2D" uid="uid://d0jcmisd3n7ph" path="res://sprites/player/player_walk_left_2.png" id="8_t246i"]
+[ext_resource type="Texture2D" uid="uid://ctyko64gqhw6q" path="res://sprites/player/player_walk_left_3.png" id="9_rnaqu"]
+[ext_resource type="Texture2D" uid="uid://cobuut1wb0wg8" path="res://sprites/player/player_walk_left_4.png" id="10_x533m"]
+[ext_resource type="Texture2D" uid="uid://br71p62kco0xv" path="res://sprites/player/player_walk_left_5.png" id="11_eocvk"]
+[ext_resource type="Texture2D" uid="uid://dmqrkvd8l8xhe" path="res://sprites/player/player_walk_right_0.png" id="12_b8r7y"]
+[ext_resource type="Texture2D" uid="uid://b0er24je3nnkw" path="res://sprites/player/player_walk_right_1.png" id="13_cooij"]
+[ext_resource type="Texture2D" uid="uid://ssdstm8y4omn" path="res://sprites/player/player_walk_right_2.png" id="14_62thd"]
+[ext_resource type="Texture2D" uid="uid://cv3ggdgcit7f1" path="res://sprites/player/player_walk_right_3.png" id="15_31vyt"]
+[ext_resource type="Texture2D" uid="uid://cb1rrnm8xgrgb" path="res://sprites/player/player_walk_right_4.png" id="16_43ajh"]
+[ext_resource type="Texture2D" uid="uid://blq7i1mqxbr4i" path="res://sprites/player/player_walk_right_5.png" id="17_r6wbh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1d72"]
 size = Vector2(36, 40)
@@ -45,7 +51,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_h1xd8")
+"texture": ExtResource("6_jjsks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_11yhl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_t246i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rnaqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_x533m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_eocvk")
 }],
 "loop": true,
 "name": &"walk_l",
@@ -53,23 +74,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_sk0mn")
+"texture": ExtResource("12_b8r7y")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_wrhv3")
+"texture": ExtResource("13_cooij")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_coyeu")
+"texture": ExtResource("14_62thd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_euvqs")
+"texture": ExtResource("15_31vyt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_1prv5")
+"texture": ExtResource("16_43ajh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_r6wbh")
 }],
 "loop": true,
 "name": &"walk_r",
-"speed": 4.0
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
@@ -135,7 +159,7 @@ polygons = [PackedInt32Array(0, 1, 2, 3)]
 [node name="Camera2D" type="Camera2D" parent="."]
 texture_filter = 1
 position = Vector2(0, 137)
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.2, 1.2)
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
 drag_horizontal_enabled = true
