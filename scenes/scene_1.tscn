@@ -1,120 +1,37 @@
-[gd_scene load_steps=24 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=12 format=3 uid="uid://b56dj5ds4rp8e"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_3hcg4"]
-[ext_resource type="Texture2D" uid="uid://dgiwwopxgv7qw" path="res://sprites/player_idle_0_ver2.png" id="2_nl3ny"]
-[ext_resource type="Texture2D" uid="uid://br76cresuyot5" path="res://sprites/player_idle_1_ver2.png" id="3_u8p7q"]
+[ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Texture2D" uid="uid://dstjvfa1phlf" path="res://sprites/maps/wall_01.png" id="4_84vrp"]
 [ext_resource type="Texture2D" uid="uid://c374smsv6tout" path="res://sprites/maps/floor_01_nobrdr.png" id="4_rxghq"]
-[ext_resource type="Texture2D" uid="uid://bjnt4lrca4puf" path="res://sprites/player_idle_2_ver2.png" id="4_s505m"]
 [ext_resource type="Texture2D" uid="uid://dirjy71u0jxra" path="res://sprites/maps/floor_01_nobrdr32x16.png" id="5_7pkgf"]
-[ext_resource type="Texture2D" uid="uid://blfon71mhks2m" path="res://sprites/player_idle_3_ver2.png" id="5_shntj"]
-[ext_resource type="Texture2D" uid="uid://dbyxvaxeavi0d" path="res://sprites/player/player_walk_left_0.png" id="6_jjsks"]
-[ext_resource type="Texture2D" uid="uid://7dq2oceoysr6" path="res://sprites/player/player_walk_left_1.png" id="7_11yhl"]
-[ext_resource type="Texture2D" uid="uid://d0jcmisd3n7ph" path="res://sprites/player/player_walk_left_2.png" id="8_t246i"]
-[ext_resource type="Texture2D" uid="uid://ctyko64gqhw6q" path="res://sprites/player/player_walk_left_3.png" id="9_rnaqu"]
-[ext_resource type="Texture2D" uid="uid://cobuut1wb0wg8" path="res://sprites/player/player_walk_left_4.png" id="10_x533m"]
-[ext_resource type="Texture2D" uid="uid://br71p62kco0xv" path="res://sprites/player/player_walk_left_5.png" id="11_eocvk"]
-[ext_resource type="Texture2D" uid="uid://dmqrkvd8l8xhe" path="res://sprites/player/player_walk_right_0.png" id="12_b8r7y"]
-[ext_resource type="Texture2D" uid="uid://b0er24je3nnkw" path="res://sprites/player/player_walk_right_1.png" id="13_cooij"]
-[ext_resource type="Texture2D" uid="uid://ssdstm8y4omn" path="res://sprites/player/player_walk_right_2.png" id="14_62thd"]
-[ext_resource type="Texture2D" uid="uid://cv3ggdgcit7f1" path="res://sprites/player/player_walk_right_3.png" id="15_31vyt"]
-[ext_resource type="Texture2D" uid="uid://cb1rrnm8xgrgb" path="res://sprites/player/player_walk_right_4.png" id="16_43ajh"]
-[ext_resource type="Texture2D" uid="uid://blq7i1mqxbr4i" path="res://sprites/player/player_walk_right_5.png" id="17_r6wbh"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1d72"]
-size = Vector2(36, 40)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_hunum"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_nl3ny")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_u8p7q")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_s505m")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_shntj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_s505m")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_u8p7q")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_jjsks")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_11yhl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_t246i")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_rnaqu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_x533m")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_eocvk")
-}],
-"loop": true,
-"name": &"walk_l",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("12_b8r7y")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_cooij")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_62thd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_31vyt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_43ajh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_r6wbh")
-}],
-"loop": true,
-"name": &"walk_r",
-"speed": 5.0
-}]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="21_5cgma"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="22_yu4c1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1146, 28.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25ike"]
+size = Vector2(25.25, 1027)
+
+[sub_resource type="Resource" id="Resource_ekrkq"]
+script = ExtResource("22_yu4c1")
+duration = 0.5
+transition = 0
+ease = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1gih"]
+size = Vector2(31.5, 1005.5)
+
+[sub_resource type="Resource" id="Resource_6qo3x"]
+script = ExtResource("22_yu4c1")
+duration = 1.0
+transition = 1
+ease = 1
+
 [node name="Scene1" type="Node2D"]
 position = Vector2(568, 318)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(0, 357)
-script = ExtResource("1_3hcg4")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_v1d72")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-texture_filter = 1
-scale = Vector2(1.625, 1.625)
-sprite_frames = SubResource("SpriteFrames_hunum")
-animation = &"walk_r"
+[node name="Player" parent="." instance=ExtResource("1_5o17h")]
 
 [node name="ml_01" type="StaticBody2D" parent="."]
 position = Vector2(-28, 415)
@@ -156,14 +73,73 @@ polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="ml_02" type="StaticBody2D" parent="."]
+position = Vector2(1122, 415)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02"]
+position = Vector2(29, -6.75)
+shape = SubResource("RectangleShape2D_fjyij")
+
+[node name="Background" type="Sprite2D" parent="ml_02"]
+z_index = -10
+position = Vector2(31.5, -501)
+scale = Vector2(4.49609, 3.75781)
+texture = ExtResource("4_84vrp")
+
+[node name="Floor" type="Node2D" parent="ml_02"]
+
+[node name="Ground16x32" type="Polygon2D" parent="ml_02/Floor"]
+visible = false
 texture_filter = 1
-position = Vector2(0, 137)
+texture_repeat = 2
+position = Vector2(0, -5)
+scale = Vector2(40, 2)
+texture = ExtResource("5_7pkgf")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(20, 1)
+polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Ground32x64" type="Polygon2D" parent="ml_02/Floor"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, -5)
+scale = Vector2(40, 2)
+texture = ExtResource("4_rxghq")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(40, 2)
+polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="CameraManager" type="Node" parent="."]
+
+[node name="CameraNodes" type="StaticBody2D" parent="CameraManager"]
+
+[node name="zone0-1" type="Area2D" parent="CameraManager/CameraNodes"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraManager/CameraNodes/zone0-1"]
+position = Vector2(1084, 237)
+shape = SubResource("RectangleShape2D_25ike")
+
+[node name="PhantomCamera2D" type="Node2D" parent="CameraManager/CameraNodes/zone0-1"]
+position = Vector2(574, 450)
+script = ExtResource("21_5cgma")
 zoom = Vector2(1.2, 1.2)
-position_smoothing_enabled = true
-position_smoothing_speed = 20.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.6
-drag_right_margin = 0.6
-drag_bottom_margin = 1.0
+tween_resource = SubResource("Resource_ekrkq")
+
+[node name="zone1-2" type="Area2D" parent="CameraManager/CameraNodes"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraManager/CameraNodes/zone1-2"]
+position = Vector2(2243, 243)
+shape = SubResource("RectangleShape2D_s1gih")
+
+[node name="PhantomCamera2D" type="Node2D" parent="CameraManager/CameraNodes/zone1-2"]
+position = Vector2(1620, 450)
+script = ExtResource("21_5cgma")
+zoom = Vector2(1.2, 1.2)
+tween_resource = SubResource("Resource_6qo3x")
+
+[connection signal="body_entered" from="CameraManager/CameraNodes/zone0-1" to="CameraManager" method="_on_zone_01_body_entered"]
+[connection signal="body_entered" from="CameraManager/CameraNodes/zone1-2" to="CameraManager" method="_on_zone_12_body_entered"]
