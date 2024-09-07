@@ -1,37 +1,26 @@
-[gd_scene load_steps=12 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=6 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Texture2D" uid="uid://dstjvfa1phlf" path="res://sprites/maps/wall_01.png" id="4_84vrp"]
 [ext_resource type="Texture2D" uid="uid://c374smsv6tout" path="res://sprites/maps/floor_01_nobrdr.png" id="4_rxghq"]
 [ext_resource type="Texture2D" uid="uid://dirjy71u0jxra" path="res://sprites/maps/floor_01_nobrdr32x16.png" id="5_7pkgf"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="21_5cgma"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="22_yu4c1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1146, 28.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_25ike"]
-size = Vector2(25.25, 1027)
-
-[sub_resource type="Resource" id="Resource_ekrkq"]
-script = ExtResource("22_yu4c1")
-duration = 0.5
-transition = 0
-ease = 0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1gih"]
-size = Vector2(31.5, 1005.5)
-
-[sub_resource type="Resource" id="Resource_6qo3x"]
-script = ExtResource("22_yu4c1")
-duration = 1.0
-transition = 1
-ease = 1
-
 [node name="Scene1" type="Node2D"]
-position = Vector2(568, 318)
 
 [node name="Player" parent="." instance=ExtResource("1_5o17h")]
+
+[node name="1F_Camera" type="Camera2D" parent="Player"]
+zoom = Vector2(1.2, 1.2)
+process_callback = 0
+limit_left = -570
+limit_bottom = 450
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 100.0
+drag_horizontal_enabled = true
 
 [node name="ml_01" type="StaticBody2D" parent="."]
 position = Vector2(-28, 415)
@@ -112,34 +101,3 @@ texture_scale = Vector2(40, 2)
 polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
-
-[node name="CameraManager" type="Node" parent="."]
-
-[node name="CameraNodes" type="StaticBody2D" parent="CameraManager"]
-
-[node name="zone0-1" type="Area2D" parent="CameraManager/CameraNodes"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraManager/CameraNodes/zone0-1"]
-position = Vector2(1084, 237)
-shape = SubResource("RectangleShape2D_25ike")
-
-[node name="PhantomCamera2D" type="Node2D" parent="CameraManager/CameraNodes/zone0-1"]
-position = Vector2(574, 450)
-script = ExtResource("21_5cgma")
-zoom = Vector2(1.2, 1.2)
-tween_resource = SubResource("Resource_ekrkq")
-
-[node name="zone1-2" type="Area2D" parent="CameraManager/CameraNodes"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraManager/CameraNodes/zone1-2"]
-position = Vector2(2243, 243)
-shape = SubResource("RectangleShape2D_s1gih")
-
-[node name="PhantomCamera2D" type="Node2D" parent="CameraManager/CameraNodes/zone1-2"]
-position = Vector2(1620, 450)
-script = ExtResource("21_5cgma")
-zoom = Vector2(1.2, 1.2)
-tween_resource = SubResource("Resource_6qo3x")
-
-[connection signal="body_entered" from="CameraManager/CameraNodes/zone0-1" to="CameraManager" method="_on_zone_01_body_entered"]
-[connection signal="body_entered" from="CameraManager/CameraNodes/zone1-2" to="CameraManager" method="_on_zone_12_body_entered"]

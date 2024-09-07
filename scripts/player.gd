@@ -3,6 +3,11 @@ extends CharacterBody2D
 @export_range(0,1) var acceleration = 0.1
 @export_range(0,1) var deceleration = 0.1
 
+@onready var cam1: Camera2D = $Camera2D
+@onready var cam2: Camera2D = $Camera2D
+
+@onready var camMan
+
 var run_speed = 250.0
 
 const WALK_SPEED = 80.0
@@ -34,3 +39,8 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.play("idle")
 
 	move_and_slide()
+	# for index in get_slide_collision_count():
+	# 	var collision := get_slide_collision(index)
+	# 	var body := collision.get_collider()
+	# 	print("Collided with: ", body.name)
+			

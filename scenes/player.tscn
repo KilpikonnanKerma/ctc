@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=20 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://dylfo66q3rfm6" path="res://sprites/player/player_idle_0_ver2.png" id="2_a4u02"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://cv3ggdgcit7f1" path="res://sprites/player/player_walk_right_3.png" id="15_f7qd7"]
 [ext_resource type="Texture2D" uid="uid://cb1rrnm8xgrgb" path="res://sprites/player/player_walk_right_4.png" id="16_g2fb2"]
 [ext_resource type="Texture2D" uid="uid://blq7i1mqxbr4i" path="res://sprites/player/player_walk_right_5.png" id="17_338me"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="18_sijo7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hunum"]
 animations = [{
@@ -108,8 +107,3 @@ frame_progress = 0.356805
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, 5)
 shape = SubResource("CircleShape2D_30u4y")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("18_sijo7")
