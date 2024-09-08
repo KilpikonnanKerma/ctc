@@ -1,10 +1,7 @@
 extends CharacterBody2D
 
 @export_range(0,1) var acceleration = 0.1
-@export_range(0,1) var deceleration = 0.1
-
-@onready var cam1: Camera2D = $Camera2D
-@onready var cam2: Camera2D = $Camera2D
+@export_range(0,1) var deceleration = 0.05
 
 @onready var camMan
 
