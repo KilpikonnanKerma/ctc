@@ -1,16 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=13 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
-[ext_resource type="Texture2D" uid="uid://dstjvfa1phlf" path="res://sprites/maps/wall_01.png" id="4_84vrp"]
+[ext_resource type="Texture2D" uid="uid://dstjvfa1phlf" path="res://sprites/maps/background01.png" id="4_84vrp"]
 [ext_resource type="Texture2D" uid="uid://c374smsv6tout" path="res://sprites/maps/floor_01_nobrdr.png" id="4_rxghq"]
 [ext_resource type="Texture2D" uid="uid://dirjy71u0jxra" path="res://sprites/maps/floor_01_nobrdr32x16.png" id="5_7pkgf"]
+[ext_resource type="Texture2D" uid="uid://hqif17h3cu3y" path="res://sprites/Props/bookshelf01.png" id="5_vrcuc"]
+[ext_resource type="Texture2D" uid="uid://b4k6cp7dnudw5" path="res://sprites/maps/wall01.png" id="6_las7y"]
+[ext_resource type="Texture2D" uid="uid://c5xtttncxl1m0" path="res://sprites/Props/bed01.png" id="7_86qxo"]
+[ext_resource type="Texture2D" uid="uid://dki06gev0bgxu" path="res://sprites/Props/platform.png" id="8_0d6b8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1146, 28.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnv31"]
+size = Vector2(77, 910.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrhk8"]
+size = Vector2(69, 15.5181)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6nti"]
+size = Vector2(126, 12)
+
 [node name="Scene1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_5o17h")]
+position = Vector2(-40, 300)
 
 [node name="1F_Camera" type="Camera2D" parent="Player"]
 zoom = Vector2(1.2, 1.2)
@@ -31,11 +45,12 @@ shape = SubResource("RectangleShape2D_fjyij")
 
 [node name="Background" type="Sprite2D" parent="ml_01"]
 z_index = -10
-position = Vector2(31.5, -501)
-scale = Vector2(4.49609, 3.75781)
+position = Vector2(40, -671.988)
+scale = Vector2(5, 5.10947)
 texture = ExtResource("4_84vrp")
 
 [node name="Floor" type="Node2D" parent="ml_01"]
+z_index = -1
 
 [node name="Ground16x32" type="Polygon2D" parent="ml_01/Floor"]
 visible = false
@@ -51,19 +66,82 @@ uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
 [node name="Ground32x64" type="Polygon2D" parent="ml_01/Floor"]
+z_index = 10
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, -5)
-scale = Vector2(40, 2)
+position = Vector2(0, 11)
+scale = Vector2(40, 4)
 texture = ExtResource("4_rxghq")
 texture_offset = Vector2(0, 8)
-texture_scale = Vector2(40, 2)
+texture_scale = Vector2(20, 2)
 polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
+[node name="Bookshelf01" type="Sprite2D" parent="ml_01"]
+z_index = -1
+texture_filter = 1
+position = Vector2(112, -149)
+scale = Vector2(2, 2)
+texture = ExtResource("5_vrcuc")
+
+[node name="Wall" type="StaticBody2D" parent="ml_01"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/Wall"]
+position = Vector2(-538.5, -462.25)
+shape = SubResource("RectangleShape2D_rnv31")
+
+[node name="Wall01" type="Sprite2D" parent="ml_01/Wall"]
+z_index = 9
+position = Vector2(-542, -520.25)
+scale = Vector2(1, 4.29102)
+texture = ExtResource("6_las7y")
+
+[node name="bed" type="StaticBody2D" parent="ml_01"]
+position = Vector2(-382, -85)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ml_01/bed"]
+position = Vector2(-24.4036, -17.0727)
+scale = Vector2(1.998, 2)
+polygon = PackedVector2Array(87.5, -0.5, -20, 0, -50, -5, -25, -4, -20, -2)
+one_way_collision = true
+
+[node name="Bed01" type="Sprite2D" parent="ml_01/bed"]
+z_index = -4
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("7_86qxo")
+
+[node name="platform" type="StaticBody2D" parent="ml_01"]
+
+[node name="Platform" type="Sprite2D" parent="ml_01/platform"]
+z_index = -6
+position = Vector2(-114, -175)
+scale = Vector2(2, 2)
+texture = ExtResource("8_0d6b8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform"]
+position = Vector2(-113.5, -175.759)
+shape = SubResource("RectangleShape2D_xrhk8")
+one_way_collision = true
+
+[node name="platform2" type="StaticBody2D" parent="ml_01"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform2"]
+position = Vector2(112, -227)
+shape = SubResource("RectangleShape2D_a6nti")
+one_way_collision = true
+
+[node name="platform3" type="StaticBody2D" parent="ml_01"]
+position = Vector2(0, -44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform3"]
+position = Vector2(112, -227)
+shape = SubResource("RectangleShape2D_a6nti")
+one_way_collision = true
+
 [node name="ml_02" type="StaticBody2D" parent="."]
-position = Vector2(1122, 415)
+position = Vector2(1119, 415)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02"]
 position = Vector2(29, -6.75)
@@ -71,11 +149,12 @@ shape = SubResource("RectangleShape2D_fjyij")
 
 [node name="Background" type="Sprite2D" parent="ml_02"]
 z_index = -10
-position = Vector2(31.5, -501)
-scale = Vector2(4.49609, 3.75781)
+position = Vector2(40, -499)
+scale = Vector2(5, 3.758)
 texture = ExtResource("4_84vrp")
 
 [node name="Floor" type="Node2D" parent="ml_02"]
+z_index = -1
 
 [node name="Ground16x32" type="Polygon2D" parent="ml_02/Floor"]
 visible = false
@@ -91,13 +170,26 @@ uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
 [node name="Ground32x64" type="Polygon2D" parent="ml_02/Floor"]
+z_index = 10
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, -5)
-scale = Vector2(40, 2)
+position = Vector2(0, 11)
+scale = Vector2(40, 4)
 texture = ExtResource("4_rxghq")
 texture_offset = Vector2(0, 8)
-texture_scale = Vector2(40, 2)
+texture_scale = Vector2(20, 2)
 polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ml_02"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/StaticBody2D"]
+position = Vector2(-538.5, -564.5)
+shape = SubResource("RectangleShape2D_rnv31")
+
+[node name="Wall01" type="Sprite2D" parent="ml_02/StaticBody2D"]
+z_index = 9
+position = Vector2(-542, -520.25)
+scale = Vector2(1, 4.29102)
+texture = ExtResource("6_las7y")
