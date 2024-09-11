@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=14 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Texture2D" uid="uid://dstjvfa1phlf" path="res://sprites/maps/background01.png" id="4_84vrp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b4k6cp7dnudw5" path="res://sprites/maps/wall01.png" id="6_las7y"]
 [ext_resource type="Texture2D" uid="uid://c5xtttncxl1m0" path="res://sprites/Props/bed01.png" id="7_86qxo"]
 [ext_resource type="Texture2D" uid="uid://dki06gev0bgxu" path="res://sprites/Props/platform.png" id="8_0d6b8"]
+[ext_resource type="PackedScene" uid="uid://d2yg68dgyqq4u" path="res://scenes/baby_01.tscn" id="9_tywij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1146, 28.5)
@@ -24,10 +25,9 @@ size = Vector2(126, 12)
 [node name="Scene1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_5o17h")]
-position = Vector2(-40, 300)
+position = Vector2(-40, 354)
 
 [node name="1F_Camera" type="Camera2D" parent="Player"]
-zoom = Vector2(1.2, 1.2)
 process_callback = 0
 limit_left = -570
 limit_bottom = 450
@@ -45,7 +45,7 @@ shape = SubResource("RectangleShape2D_fjyij")
 
 [node name="Background" type="Sprite2D" parent="ml_01"]
 z_index = -10
-position = Vector2(40, -671.988)
+position = Vector2(41, -672)
 scale = Vector2(5, 5.10947)
 texture = ExtResource("4_84vrp")
 
@@ -139,6 +139,9 @@ position = Vector2(0, -44)
 position = Vector2(112, -227)
 shape = SubResource("RectangleShape2D_a6nti")
 one_way_collision = true
+
+[node name="Baby01" parent="ml_01" instance=ExtResource("9_tywij")]
+position = Vector2(150, -250)
 
 [node name="ml_02" type="StaticBody2D" parent="."]
 position = Vector2(1119, 415)

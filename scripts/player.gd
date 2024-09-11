@@ -83,9 +83,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_hide_transition_finished():
 	if state == PlayerState.TRS_TO_HIDE:
-		state == PlayerState.HIDING
+		state = PlayerState.HIDING
 		player.play("hide")
-	elif state == PlayerState.TRS_FROM_HIDE:
+	if state == PlayerState.TRS_FROM_HIDE:
 		state = PlayerState.NORMAL
 		player.play("idle")
 

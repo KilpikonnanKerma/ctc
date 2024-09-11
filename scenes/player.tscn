@@ -150,18 +150,17 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o58d1"]
-size = Vector2(28, 37)
+size = Vector2(26.5, 26.5)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_q5ei5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(1.625, 1.625)
 sprite_frames = SubResource("SpriteFrames_hunum")
-animation = &"hide_transition"
+animation = &"hide"
+frame_progress = 0.390861
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(3, 6.5)
+position = Vector2(1.25, 2.25)
 shape = SubResource("RectangleShape2D_o58d1")
