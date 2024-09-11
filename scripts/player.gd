@@ -6,10 +6,10 @@ extends CharacterBody2D
 @onready var player = $AnimatedSprite2D
 @onready var hide_timer = Timer.new()
 
-var run_speed = 250.0
+var run_speed = 200.0
 
 const WALK_SPEED = 80.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -300.0
 
 enum PlayerState {
 	NORMAL,
@@ -81,6 +81,10 @@ func _physics_process(delta: float) -> void:
 	# 	var body := collision.get_collider()
 	# 	print("Collided with: ", body.name)
 
+func _input(event: InputEvent):
+	if(event.is_action_pressed("mv_down") and state == PlayerState.NORMAL):
+		position.y += 1
+
 func _on_hide_transition_finished():
 	if state == PlayerState.TRS_TO_HIDE:
 		state = PlayerState.HIDING
@@ -96,3 +100,9 @@ func _on_animation_finished(anim_name):
 	if state == PlayerState.TRS_FROM_HIDE:
 		state = PlayerState.NORMAL
 		player.play("idle")
+
+func _on_kill_range_entered(area: Area2D) -> void:
+	print(area)
+	if Input.is_action_just_pressed("consume"):
+		print(area)
+		self.hide()
