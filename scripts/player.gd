@@ -101,8 +101,6 @@ func _on_animation_finished(anim_name):
 		state = PlayerState.NORMAL
 		player.play("idle")
 
-func _on_kill_range_entered(area: Area2D) -> void:
-	print(area)
-	if Input.is_action_just_pressed("consume"):
-		print(area)
-		self.hide()
+func _on_kill_range_entered(body):
+	if body.is_in_group("Eatable"):
+		body.queue_free()
