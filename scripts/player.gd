@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export_range(0,1) var deceleration = 0.25
 
 @onready var player = $AnimatedSprite2D
+
+# animation timers
 @onready var hide_timer = Timer.new()
 
 var run_speed = 200.0
@@ -15,7 +17,9 @@ enum PlayerState {
 	NORMAL,
 	TRS_TO_HIDE,
 	HIDING,
-	TRS_FROM_HIDE
+	TRS_FROM_HIDE,
+	DINNER_TIME,
+	EATING
 }
 
 var state = PlayerState.NORMAL
@@ -74,6 +78,16 @@ func _physics_process(delta: float) -> void:
 
 		PlayerState.TRS_FROM_HIDE:
 			velocity.x = 0
+			
+		PlayerState.DINNER_TIME:
+			velocity.x = 0
+			state = PlayerState.EATING
+			player.play("eat01")
+			hide_timer.start(2.7)
+			return
+		
+		PlayerState.EATING:
+			velocity.x = 0
 
 	move_and_slide()
 	# for index in get_slide_collision_count():
@@ -92,6 +106,10 @@ func _on_hide_transition_finished():
 	if state == PlayerState.TRS_FROM_HIDE:
 		state = PlayerState.NORMAL
 		player.play("idle")
+	if state == PlayerState.EATING:
+		state = PlayerState.NORMAL
+		player.play("idle")
+		player.position.x -= 16
 
 func _on_animation_finished(anim_name):
 	#if state == PlayerState.TRS_TO_HIDE and anim_name == "hide_transition":
@@ -104,3 +122,5 @@ func _on_animation_finished(anim_name):
 func _on_kill_range_entered(body):
 	if body.is_in_group("Eatable"):
 		body.queue_free()
+		player.position.x += 16
+		state = PlayerState.DINNER_TIME
