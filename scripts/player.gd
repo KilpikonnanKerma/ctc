@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export_range(0,1) var acceleration = 0.1
-@export_range(0,1) var deceleration = 0.25
+@export_range(0,1) var deceleration = 0.5
 
 @onready var player = $AnimatedSprite2D
 
@@ -28,7 +28,6 @@ func _ready():
 	add_child(hide_timer)
 	hide_timer.one_shot = true
 	hide_timer.connect("timeout", Callable(self, "_on_hide_transition_finished"))
-
 	player.animation_finished.connect(Callable(self, "_on_animation_finished"))
 
 func _physics_process(delta: float) -> void:
@@ -83,7 +82,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = 0
 			state = PlayerState.EATING
 			player.play("eat01")
-			hide_timer.start(2.7)
+			hide_timer.start(2.5)
 			return
 		
 		PlayerState.EATING:

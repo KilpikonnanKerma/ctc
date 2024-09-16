@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2yg68dgyqq4u"]
+[gd_scene load_steps=8 format=3 uid="uid://d2yg68dgyqq4u"]
 
+[ext_resource type="Script" path="res://scripts/baby.gd" id="1_elahu"]
 [ext_resource type="Texture2D" uid="uid://dvidflp0an77h" path="res://sprites/Props/baby01_idle_00.png" id="1_ipis8"]
 [ext_resource type="Texture2D" uid="uid://dgl5nuflbyman" path="res://sprites/Props/baby01_idle_00tall.png" id="2_1g13w"]
 [ext_resource type="Texture2D" uid="uid://tgr08aj68r0e" path="res://sprites/Props/baby01_idle_01alt.png" id="3_03kvh"]
@@ -41,13 +42,14 @@ animations = [{
 size = Vector2(26, 25)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Eatable"]]
+script = ExtResource("1_elahu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1
 sprite_frames = SubResource("SpriteFrames_3puc1")
 animation = &"baby_idle"
 frame = 7
-frame_progress = 0.37433
+frame_progress = 0.919433
 speed_scale = 0.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
