@@ -133,6 +133,19 @@ position = Vector2(-311, -103)
 shape = SubResource("RectangleShape2D_xrhk8")
 one_way_collision = true
 
+[node name="platform4" type="StaticBody2D" parent="ml_01"]
+position = Vector2(276, -65)
+
+[node name="Platform" type="Sprite2D" parent="ml_01/platform4"]
+z_index = -6
+position = Vector2(-311, -104)
+texture = ExtResource("8_0d6b8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform4"]
+position = Vector2(-311, -103)
+shape = SubResource("RectangleShape2D_xrhk8")
+one_way_collision = true
+
 [node name="platform2" type="StaticBody2D" parent="ml_01"]
 position = Vector2(30, 0)
 

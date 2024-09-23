@@ -321,7 +321,8 @@ script = ExtResource("1_q5ei5")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hunum")
 animation = &"walk_l"
-frame_progress = 0.948443
+frame = 1
+frame_progress = 0.246465
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
