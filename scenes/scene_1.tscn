@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=18 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
 [ext_resource type="Texture2D" uid="uid://dstjvfa1phlf" path="res://sprites/maps/background01.png" id="4_84vrp"]
 [ext_resource type="Texture2D" uid="uid://c374smsv6tout" path="res://sprites/maps/floor_01_nobrdr.png" id="4_rxghq"]
 [ext_resource type="Texture2D" uid="uid://dirjy71u0jxra" path="res://sprites/maps/floor_01_nobrdr32x16.png" id="5_7pkgf"]
@@ -9,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://c5xtttncxl1m0" path="res://sprites/Props/bed01.png" id="7_86qxo"]
 [ext_resource type="Texture2D" uid="uid://dki06gev0bgxu" path="res://sprites/Props/platform.png" id="8_0d6b8"]
 [ext_resource type="PackedScene" uid="uid://d2yg68dgyqq4u" path="res://scenes/baby_01.tscn" id="9_tywij"]
+[ext_resource type="Texture2D" uid="uid://j7ilkad0cwl1" path="res://sprites/maps/grön.png" id="10_u4yso"]
+[ext_resource type="PackedScene" uid="uid://dnmx7jhikyiry" path="res://scenes/pause_menu.tscn" id="12_t0oui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1197, 28.5)
@@ -27,11 +30,13 @@ background_mode = 3
 ssao_intensity = 1.0
 
 [node name="Scene1" type="Node2D"]
+script = ExtResource("1_7n0go")
 
 [node name="Player" parent="." instance=ExtResource("1_5o17h")]
 position = Vector2(-40, 374)
 
 [node name="1F_Camera" type="Camera2D" parent="Player"]
+position = Vector2(1, 1)
 process_callback = 0
 limit_left = -570
 limit_bottom = 425
@@ -155,9 +160,9 @@ shape = SubResource("RectangleShape2D_fjyij")
 
 [node name="Background" type="Sprite2D" parent="ml_02"]
 z_index = -10
-position = Vector2(41, -672)
-scale = Vector2(5, 5.10947)
-texture = ExtResource("4_84vrp")
+position = Vector2(14.5, -668.5)
+scale = Vector2(37.9688, 41.0937)
+texture = ExtResource("10_u4yso")
 
 [node name="Floor" type="Node2D" parent="ml_02"]
 z_index = -1
@@ -203,3 +208,11 @@ texture = ExtResource("6_las7y")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ehrrk")
+
+[node name="PauseMenu" parent="." instance=ExtResource("12_t0oui")]
+visible = false
+z_index = 13
+offset_left = -39.0
+offset_top = 235.0
+offset_right = -39.0
+offset_bottom = 235.0

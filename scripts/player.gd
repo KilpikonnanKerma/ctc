@@ -82,7 +82,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = 0
 			state = PlayerState.EATING
 			player.play("eat01")
-			hide_timer.start(2.5)
+			hide_timer.start(2.7)
 			return
 		
 		PlayerState.EATING:
