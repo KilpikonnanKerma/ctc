@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=63 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
@@ -54,6 +54,11 @@
 [ext_resource type="Texture2D" uid="uid://vxkb5k5e3755" path="res://sprites/player/consumption/eat01_24.png" id="26_6ff26"]
 [ext_resource type="Texture2D" uid="uid://cnic7avbld7fc" path="res://sprites/player/consumption/eat01_25.png" id="27_kpwwa"]
 [ext_resource type="Texture2D" uid="uid://du3xhlneg1jal" path="res://sprites/player/consumption/eat01_26.png" id="28_0ehht"]
+[ext_resource type="Texture2D" uid="uid://cvju7nl5v2ne4" path="res://sprites/player/player_fall00.png" id="43_5pghx"]
+[ext_resource type="Texture2D" uid="uid://cuf05p7jeql4n" path="res://sprites/player/player_fall01.png" id="43_cka20"]
+[ext_resource type="Texture2D" uid="uid://di55qkfjencot" path="res://sprites/player/player_fall02.png" id="45_cllwb"]
+[ext_resource type="Texture2D" uid="uid://b4bjpk5pskpv7" path="res://sprites/player/player_walk_fall_l.png" id="46_di31p"]
+[ext_resource type="Texture2D" uid="uid://cecjciaumgibv" path="res://sprites/player/player_walk_fall.png" id="46_wtm16"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hunum"]
 animations = [{
@@ -145,6 +150,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("45_cllwb")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_75bhc")
 }, {
 "duration": 1.0,
@@ -217,6 +230,39 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_a4u02")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_5pghx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_cka20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_cllwb")
+}],
+"loop": true,
+"name": &"trs_to_fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("46_di31p")
+}],
+"loop": true,
+"name": &"walk_fall_l",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("46_wtm16")
+}],
+"loop": true,
+"name": &"walk_fall_r",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("6_m83e7")
 }, {
 "duration": 1.0,
@@ -274,9 +320,11 @@ script = ExtResource("1_q5ei5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hunum")
-animation = &"idle"
+animation = &"walk_l"
+frame_progress = 0.948443
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1.25, 2.25)
 shape = SubResource("RectangleShape2D_o58d1")
 

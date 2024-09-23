@@ -19,7 +19,9 @@ enum PlayerState {
 	HIDING,
 	TRS_FROM_HIDE,
 	DINNER_TIME,
-	EATING
+	EATING,
+	TRS_TO_FALL,
+	FALL
 }
 
 var state = PlayerState.NORMAL
@@ -39,6 +41,7 @@ func _physics_process(delta: float) -> void:
 		PlayerState.NORMAL:
 			if Input.is_action_just_pressed("jump") and is_on_floor():
 				velocity.y = JUMP_VELOCITY
+				#hyppy animaatio
 
 			if Input.is_action_just_pressed("hide") and is_on_floor():
 				state = PlayerState.TRS_TO_HIDE
@@ -56,12 +59,18 @@ func _physics_process(delta: float) -> void:
 
 				if velocity.x > 0:
 					player.animation = "walk_r"
+					if not is_on_floor():
+						player.play("walk_fall_r")
 				elif velocity.x < 0:
 					player.animation = "walk_l"
+					if not is_on_floor():
+						player.play("walk_fall_l")
 			else:
 				velocity.x = move_toward(velocity.x, 0, WALK_SPEED * deceleration)
 				if is_on_floor():
 					player.play("idle")
+				if not is_on_floor():
+					player.play("fall")
 
 		PlayerState.TRS_TO_HIDE:
 			velocity.x = 0
@@ -109,6 +118,8 @@ func _on_hide_transition_finished():
 		state = PlayerState.NORMAL
 		player.play("idle")
 		player.position.x -= 16
+	if state == PlayerState.TRS_TO_FALL:
+		state = PlayerState.FALL
 
 func _on_animation_finished(anim_name):
 	#if state == PlayerState.TRS_TO_HIDE and anim_name == "hide_transition":

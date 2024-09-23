@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=19 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
@@ -12,12 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://d2yg68dgyqq4u" path="res://scenes/baby_01.tscn" id="9_tywij"]
 [ext_resource type="Texture2D" uid="uid://j7ilkad0cwl1" path="res://sprites/maps/grön.png" id="10_u4yso"]
 [ext_resource type="PackedScene" uid="uid://dnmx7jhikyiry" path="res://scenes/pause_menu.tscn" id="12_t0oui"]
+[ext_resource type="PackedScene" uid="uid://5c5eh2fjkx6i" path="res://scenes/daddy.tscn" id="13_gce4i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1197, 28.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rnv31"]
-size = Vector2(77, 910.5)
+size = Vector2(68, 910.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrhk8"]
 size = Vector2(34, 9.75905)
@@ -96,7 +97,7 @@ texture = ExtResource("5_vrcuc")
 [node name="Wall" type="StaticBody2D" parent="ml_01"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/Wall"]
-position = Vector2(-538.5, -462.25)
+position = Vector2(-543, -462.25)
 shape = SubResource("RectangleShape2D_rnv31")
 
 [node name="Wall01" type="Sprite2D" parent="ml_01/Wall"]
@@ -216,3 +217,6 @@ offset_left = -39.0
 offset_top = 235.0
 offset_right = -39.0
 offset_bottom = 235.0
+
+[node name="Daddy" parent="." instance=ExtResource("13_gce4i")]
+position = Vector2(44, 346)
