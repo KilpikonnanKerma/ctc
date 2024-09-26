@@ -337,3 +337,4 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_eoymx")
 
 [connection signal="body_entered" from="Range" to="." method="_on_kill_range_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_kille_range_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=24 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
@@ -11,8 +11,25 @@
 [ext_resource type="Texture2D" uid="uid://dki06gev0bgxu" path="res://sprites/Props/platform.png" id="8_0d6b8"]
 [ext_resource type="PackedScene" uid="uid://d2yg68dgyqq4u" path="res://scenes/baby_01.tscn" id="9_tywij"]
 [ext_resource type="Texture2D" uid="uid://j7ilkad0cwl1" path="res://sprites/maps/grön.png" id="10_u4yso"]
+[ext_resource type="Script" path="res://scripts/daddy.gd" id="12_sgs0x"]
 [ext_resource type="PackedScene" uid="uid://dnmx7jhikyiry" path="res://scenes/pause_menu.tscn" id="12_t0oui"]
 [ext_resource type="PackedScene" uid="uid://5c5eh2fjkx6i" path="res://scenes/daddy.tscn" id="13_gce4i"]
+[ext_resource type="Shader" path="res://scripts/shaders/dither.gdshader" id="14_on7l8"]
+[ext_resource type="Shader" path="res://scripts/shaders/vignette.gdshader" id="15_7k8if"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26csr"]
+shader = ExtResource("15_7k8if")
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r83ee"]
+shader = ExtResource("14_on7l8")
+shader_parameter/dither_pixel_size = 1.0
+shader_parameter/dither_pixel_offset = Vector2(0, 0)
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_strength = 1.0
+shader_parameter/alpha_dither_pixel_offset = Vector2(0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1197, 28.5)
@@ -29,6 +46,8 @@ size = Vector2(62, 6)
 [sub_resource type="Environment" id="Environment_ehrrk"]
 background_mode = 3
 ssao_intensity = 1.0
+fog_density = 0.1
+adjustment_enabled = true
 
 [node name="Scene1" type="Node2D"]
 script = ExtResource("1_7n0go")
@@ -36,7 +55,7 @@ script = ExtResource("1_7n0go")
 [node name="Player" parent="." instance=ExtResource("1_5o17h")]
 position = Vector2(-40, 374)
 
-[node name="1F_Camera" type="Camera2D" parent="Player"]
+[node name="Camera" type="Camera2D" parent="Player"]
 position = Vector2(1, 1)
 process_callback = 0
 limit_left = -570
@@ -45,6 +64,25 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 100.0
 drag_horizontal_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera"]
+
+[node name="Vignette" type="ColorRect" parent="Player/Camera/CanvasLayer"]
+visible = false
+z_index = -15
+material = SubResource("ShaderMaterial_26csr")
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 1)
+
+[node name="PauseMenu" parent="Player/Camera/CanvasLayer" instance=ExtResource("12_t0oui")]
+visible = false
+z_index = 13
+
+[node name="ColorRect" type="ColorRect" parent="Player/Camera/CanvasLayer"]
+material = SubResource("ShaderMaterial_r83ee")
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="ml_01" type="StaticBody2D" parent="."]
 position = Vector2(-28, 415)
@@ -163,7 +201,11 @@ shape = SubResource("RectangleShape2D_a6nti")
 one_way_collision = true
 
 [node name="Baby01" parent="ml_01" instance=ExtResource("9_tywij")]
-position = Vector2(-133, -142)
+position = Vector2(-133, -143)
+
+[node name="Daddy" parent="ml_01" instance=ExtResource("13_gce4i")]
+position = Vector2(72, -69)
+script = ExtResource("12_sgs0x")
 
 [node name="ml_02" type="StaticBody2D" parent="."]
 position = Vector2(1169, 415)
@@ -223,13 +265,24 @@ texture = ExtResource("6_las7y")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ehrrk")
 
-[node name="PauseMenu" parent="." instance=ExtResource("12_t0oui")]
+[node name="Eat_text" type="NinePatchRect" parent="."]
 visible = false
-z_index = 13
-offset_left = -39.0
-offset_top = 235.0
-offset_right = -39.0
-offset_bottom = 235.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
 
-[node name="Daddy" parent="." instance=ExtResource("13_gce4i")]
-position = Vector2(44, 346)
+[node name="VBoxContainer" type="VBoxContainer" parent="Eat_text"]
+layout_mode = 0
+offset_right = 119.0
+offset_bottom = 23.0
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Eat_text/VBoxContainer"]
+layout_mode = 2
+text = "Press 'E' to eat"
+fit_content = true
+scroll_active = false

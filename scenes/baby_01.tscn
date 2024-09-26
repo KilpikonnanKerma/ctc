@@ -39,7 +39,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwr7t"]
-size = Vector2(26, 25)
+size = Vector2(17, 15)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Eatable"]]
 script = ExtResource("1_elahu")
@@ -53,5 +53,5 @@ frame_progress = 0.919433
 speed_scale = 0.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 3.5)
+position = Vector2(0.5, 8.5)
 shape = SubResource("RectangleShape2D_rwr7t")

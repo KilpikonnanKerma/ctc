@@ -3,9 +3,9 @@ extends CharacterBody2D
 @export_range(0,1) var acceleration = 0.1
 @export_range(0,1) var deceleration = 0.5
 
+@onready var main = $".."
+@onready var vignette = $Camera/CanvasLayer/Vignette
 @onready var player = $AnimatedSprite2D
-
-# animation timers
 @onready var hide_timer = Timer.new()
 
 var run_speed = 200.0
@@ -14,14 +14,10 @@ const WALK_SPEED = 80.0
 const JUMP_VELOCITY = -300.0
 
 enum PlayerState {
-	NORMAL,
-	TRS_TO_HIDE,
-	HIDING,
-	TRS_FROM_HIDE,
-	DINNER_TIME,
-	EATING,
-	TRS_TO_FALL,
-	FALL
+	NORMAL, TRS_TO_HIDE,
+	HIDING, TRS_FROM_HIDE,
+	DINNER_TIME, EATING,
+	TRS_TO_FALL, FALL
 }
 
 var state = PlayerState.NORMAL
@@ -41,7 +37,6 @@ func _physics_process(delta: float) -> void:
 		PlayerState.NORMAL:
 			if Input.is_action_just_pressed("jump") and is_on_floor():
 				velocity.y = JUMP_VELOCITY
-				#hyppy animaatio
 
 			if Input.is_action_just_pressed("hide") and is_on_floor():
 				state = PlayerState.TRS_TO_HIDE
@@ -49,6 +44,9 @@ func _physics_process(delta: float) -> void:
 				hide_timer.start(1.4) # 5fps ja 7 frames
 				velocity.x = 0 # ei pysty liikkua
 				return
+
+			if Input.is_action_just_pressed("consume") and is_on_floor() and main.etex == true:
+				eat(main.cur_victim)
 
 			var direction := Input.get_axis("mv_left", "mv_right")
 			if direction:
@@ -77,6 +75,7 @@ func _physics_process(delta: float) -> void:
 
 		PlayerState.HIDING:
 			# movement is no
+			vignette.show()
 			velocity.x = 0
 			if Input.is_action_just_pressed("unhide"):
 				state = PlayerState.TRS_FROM_HIDE
@@ -86,6 +85,7 @@ func _physics_process(delta: float) -> void:
 
 		PlayerState.TRS_FROM_HIDE:
 			velocity.x = 0
+			vignette.hide()
 			
 		PlayerState.DINNER_TIME:
 			velocity.x = 0
@@ -106,6 +106,11 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent):
 	if(event.is_action_pressed("mv_down") and state == PlayerState.NORMAL):
 		position.y += 1
+
+func eat(body):
+	body.queue_free()
+	player.position.x += 16
+	state = PlayerState.DINNER_TIME
 
 func _on_hide_transition_finished():
 	if state == PlayerState.TRS_TO_HIDE:
@@ -131,6 +136,8 @@ func _on_animation_finished(anim_name):
 
 func _on_kill_range_entered(body):
 	if body.is_in_group("Eatable"):
-		body.queue_free()
-		player.position.x += 16
-		state = PlayerState.DINNER_TIME
+		main.eatConfirm(true, body)
+	
+func _on_kille_range_exited(body):
+	if body.is_in_group("Eatable"):
+		main.eatConfirm(false, body)
