@@ -4,6 +4,14 @@ extends Control
 func _ready() -> void:
 	pass # Replace with function body.
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("menu_play"):
+		_on_StartButton_pressed()
+	if Input.is_action_just_pressed("menu_stngs"):
+		_on_SettingsButton_pressed()
+	if Input.is_action_just_pressed("menu_exit"):
+		_on_Exit_pressed()
+
 func _on_StartButton_pressed():
 	get_tree().change_scene_to_file("res://scenes/scene_1.tscn")
 

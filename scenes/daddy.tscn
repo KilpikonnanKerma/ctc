@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://5c5eh2fjkx6i"]
+[gd_scene load_steps=5 format=3 uid="uid://5c5eh2fjkx6i"]
 
+[ext_resource type="Script" path="res://scripts/daddy.gd" id="1_ednn7"]
 [ext_resource type="Texture2D" uid="uid://deekn4hn4ugal" path="res://sprites/enemies/parent01_00.png" id="1_qkodp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_syo84"]
@@ -17,6 +18,7 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_ednn7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 2.5)
@@ -25,3 +27,5 @@ shape = SubResource("RectangleShape2D_syo84")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b1yff")
 animation = &"idle"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
