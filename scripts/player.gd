@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var main = $".."
 @onready var vignette = $Camera/CanvasLayer/Vignette
 @onready var player = $AnimatedSprite2D
+@onready var animPlayer = $AnimationPlayer
 @onready var hide_timer = Timer.new()
 
 var run_speed = 200.0
@@ -35,6 +36,8 @@ func _physics_process(delta: float) -> void:
 
 	match state:
 		PlayerState.NORMAL:
+			vignette.hide()
+
 			if Input.is_action_just_pressed("jump") and is_on_floor():
 				velocity.y = JUMP_VELOCITY
 
@@ -72,10 +75,11 @@ func _physics_process(delta: float) -> void:
 
 		PlayerState.TRS_TO_HIDE:
 			velocity.x = 0
+			vignette.show()
+			animPlayer.play("vignette_anim")
 
 		PlayerState.HIDING:
 			# movement is no
-			vignette.show()
 			velocity.x = 0
 			if Input.is_action_just_pressed("unhide"):
 				state = PlayerState.TRS_FROM_HIDE
@@ -85,7 +89,7 @@ func _physics_process(delta: float) -> void:
 
 		PlayerState.TRS_FROM_HIDE:
 			velocity.x = 0
-			vignette.hide()
+			animPlayer.play("vignette_anim_off")
 			
 		PlayerState.DINNER_TIME:
 			velocity.x = 0
@@ -111,6 +115,7 @@ func eat(body):
 	body.queue_free()
 	player.position.x += 16
 	state = PlayerState.DINNER_TIME
+	main.aggro = true
 
 func _on_hide_transition_finished():
 	if state == PlayerState.TRS_TO_HIDE:

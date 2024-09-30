@@ -7,6 +7,8 @@ var paused = false
 var etex = false
 var cur_victim
 
+var aggro = false
+
 func _ready() -> void:
 	paused = false
 	Engine.time_scale = 1
