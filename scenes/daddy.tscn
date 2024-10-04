@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://5c5eh2fjkx6i"]
+[gd_scene load_steps=7 format=3 uid="uid://5c5eh2fjkx6i"]
 
 [ext_resource type="Script" path="res://scripts/daddy.gd" id="1_ednn7"]
 [ext_resource type="Texture2D" uid="uid://deekn4hn4ugal" path="res://sprites/enemies/parent01_00.png" id="1_qkodp"]
 [ext_resource type="Texture2D" uid="uid://bk2pk53hlica" path="res://sprites/shit/huutomerkki.png" id="3_w82xr"]
+[ext_resource type="Texture2D" uid="uid://cjteld6qflwhx" path="res://sprites/shit/kymysys.png" id="4_owf87"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_syo84"]
 size = Vector2(31, 92)
@@ -34,6 +35,13 @@ animation = &"idle"
 visible = false
 
 [node name="Huutomerkki" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(0, -64)
 texture = ExtResource("3_w82xr")
+
+[node name="kymysys" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -64)
+texture = ExtResource("4_owf87")

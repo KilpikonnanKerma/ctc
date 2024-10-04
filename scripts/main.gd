@@ -8,6 +8,7 @@ var etex = false
 var cur_victim
 
 var aggro = false
+var searching = false
 
 func _ready() -> void:
 	paused = false

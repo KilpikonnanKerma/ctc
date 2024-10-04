@@ -14,7 +14,7 @@ var run_speed = 200.0
 const WALK_SPEED = 80.0
 const JUMP_VELOCITY = -300.0
 
-var is_checking_for_eat = false
+var enemy_in_area = false
 var enemy_body
 
 enum PlayerState {
@@ -37,8 +37,11 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if is_checking_for_eat && state == PlayerState.EATING:
+	if enemy_in_area && state == PlayerState.EATING:
 		main.aggro = true
+	if main.aggro && state == PlayerState.HIDING:
+		main.searching = true
+		main.aggro = false
 
 	match state:
 		PlayerState.NORMAL:
@@ -80,13 +83,13 @@ func _physics_process(delta: float) -> void:
 					player.play("fall")
 
 		PlayerState.TRS_TO_HIDE:
-			velocity.x = 0
+			stop_movement()
 			vignette.show()
 			animPlayer.play("vignette_anim")
 
 		PlayerState.HIDING:
 			# movement is no
-			velocity.x = 0
+			stop_movement()
 			if Input.is_action_just_pressed("unhide"):
 				state = PlayerState.TRS_FROM_HIDE
 				player.play_backwards("hide_transition")
@@ -94,18 +97,18 @@ func _physics_process(delta: float) -> void:
 				return
 
 		PlayerState.TRS_FROM_HIDE:
-			velocity.x = 0
+			stop_movement()
 			animPlayer.play("vignette_anim_off")
 			
 		PlayerState.DINNER_TIME:
-			velocity.x = 0
+			stop_movement()
 			state = PlayerState.EATING
 			player.play("eat01")
 			hide_timer.start(2.7)
 			return
 		
 		PlayerState.EATING:
-			velocity.x = 0
+			stop_movement()
 
 	move_and_slide()
 	# for index in get_slide_collision_count():
@@ -117,12 +120,15 @@ func _input(event: InputEvent):
 	if(event.is_action_pressed("mv_down") and state == PlayerState.NORMAL):
 		position.y += 1
 
+func stop_movement():
+	velocity.x = 0
+
 func is_caught(body):
-	is_checking_for_eat = true
+	enemy_in_area = true
 	enemy_body = body
 
 func is_cght_exit(body):
-	is_checking_for_eat = false
+	enemy_in_area = false
 
 func eat(body):
 	body.queue_free()
