@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var main = $"../.."
 @onready var player = $"../../Player"
+@onready var htmrk = $"Huutomerkki"
 
 var speed = -1500
 var movement = 0
@@ -20,6 +21,7 @@ func _physics_process(delta: float) -> void:
 	#	velocity += get_gravity() * delta
 
 	if not main.aggro:
+		htmrk.hide()
 		if movement < max_move:
 			velocity.x = speed * delta
 			movement += 1
@@ -27,6 +29,7 @@ func _physics_process(delta: float) -> void:
 			flip()
 			movement = 0
 	else:
+		htmrk.show()
 		if !facing_right:
 			direction = (player.position - position).normalized()
 			velocity.x = (direction.x * -speed) * delta

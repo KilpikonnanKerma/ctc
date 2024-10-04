@@ -35,6 +35,7 @@ enabled=PackedStringArray()
 [global_group]
 
 Eatable=""
+Enemy=""
 
 [input]
 

@@ -14,6 +14,9 @@ var run_speed = 200.0
 const WALK_SPEED = 80.0
 const JUMP_VELOCITY = -300.0
 
+var is_checking_for_eat = false
+var enemy_body
+
 enum PlayerState {
 	NORMAL, TRS_TO_HIDE,
 	HIDING, TRS_FROM_HIDE,
@@ -33,6 +36,9 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
+	if is_checking_for_eat && state == PlayerState.EATING:
+		main.aggro = true
 
 	match state:
 		PlayerState.NORMAL:
@@ -111,11 +117,17 @@ func _input(event: InputEvent):
 	if(event.is_action_pressed("mv_down") and state == PlayerState.NORMAL):
 		position.y += 1
 
+func is_caught(body):
+	is_checking_for_eat = true
+	enemy_body = body
+
+func is_cght_exit(body):
+	is_checking_for_eat = false
+
 func eat(body):
 	body.queue_free()
 	player.position.x += 16
 	state = PlayerState.DINNER_TIME
-	main.aggro = true
 
 func _on_hide_transition_finished():
 	if state == PlayerState.TRS_TO_HIDE:
