@@ -3,6 +3,10 @@ extends Node2D
 @onready var pause_menu = $"Player/Camera/CanvasLayer/PauseMenu"
 @onready var eat_text = $"Eat_text"
 @onready var player = $"Player"
+@onready var DebugDisplay = $DebugInfo
+
+@onready var gen_timer = Timer.new()
+
 var paused = false
 var etex = false
 var cur_victim
@@ -11,6 +15,7 @@ var aggro = false
 var searching = false
 
 func _ready() -> void:
+	gen_timer.one_shot = true
 	paused = false
 	Engine.time_scale = 1
 

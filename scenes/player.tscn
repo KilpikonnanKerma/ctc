@@ -380,7 +380,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n3klj"]
 size = Vector2(638, 359)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_q5ei5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -433,6 +433,7 @@ libraries = {
 }
 
 [node name="Eat_range" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Eat_range"]
 position = Vector2(2, 1.5)

@@ -5,9 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://bk2pk53hlica" path="res://sprites/shit/huutomerkki.png" id="3_w82xr"]
 [ext_resource type="Texture2D" uid="uid://cjteld6qflwhx" path="res://sprites/shit/kymysys.png" id="4_owf87"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_syo84"]
-size = Vector2(31, 92)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_b1yff"]
 animations = [{
 "frames": [{
@@ -19,13 +16,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_syo84"]
+size = Vector2(126, 92)
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_ednn7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 2)
-shape = SubResource("RectangleShape2D_syo84")
-disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b1yff")
@@ -45,3 +40,10 @@ visible = false
 texture_filter = 1
 position = Vector2(0, -64)
 texture = ExtResource("4_owf87")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_syo84")
+
+[connection signal="area_entered" from="Area2D" to="." method="close_to_player"]
