@@ -1,9 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://5c5eh2fjkx6i"]
+[gd_scene load_steps=13 format=3 uid="uid://5c5eh2fjkx6i"]
 
 [ext_resource type="Script" path="res://scripts/daddy.gd" id="1_ednn7"]
 [ext_resource type="Texture2D" uid="uid://deekn4hn4ugal" path="res://sprites/enemies/parent01_00.png" id="1_qkodp"]
 [ext_resource type="Texture2D" uid="uid://bk2pk53hlica" path="res://sprites/shit/huutomerkki.png" id="3_w82xr"]
 [ext_resource type="Texture2D" uid="uid://cjteld6qflwhx" path="res://sprites/shit/kymysys.png" id="4_owf87"]
+[ext_resource type="Texture2D" uid="uid://ocje617u3pju" path="res://sprites/shit/timerfull.png" id="5_v07gj"]
+[ext_resource type="Texture2D" uid="uid://b0cp5md2f8une" path="res://sprites/shit/timer_01.png" id="6_16fad"]
+[ext_resource type="Texture2D" uid="uid://nhnaius4edmm" path="res://sprites/shit/timer_02.png" id="7_238t8"]
+[ext_resource type="Texture2D" uid="uid://dtmpho0lxoega" path="res://sprites/shit/timer_03.png" id="8_icxeq"]
+[ext_resource type="Texture2D" uid="uid://bsg6abrr27e2o" path="res://sprites/shit/timer_04.png" id="9_atsu6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b1yff"]
 animations = [{
@@ -14,6 +19,29 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tpasg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_v07gj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_16fad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_238t8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_icxeq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_atsu6")
+}],
+"loop": true,
+"name": &"timer",
+"speed": 1.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_syo84"]
@@ -28,6 +56,13 @@ animation = &"idle"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false
+
+[node name="notice_timer" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -64)
+sprite_frames = SubResource("SpriteFrames_tpasg")
+animation = &"timer"
+frame_progress = 0.626427
 
 [node name="Huutomerkki" type="Sprite2D" parent="."]
 visible = false
