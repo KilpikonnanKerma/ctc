@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var player = $"../../Player"
 @onready var htmrk = $"Huutomerkki"
 @onready var qstn = $"kymysys"
+@onready var notice_timer = $"notice_timer"
 
 var speed = -1500
 var max_move = 500
@@ -27,10 +28,16 @@ func _physics_process(delta: float) -> void:
 	#	velocity += get_gravity() * delta
 
 	if is_close:
+		notice_timer.show()
+		notice_timer.play("timer")
 		close_counter += 1
-		if close_counter == 500:
+		if close_counter == 300:
+			notice_timer.hide()
+			is_close = false
 			main.aggro = true
 			close_counter = 0
+	else:
+		notice_timer.hide()
 
 	if not main.aggro && not main.searching: # normal roaming
 		htmrk.hide()
@@ -61,6 +68,7 @@ func search(delta: float):
 
 	if searchi == 1000:
 		main.searching = false
+		searchi = 0
 
 	if movement < 100 + randi() % 500:
 		velocity.x = speed * delta
@@ -79,5 +87,8 @@ func flip():
 		speed = abs(speed) * -1
 
 func close_to_player(area: Area2D) -> void:
-	if area.is_in_group("Player"):
+	# todo: kato, onko pelaaja piilossa
+
+	#if area.is_in_group("Player"):
+	if not main.aggro:
 		is_close = true
