@@ -41,11 +41,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"timer",
-"speed": 1.0
+"speed": 2.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_syo84"]
-size = Vector2(126, 92)
+size = Vector2(325, 125.5)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_ednn7")
@@ -62,7 +62,7 @@ visible = false
 position = Vector2(0, -64)
 sprite_frames = SubResource("SpriteFrames_tpasg")
 animation = &"timer"
-frame_progress = 0.626427
+frame_progress = 0.504726
 
 [node name="Huutomerkki" type="Sprite2D" parent="."]
 visible = false
@@ -79,6 +79,8 @@ texture = ExtResource("4_owf87")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_syo84")
 
 [connection signal="area_entered" from="Area2D" to="." method="close_to_player"]
+[connection signal="area_exited" from="Area2D" to="." method="far_from_player"]

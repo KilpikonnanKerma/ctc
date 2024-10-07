@@ -14,7 +14,7 @@ var run_speed = 200.0
 const WALK_SPEED = 80.0
 const JUMP_VELOCITY = -300.0
 
-var enemy_in_area = false
+var is_eating
 var enemy_body
 
 enum PlayerState {
@@ -37,8 +37,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if enemy_in_area && state == PlayerState.EATING:
-		main.aggro = true
 	if main.aggro && state == PlayerState.HIDING:
 		main.searching = true
 		main.aggro = false
@@ -46,6 +44,7 @@ func _physics_process(delta: float) -> void:
 	match state:
 		PlayerState.NORMAL:
 			vignette.hide()
+			is_eating = false
 
 			if Input.is_action_just_pressed("jump") and is_on_floor():
 				velocity.y = JUMP_VELOCITY
@@ -102,6 +101,7 @@ func _physics_process(delta: float) -> void:
 			
 		PlayerState.DINNER_TIME:
 			stop_movement()
+			is_eating = true
 			state = PlayerState.EATING
 			player.play("eat01")
 			hide_timer.start(2.7)
@@ -122,13 +122,6 @@ func _input(event: InputEvent):
 
 func stop_movement():
 	velocity.x = 0
-
-func is_caught(body):
-	enemy_in_area = true
-	enemy_body = body
-
-func is_cght_exit(body):
-	enemy_in_area = false
 
 func eat(body):
 	body.queue_free()

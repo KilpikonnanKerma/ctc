@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=21 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
@@ -11,7 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://dki06gev0bgxu" path="res://sprites/Props/platform.png" id="8_0d6b8"]
 [ext_resource type="PackedScene" uid="uid://d2yg68dgyqq4u" path="res://scenes/baby_01.tscn" id="9_tywij"]
 [ext_resource type="Texture2D" uid="uid://j7ilkad0cwl1" path="res://sprites/maps/grön.png" id="10_u4yso"]
+[ext_resource type="Texture2D" uid="uid://ihp3dk7h42i3" path="res://sprites/Props/taulu01.png" id="10_utbnu"]
+[ext_resource type="Texture2D" uid="uid://bmapv3ikh83lj" path="res://sprites/shit/lampu01.png" id="12_x48wg"]
 [ext_resource type="PackedScene" uid="uid://5c5eh2fjkx6i" path="res://scenes/daddy.tscn" id="13_gce4i"]
+[ext_resource type="Texture2D" uid="uid://ced7mqc5pygfr" path="res://sprites/shit/letku_hommeli.png" id="13_gfnq8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1197, 28.5)
@@ -20,7 +23,7 @@ size = Vector2(1197, 28.5)
 size = Vector2(68, 910.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrhk8"]
-size = Vector2(34, 9.75905)
+size = Vector2(48, 9.75905)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6nti"]
 size = Vector2(62, 6)
@@ -29,7 +32,6 @@ size = Vector2(62, 6)
 background_mode = 3
 ssao_intensity = 1.0
 fog_density = 0.1
-adjustment_enabled = true
 
 [node name="Scene1" type="Node2D"]
 script = ExtResource("1_7n0go")
@@ -116,6 +118,7 @@ texture = ExtResource("7_86qxo")
 
 [node name="Platform" type="Sprite2D" parent="ml_01/platform"]
 z_index = -6
+texture_filter = 1
 position = Vector2(-311, -104)
 texture = ExtResource("8_0d6b8")
 
@@ -134,6 +137,35 @@ texture = ExtResource("8_0d6b8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform4"]
 position = Vector2(-311, -103)
+shape = SubResource("RectangleShape2D_xrhk8")
+one_way_collision = true
+
+[node name="platform5" type="StaticBody2D" parent="ml_01"]
+texture_filter = 1
+position = Vector2(276, -65)
+
+[node name="Platform" type="Sprite2D" parent="ml_01/platform5"]
+z_index = -6
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-158, -109)
+texture = ExtResource("10_utbnu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform5"]
+position = Vector2(-158, -136)
+shape = SubResource("RectangleShape2D_xrhk8")
+one_way_collision = true
+
+[node name="platform6" type="StaticBody2D" parent="ml_01"]
+position = Vector2(276, -65)
+
+[node name="Platform" type="Sprite2D" parent="ml_01/platform6"]
+z_index = -6
+position = Vector2(-41, -176)
+texture = ExtResource("8_0d6b8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform6"]
+position = Vector2(-41, -175)
 shape = SubResource("RectangleShape2D_xrhk8")
 one_way_collision = true
 
@@ -158,6 +190,25 @@ position = Vector2(-133, -143)
 
 [node name="Daddy" parent="ml_01" instance=ExtResource("13_gce4i")]
 position = Vector2(302, -69)
+
+[node name="Lamppu" type="StaticBody2D" parent="ml_01"]
+
+[node name="Lamppu" type="Sprite2D" parent="ml_01/Lamppu"]
+texture_filter = 1
+position = Vector2(27, -673)
+texture = ExtResource("12_x48wg")
+
+[node name="Lampunletkuhommeli" type="Sprite2D" parent="ml_01/Lamppu"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(27, -973)
+scale = Vector2(1, 10.375)
+texture = ExtResource("13_gfnq8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ml_01/Lamppu"]
+position = Vector2(-72, -749)
+polygon = PackedVector2Array(225, 107, 169, 102, 100, 100, 28, 101, -27, 106, -28, 121, 23, 140, 99, 145, 186, 137, 224, 122)
+one_way_collision = true
 
 [node name="ml_02" type="StaticBody2D" parent="."]
 position = Vector2(1169, 415)

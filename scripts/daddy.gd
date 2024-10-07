@@ -31,13 +31,15 @@ func _physics_process(delta: float) -> void:
 		notice_timer.show()
 		notice_timer.play("timer")
 		close_counter += 1
-		if close_counter == 300:
+		if close_counter == 130:
 			notice_timer.hide()
 			is_close = false
 			main.aggro = true
 			close_counter = 0
 	else:
 		notice_timer.hide()
+		notice_timer.stop()
+		close_counter = 0
 
 	if not main.aggro && not main.searching: # normal roaming
 		htmrk.hide()
@@ -49,10 +51,11 @@ func _physics_process(delta: float) -> void:
 			flip()
 			movement = 0
 	elif main.aggro:		# aggro
+		qstn.hide()
 		htmrk.show()
 		if !facing_right:
 			direction = (player.position - position).normalized()
-			velocity.x = (direction.x * -speed*2) * delta
+			velocity.x = (direction.x*2 * -speed*2) * delta
 		else:
 			flip()
 	elif main.searching: #searching
@@ -89,6 +92,18 @@ func flip():
 func close_to_player(area: Area2D) -> void:
 	# todo: kato, onko pelaaja piilossa
 
-	#if area.is_in_group("Player"):
-	if not main.aggro:
-		is_close = true
+	if area.is_in_group("Player"):
+		if main.searching == true:
+			main.aggro = true
+
+		if not main.aggro:
+			is_close = true
+		
+		if player.is_eating:
+			main.aggro = true
+
+func far_from_player(area: Area2D) -> void:
+
+	if area.is_in_group("Player"):
+		if not main.aggro:
+			is_close = false

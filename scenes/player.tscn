@@ -314,7 +314,7 @@ animations = [{
 size = Vector2(26.5, 26.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eoymx"]
-size = Vector2(47.25, 32.5)
+size = Vector2(61.625, 32.25)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o2av2"]
 resource_local_to_scene = true
@@ -378,7 +378,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n3klj"]
-size = Vector2(638, 359)
+size = Vector2(394.5, 243.5)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_q5ei5")
@@ -395,11 +395,9 @@ visible = false
 position = Vector2(1.25, 2.25)
 shape = SubResource("RectangleShape2D_o58d1")
 
-[node name="Range" type="Area2D" parent="."]
-visible = false
+[node name="Range" type="Area2D" parent="." groups=["Player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
-position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_eoymx")
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -433,9 +431,11 @@ libraries = {
 }
 
 [node name="Eat_range" type="Area2D" parent="."]
+visible = false
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Eat_range"]
-position = Vector2(2, 1.5)
 shape = SubResource("RectangleShape2D_n3klj")
 
 [connection signal="body_entered" from="Range" to="." method="_on_kill_range_entered"]
