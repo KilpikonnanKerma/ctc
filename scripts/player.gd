@@ -10,6 +10,10 @@ extends CharacterBody2D
 @onready var hide_timer = Timer.new()
 
 var run_speed = 200.0
+var health = 3
+
+var cur_direction
+var last_input
 
 const WALK_SPEED = 80.0
 const JUMP_VELOCITY = -300.0
@@ -60,6 +64,7 @@ func _physics_process(delta: float) -> void:
 				eat(main.cur_victim)
 
 			var direction := Input.get_axis("mv_left", "mv_right")
+
 			if direction:
 				if Input.is_action_pressed("run"): #voi ns. dashata ilmassa, jos painaa shiftiä (it's not a bug it's a feature)
 					velocity.x = move_toward(velocity.x, direction * run_speed, run_speed * acceleration)
@@ -70,14 +75,20 @@ func _physics_process(delta: float) -> void:
 					player.animation = "walk_r"
 					if not is_on_floor():
 						player.play("walk_fall_r")
+					last_input = "right"
 				elif velocity.x < 0:
 					player.animation = "walk_l"
 					if not is_on_floor():
 						player.play("walk_fall_l")
+					last_input = "left"
+
 			else:
 				velocity.x = move_toward(velocity.x, 0, WALK_SPEED * deceleration)
 				if is_on_floor():
-					player.play("idle")
+					if last_input == "right":
+						player.play("idle")
+					elif last_input == "left":
+						player.play("idle_left")
 				if not is_on_floor():
 					player.play("fall")
 
@@ -122,6 +133,10 @@ func _input(event: InputEvent):
 
 func stop_movement():
 	velocity.x = 0
+
+func take_damage():
+	health -= 1
+	#velocity.x = move_toward(velocity.x, -cur_direction * run_speed, run_speed * deceleration)
 
 func eat(body):
 	body.queue_free()

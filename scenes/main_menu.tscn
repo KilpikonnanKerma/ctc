@@ -1,14 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://2klabotp2kbt"]
+[gd_scene load_steps=8 format=3 uid="uid://2klabotp2kbt"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_7b8vk"]
-[ext_resource type="Texture2D" uid="uid://dh5qw26jq4ea4" path="res://art/play_btn.png" id="2_co7h0"]
-[ext_resource type="Texture2D" uid="uid://coxgcnw7lt030" path="res://art/ctclogo-removebg-preview.png" id="2_dxeik"]
-[ext_resource type="Texture2D" uid="uid://c55ccvn8nm5el" path="res://art/play_btn_hover.png" id="3_gabhv"]
-[ext_resource type="Texture2D" uid="uid://c1b2joc7hvja7" path="res://art/play_btn_pressed.png" id="3_jxl0i"]
-[ext_resource type="Texture2D" uid="uid://b6kxujw45ifkh" path="res://art/stngs_btn.png" id="5_gs3eu"]
-[ext_resource type="Texture2D" uid="uid://bswhwsae4wdl7" path="res://art/stngs_btn_pressed.png" id="6_8rook"]
+[ext_resource type="Texture2D" uid="uid://c48ygxgcbhea" path="res://sprites/shit/gui.png" id="2_bngdt"]
+[ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="2_q4uvn"]
 [ext_resource type="Texture2D" uid="uid://j7ilkad0cwl1" path="res://sprites/maps/grön.png" id="6_77ysf"]
-[ext_resource type="Texture2D" uid="uid://d6inlyvifh2w" path="res://art/stngs_btn_hover.png" id="7_l3y3j"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_awg15"]
+texture = ExtResource("2_bngdt")
+region_rect = Rect2(0, 16, 64, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ch0a"]
+texture = ExtResource("2_bngdt")
+region_rect = Rect2(0, 32, 64, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7wnk8"]
+texture = ExtResource("2_bngdt")
+region_rect = Rect2(0, 0, 64, 16)
+modulate_color = Color(1, 1, 1, 0.352941)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -19,62 +27,92 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7b8vk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 180.0
-offset_right = 200.0
-offset_bottom = 320.0
-alignment = 1
-
-[node name="Start" type="TextureButton" parent="VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("2_co7h0")
-texture_pressed = ExtResource("3_jxl0i")
-texture_hover = ExtResource("3_gabhv")
-stretch_mode = 5
-
-[node name="Settings" type="TextureButton" parent="VBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-texture_normal = ExtResource("5_gs3eu")
-texture_pressed = ExtResource("6_8rook")
-texture_hover = ExtResource("7_l3y3j")
-stretch_mode = 5
-
-[node name="play" type="Button" parent="VBoxContainer"]
-texture_filter = 2
-layout_mode = 2
+[node name="play" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -10.0
+offset_right = -162.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_q4uvn")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/hover = SubResource("StyleBoxTexture_awg15")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8ch0a")
+theme_override_styles/normal = SubResource("StyleBoxTexture_7wnk8")
 text = "Play"
 
-[node name="Exit2" type="Button" parent="VBoxContainer"]
-texture_filter = 2
-layout_mode = 2
+[node name="settings" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = 25.0
+offset_right = -162.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_q4uvn")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/hover = SubResource("StyleBoxTexture_awg15")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8ch0a")
+theme_override_styles/normal = SubResource("StyleBoxTexture_7wnk8")
 text = "Settings"
 
-[node name="Exit" type="Button" parent="VBoxContainer"]
-texture_filter = 2
-layout_mode = 2
+[node name="exit" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = 60.0
+offset_right = -162.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_q4uvn")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/hover = SubResource("StyleBoxTexture_awg15")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8ch0a")
+theme_override_styles/normal = SubResource("StyleBoxTexture_7wnk8")
 text = "Exit"
 
-[node name="shitty_logo" type="Sprite2D" parent="VBoxContainer"]
-visible = false
-z_index = -10
-texture_filter = 2
-position = Vector2(437, -2)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_dxeik")
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Background" type="Sprite2D" parent="NinePatchRect"]
+z_index = -15
+position = Vector2(1.5, 43.5)
+scale = Vector2(21.0938, 31.8438)
+texture = ExtResource("6_77ysf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
 texture_filter = 2
 layout_mode = 2
-offset_left = 3.0
-offset_top = 345.0
-offset_right = 145.0
-offset_bottom = 358.0
+offset_left = -317.0
+offset_top = 165.0
+offset_right = -175.0
+offset_bottom = 178.0
 theme_override_font_sizes/normal_font_size = 7
 text = "Copyright (C) 2024 Nico Rajala
 "
@@ -82,12 +120,5 @@ fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
 
-[node name="Background" type="Sprite2D" parent="."]
-z_index = -15
-position = Vector2(321.5, 179.5)
-scale = Vector2(21.0938, 12.2188)
-texture = ExtResource("6_77ysf")
-
-[connection signal="button_down" from="VBoxContainer/Start" to="." method="_on_StartButton_pressed"]
-[connection signal="button_down" from="VBoxContainer/play" to="." method="_on_StartButton_pressed"]
-[connection signal="button_down" from="VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="button_down" from="play" to="." method="_on_StartButton_pressed"]
+[connection signal="button_down" from="exit" to="." method="_on_Exit_pressed"]

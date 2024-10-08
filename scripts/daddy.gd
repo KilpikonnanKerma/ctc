@@ -27,7 +27,9 @@ func _physics_process(delta: float) -> void:
 	#if not is_on_floor(): daddy ain't getting gravity
 	#	velocity += get_gravity() * delta
 
-	if is_close:
+	if is_close && main.aggro:
+		player.take_damage()
+	elif is_close && not main.aggro:
 		notice_timer.show()
 		notice_timer.play("timer")
 		close_counter += 1
