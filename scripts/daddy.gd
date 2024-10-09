@@ -15,6 +15,7 @@ var movement = 0
 var searchi = 0
 var is_close = false
 var close_counter = 0
+var forget_counter = 0
 
 var facing_right = false
 
@@ -38,6 +39,12 @@ func _physics_process(delta: float) -> void:
 			is_close = false
 			main.aggro = true
 			close_counter = 0
+	elif not is_close && main.aggro:
+		forget_counter += 1
+		if forget_counter == 1000:
+			main.aggro = false
+			main.searching = true
+			forget_counter = 0
 	else:
 		notice_timer.hide()
 		notice_timer.stop()

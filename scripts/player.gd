@@ -13,7 +13,7 @@ var run_speed = 200.0
 var health = 3
 
 var cur_direction
-var last_input
+var last_input = "right"
 
 const WALK_SPEED = 80.0
 const JUMP_VELOCITY = -300.0
