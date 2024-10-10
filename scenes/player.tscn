@@ -98,10 +98,10 @@ animations = [{
 "texture": ExtResource("10_wp1sq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_tmdhy")
+"texture": ExtResource("11_wn4dr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_wn4dr")
+"texture": ExtResource("11_tmdhy")
 }, {
 "duration": 1.0,
 "texture": ExtResource("13_rp6qp")
@@ -347,7 +347,7 @@ size = Vector2(61.625, 32.25)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o2av2"]
 resource_local_to_scene = true
 shader = ExtResource("60_gy4ti")
-shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_intensity = 0.8
 shader_parameter/vignette_opacity = 0.5
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
@@ -414,9 +414,9 @@ script = ExtResource("1_q5ei5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hunum")
-animation = &"idle"
-frame = 2
-frame_progress = 0.47331
+animation = &"eat01"
+frame = 7
+frame_progress = 0.425545
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

@@ -101,6 +101,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="Sprite2D" parent="NinePatchRect"]
+visible = false
 z_index = -15
 position = Vector2(1.5, 43.5)
 scale = Vector2(66.242, 100)
