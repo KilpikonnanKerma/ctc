@@ -12,6 +12,8 @@ var paused = false
 var etex = false
 var cur_victim
 
+var hp_regen = 0
+
 var aggro = false
 var searching = false
 
@@ -27,6 +29,13 @@ func _process(delta: float) -> void:
 	if player.health == 0:
 		#game over
 		pass
+
+	if hp_regen == 2000:
+		player.health += 1
+		hp_regen = 0
+
+	if player.health != 3:
+		hp_regen += 1
 
 	if player.health == 3:
 		hp.play("hp_full")
