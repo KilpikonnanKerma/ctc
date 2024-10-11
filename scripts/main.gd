@@ -4,6 +4,7 @@ extends Node2D
 @onready var eat_text = $"Eat_text"
 @onready var player = $"Player"
 @onready var DebugDisplay = $DebugInfo
+@onready var hp = $"Player/Camera/CanvasLayer/HUD/HP"
 
 @onready var gen_timer = Timer.new()
 
@@ -22,6 +23,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		pauseMenu()
+
+	if player.health == 0:
+		#game over
+		pass
+
+	if player.health == 3:
+		hp.play("hp_full")
+	elif player.health == 2:
+		hp.play("hp_half")
+	elif player.health == 1:
+		hp.play("hp_empty")
 
 func pauseMenu():
 	if paused:

@@ -115,7 +115,7 @@ func _physics_process(delta: float) -> void:
 			is_eating = true
 			state = PlayerState.EATING
 			player.play("eat01")
-			hide_timer.start(2.7)
+			hide_timer.start(2.85)
 			return
 		
 		PlayerState.EATING:
@@ -136,7 +136,10 @@ func stop_movement():
 
 func take_damage():
 	health -= 1
-	#velocity.x = move_toward(velocity.x, -cur_direction * run_speed, run_speed * deceleration)
+	var dir = Vector2(1, 0).rotated(player.global_rotation)
+	var kick = 400
+	var kickdirection = kick * (dir*-1)
+	velocity = velocity + kickdirection
 
 func eat(body):
 	body.queue_free()

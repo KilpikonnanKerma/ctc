@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=79 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
@@ -65,6 +65,8 @@
 [ext_resource type="Texture2D" uid="uid://b3nc2jqoitdxd" path="res://sprites/player/player_idle_left_3.png" id="47_cglan"]
 [ext_resource type="Shader" path="res://scripts/shaders/vignette.gdshader" id="60_gy4ti"]
 [ext_resource type="PackedScene" uid="uid://dnmx7jhikyiry" path="res://scenes/pause_menu.tscn" id="61_rv1e6"]
+[ext_resource type="Texture2D" uid="uid://boe1066twercm" path="res://sprites/shit/hp_empty.png" id="64_w7qfq"]
+[ext_resource type="Texture2D" uid="uid://yj8vp3xe01jd" path="res://sprites/shit/hp_half.png" id="66_fk1xy"]
 [ext_resource type="Texture2D" uid="uid://cw43yrvplbhhx" path="res://sprites/shit/hp_full.png" id="66_j2fkb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hunum"]
@@ -147,6 +149,18 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("27_kpwwa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_0ehht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_0ehht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_0ehht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_0ehht")
 }, {
 "duration": 1.0,
 "texture": ExtResource("28_0ehht")
@@ -344,6 +358,33 @@ size = Vector2(26.5, 26.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eoymx"]
 size = Vector2(61.625, 32.25)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_cjopr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("64_w7qfq")
+}],
+"loop": true,
+"name": &"hp_empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("66_j2fkb")
+}],
+"loop": true,
+"name": &"hp_full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("66_fk1xy")
+}],
+"loop": true,
+"name": &"hp_half",
+"speed": 5.0
+}]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o2av2"]
 resource_local_to_scene = true
 shader = ExtResource("60_gy4ti")
@@ -448,14 +489,11 @@ offset_top = 1.0
 offset_right = 41.0
 offset_bottom = 41.0
 
-[node name="TextureRect" type="TextureRect" parent="Camera/CanvasLayer/HUD"]
-z_index = -15
-layout_mode = 0
-offset_left = 25.0
-offset_top = 25.0
-offset_right = 89.0
-offset_bottom = 57.0
-texture = ExtResource("66_j2fkb")
+[node name="HP" type="AnimatedSprite2D" parent="Camera/CanvasLayer/HUD"]
+position = Vector2(55, 41)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_cjopr")
+animation = &"hp_empty"
 
 [node name="Vignette" type="ColorRect" parent="Camera/CanvasLayer"]
 visible = false

@@ -28,9 +28,7 @@ func _physics_process(delta: float) -> void:
 	#if not is_on_floor(): daddy ain't getting gravity
 	#	velocity += get_gravity() * delta
 
-	if is_close && main.aggro:
-		player.take_damage()
-	elif is_close && not main.aggro:
+	if is_close && not main.aggro:
 		notice_timer.show()
 		notice_timer.play("timer")
 		close_counter += 1
@@ -116,3 +114,7 @@ func far_from_player(area: Area2D) -> void:
 	if area.is_in_group("Player"):
 		if not main.aggro:
 			is_close = false
+
+func attackus(area: Area2D) -> void:
+	if main.aggro:
+		player.take_damage()
