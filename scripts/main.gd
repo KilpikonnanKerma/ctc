@@ -6,6 +6,8 @@ extends Node2D
 @onready var DebugDisplay = $DebugInfo
 @onready var hp = $"Player/Camera/CanvasLayer/HUD/HP"
 
+@onready var settings = $"Player/Camera/CanvasLayer/Settings"
+
 @onready var gen_timer = Timer.new()
 
 var paused = false

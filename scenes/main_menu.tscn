@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://2klabotp2kbt"]
+[gd_scene load_steps=9 format=3 uid="uid://2klabotp2kbt"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_7b8vk"]
 [ext_resource type="Texture2D" uid="uid://c48ygxgcbhea" path="res://sprites/shit/gui.png" id="2_bngdt"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="2_q4uvn"]
+[ext_resource type="PackedScene" uid="uid://qxrclfgtkyyh" path="res://scenes/Settings.tscn" id="5_2eljm"]
 [ext_resource type="Texture2D" uid="uid://j7ilkad0cwl1" path="res://sprites/maps/grön.png" id="6_77ysf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_awg15"]
@@ -122,5 +123,11 @@ fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
 
+[node name="Settings" parent="." instance=ExtResource("5_2eljm")]
+visible = false
+z_index = 10
+layout_mode = 1
+
 [connection signal="button_down" from="play" to="." method="_on_StartButton_pressed"]
+[connection signal="button_down" from="settings" to="." method="_on_SettingsButton_pressed"]
 [connection signal="button_down" from="exit" to="." method="_on_Exit_pressed"]

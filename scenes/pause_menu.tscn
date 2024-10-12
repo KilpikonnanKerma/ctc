@@ -105,4 +105,5 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_3x5hh")
 text = "Exit to menu"
 
 [connection signal="button_down" from="NinePatchRect/play2" to="." method="_on_StartButton_pressed"]
+[connection signal="button_down" from="NinePatchRect/settings2" to="." method="_on_SettingsButton_pressed"]
 [connection signal="button_down" from="NinePatchRect/exit2" to="." method="_on_Exit_pressed"]

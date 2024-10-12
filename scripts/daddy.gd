@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var notice_timer = $"notice_timer"
 
 var speed = -1500
-var max_move = 500
+var max_move = 700
 
 
 # random counters
@@ -21,6 +21,8 @@ var facing_right = false
 
 var direction
 
+var i = 0
+
 func _ready() -> void:
 	pass
 
@@ -28,16 +30,18 @@ func _physics_process(delta: float) -> void:
 	#if not is_on_floor(): daddy ain't getting gravity
 	#	velocity += get_gravity() * delta
 
-	if is_close && not main.aggro:
+	if is_close && not main.aggro && not player.hiding:
 		notice_timer.show()
-		notice_timer.play("timer")
-		close_counter += 1
+		if !main.paused:
+			notice_timer.play("timer")
+			close_counter += 1
 		if close_counter == 130:
 			notice_timer.hide()
 			is_close = false
 			main.aggro = true
 			close_counter = 0
-	elif not is_close && main.aggro:
+
+	elif not is_close && main.aggro && not main.paused:
 		forget_counter += 1
 		if forget_counter == 1000:
 			main.aggro = false
@@ -48,15 +52,21 @@ func _physics_process(delta: float) -> void:
 		notice_timer.stop()
 		close_counter = 0
 
-	if not main.aggro && not main.searching: # normal roaming
+	if not main.aggro && not main.searching && not main.paused: # normal roaming
 		htmrk.hide()
 		qstn.hide()
 		if movement < max_move:
 			velocity.x = speed * delta
 			movement += 1
 		else:
-			flip()
-			movement = 0
+			if i < 250:
+				print(i)
+				velocity.x = 0
+				i += 1
+			else:
+				flip()
+				movement = 0
+				i = 0
 	elif main.aggro:		# aggro
 		qstn.hide()
 		htmrk.show()
@@ -69,7 +79,8 @@ func _physics_process(delta: float) -> void:
 		htmrk.hide()
 		qstn.show()
 
-		search(delta)
+		if !main.paused:
+			search(delta)
 
 	move_and_slide()
 

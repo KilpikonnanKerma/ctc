@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=24 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://j7ilkad0cwl1" path="res://sprites/maps/grön.png" id="10_u4yso"]
 [ext_resource type="Texture2D" uid="uid://ihp3dk7h42i3" path="res://sprites/Props/taulu01.png" id="10_utbnu"]
 [ext_resource type="Texture2D" uid="uid://dwnyb8cl3xfew" path="res://sprites/Props/taulu02.png" id="11_rhhuy"]
+[ext_resource type="Texture2D" uid="uid://mq03jyofbkl2" path="res://sprites/maps/ladder01.png" id="12_1rdav"]
 [ext_resource type="Texture2D" uid="uid://bmapv3ikh83lj" path="res://sprites/shit/lampu01.png" id="12_x48wg"]
 [ext_resource type="PackedScene" uid="uid://5c5eh2fjkx6i" path="res://scenes/daddy.tscn" id="13_gce4i"]
 [ext_resource type="Texture2D" uid="uid://ced7mqc5pygfr" path="res://sprites/shit/letku_hommeli.png" id="13_gfnq8"]
@@ -207,6 +208,17 @@ position = Vector2(30, -44)
 position = Vector2(-180, -102)
 shape = SubResource("RectangleShape2D_a6nti")
 one_way_collision = true
+
+[node name="Ladder" type="StaticBody2D" parent="ml_01"]
+texture_filter = 1
+position = Vector2(633, -271)
+
+[node name="Platform" type="Sprite2D" parent="ml_01/Ladder"]
+z_index = -6
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-158, -109)
+texture = ExtResource("12_1rdav")
 
 [node name="Baby01" parent="ml_01" instance=ExtResource("9_tywij")]
 position = Vector2(-133, -143)

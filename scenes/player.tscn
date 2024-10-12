@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=80 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
@@ -68,6 +68,7 @@
 [ext_resource type="Texture2D" uid="uid://boe1066twercm" path="res://sprites/shit/hp_empty.png" id="64_w7qfq"]
 [ext_resource type="Texture2D" uid="uid://yj8vp3xe01jd" path="res://sprites/shit/hp_half.png" id="66_fk1xy"]
 [ext_resource type="Texture2D" uid="uid://cw43yrvplbhhx" path="res://sprites/shit/hp_full.png" id="66_j2fkb"]
+[ext_resource type="PackedScene" uid="uid://qxrclfgtkyyh" path="res://scenes/Settings.tscn" id="69_libtr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hunum"]
 animations = [{
@@ -495,7 +496,6 @@ animation = &"hp_empty"
 
 [node name="Vignette" type="ColorRect" parent="Camera/CanvasLayer"]
 visible = false
-z_index = -10
 material = SubResource("ShaderMaterial_o2av2")
 use_parent_material = true
 offset_right = 960.0
@@ -505,6 +505,10 @@ color = Color(0, 0, 0, 1)
 [node name="PauseMenu" parent="Camera/CanvasLayer" instance=ExtResource("61_rv1e6")]
 visible = false
 z_index = 13
+
+[node name="Settings" parent="Camera/CanvasLayer" instance=ExtResource("69_libtr")]
+visible = false
+z_index = 23
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

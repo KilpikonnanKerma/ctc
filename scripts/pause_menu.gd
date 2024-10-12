@@ -6,7 +6,7 @@ func _on_StartButton_pressed():
 	main.pauseMenu()
 
 func _on_SettingsButton_pressed():
-	pass
+	main.settings.show()
 
 func _on_Exit_pressed():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

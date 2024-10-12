@@ -18,6 +18,7 @@ var last_input = "right"
 const WALK_SPEED = 80.0
 const JUMP_VELOCITY = -300.0
 
+var hiding = false
 var is_eating
 var enemy_body
 
@@ -36,6 +37,8 @@ func _ready():
 	hide_timer.connect("timeout", Callable(self, "_on_hide_transition_finished"))
 	player.animation_finished.connect(Callable(self, "_on_animation_finished"))
 
+	hiding = false
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -49,6 +52,7 @@ func _physics_process(delta: float) -> void:
 		PlayerState.NORMAL:
 			vignette.hide()
 			is_eating = false
+			hiding = false
 
 			if Input.is_action_just_pressed("jump") and is_on_floor():
 				velocity.y = JUMP_VELOCITY
@@ -100,6 +104,7 @@ func _physics_process(delta: float) -> void:
 		PlayerState.HIDING:
 			# movement is no
 			stop_movement()
+			hiding = true
 			if Input.is_action_just_pressed("unhide"):
 				state = PlayerState.TRS_FROM_HIDE
 				player.play_backwards("hide_transition")
