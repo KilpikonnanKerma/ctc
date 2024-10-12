@@ -22,6 +22,8 @@ var hiding = false
 var is_eating
 var enemy_body
 
+var is_on_ladder = false
+
 enum PlayerState {
 	NORMAL, TRS_TO_HIDE,
 	HIDING, TRS_FROM_HIDE,
@@ -38,13 +40,14 @@ func _ready():
 	player.animation_finished.connect(Callable(self, "_on_animation_finished"))
 
 	hiding = false
+	is_on_ladder = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() && !is_on_ladder:
 		velocity += get_gravity() * delta
 
-	if main.aggro && state == PlayerState.HIDING:
+	if main.aggro && state == PlayerState.HIDING: # TODO: Vihollinen huomaa, jos meet piilon sen lähellä (käytä ehkä daddyn is_close boolia)
 		main.searching = true
 		main.aggro = false
 
@@ -54,15 +57,21 @@ func _physics_process(delta: float) -> void:
 			is_eating = false
 			hiding = false
 
-			if Input.is_action_just_pressed("jump") and is_on_floor():
+			if Input.is_action_just_pressed("jump") and is_on_floor() && !is_on_ladder:
 				velocity.y = JUMP_VELOCITY
 
-			if Input.is_action_just_pressed("hide") and is_on_floor():
+			if Input.is_action_just_pressed("hide") and is_on_floor() && !is_on_ladder:
 				state = PlayerState.TRS_TO_HIDE
 				player.play("hide_transition")
 				hide_timer.start(1.4) # 5fps ja 7 frames
 				velocity.x = 0 # ei pysty liikkua
 				return
+
+			if is_on_ladder:
+				if Input.is_action_pressed("hide"):
+					velocity.y -= WALK_SPEED * delta * 2
+				if Input.is_action_pressed("mv_down"):
+					velocity.y += WALK_SPEED * delta * 2
 
 			if Input.is_action_just_pressed("consume") and is_on_floor() and main.etex == true:
 				eat(main.cur_victim)
@@ -180,3 +189,11 @@ func _on_kill_range_entered(body):
 func _on_kille_range_exited(body):
 	if body.is_in_group("Eatable"):
 		main.eatConfirm(false, body)
+
+
+func _on_ladder_entered(area: Area2D) -> void:
+	is_on_ladder = true
+
+
+func _on_ladder_exited(area: Area2D) -> void:
+	is_on_ladder = false

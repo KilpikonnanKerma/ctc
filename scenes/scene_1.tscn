@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=26 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
@@ -28,10 +28,16 @@ size = Vector2(68, 910.5)
 size = Vector2(48, 9.75905)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llgek"]
-size = Vector2(130, 14)
+size = Vector2(130, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6nti"]
 size = Vector2(62, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8blw"]
+size = Vector2(32, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4coy"]
+size = Vector2(20, 246)
 
 [sub_resource type="Environment" id="Environment_ehrrk"]
 background_mode = 3
@@ -176,7 +182,7 @@ position = Vector2(-158, -109)
 texture = ExtResource("11_rhhuy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform7"]
-position = Vector2(-158, -134)
+position = Vector2(-158, -139)
 shape = SubResource("RectangleShape2D_llgek")
 one_way_collision = true
 
@@ -210,10 +216,21 @@ shape = SubResource("RectangleShape2D_a6nti")
 one_way_collision = true
 
 [node name="Ladder" type="StaticBody2D" parent="ml_01"]
-texture_filter = 1
-position = Vector2(633, -271)
+position = Vector2(28, -415)
 
-[node name="Platform" type="Sprite2D" parent="ml_01/Ladder"]
+[node name="LadderPlatform" type="CollisionShape2D" parent="ml_01/Ladder"]
+position = Vector2(447, -91)
+shape = SubResource("RectangleShape2D_a8blw")
+one_way_collision = true
+
+[node name="Ladder" type="Area2D" parent="ml_01/Ladder"]
+position = Vector2(605, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/Ladder/Ladder"]
+position = Vector2(-158, -104)
+shape = SubResource("RectangleShape2D_j4coy")
+
+[node name="Platform" type="Sprite2D" parent="ml_01/Ladder/Ladder"]
 z_index = -6
 texture_filter = 1
 texture_repeat = 1
@@ -324,3 +341,6 @@ layout_mode = 2
 text = "Press 'E' to eat"
 fit_content = true
 scroll_active = false
+
+[connection signal="area_entered" from="ml_01/Ladder/Ladder" to="Player" method="_on_ladder_entered"]
+[connection signal="area_exited" from="ml_01/Ladder/Ladder" to="Player" method="_on_ladder_exited"]
