@@ -51,7 +51,7 @@ adjustment_saturation = 0.75
 script = ExtResource("1_7n0go")
 
 [node name="Player" parent="." instance=ExtResource("1_5o17h")]
-position = Vector2(-40, 374)
+position = Vector2(-40, 375)
 
 [node name="ml_01" type="StaticBody2D" parent="."]
 position = Vector2(-28, 415)
