@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=83 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
@@ -68,6 +68,8 @@
 [ext_resource type="Texture2D" uid="uid://boe1066twercm" path="res://sprites/shit/hp_empty.png" id="64_w7qfq"]
 [ext_resource type="Texture2D" uid="uid://yj8vp3xe01jd" path="res://sprites/shit/hp_half.png" id="66_fk1xy"]
 [ext_resource type="Texture2D" uid="uid://cw43yrvplbhhx" path="res://sprites/shit/hp_full.png" id="66_j2fkb"]
+[ext_resource type="Texture2D" uid="uid://clar3lqfutn8w" path="res://sprites/shit/empty_bar.png" id="67_h3fvh"]
+[ext_resource type="Texture2D" uid="uid://dr6if8fuiykr8" path="res://sprites/maps/green.png" id="68_71q8t"]
 [ext_resource type="PackedScene" uid="uid://qxrclfgtkyyh" path="res://scenes/Settings.tscn" id="69_libtr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hunum"]
@@ -357,7 +359,7 @@ animations = [{
 size = Vector2(26.5, 26.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eoymx"]
-size = Vector2(61.625, 32.25)
+size = Vector2(55.8125, 32.25)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cjopr"]
 animations = [{
@@ -408,6 +410,10 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_yvqc7"]
+resource_name = "stamina"
+length = 6.0
+
 [sub_resource type="Animation" id="Animation_lolrt"]
 resource_name = "vignette_anim"
 length = 1.75
@@ -443,6 +449,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75ai5"]
 _data = {
 "RESET": SubResource("Animation_qabcx"),
+"stamina": SubResource("Animation_yvqc7"),
 "vignette_anim": SubResource("Animation_lolrt"),
 "vignette_anim_off": SubResource("Animation_gjb8k")
 }
@@ -494,12 +501,27 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_cjopr")
 animation = &"hp_empty"
 
+[node name="Stamina" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 70.0
+offset_right = 87.0
+offset_bottom = 103.0
+max_value = 500.0
+value = 500.0
+nine_patch_stretch = true
+texture_over = ExtResource("67_h3fvh")
+texture_progress = ExtResource("68_71q8t")
+
 [node name="Vignette" type="ColorRect" parent="Camera/CanvasLayer"]
 visible = false
 material = SubResource("ShaderMaterial_o2av2")
 use_parent_material = true
-offset_right = 960.0
-offset_bottom = 540.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="PauseMenu" parent="Camera/CanvasLayer" instance=ExtResource("61_rv1e6")]

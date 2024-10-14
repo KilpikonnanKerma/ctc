@@ -9,6 +9,8 @@ extends CharacterBody2D
 @onready var animPlayer = $AnimationPlayer
 @onready var hide_timer = Timer.new()
 
+@onready var stamina_bar = $Camera/CanvasLayer/HUD/Stamina
+
 var run_speed = 200.0
 var health = 3
 
@@ -51,6 +53,9 @@ func _physics_process(delta: float) -> void:
 		main.searching = true
 		main.aggro = false
 
+	if stamina_bar.value <= 500 && not Input.is_action_pressed("run"):
+		stamina_bar.value += 0.5
+
 	match state:
 		PlayerState.NORMAL:
 			vignette.hide()
@@ -79,8 +84,9 @@ func _physics_process(delta: float) -> void:
 			var direction := Input.get_axis("mv_left", "mv_right")
 
 			if direction:
-				if Input.is_action_pressed("run"): #voi ns. dashata ilmassa, jos painaa shiftiä (it's not a bug it's a feature)
+				if Input.is_action_pressed("run") && stamina_bar.value > 0: #voi ns. dashata ilmassa, jos painaa shiftiä (it's not a bug it's a feature)
 					velocity.x = move_toward(velocity.x, direction * run_speed, run_speed * acceleration)
+					stamina_bar.value -= 2
 				else:
 					velocity.x = move_toward(velocity.x, direction * WALK_SPEED, WALK_SPEED * acceleration)
 
@@ -152,7 +158,7 @@ func take_damage():
 	health -= 1
 	var dir = Vector2(1, 0).rotated(player.global_rotation)
 	var kick = 400
-	var kickdirection = kick * (dir*-1)
+	var kickdirection = kick * (dir*1)
 	velocity = velocity + kickdirection
 
 func eat(body):

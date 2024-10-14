@@ -1,9 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=27 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
-[ext_resource type="Texture2D" uid="uid://dstjvfa1phlf" path="res://sprites/maps/background01.png" id="4_84vrp"]
 [ext_resource type="Texture2D" uid="uid://c374smsv6tout" path="res://sprites/maps/floor_01_nobrdr.png" id="4_rxghq"]
+[ext_resource type="Texture2D" uid="uid://bg8xxtavq8nfy" path="res://sprites/maps/kukkakakka2_big.png" id="4_y0abg"]
 [ext_resource type="Texture2D" uid="uid://dirjy71u0jxra" path="res://sprites/maps/floor_01_nobrdr32x16.png" id="5_7pkgf"]
 [ext_resource type="Texture2D" uid="uid://hqif17h3cu3y" path="res://sprites/Props/bookshelf01.png" id="5_vrcuc"]
 [ext_resource type="Texture2D" uid="uid://b4k6cp7dnudw5" path="res://sprites/maps/wall01.png" id="6_las7y"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bmapv3ikh83lj" path="res://sprites/shit/lampu01.png" id="12_x48wg"]
 [ext_resource type="PackedScene" uid="uid://5c5eh2fjkx6i" path="res://scenes/daddy.tscn" id="13_gce4i"]
 [ext_resource type="Texture2D" uid="uid://ced7mqc5pygfr" path="res://sprites/shit/letku_hommeli.png" id="13_gfnq8"]
+[ext_resource type="PackedScene" uid="uid://qk5gf77tyfjn" path="res://scenes/moving_platform.tscn" id="17_h6lmn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1197, 28.5)
@@ -27,17 +28,17 @@ size = Vector2(68, 910.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrhk8"]
 size = Vector2(48, 9.75905)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_llgek"]
-size = Vector2(130, 4)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6nti"]
 size = Vector2(62, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llgek"]
+size = Vector2(130, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8blw"]
 size = Vector2(32, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4coy"]
-size = Vector2(20, 246)
+size = Vector2(7, 246)
 
 [sub_resource type="Environment" id="Environment_ehrrk"]
 background_mode = 3
@@ -60,11 +61,13 @@ position = Vector2(-28, 415)
 position = Vector2(29, -6.75)
 shape = SubResource("RectangleShape2D_fjyij")
 
-[node name="Background" type="Sprite2D" parent="ml_01"]
-z_index = -10
-position = Vector2(30, -673)
-scale = Vector2(5, 5.10947)
-texture = ExtResource("4_84vrp")
+[node name="Background" type="Polygon2D" parent="ml_01"]
+z_index = -50
+texture_filter = 2
+texture_repeat = 2
+position = Vector2(-17, -131)
+texture = ExtResource("4_y0abg")
+polygon = PackedVector2Array(623, -1203, -581, -1200, -544, 123, 632, 114)
 
 [node name="Floor" type="Node2D" parent="ml_01"]
 z_index = -1
@@ -141,6 +144,22 @@ position = Vector2(-311, -103)
 shape = SubResource("RectangleShape2D_xrhk8")
 one_way_collision = true
 
+[node name="platform2" type="StaticBody2D" parent="ml_01"]
+position = Vector2(30, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform2"]
+position = Vector2(-177, -124)
+shape = SubResource("RectangleShape2D_a6nti")
+one_way_collision = true
+
+[node name="platform3" type="StaticBody2D" parent="ml_01"]
+position = Vector2(30, -44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform3"]
+position = Vector2(-180, -102)
+shape = SubResource("RectangleShape2D_a6nti")
+one_way_collision = true
+
 [node name="platform4" type="StaticBody2D" parent="ml_01"]
 position = Vector2(276, -65)
 
@@ -170,6 +189,19 @@ position = Vector2(-158, -136)
 shape = SubResource("RectangleShape2D_xrhk8")
 one_way_collision = true
 
+[node name="platform6" type="StaticBody2D" parent="ml_01"]
+position = Vector2(276, -65)
+
+[node name="Platform" type="Sprite2D" parent="ml_01/platform6"]
+z_index = -6
+position = Vector2(-41, -176)
+texture = ExtResource("8_0d6b8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform6"]
+position = Vector2(-41, -175)
+shape = SubResource("RectangleShape2D_xrhk8")
+one_way_collision = true
+
 [node name="platform7" type="StaticBody2D" parent="ml_01"]
 texture_filter = 1
 position = Vector2(606, -111)
@@ -186,35 +218,6 @@ position = Vector2(-158, -139)
 shape = SubResource("RectangleShape2D_llgek")
 one_way_collision = true
 
-[node name="platform6" type="StaticBody2D" parent="ml_01"]
-position = Vector2(276, -65)
-
-[node name="Platform" type="Sprite2D" parent="ml_01/platform6"]
-z_index = -6
-position = Vector2(-41, -176)
-texture = ExtResource("8_0d6b8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform6"]
-position = Vector2(-41, -175)
-shape = SubResource("RectangleShape2D_xrhk8")
-one_way_collision = true
-
-[node name="platform2" type="StaticBody2D" parent="ml_01"]
-position = Vector2(30, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform2"]
-position = Vector2(-177, -124)
-shape = SubResource("RectangleShape2D_a6nti")
-one_way_collision = true
-
-[node name="platform3" type="StaticBody2D" parent="ml_01"]
-position = Vector2(30, -44)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform3"]
-position = Vector2(-180, -102)
-shape = SubResource("RectangleShape2D_a6nti")
-one_way_collision = true
-
 [node name="Ladder" type="StaticBody2D" parent="ml_01"]
 position = Vector2(28, -415)
 
@@ -227,7 +230,7 @@ one_way_collision = true
 position = Vector2(605, 144)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/Ladder/Ladder"]
-position = Vector2(-158, -104)
+position = Vector2(-157.5, -104)
 shape = SubResource("RectangleShape2D_j4coy")
 
 [node name="Platform" type="Sprite2D" parent="ml_01/Ladder/Ladder"]
@@ -261,6 +264,8 @@ texture = ExtResource("13_gfnq8")
 position = Vector2(-72, -749)
 polygon = PackedVector2Array(225, 107, 169, 102, 100, 100, 28, 101, -27, 106, -28, 121, 23, 140, 99, 145, 186, 137, 224, 122)
 one_way_collision = true
+
+[node name="moving_platform" parent="ml_01" instance=ExtResource("17_h6lmn")]
 
 [node name="ml_02" type="StaticBody2D" parent="."]
 position = Vector2(1169, 415)

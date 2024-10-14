@@ -60,7 +60,6 @@ func _physics_process(delta: float) -> void:
 			movement += 1
 		else:
 			if i < 250:
-				print(i)
 				velocity.x = 0
 				i += 1
 			else:
