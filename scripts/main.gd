@@ -3,7 +3,6 @@ extends Node2D
 @onready var pause_menu = $"Player/Camera/CanvasLayer/PauseMenu"
 @onready var eat_text = $"Eat_text"
 @onready var player = $"Player"
-@onready var DebugDisplay = $DebugInfo
 @onready var hp = $"Player/Camera/CanvasLayer/HUD/HP"
 
 @onready var settings = $"Player/Camera/CanvasLayer/Settings"
