@@ -53,8 +53,11 @@ func _physics_process(delta: float) -> void:
 		main.searching = true
 		main.aggro = false
 
-	if stamina_bar.value <= 500 && not Input.is_action_pressed("run"):
-		stamina_bar.value += 0.5
+	if stamina_bar.value <= 1000 && not Input.is_action_pressed("run"):
+		if is_on_floor():
+			stamina_bar.value += 1
+		else:
+			stamina_bar.value += 0.5
 
 	match state:
 		PlayerState.NORMAL:
@@ -86,7 +89,7 @@ func _physics_process(delta: float) -> void:
 			if direction:
 				if Input.is_action_pressed("run") && stamina_bar.value > 0: #voi ns. dashata ilmassa, jos painaa shiftiä (it's not a bug it's a feature)
 					velocity.x = move_toward(velocity.x, direction * run_speed, run_speed * acceleration)
-					stamina_bar.value -= 2
+					stamina_bar.value -= 4
 				else:
 					velocity.x = move_toward(velocity.x, direction * WALK_SPEED, WALK_SPEED * acceleration)
 
@@ -198,7 +201,8 @@ func _on_kille_range_exited(body):
 
 
 func _on_ladder_entered(area: Area2D) -> void:
-	is_on_ladder = true
+	if area.is_in_group("ladder"): # TODO: siirrä nää omaan scriptiin jolloin ehkä voisi toimia dumbass
+		is_on_ladder = true
 
 
 func _on_ladder_exited(area: Area2D) -> void:

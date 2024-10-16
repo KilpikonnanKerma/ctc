@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bmapv3ikh83lj" path="res://sprites/shit/lampu01.png" id="12_x48wg"]
 [ext_resource type="PackedScene" uid="uid://5c5eh2fjkx6i" path="res://scenes/daddy.tscn" id="13_gce4i"]
 [ext_resource type="Texture2D" uid="uid://ced7mqc5pygfr" path="res://sprites/shit/letku_hommeli.png" id="13_gfnq8"]
-[ext_resource type="PackedScene" uid="uid://qk5gf77tyfjn" path="res://scenes/moving_platform.tscn" id="17_h6lmn"]
+[ext_resource type="PackedScene" uid="uid://b2civ6rxqf8pj" path="res://scenes/moving_platform.tscn" id="17_h6lmn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1197, 28.5)
@@ -226,7 +226,7 @@ position = Vector2(447, -91)
 shape = SubResource("RectangleShape2D_a8blw")
 one_way_collision = true
 
-[node name="Ladder" type="Area2D" parent="ml_01/Ladder"]
+[node name="Ladder" type="Area2D" parent="ml_01/Ladder" groups=["ladder"]]
 position = Vector2(605, 144)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/Ladder/Ladder"]
@@ -234,6 +234,28 @@ position = Vector2(-157.5, -104)
 shape = SubResource("RectangleShape2D_j4coy")
 
 [node name="Platform" type="Sprite2D" parent="ml_01/Ladder/Ladder"]
+z_index = -6
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-158, -109)
+texture = ExtResource("12_1rdav")
+
+[node name="Ladder2" type="StaticBody2D" parent="ml_01"]
+position = Vector2(96, -186)
+
+[node name="LadderPlatform" type="CollisionShape2D" parent="ml_01/Ladder2"]
+position = Vector2(447, -91)
+shape = SubResource("RectangleShape2D_a8blw")
+one_way_collision = true
+
+[node name="Ladder" type="Area2D" parent="ml_01/Ladder2" groups=["ladder"]]
+position = Vector2(605, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/Ladder2/Ladder"]
+position = Vector2(-157.5, -104)
+shape = SubResource("RectangleShape2D_j4coy")
+
+[node name="Platform" type="Sprite2D" parent="ml_01/Ladder2/Ladder"]
 z_index = -6
 texture_filter = 1
 texture_repeat = 1
@@ -266,6 +288,7 @@ polygon = PackedVector2Array(225, 107, 169, 102, 100, 100, 28, 101, -27, 106, -2
 one_way_collision = true
 
 [node name="moving_platform" parent="ml_01" instance=ExtResource("17_h6lmn")]
+position = Vector2(411, -494)
 
 [node name="ml_02" type="StaticBody2D" parent="."]
 position = Vector2(1169, 415)
@@ -349,3 +372,5 @@ scroll_active = false
 
 [connection signal="area_entered" from="ml_01/Ladder/Ladder" to="Player" method="_on_ladder_entered"]
 [connection signal="area_exited" from="ml_01/Ladder/Ladder" to="Player" method="_on_ladder_exited"]
+[connection signal="area_entered" from="ml_01/Ladder2/Ladder" to="Player" method="_on_ladder_entered"]
+[connection signal="area_exited" from="ml_01/Ladder2/Ladder" to="Player" method="_on_ladder_exited"]

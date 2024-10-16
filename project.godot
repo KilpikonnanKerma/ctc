@@ -38,6 +38,7 @@ enabled=PackedStringArray()
 Eatable=""
 Enemy=""
 Player=""
+ladder=""
 
 [input]
 
