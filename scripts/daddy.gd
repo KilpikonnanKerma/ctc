@@ -126,5 +126,16 @@ func far_from_player(area: Area2D) -> void:
 			is_close = false
 
 func attackus(area: Area2D) -> void:
+	var kick = 5
+	var kickdir
+
 	if main.aggro:
-		player.take_damage()
+		var dir = (player.position.x - position.x) #.normalized()
+		if dir < 0: # player is on the left
+			kickdir = kick * (dir*1)
+			player.velocity.x = player.velocity.x + kickdir
+		elif dir > 0:
+			kickdir = kick * (dir*-3)
+			player.velocity.x = player.velocity.x - kickdir
+			
+		player.health -= 1

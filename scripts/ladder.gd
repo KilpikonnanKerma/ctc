@@ -9,9 +9,9 @@ func _process(delta: float):
 	pass
 
 func _on_ladder_entered(area: Area2D):
-	if !area.is_in_group("Enemy"):
+	if area.is_in_group("Player"):
 		player.is_on_ladder = true
 
 func _on_ladder_exited(area: Area2D):
-	if !area.is_in_group("Enemy"):
-		player.is_in_group = false
+	if area.is_in_group("Player"):
+		player.is_on_ladder = false

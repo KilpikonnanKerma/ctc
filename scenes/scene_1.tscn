@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=27 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://j7ilkad0cwl1" path="res://sprites/maps/grön.png" id="10_u4yso"]
 [ext_resource type="Texture2D" uid="uid://ihp3dk7h42i3" path="res://sprites/Props/taulu01.png" id="10_utbnu"]
 [ext_resource type="Texture2D" uid="uid://dwnyb8cl3xfew" path="res://sprites/Props/taulu02.png" id="11_rhhuy"]
+[ext_resource type="Texture2D" uid="uid://d3x7y6ryw16am" path="res://sprites/Props/taulu03.png" id="12_jmgnc"]
 [ext_resource type="Texture2D" uid="uid://bmapv3ikh83lj" path="res://sprites/shit/lampu01.png" id="12_x48wg"]
 [ext_resource type="PackedScene" uid="uid://5c5eh2fjkx6i" path="res://scenes/daddy.tscn" id="13_gce4i"]
 [ext_resource type="Texture2D" uid="uid://ced7mqc5pygfr" path="res://sprites/shit/letku_hommeli.png" id="13_gfnq8"]
@@ -26,10 +27,13 @@ size = Vector2(1197, 28.5)
 size = Vector2(68, 910.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrhk8"]
-size = Vector2(48, 9.75905)
+size = Vector2(36, 9.75905)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6nti"]
 size = Vector2(62, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oa8gn"]
+size = Vector2(48, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llgek"]
 size = Vector2(130, 4)
@@ -180,8 +184,8 @@ position = Vector2(-158, -109)
 texture = ExtResource("10_utbnu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform5"]
-position = Vector2(-158, -136)
-shape = SubResource("RectangleShape2D_xrhk8")
+position = Vector2(-158, -133.5)
+shape = SubResource("RectangleShape2D_oa8gn")
 one_way_collision = true
 
 [node name="platform6" type="StaticBody2D" parent="ml_01"]
@@ -213,6 +217,22 @@ position = Vector2(-158, -139)
 shape = SubResource("RectangleShape2D_llgek")
 one_way_collision = true
 
+[node name="platform8" type="StaticBody2D" parent="ml_01"]
+texture_filter = 1
+position = Vector2(-85, -394)
+
+[node name="Platform" type="Sprite2D" parent="ml_01/platform8"]
+z_index = -6
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-158, -109)
+texture = ExtResource("12_jmgnc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform8"]
+position = Vector2(-158, -139)
+shape = SubResource("RectangleShape2D_llgek")
+one_way_collision = true
+
 [node name="Baby01" parent="ml_01" instance=ExtResource("9_tywij")]
 position = Vector2(-133, -143)
 
@@ -240,6 +260,10 @@ one_way_collision = true
 
 [node name="moving_platform" parent="ml_01" instance=ExtResource("17_h6lmn")]
 position = Vector2(411, -494)
+
+[node name="MovingLamp" parent="ml_01" instance=ExtResource("17_h6lmn")]
+position = Vector2(-80, -494)
+scale = Vector2(-1, 1)
 
 [node name="Ladder" parent="ml_01" instance=ExtResource("19_3pfd3")]
 position = Vector2(481, -380)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2civ6rxqf8pj"]
+[gd_scene load_steps=8 format=3 uid="uid://b2civ6rxqf8pj"]
 
 [ext_resource type="Texture2D" uid="uid://do76ftl4b18hw" path="res://sprites/shit/lampu02.png" id="1_6xjq5"]
 [ext_resource type="Script" path="res://scripts/moving_platform.gd" id="1_t05eg"]
+[ext_resource type="Texture2D" uid="uid://dekpekfmb0gn3" path="res://sprites/shit/light.png" id="3_nxvag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3du84"]
 size = Vector2(32, 4)
@@ -75,6 +76,7 @@ sync_to_physics = false
 script = ExtResource("1_t05eg")
 
 [node name="Sprite2D2" type="Sprite2D" parent="moving_platform"]
+texture_filter = 1
 texture = ExtResource("1_6xjq5")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="moving_platform"]
@@ -85,3 +87,9 @@ shape = SubResource("RectangleShape2D_3du84")
 libraries = {
 "": SubResource("AnimationLibrary_unpvt")
 }
+
+[node name="Light" type="Sprite2D" parent="moving_platform"]
+modulate = Color(1, 1, 1, 0.117647)
+texture_filter = 1
+position = Vector2(0, 118)
+texture = ExtResource("3_nxvag")

@@ -198,12 +198,3 @@ func _on_kill_range_entered(body):
 func _on_kille_range_exited(body):
 	if body.is_in_group("Eatable"):
 		main.eatConfirm(false, body)
-
-
-func _on_ladder_entered(area: Area2D) -> void:
-	if area.is_in_group("ladder"): # TODO: siirrä nää omaan scriptiin jolloin ehkä voisi toimia dumbass
-		is_on_ladder = true
-
-
-func _on_ladder_exited(area: Area2D) -> void:
-	is_on_ladder = false
