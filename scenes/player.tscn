@@ -537,7 +537,7 @@ libraries = {
 "": SubResource("AnimationLibrary_75ai5")
 }
 
-[node name="Eat_range" type="Area2D" parent="."]
+[node name="Eat_range" type="Area2D" parent="." groups=["Player"]]
 visible = false
 monitoring = false
 monitorable = false

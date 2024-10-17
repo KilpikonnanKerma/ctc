@@ -20,11 +20,11 @@ var last_input = "right"
 const WALK_SPEED = 80.0
 const JUMP_VELOCITY = -300.0
 
-var hiding = false
+var hiding: bool = false
+var is_on_ladder: bool = false
+
 var is_eating
 var enemy_body
-
-var is_on_ladder = false
 
 enum PlayerState {
 	NORMAL, TRS_TO_HIDE,
@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 				state = PlayerState.TRS_TO_HIDE
 				player.play("hide_transition")
 				hide_timer.start(1.4) # 5fps ja 7 frames
-				velocity.x = 0 # ei pysty liikkua
+				stop_movement() # ei pysty liikkua
 				return
 
 			if is_on_ladder:
