@@ -33,7 +33,7 @@ size = Vector2(36, 9.75905)
 size = Vector2(62, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oa8gn"]
-size = Vector2(48, 15)
+size = Vector2(53, 15.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llgek"]
 size = Vector2(130, 4)
@@ -51,7 +51,7 @@ script = ExtResource("1_7n0go")
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("1_5o17h")]
 unique_name_in_owner = true
-position = Vector2(-40, 375)
+position = Vector2(-69, 375)
 
 [node name="ml_01" type="StaticBody2D" parent="."]
 position = Vector2(-28, 415)
@@ -172,6 +172,19 @@ position = Vector2(-311, -103)
 shape = SubResource("RectangleShape2D_xrhk8")
 one_way_collision = true
 
+[node name="platform10" type="StaticBody2D" parent="ml_01"]
+position = Vector2(791, -473)
+
+[node name="Platform" type="Sprite2D" parent="ml_01/platform10"]
+z_index = -6
+position = Vector2(-311, -104)
+texture = ExtResource("8_0d6b8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform10"]
+position = Vector2(-311, -103)
+shape = SubResource("RectangleShape2D_xrhk8")
+one_way_collision = true
+
 [node name="platform5" type="StaticBody2D" parent="ml_01"]
 texture_filter = 1
 position = Vector2(276, -65)
@@ -184,7 +197,7 @@ position = Vector2(-158, -109)
 texture = ExtResource("10_utbnu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform5"]
-position = Vector2(-158, -133.5)
+position = Vector2(-158, -133.25)
 shape = SubResource("RectangleShape2D_oa8gn")
 one_way_collision = true
 
@@ -197,6 +210,19 @@ position = Vector2(-41, -176)
 texture = ExtResource("8_0d6b8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform6"]
+position = Vector2(-41, -175)
+shape = SubResource("RectangleShape2D_xrhk8")
+one_way_collision = true
+
+[node name="platform9" type="StaticBody2D" parent="ml_01"]
+position = Vector2(-83, -394)
+
+[node name="Platform" type="Sprite2D" parent="ml_01/platform9"]
+z_index = -6
+position = Vector2(-41, -176)
+texture = ExtResource("8_0d6b8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform9"]
 position = Vector2(-41, -175)
 shape = SubResource("RectangleShape2D_xrhk8")
 one_way_collision = true
@@ -236,12 +262,17 @@ one_way_collision = true
 [node name="Baby01" parent="ml_01" instance=ExtResource("9_tywij")]
 position = Vector2(-133, -143)
 
+[node name="Baby02" parent="ml_01" instance=ExtResource("9_tywij")]
+position = Vector2(-295, -551)
+
 [node name="Daddy" parent="ml_01" instance=ExtResource("13_gce4i")]
 position = Vector2(302, -69)
 
 [node name="Lamppu" type="StaticBody2D" parent="ml_01"]
+position = Vector2(39, 39)
 
 [node name="Lamppu" type="Sprite2D" parent="ml_01/Lamppu"]
+z_index = -8
 texture_filter = 1
 position = Vector2(27, -673)
 texture = ExtResource("12_x48wg")
@@ -269,6 +300,7 @@ scale = Vector2(-1, 1)
 position = Vector2(481, -380)
 
 [node name="Ladder2" parent="ml_01" instance=ExtResource("19_3pfd3")]
+visible = false
 position = Vector2(536, -146)
 
 [node name="ml_02" type="StaticBody2D" parent="."]

@@ -9,6 +9,7 @@ extends CharacterBody2D
 var speed = -1500
 var max_move = 700
 
+@onready var collision = $"Collision"
 
 # random counters
 var movement = 0

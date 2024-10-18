@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://5c5eh2fjkx6i"]
+[gd_scene load_steps=15 format=3 uid="uid://5c5eh2fjkx6i"]
 
 [ext_resource type="Script" path="res://scripts/daddy.gd" id="1_ednn7"]
 [ext_resource type="Texture2D" uid="uid://deekn4hn4ugal" path="res://sprites/enemies/parent01_00.png" id="1_qkodp"]
@@ -50,6 +50,9 @@ size = Vector2(461.5, 125.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_118b4"]
 size = Vector2(64, 102)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_framm"]
+size = Vector2(20, 89)
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_ednn7")
 
@@ -90,6 +93,12 @@ shape = SubResource("RectangleShape2D_syo84")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_area"]
 position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_118b4")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_framm")
+disabled = true
+debug_color = Color(0.964151, 0, 0.494479, 0.42)
 
 [connection signal="area_entered" from="Area2D" to="." method="close_to_player"]
 [connection signal="area_exited" from="Area2D" to="." method="far_from_player"]
