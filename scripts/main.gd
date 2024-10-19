@@ -3,6 +3,8 @@ extends Node2D
 @onready var pause_menu = $"Player/Camera/CanvasLayer/PauseMenu"
 @onready var eat_text = $"Eat_text"
 @onready var player = %"Player"
+@onready var player_anim = %"Player/AnimatedSprite2D"
+
 @onready var hp = $"Player/Camera/CanvasLayer/HUD/HP"
 @onready var hp_regen_anim = $"Player/Camera/CanvasLayer/HUD/HP_REGEN"
 
@@ -29,8 +31,7 @@ func _process(delta: float) -> void:
 		pauseMenu()
 
 	if player.health == 0:
-		#game over
-		pass
+		hp.hide()
 
 	if hp_regen == 2000:
 		player.health += 1

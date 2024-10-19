@@ -30,7 +30,8 @@ enum PlayerState {
 	NORMAL, TRS_TO_HIDE,
 	HIDING, TRS_FROM_HIDE,
 	DINNER_TIME, EATING,
-	TRS_TO_FALL, FALL
+	TRS_TO_FALL, FALL,
+	DYING
 }
 
 var state = PlayerState.NORMAL
@@ -58,6 +59,12 @@ func _physics_process(delta: float) -> void:
 			stamina_bar.value += 1
 		else:
 			stamina_bar.value += 0.5
+
+	if health == 0:
+		state = PlayerState.DYING
+		player.play("explode02")
+		hide_timer.start(1)
+		stop_movement()
 
 	match state:
 		PlayerState.NORMAL:
@@ -147,6 +154,11 @@ func _physics_process(delta: float) -> void:
 		PlayerState.EATING:
 			stop_movement()
 
+		PlayerState.DYING:
+			stop_movement()
+			return
+
+
 	move_and_slide()
 	# for index in get_slide_collision_count():
 	# 	var collision := get_slide_collision(index)
@@ -195,6 +207,8 @@ func _on_hide_transition_finished():
 			
 	if state == PlayerState.TRS_TO_FALL:
 		state = PlayerState.FALL
+	if state == PlayerState.DYING:
+		get_tree().change_scene_to_file("res://scenes/dead_menu.tscn")
 
 func _on_kill_range_entered(body):
 	if body.is_in_group("Eatable"):
