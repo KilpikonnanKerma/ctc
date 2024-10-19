@@ -137,7 +137,10 @@ func _physics_process(delta: float) -> void:
 			stop_movement()
 			is_eating = true
 			state = PlayerState.EATING
-			player.play("eat01")
+			if last_input == "right":
+				player.play("eat01")
+			elif last_input == "left":
+				player.play("eat01_l")
 			hide_timer.start(2.85)
 			return
 		
@@ -166,7 +169,12 @@ func take_damage(): #not used anymore! Check enemy script
 
 func eat(body):
 	body.queue_free()
-	player.position.x += 16
+	
+	if last_input == "right":
+		player.position.x += 16
+	elif last_input == "left":
+		player.position.x -= 16
+		
 	state = PlayerState.DINNER_TIME
 
 func _on_hide_transition_finished():
@@ -179,7 +187,12 @@ func _on_hide_transition_finished():
 	if state == PlayerState.EATING:
 		state = PlayerState.NORMAL
 		player.play("idle")
-		player.position.x -= 16
+		
+		if last_input == "right":
+			player.position.x -= 16
+		elif last_input == "left":
+			player.position.x += 16
+			
 	if state == PlayerState.TRS_TO_FALL:
 		state = PlayerState.FALL
 
