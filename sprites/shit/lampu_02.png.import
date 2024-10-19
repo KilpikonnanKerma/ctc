@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do76ftl4b18hw"
-path="res://.godot/imported/lampu02.png-3627e5eda3a33d229957412e6f910c66.ctex"
+uid="uid://xs8pm3tcwap2"
+path="res://.godot/imported/lampu_02.png-dfea8e0f967864cc539900e293621eb2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/shit/lampu02.png"
-dest_files=["res://.godot/imported/lampu02.png-3627e5eda3a33d229957412e6f910c66.ctex"]
+source_file="res://sprites/shit/lampu_02.png"
+dest_files=["res://.godot/imported/lampu_02.png-dfea8e0f967864cc539900e293621eb2.ctex"]
 
 [params]
 

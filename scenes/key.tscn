@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsy134i7uchnh"]
+
+[ext_resource type="Texture2D" uid="uid://bykqnbjkxmt0s" path="res://sprites/shit/key.png" id="1_bga8j"]
+[ext_resource type="Script" path="res://scripts/key.gd" id="1_pj3bj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8b0b"]
+size = Vector2(2, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qjh6o"]
+
+[sub_resource type="Animation" id="Animation_kiog0"]
+resource_name = "key"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.03333, 1.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, -5), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nfhqc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3xnp2"]
+_data = {
+"RESET": SubResource("Animation_nfhqc"),
+"key": SubResource("Animation_kiog0")
+}
+
+[node name="Key" type="Node2D"]
+script = ExtResource("1_pj3bj")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+texture_filter = 1
+texture = ExtResource("1_bga8j")
+
+[node name="Area2D" type="Area2D" parent="AnimatableBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D/Area2D"]
+shape = SubResource("RectangleShape2D_r8b0b")
+
+[node name="stupid_shit" type="CollisionShape2D" parent="AnimatableBody2D"]
+visible = false
+shape = SubResource("CircleShape2D_qjh6o")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody2D"]
+libraries = {
+"": SubResource("AnimationLibrary_3xnp2")
+}
+
+[connection signal="area_entered" from="AnimatableBody2D/Area2D" to="." method="_on_key_area_entered"]

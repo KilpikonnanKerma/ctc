@@ -157,7 +157,7 @@ func _input(event: InputEvent):
 func stop_movement():
 	velocity.x = 0
 
-func take_damage():
+func take_damage(): #not used anymore! Check enemy script
 	health -= 1
 	var dir = Vector2(1, 0).rotated(player.global_rotation)
 	var kick = 400
@@ -182,14 +182,6 @@ func _on_hide_transition_finished():
 		player.position.x -= 16
 	if state == PlayerState.TRS_TO_FALL:
 		state = PlayerState.FALL
-
-func _on_animation_finished(anim_name):
-	#if state == PlayerState.TRS_TO_HIDE and anim_name == "hide_transition":
-	#	state = PlayerState.HIDING
-	#	player.play("hide")
-	if state == PlayerState.TRS_FROM_HIDE:
-		state = PlayerState.NORMAL
-		player.play("idle")
 
 func _on_kill_range_entered(body):
 	if body.is_in_group("Eatable"):

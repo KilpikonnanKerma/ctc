@@ -4,6 +4,7 @@ extends Node2D
 @onready var eat_text = $"Eat_text"
 @onready var player = %"Player"
 @onready var hp = $"Player/Camera/CanvasLayer/HUD/HP"
+@onready var hp_regen_anim = $"Player/Camera/CanvasLayer/HUD/HP_REGEN"
 
 @onready var settings = $"Player/Camera/CanvasLayer/Settings"
 
@@ -34,8 +35,11 @@ func _process(delta: float) -> void:
 	if hp_regen == 2000:
 		player.health += 1
 		hp_regen = 0
+		hp_regen_anim.hide()
 
 	if player.health != 3:
+		hp_regen_anim.show()
+		hp_regen_anim.play("HP_REGEN")
 		hp_regen += 1
 
 	if player.health == 3:

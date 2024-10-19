@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=30 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://ced7mqc5pygfr" path="res://sprites/shit/letku_hommeli.png" id="13_gfnq8"]
 [ext_resource type="PackedScene" uid="uid://b2civ6rxqf8pj" path="res://scenes/moving_platform.tscn" id="17_h6lmn"]
 [ext_resource type="PackedScene" uid="uid://mc4sqy001dnp" path="res://scenes/ladder.tscn" id="19_3pfd3"]
+[ext_resource type="PackedScene" uid="uid://dsy134i7uchnh" path="res://scenes/key.tscn" id="19_kivdw"]
+[ext_resource type="PackedScene" uid="uid://cjtxxl7udssej" path="res://scenes/door.tscn" id="20_msxws"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1197, 28.5)
@@ -37,6 +39,9 @@ size = Vector2(53, 15.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llgek"]
 size = Vector2(130, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kb88"]
+size = Vector2(80, 102)
 
 [sub_resource type="Environment" id="Environment_ehrrk"]
 background_mode = 3
@@ -303,6 +308,19 @@ position = Vector2(481, -380)
 visible = false
 position = Vector2(536, -146)
 
+[node name="Key" parent="ml_01" node_paths=PackedStringArray("area") instance=ExtResource("19_kivdw")]
+position = Vector2(40, -614)
+area = NodePath("../Door/Area2D")
+
+[node name="Door" parent="ml_01" instance=ExtResource("20_msxws")]
+position = Vector2(606, -90)
+
+[node name="Area2D" type="Area2D" parent="ml_01/Door"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/Door/Area2D"]
+position = Vector2(0, 26)
+shape = SubResource("RectangleShape2D_1kb88")
+
 [node name="ml_02" type="StaticBody2D" parent="."]
 position = Vector2(1169, 415)
 
@@ -382,3 +400,6 @@ layout_mode = 2
 text = "Press 'E' to eat"
 fit_content = true
 scroll_active = false
+
+[connection signal="door_opened" from="ml_01/Key" to="ml_01/Door" method="_on_door_opened"]
+[connection signal="area_entered" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_entered"]

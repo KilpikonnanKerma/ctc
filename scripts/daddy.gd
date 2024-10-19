@@ -140,3 +140,4 @@ func attackus(area: Area2D) -> void:
 			player.velocity.x = player.velocity.x - kickdir
 			
 		player.health -= 1
+		player.stamina_bar.value -= 200

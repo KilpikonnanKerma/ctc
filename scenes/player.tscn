@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=93 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
@@ -69,8 +69,17 @@
 [ext_resource type="Texture2D" uid="uid://yj8vp3xe01jd" path="res://sprites/shit/hp_half.png" id="66_fk1xy"]
 [ext_resource type="Texture2D" uid="uid://cw43yrvplbhhx" path="res://sprites/shit/hp_full.png" id="66_j2fkb"]
 [ext_resource type="Texture2D" uid="uid://clar3lqfutn8w" path="res://sprites/shit/empty_bar.png" id="67_h3fvh"]
+[ext_resource type="Texture2D" uid="uid://ocje617u3pju" path="res://sprites/shit/timerfull.png" id="67_wxwk4"]
 [ext_resource type="Texture2D" uid="uid://dr6if8fuiykr8" path="res://sprites/maps/green.png" id="68_71q8t"]
+[ext_resource type="Texture2D" uid="uid://ddc7nwwg8cxje" path="res://sprites/shit/timer_005.png" id="68_c3mmh"]
+[ext_resource type="Texture2D" uid="uid://b0cp5md2f8une" path="res://sprites/shit/timer_01.png" id="68_qdj3p"]
+[ext_resource type="Texture2D" uid="uid://nhnaius4edmm" path="res://sprites/shit/timer_02.png" id="69_k7wgk"]
 [ext_resource type="PackedScene" uid="uid://qxrclfgtkyyh" path="res://scenes/Settings.tscn" id="69_libtr"]
+[ext_resource type="Texture2D" uid="uid://dtmpho0lxoega" path="res://sprites/shit/timer_03.png" id="70_8kt00"]
+[ext_resource type="Texture2D" uid="uid://bvt7nqywc2fq2" path="res://sprites/shit/timer_015.png" id="70_e7s6d"]
+[ext_resource type="Texture2D" uid="uid://bsg6abrr27e2o" path="res://sprites/shit/timer_04.png" id="71_840vn"]
+[ext_resource type="Texture2D" uid="uid://dcn0u4yqi6ij7" path="res://sprites/shit/timer_025.png" id="72_hwyvn"]
+[ext_resource type="Texture2D" uid="uid://cfvkceiplu1hc" path="res://sprites/shit/timer_035.png" id="74_6jdyg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hunum"]
 animations = [{
@@ -388,6 +397,41 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_glql0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("67_wxwk4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_c3mmh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_qdj3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_e7s6d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_k7wgk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_hwyvn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_8kt00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_6jdyg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_840vn")
+}],
+"loop": true,
+"name": &"HP_REGEN",
+"speed": 0.27
+}]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o2av2"]
 resource_local_to_scene = true
 shader = ExtResource("60_gy4ti")
@@ -501,7 +545,13 @@ offset_bottom = 41.0
 position = Vector2(55, 41)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_cjopr")
-animation = &"hp_empty"
+animation = &"hp_full"
+
+[node name="HP_REGEN" type="AnimatedSprite2D" parent="Camera/CanvasLayer/HUD"]
+visible = false
+position = Vector2(113, 41)
+sprite_frames = SubResource("SpriteFrames_glql0")
+animation = &"HP_REGEN"
 
 [node name="Stamina" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
 layout_mode = 0
