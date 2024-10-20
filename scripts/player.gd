@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 @onready var main = $".."
 @onready var vignette = $Camera/CanvasLayer/Vignette
+@onready var heartbeat = $Camera/CanvasLayer/Heartbeat
 @onready var player = $AnimatedSprite2D
 @onready var animPlayer = $AnimationPlayer
 @onready var hide_timer = Timer.new()
@@ -13,6 +14,8 @@ extends CharacterBody2D
 
 var run_speed = 200.0
 var health = 3
+
+var last_ate = 0
 
 var cur_direction
 var last_input = "right"
@@ -25,6 +28,7 @@ var is_on_ladder: bool = false
 
 var is_eating
 var enemy_body
+var is_hungry: bool = false
 
 var death_has_been_called = false # <--- Ettei kuolemaa kutsuta kokoajan uudestaan
 
@@ -46,6 +50,7 @@ func _ready():
 
 	hiding = false
 	is_on_ladder = false
+	is_hungry = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -65,6 +70,22 @@ func _physics_process(delta: float) -> void:
 	if health == 0 && !death_has_been_called:
 		die()
 		death_has_been_called = true
+
+	if last_ate >= 2500 && last_ate <= 4000:
+		is_hungry = true
+		heartbeat.show()
+		animPlayer.play("heartbeat_on")
+		hide_timer.start(3)
+		last_ate += 1
+	if last_ate >= 4000:
+		animPlayer.play("heartbeat")
+		last_ate += 1
+	if last_ate >= 5500:
+		die()
+	else:
+		last_ate += 1
+
+	var direction := Input.get_axis("mv_left", "mv_right")
 
 	match state:
 		PlayerState.NORMAL:
@@ -91,14 +112,19 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("consume") and is_on_floor() and main.etex == true:
 				eat(main.cur_victim)
 
-			var direction := Input.get_axis("mv_left", "mv_right")
 
 			if direction:
 				if Input.is_action_pressed("run") && stamina_bar.value > 0: #voi ns. dashata ilmassa, jos painaa shiftiä (it's not a bug it's a feature)
 					velocity.x = move_toward(velocity.x, direction * run_speed, run_speed * acceleration)
-					stamina_bar.value -= 4
+					if is_hungry:
+						stamina_bar.value -= 8
+					else:
+						stamina_bar.value -= 4
 				else:
-					velocity.x = move_toward(velocity.x, direction * WALK_SPEED, WALK_SPEED * acceleration)
+					if is_hungry:
+						velocity.x = move_toward(velocity.x, direction * WALK_SPEED/2, WALK_SPEED/2 * acceleration)
+					else:
+						velocity.x = move_toward(velocity.x, direction * WALK_SPEED, WALK_SPEED * acceleration)
 
 				if velocity.x > 0:
 					player.animation = "walk_r"
@@ -154,6 +180,8 @@ func _physics_process(delta: float) -> void:
 
 		PlayerState.EATING:
 			stop_movement()
+			last_ate = 0
+			heartbeat.hide()
 
 		PlayerState.DYING:
 			stop_movement()
@@ -172,17 +200,10 @@ func _input(event: InputEvent):
 func stop_movement():
 	velocity.x = 0
 
-func take_damage(): #not used anymore! Check enemy script
-	health -= 1
-	var dir = Vector2(1, 0).rotated(player.global_rotation)
-	var kick = 400
-	var kickdirection = kick * (dir*1)
-	velocity = velocity + kickdirection
-
 func die():
 	state = PlayerState.DYING
 	player.play("explode02")
-	hide_timer.start(1)
+	hide_timer.start(1.15)
 
 func eat(body):
 	body.queue_free()

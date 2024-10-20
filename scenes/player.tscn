@@ -1,4 +1,4 @@
-[gd_scene load_steps=143 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=145 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
@@ -669,7 +669,7 @@ animations = [{
 resource_local_to_scene = true
 shader = ExtResource("60_gy4ti")
 shader_parameter/vignette_intensity = 0.8
-shader_parameter/vignette_opacity = 0.5
+shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_qabcx"]
@@ -685,6 +685,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_rgb")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_opacity")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_yvqc7"]
@@ -723,9 +747,69 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_wc3hu"]
+resource_name = "heartbeat"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_rgb")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.750667, 1.2514e-06, 3.85046e-07, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.5, 1.0, 0.5]
+}
+
+[sub_resource type="Animation" id="Animation_vhtix"]
+resource_name = "heartbeat_on"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_rgb")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.63333, 1.73333, 2.23333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0.750667, 1.2514e-06, 3.85046e-07, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.63333, 1.73333, 2.23333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.5, 1.0, 0.5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75ai5"]
 _data = {
 "RESET": SubResource("Animation_qabcx"),
+"heartbeat": SubResource("Animation_wc3hu"),
+"heartbeat_on": SubResource("Animation_vhtix"),
 "stamina": SubResource("Animation_yvqc7"),
 "vignette_anim": SubResource("Animation_lolrt"),
 "vignette_anim_off": SubResource("Animation_gjb8k")
@@ -798,6 +882,18 @@ texture_progress = ExtResource("68_71q8t")
 
 [node name="Vignette" type="ColorRect" parent="Camera/CanvasLayer"]
 visible = false
+material = SubResource("ShaderMaterial_o2av2")
+use_parent_material = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Heartbeat" type="ColorRect" parent="Camera/CanvasLayer"]
+visible = false
+z_index = 4096
 material = SubResource("ShaderMaterial_o2av2")
 use_parent_material = true
 anchors_preset = 15
