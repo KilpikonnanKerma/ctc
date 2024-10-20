@@ -26,6 +26,8 @@ var is_on_ladder: bool = false
 var is_eating
 var enemy_body
 
+var death_has_been_called = false # <--- Ettei kuolemaa kutsuta kokoajan uudestaan
+
 enum PlayerState {
 	NORMAL, TRS_TO_HIDE,
 	HIDING, TRS_FROM_HIDE,
@@ -60,11 +62,9 @@ func _physics_process(delta: float) -> void:
 		else:
 			stamina_bar.value += 0.5
 
-	if health == 0:
-		state = PlayerState.DYING
-		player.play("explode02")
-		hide_timer.start(1)
-		stop_movement()
+	if health == 0 && !death_has_been_called:
+		die()
+		death_has_been_called = true
 
 	match state:
 		PlayerState.NORMAL:
@@ -139,7 +139,7 @@ func _physics_process(delta: float) -> void:
 		PlayerState.TRS_FROM_HIDE:
 			stop_movement()
 			animPlayer.play("vignette_anim_off")
-			
+
 		PlayerState.DINNER_TIME:
 			stop_movement()
 			is_eating = true
@@ -149,14 +149,14 @@ func _physics_process(delta: float) -> void:
 			elif last_input == "left":
 				player.play("eat01_l")
 			hide_timer.start(2.85)
+			stamina_bar.value += 500
 			return
-		
+
 		PlayerState.EATING:
 			stop_movement()
 
 		PlayerState.DYING:
 			stop_movement()
-			return
 
 
 	move_and_slide()
@@ -179,14 +179,19 @@ func take_damage(): #not used anymore! Check enemy script
 	var kickdirection = kick * (dir*1)
 	velocity = velocity + kickdirection
 
+func die():
+	state = PlayerState.DYING
+	player.play("explode02")
+	hide_timer.start(1)
+
 func eat(body):
 	body.queue_free()
-	
+
 	if last_input == "right":
 		player.position.x += 16
 	elif last_input == "left":
 		player.position.x -= 16
-		
+
 	state = PlayerState.DINNER_TIME
 
 func _on_hide_transition_finished():
@@ -199,12 +204,12 @@ func _on_hide_transition_finished():
 	if state == PlayerState.EATING:
 		state = PlayerState.NORMAL
 		player.play("idle")
-		
+
 		if last_input == "right":
 			player.position.x -= 16
 		elif last_input == "left":
 			player.position.x += 16
-			
+
 	if state == PlayerState.TRS_TO_FALL:
 		state = PlayerState.FALL
 	if state == PlayerState.DYING:
@@ -213,7 +218,7 @@ func _on_hide_transition_finished():
 func _on_kill_range_entered(body):
 	if body.is_in_group("Eatable"):
 		main.eatConfirm(true, body)
-	
+
 func _on_kille_range_exited(body):
 	if body.is_in_group("Eatable"):
 		main.eatConfirm(false, body)

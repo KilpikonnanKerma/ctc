@@ -312,6 +312,18 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("55_trq6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_trq6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_trq6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_trq6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_trq6j")
 }],
 "loop": true,
 "name": &"eat01_l",
@@ -728,9 +740,7 @@ script = ExtResource("1_q5ei5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hunum")
-animation = &"explode02"
-frame = 10
-frame_progress = 1.0
+animation = &"eat01_l"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
