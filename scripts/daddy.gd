@@ -6,6 +6,8 @@ extends CharacterBody2D
 @onready var qstn = $"kymysys"
 @onready var notice_timer = $"notice_timer"
 
+@onready var anim = $AnimatedSprite2D
+
 var speed = -1500
 var max_move = 700
 
@@ -30,6 +32,11 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	#if not is_on_floor(): daddy ain't getting gravity
 	#	velocity += get_gravity() * delta
+
+	if velocity.x == 0:
+		anim.play("idle")
+	else:
+		anim.stop()
 
 	if is_close && not main.aggro && not player.hiding:
 		notice_timer.show()
@@ -126,7 +133,7 @@ func far_from_player(area: Area2D) -> void:
 		if not main.aggro:
 			is_close = false
 
-func attackus(area: Area2D) -> void:
+func attackus(_area: Area2D) -> void:
 	var kick = 5
 	var kickdir
 

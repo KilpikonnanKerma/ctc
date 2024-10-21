@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=33 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
@@ -21,12 +21,13 @@
 [ext_resource type="PackedScene" uid="uid://mc4sqy001dnp" path="res://scenes/ladder.tscn" id="19_3pfd3"]
 [ext_resource type="PackedScene" uid="uid://dsy134i7uchnh" path="res://scenes/key.tscn" id="19_kivdw"]
 [ext_resource type="PackedScene" uid="uid://cjtxxl7udssej" path="res://scenes/door.tscn" id="20_msxws"]
+[ext_resource type="Texture2D" uid="uid://u8s5oi808t4d" path="res://sprites/Props/tv.png" id="22_v2mbb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1197, 28.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rnv31"]
-size = Vector2(68, 910.5)
+size = Vector2(68, 561)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrhk8"]
 size = Vector2(36, 9.75905)
@@ -43,6 +44,12 @@ size = Vector2(130, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1kb88"]
 size = Vector2(80, 102)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iunlr"]
+size = Vector2(64, 1055)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1b7g"]
+size = Vector2(65, 9)
+
 [sub_resource type="Environment" id="Environment_ehrrk"]
 background_mode = 3
 ssao_intensity = 1.0
@@ -56,7 +63,7 @@ script = ExtResource("1_7n0go")
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("1_5o17h")]
 unique_name_in_owner = true
-position = Vector2(-69, 375)
+position = Vector2(401, 105)
 
 [node name="ml_01" type="StaticBody2D" parent="."]
 position = Vector2(-28, 415)
@@ -304,10 +311,6 @@ scale = Vector2(-1, 1)
 [node name="Ladder" parent="ml_01" instance=ExtResource("19_3pfd3")]
 position = Vector2(481, -380)
 
-[node name="Ladder2" parent="ml_01" instance=ExtResource("19_3pfd3")]
-visible = false
-position = Vector2(536, -146)
-
 [node name="Key" parent="ml_01" node_paths=PackedStringArray("area") instance=ExtResource("19_kivdw")]
 position = Vector2(40, -614)
 area = NodePath("../Door/Area2D")
@@ -367,14 +370,41 @@ polygons = [PackedInt32Array(0, 1, 2, 3)]
 position = Vector2(-50, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/Wall2"]
-position = Vector2(-538.5, -564.5)
+position = Vector2(-538.5, -321.5)
 shape = SubResource("RectangleShape2D_rnv31")
 
 [node name="Wall01" type="Sprite2D" parent="ml_02/Wall2"]
 z_index = 9
-position = Vector2(-542, -520.25)
+position = Vector2(-542, -609)
+scale = Vector2(1, 4.98438)
+texture = ExtResource("6_las7y")
+
+[node name="Floor02" type="StaticBody2D" parent="ml_02"]
+position = Vector2(-55, -570)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/Floor02"]
+position = Vector2(17.5, 3.05176e-05)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_iunlr")
+
+[node name="Wall01" type="Sprite2D" parent="ml_02/Floor02"]
+z_index = 6
+rotation = 1.5708
 scale = Vector2(1, 4.29102)
 texture = ExtResource("6_las7y")
+
+[node name="Upstairs" type="Node" parent="ml_02"]
+
+[node name="TV" type="StaticBody2D" parent="ml_02/Upstairs"]
+position = Vector2(743, -219)
+
+[node name="TV" type="Sprite2D" parent="ml_02/Upstairs/TV"]
+z_index = -5
+texture = ExtResource("22_v2mbb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/Upstairs/TV"]
+position = Vector2(0.5, -27.5)
+shape = SubResource("RectangleShape2D_p1b7g")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ehrrk")
@@ -401,5 +431,7 @@ text = "Press 'E' to eat"
 fit_content = true
 scroll_active = false
 
+[connection signal="door_entered" from="ml_01/Key" to="ml_01/Door" method="_on_door_entered"]
+[connection signal="door_exited" from="ml_01/Key" to="ml_01/Door" method="_on_door_exited"]
 [connection signal="door_opened" from="ml_01/Key" to="ml_01/Door" method="_on_door_opened"]
 [connection signal="area_entered" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_entered"]

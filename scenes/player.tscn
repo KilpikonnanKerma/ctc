@@ -711,42 +711,6 @@ tracks/2/keys = {
 "values": [1.0]
 }
 
-[sub_resource type="Animation" id="Animation_yvqc7"]
-resource_name = "stamina"
-length = 6.0
-
-[sub_resource type="Animation" id="Animation_lolrt"]
-resource_name = "vignette_anim"
-length = 1.75
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/CanvasLayer/Vignette:material:shader_parameter/vignette_rgb")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.73333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_gjb8k"]
-resource_name = "vignette_anim_off"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/CanvasLayer/Vignette:material:shader_parameter/vignette_rgb")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_wc3hu"]
 resource_name = "heartbeat"
 length = 0.8
@@ -805,6 +769,42 @@ tracks/1/keys = {
 "values": [0.0, 0.5, 1.0, 0.5]
 }
 
+[sub_resource type="Animation" id="Animation_yvqc7"]
+resource_name = "stamina"
+length = 6.0
+
+[sub_resource type="Animation" id="Animation_lolrt"]
+resource_name = "vignette_anim"
+length = 1.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/CanvasLayer/Vignette:material:shader_parameter/vignette_rgb")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.73333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gjb8k"]
+resource_name = "vignette_anim_off"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/CanvasLayer/Vignette:material:shader_parameter/vignette_rgb")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75ai5"]
 _data = {
 "RESET": SubResource("Animation_qabcx"),
@@ -824,7 +824,9 @@ script = ExtResource("1_q5ei5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hunum")
-animation = &"eat01_l"
+animation = &"idle"
+frame = 2
+frame_progress = 0.10997
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

@@ -51,6 +51,7 @@ func _ready():
 	hiding = false
 	is_on_ladder = false
 	is_hungry = false
+	death_has_been_called = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -71,19 +72,21 @@ func _physics_process(delta: float) -> void:
 		die()
 		death_has_been_called = true
 
-	if last_ate >= 2500 && last_ate <= 4000:
+	if last_ate >= 3000 && last_ate <= 6500 && !main.paused:
 		is_hungry = true
 		heartbeat.show()
 		animPlayer.play("heartbeat_on")
 		hide_timer.start(3)
 		last_ate += 1
-	if last_ate >= 4000:
+	if last_ate >= 6500 && !main.paused:
 		animPlayer.play("heartbeat")
 		last_ate += 1
-	if last_ate >= 5500:
+	if last_ate >= 10000 && !death_has_been_called:
 		die()
+		death_has_been_called = true
 	else:
-		last_ate += 1
+		if !main.paused:
+			last_ate += 1
 
 	var direction := Input.get_axis("mv_left", "mv_right")
 
@@ -111,7 +114,6 @@ func _physics_process(delta: float) -> void:
 
 			if Input.is_action_just_pressed("consume") and is_on_floor() and main.etex == true:
 				eat(main.cur_victim)
-
 
 			if direction:
 				if Input.is_action_pressed("run") && stamina_bar.value > 0: #voi ns. dashata ilmassa, jos painaa shiftiä (it's not a bug it's a feature)
@@ -180,8 +182,6 @@ func _physics_process(delta: float) -> void:
 
 		PlayerState.EATING:
 			stop_movement()
-			last_ate = 0
-			heartbeat.hide()
 
 		PlayerState.DYING:
 			stop_movement()
@@ -223,6 +223,9 @@ func _on_hide_transition_finished():
 		state = PlayerState.NORMAL
 		player.play("idle")
 	if state == PlayerState.EATING:
+		last_ate = 0
+		heartbeat.hide()
+		is_hungry = false
 		state = PlayerState.NORMAL
 		player.play("idle")
 

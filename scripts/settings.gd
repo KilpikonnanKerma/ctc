@@ -11,7 +11,7 @@ func _ready() -> void:
 	else:
 		fullscreen_button.button_pressed = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
