@@ -5,7 +5,7 @@ extends Area2D
 func _ready():
 	pass
 
-func _process(delta: float):
+func _process(_delta: float):
 	pass
 
 func _on_ladder_entered(area: Area2D):

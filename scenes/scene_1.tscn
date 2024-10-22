@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=34 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b4k6cp7dnudw5" path="res://sprites/maps/wall01.png" id="6_las7y"]
 [ext_resource type="Texture2D" uid="uid://c5xtttncxl1m0" path="res://sprites/Props/bed01.png" id="7_86qxo"]
 [ext_resource type="Texture2D" uid="uid://dki06gev0bgxu" path="res://sprites/Props/platform.png" id="8_0d6b8"]
+[ext_resource type="PackedScene" uid="uid://rk7xiy7p0fxr" path="res://scenes/props/platform.tscn" id="9_8s4m4"]
 [ext_resource type="PackedScene" uid="uid://d2yg68dgyqq4u" path="res://scenes/baby_01.tscn" id="9_tywij"]
 [ext_resource type="Texture2D" uid="uid://j7ilkad0cwl1" path="res://sprites/maps/grön.png" id="10_u4yso"]
 [ext_resource type="Texture2D" uid="uid://ihp3dk7h42i3" path="res://sprites/Props/taulu01.png" id="10_utbnu"]
@@ -17,8 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://bmapv3ikh83lj" path="res://sprites/shit/lampu01.png" id="12_x48wg"]
 [ext_resource type="PackedScene" uid="uid://5c5eh2fjkx6i" path="res://scenes/daddy.tscn" id="13_gce4i"]
 [ext_resource type="Texture2D" uid="uid://ced7mqc5pygfr" path="res://sprites/shit/letku_hommeli.png" id="13_gfnq8"]
-[ext_resource type="PackedScene" uid="uid://b2civ6rxqf8pj" path="res://scenes/moving_platform.tscn" id="17_h6lmn"]
-[ext_resource type="PackedScene" uid="uid://mc4sqy001dnp" path="res://scenes/ladder.tscn" id="19_3pfd3"]
+[ext_resource type="PackedScene" uid="uid://b2civ6rxqf8pj" path="res://scenes/props/moving_platform.tscn" id="17_h6lmn"]
+[ext_resource type="PackedScene" uid="uid://mc4sqy001dnp" path="res://scenes/props/ladder.tscn" id="19_3pfd3"]
 [ext_resource type="PackedScene" uid="uid://dsy134i7uchnh" path="res://scenes/key.tscn" id="19_kivdw"]
 [ext_resource type="PackedScene" uid="uid://cjtxxl7udssej" path="res://scenes/door.tscn" id="20_msxws"]
 [ext_resource type="Texture2D" uid="uid://u8s5oi808t4d" path="res://sprites/Props/tv.png" id="22_v2mbb"]
@@ -26,17 +27,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1197, 28.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnv31"]
-size = Vector2(68, 561)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrhk8"]
-size = Vector2(36, 9.75905)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6nti"]
 size = Vector2(62, 6)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnv31"]
+size = Vector2(68, 561)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oa8gn"]
 size = Vector2(53, 15.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrhk8"]
+size = Vector2(36, 9.75905)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llgek"]
 size = Vector2(130, 4)
@@ -115,6 +116,22 @@ texture_filter = 1
 position = Vector2(-149, -85)
 texture = ExtResource("5_vrcuc")
 
+[node name="lower_platform" type="StaticBody2D" parent="ml_01/Bookshelf01"]
+position = Vector2(179, 85)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/Bookshelf01/lower_platform"]
+position = Vector2(-177, -124)
+shape = SubResource("RectangleShape2D_a6nti")
+one_way_collision = true
+
+[node name="upper_platform" type="StaticBody2D" parent="ml_01/Bookshelf01"]
+position = Vector2(179, 41)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/Bookshelf01/upper_platform"]
+position = Vector2(-180, -102)
+shape = SubResource("RectangleShape2D_a6nti")
+one_way_collision = true
+
 [node name="Wall" type="StaticBody2D" parent="ml_01"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/Wall"]
@@ -142,60 +159,17 @@ texture_filter = 1
 position = Vector2(-64, 32)
 texture = ExtResource("7_86qxo")
 
-[node name="platform" type="StaticBody2D" parent="ml_01"]
-
-[node name="Platform" type="Sprite2D" parent="ml_01/platform"]
-z_index = -6
-texture_filter = 1
-position = Vector2(-311, -104)
-texture = ExtResource("8_0d6b8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform"]
+[node name="platform" parent="ml_01" instance=ExtResource("9_8s4m4")]
 position = Vector2(-311, -103)
-shape = SubResource("RectangleShape2D_xrhk8")
-one_way_collision = true
 
-[node name="platform2" type="StaticBody2D" parent="ml_01"]
-position = Vector2(30, 0)
+[node name="platform2" parent="ml_01" instance=ExtResource("9_8s4m4")]
+position = Vector2(-35, -169)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform2"]
-position = Vector2(-177, -124)
-shape = SubResource("RectangleShape2D_a6nti")
-one_way_collision = true
+[node name="platform3" parent="ml_01" instance=ExtResource("9_8s4m4")]
+position = Vector2(235, -241)
 
-[node name="platform3" type="StaticBody2D" parent="ml_01"]
-position = Vector2(30, -44)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform3"]
-position = Vector2(-180, -102)
-shape = SubResource("RectangleShape2D_a6nti")
-one_way_collision = true
-
-[node name="platform4" type="StaticBody2D" parent="ml_01"]
-position = Vector2(276, -65)
-
-[node name="Platform" type="Sprite2D" parent="ml_01/platform4"]
-z_index = -6
-position = Vector2(-311, -104)
-texture = ExtResource("8_0d6b8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform4"]
-position = Vector2(-311, -103)
-shape = SubResource("RectangleShape2D_xrhk8")
-one_way_collision = true
-
-[node name="platform10" type="StaticBody2D" parent="ml_01"]
-position = Vector2(791, -473)
-
-[node name="Platform" type="Sprite2D" parent="ml_01/platform10"]
-z_index = -6
-position = Vector2(-311, -104)
-texture = ExtResource("8_0d6b8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform10"]
-position = Vector2(-311, -103)
-shape = SubResource("RectangleShape2D_xrhk8")
-one_way_collision = true
+[node name="platform4" parent="ml_01" instance=ExtResource("9_8s4m4")]
+position = Vector2(480, -576)
 
 [node name="platform5" type="StaticBody2D" parent="ml_01"]
 texture_filter = 1
@@ -211,19 +185,6 @@ texture = ExtResource("10_utbnu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform5"]
 position = Vector2(-158, -133.25)
 shape = SubResource("RectangleShape2D_oa8gn")
-one_way_collision = true
-
-[node name="platform6" type="StaticBody2D" parent="ml_01"]
-position = Vector2(276, -65)
-
-[node name="Platform" type="Sprite2D" parent="ml_01/platform6"]
-z_index = -6
-position = Vector2(-41, -176)
-texture = ExtResource("8_0d6b8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/platform6"]
-position = Vector2(-41, -175)
-shape = SubResource("RectangleShape2D_xrhk8")
 one_way_collision = true
 
 [node name="platform9" type="StaticBody2D" parent="ml_01"]
@@ -405,6 +366,7 @@ texture = ExtResource("22_v2mbb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/Upstairs/TV"]
 position = Vector2(0.5, -27.5)
 shape = SubResource("RectangleShape2D_p1b7g")
+one_way_collision = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ehrrk")

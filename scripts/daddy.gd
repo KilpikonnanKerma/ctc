@@ -38,6 +38,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		anim.stop()
 
+	if main.aggro && player.state == player.PlayerState.HIDING: # TODO: Vihollinen huomaa, jos meet piilon sen lähellä (käytä ehkä daddyn is_close boolia)
+		main.searching = true
+		main.aggro = false
+
 	if is_close && not main.aggro && not player.hiding:
 		notice_timer.show()
 		if !main.paused:

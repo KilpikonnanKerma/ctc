@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://mq03jyofbkl2" path="res://sprites/maps/ladder01.png" id="2_yb226"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mjqj7"]
-size = Vector2(2, 246)
+size = Vector2(23, 246)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kcv42"]
 size = Vector2(32, 4)
@@ -13,6 +13,7 @@ size = Vector2(32, 4)
 script = ExtResource("1_66gn2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_mjqj7")
 
 [node name="Platform" type="Sprite2D" parent="."]

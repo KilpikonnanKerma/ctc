@@ -26,9 +26,24 @@ func _ready() -> void:
 	paused = false
 	Engine.time_scale = 1
 
-func _process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		pauseMenu()
+
+	if player.last_ate >= 3000 && player.last_ate <= 6500 && !paused:
+		player.is_hungry = true
+		player.heartbeat.show()
+		player.animPlayer.play("heartbeat_on")
+		player.last_ate += 1
+	if player.last_ate >= 6500 && !paused:
+		player.animPlayer.play("heartbeat")
+		player.last_ate += 1
+	if player.last_ate >= 10000 && !player.death_has_been_called:
+		player.die()
+		player.death_has_been_called = true
+	else:
+		if !paused:
+			player.last_ate += 1
 
 	if player.health == 0:
 		hp.hide()

@@ -58,10 +58,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor() && !is_on_ladder:
 		velocity += get_gravity() * delta
 
-	if main.aggro && state == PlayerState.HIDING: # TODO: Vihollinen huomaa, jos meet piilon sen lähellä (käytä ehkä daddyn is_close boolia)
-		main.searching = true
-		main.aggro = false
-
 	if stamina_bar.value <= 1000 && not Input.is_action_pressed("run"):
 		if is_on_floor():
 			stamina_bar.value += 1
@@ -71,22 +67,6 @@ func _physics_process(delta: float) -> void:
 	if health == 0 && !death_has_been_called:
 		die()
 		death_has_been_called = true
-
-	if last_ate >= 3000 && last_ate <= 6500 && !main.paused:
-		is_hungry = true
-		heartbeat.show()
-		animPlayer.play("heartbeat_on")
-		hide_timer.start(3)
-		last_ate += 1
-	if last_ate >= 6500 && !main.paused:
-		animPlayer.play("heartbeat")
-		last_ate += 1
-	if last_ate >= 10000 && !death_has_been_called:
-		die()
-		death_has_been_called = true
-	else:
-		if !main.paused:
-			last_ate += 1
 
 	var direction := Input.get_axis("mv_left", "mv_right")
 

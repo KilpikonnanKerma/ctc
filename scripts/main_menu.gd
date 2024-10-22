@@ -6,7 +6,7 @@ extends Control
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("menu_play"):
 		_on_StartButton_pressed()
 	if Input.is_action_just_pressed("menu_stngs"):

@@ -601,7 +601,7 @@ animations = [{
 size = Vector2(26.5, 26.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eoymx"]
-size = Vector2(55.8125, 32.25)
+size = Vector2(24, 25.125)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cjopr"]
 animations = [{
@@ -836,6 +836,7 @@ shape = SubResource("RectangleShape2D_o58d1")
 [node name="Range" type="Area2D" parent="." groups=["Player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+position = Vector2(0, 3.5625)
 shape = SubResource("RectangleShape2D_eoymx")
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -857,6 +858,7 @@ offset_left = 1.0
 offset_top = 1.0
 offset_right = 41.0
 offset_bottom = 41.0
+metadata/_edit_use_anchors_ = true
 
 [node name="HP" type="AnimatedSprite2D" parent="Camera/CanvasLayer/HUD"]
 position = Vector2(55, 41)
@@ -881,6 +883,7 @@ value = 1000.0
 nine_patch_stretch = true
 texture_over = ExtResource("67_h3fvh")
 texture_progress = ExtResource("68_71q8t")
+metadata/_edit_use_anchors_ = true
 
 [node name="Vignette" type="ColorRect" parent="Camera/CanvasLayer"]
 visible = false
