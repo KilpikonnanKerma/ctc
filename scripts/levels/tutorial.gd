@@ -1,25 +1,32 @@
 extends Node2D
 
-@onready var anim_player = $"AnimationPlayer"
-@onready var animation_PLAYER = $"anim_player" #literal animation player character
-@onready var player = $Player
+@onready var pause_menu = $"Player/Camera/CanvasLayer/PauseMenu"
+@onready var player = %Player
 
-@onready var cutscene_timer = Timer.new()
+@onready var settings = $"Player/Camera/CanvasLayer/Settings"
 
+@onready var txt1 = $Tutorial_text/PC_MOVEMENT
+@onready var txt2 = $Tutorial_text/PC_MOVEMENT2
+@onready var txt3 = $Tutorial_text/PC_MOVEMENT3
+
+var paused = false
 
 func _ready() -> void:
-	cutscene_timer.one_shot = true
-	cutscene_timer.connect("timeout", Callable(self, "_on_cutscene_ended"))
-
-	anim_player.play("opening_cutscene")
-	player.hide()
-	cutscene_timer.start(20)
-
+	player.animPlayer.play("camera_zoom_out")
+	paused = false
+	Engine.time_scale = 1
 
 func _process(_delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("pause"):
+		pauseMenu()
 
+func pauseMenu():
+	if paused:
+		pause_menu.hide()
+		Engine.time_scale = 1
+	else:
+		pause_menu.show()
+		Engine.time_scale = 0
+		#pause_menu.position.x = player.position.x
 
-func _on_cutscene_ended():
-	animation_PLAYER.queue_free()
-	player.show()
+	paused = !paused

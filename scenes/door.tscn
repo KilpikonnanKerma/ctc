@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjtxxl7udssej"]
+[gd_scene load_steps=4 format=3 uid="uid://cjtxxl7udssej"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_p3ahg"]
+[ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="2_fuq24"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_df3ld"]
 size = Vector2(52, 138)
@@ -16,7 +17,7 @@ shape = SubResource("RectangleShape2D_df3ld")
 
 [node name="key_text" type="NinePatchRect" parent="Block"]
 visible = false
-z_index = 10
+z_index = 20
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -31,12 +32,13 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Block/key_text"]
 layout_mode = 0
-offset_right = 140.0
-offset_bottom = 46.0
+offset_right = 150.0
+offset_bottom = 80.0
 alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Block/key_text/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_fuq24")
 text = "You need the key to go through"
 fit_content = true
 scroll_active = false
