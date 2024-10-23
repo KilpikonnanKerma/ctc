@@ -13,6 +13,7 @@ var paused = false
 
 func _ready() -> void:
 	player.animPlayer.play("camera_zoom_out")
+	pause_menu.hide()
 	paused = false
 	Engine.time_scale = 1
 

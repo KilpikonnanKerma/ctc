@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://btkp18hj05lh"]
+[gd_scene load_steps=17 format=3 uid="uid://btkp18hj05lh"]
 
 [ext_resource type="Script" path="res://scripts/levels/tutorial.gd" id="1_8ff0h"]
 [ext_resource type="Texture2D" uid="uid://blcyjlysb4352" path="res://sprites/maps/brick02.png" id="2_k8o12"]
@@ -9,10 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://dsy134i7uchnh" path="res://scenes/key.tscn" id="8_v8mhp"]
 [ext_resource type="PackedScene" uid="uid://cjtxxl7udssej" path="res://scenes/door.tscn" id="9_jrk24"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="10_ourhg"]
+[ext_resource type="Texture2D" uid="uid://b71ay054kncvs" path="res://sprites/Props/cell.png" id="11_0113m"]
 [ext_resource type="Texture2D" uid="uid://cf80cig18upxk" path="res://sprites/Props/operation_table.png" id="116_l8y3g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f867"]
-size = Vector2(1255.5, 24)
+size = Vector2(2488, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmm3d"]
 size = Vector2(383, 64)
@@ -107,7 +108,7 @@ polygons = [PackedInt32Array(0, 1, 2, 3)]
 position = Vector2(0, -350)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/Collision"]
-position = Vector2(-0.25, 341)
+position = Vector2(616, 341)
 shape = SubResource("RectangleShape2D_3f867")
 
 [node name="Back_wall" type="Node2D" parent="."]
@@ -221,12 +222,12 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_left = -514.0
 offset_top = 86.0
-offset_right = -296.0
-offset_bottom = 168.0
+offset_right = -285.0
+offset_bottom = 185.0
 theme_override_fonts/normal_font = ExtResource("10_ourhg")
 theme_override_font_sizes/normal_font_size = 15
 text = "Move with:
-A and D or with:
+'A' and 'D' or with:
 left arrow and right arrow keys!"
 
 [node name="PC_MOVEMENT2" type="RichTextLabel" parent="Tutorial_text"]
@@ -234,12 +235,12 @@ layout_mode = 0
 offset_left = -177.0
 offset_top = 56.0
 offset_right = 41.0
-offset_bottom = 138.0
+offset_bottom = 152.0
 theme_override_fonts/normal_font = ExtResource("10_ourhg")
 theme_override_font_sizes/normal_font_size = 15
 text = "Jump with:
-SPACEBAR and
-Drop down with S or down arrow!"
+'SPACEBAR' and
+Drop down with 'S' or down arrow!"
 
 [node name="PC_MOVEMENT3" type="RichTextLabel" parent="Tutorial_text"]
 layout_mode = 0
@@ -249,7 +250,39 @@ offset_right = 513.0
 offset_bottom = 168.0
 theme_override_fonts/normal_font = ExtResource("10_ourhg")
 theme_override_font_sizes/normal_font_size = 15
-text = "You can sprint with shift"
+text = "You can sprint with 'shift'"
+
+[node name="PC_MOVEMENT4" type="RichTextLabel" parent="Tutorial_text"]
+layout_mode = 0
+offset_left = 862.0
+offset_top = 81.0
+offset_right = 1080.0
+offset_bottom = 163.0
+theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_font_sizes/normal_font_size = 15
+text = "You can hide by pressing 'w' and unhide with 'S'"
+
+[node name="Cells" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Cells"]
+z_index = -25
+position = Vector2(381, 265)
+texture = ExtResource("11_0113m")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Cells"]
+z_index = -25
+position = Vector2(680, 265)
+texture = ExtResource("11_0113m")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Cells"]
+z_index = -25
+position = Vector2(980, 265)
+texture = ExtResource("11_0113m")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Cells"]
+z_index = -25
+position = Vector2(1280, 265)
+texture = ExtResource("11_0113m")
 
 [connection signal="door_entered" from="Key" to="Door" method="_on_door_entered"]
 [connection signal="door_exited" from="Key" to="Door" method="_on_door_exited"]

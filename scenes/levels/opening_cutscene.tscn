@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=3 uid="uid://drk2qt5n14wry"]
+[gd_scene load_steps=130 format=3 uid="uid://drk2qt5n14wry"]
 
 [ext_resource type="Script" path="res://scripts/levels/opening_cutscene.gd" id="1_da8qf"]
 [ext_resource type="Texture2D" uid="uid://blcyjlysb4352" path="res://sprites/maps/brick02.png" id="2_r3jad"]
@@ -116,6 +116,7 @@
 [ext_resource type="Texture2D" uid="uid://cb1rrnm8xgrgb" path="res://sprites/player/player_walk_right_4.png" id="114_pi71m"]
 [ext_resource type="Texture2D" uid="uid://blq7i1mqxbr4i" path="res://sprites/player/player_walk_right_5.png" id="115_ir1pr"]
 [ext_resource type="Texture2D" uid="uid://cf80cig18upxk" path="res://sprites/Props/operation_table.png" id="116_08rdc"]
+[ext_resource type="Shader" path="res://scripts/shaders/vignette.gdshader" id="116_a648e"]
 [ext_resource type="Texture2D" uid="uid://c3alr4np4lra7" path="res://sprites/maps/wall02.png" id="116_xguht"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f867"]
@@ -593,6 +594,13 @@ size = Vector2(26.5, 26.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_punjr"]
 size = Vector2(24, 25.125)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nsu5i"]
+resource_local_to_scene = true
+shader = ExtResource("116_a648e")
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/vignette_opacity = 0.0
+shader_parameter/vignette_rgb = Color(0, 0, 0, 0)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hp3ue"]
 size = Vector2(394.5, 243.5)
 
@@ -802,6 +810,17 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 100.0
 drag_horizontal_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="anim_player/Camera2"]
+
+[node name="Vignette" type="ColorRect" parent="anim_player/Camera2/CanvasLayer"]
+material = SubResource("ShaderMaterial_nsu5i")
+use_parent_material = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Eat_range2" type="Area2D" parent="anim_player" groups=["Player"]]
 visible = false
