@@ -138,7 +138,7 @@ func far_from_player(area: Area2D) -> void:
 			is_close = false
 
 func attackus(_area: Area2D) -> void:
-	var kick = 5
+	var kick = 10
 	var kickdir
 
 	if main.aggro:

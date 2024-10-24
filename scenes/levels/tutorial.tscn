@@ -16,7 +16,7 @@
 size = Vector2(2488, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmm3d"]
-size = Vector2(383, 64)
+size = Vector2(541, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iu0c3"]
 size = Vector2(128, 6)
@@ -42,7 +42,7 @@ texture_repeat = 2
 position = Vector2(372.475, -348)
 texture = ExtResource("2_k8o12")
 texture_scale = Vector2(0.75, 0.75)
-polygon = PackedVector2Array(1658.52, 233, 61, 259, -933, 250, -942.078, 317.878, -944, 686.924, 65.3661, 680.933, 1663.52, 691, 1655.52, 454)
+polygon = PackedVector2Array(1523.53, 236, 61, 259, -933, 250, -942.078, 317.878, -944, 686.924, 65.3661, 680.933, 1537.53, 685, 1528.53, 468)
 
 [node name="Ceiling" type="Node2D" parent="."]
 z_index = -1
@@ -65,8 +65,21 @@ polygons = [PackedInt32Array(0, 1, 2, 3)]
 z_index = 10
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(1280, -5)
-scale = Vector2(-40, -2)
+position = Vector2(1052.12, -5)
+scale = Vector2(-25.7573, -2)
+texture = ExtResource("3_e3w67")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(40, 2)
+polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Ground32x64_4" type="Polygon2D" parent="Ceiling"]
+z_index = 10
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(1793.77, -5)
+scale = Vector2(-7.86808, -2)
 texture = ExtResource("3_e3w67")
 texture_offset = Vector2(0, 8)
 texture_scale = Vector2(40, 2)
@@ -146,6 +159,24 @@ position = Vector2(-15, -69)
 scale = Vector2(1, 2.5)
 texture = ExtResource("5_4awxl")
 
+[node name="front_wall" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(1914, 188)
+
+[node name="Collision" type="StaticBody2D" parent="front_wall"]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="front_wall/Collision"]
+position = Vector2(-102.5, 15)
+shape = SubResource("RectangleShape2D_vmm3d")
+
+[node name="Sprite2D" type="Sprite2D" parent="front_wall"]
+z_index = 11
+texture_filter = 1
+position = Vector2(-15, -69)
+scale = Vector2(1, 2.5)
+texture = ExtResource("5_4awxl")
+
 [node name="operation_table" type="StaticBody2D" parent="."]
 z_index = -5
 position = Vector2(-410, 297)
@@ -215,6 +246,7 @@ position = Vector2(0, 26)
 shape = SubResource("RectangleShape2D_6ev4s")
 
 [node name="Tutorial_text" type="NinePatchRect" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -261,6 +293,54 @@ offset_bottom = 163.0
 theme_override_fonts/normal_font = ExtResource("10_ourhg")
 theme_override_font_sizes/normal_font_size = 15
 text = "You can hide by pressing 'w' and unhide with 'S'"
+
+[node name="Tutorial_text_console" type="NinePatchRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CONSOLE_MOVEMENT" type="RichTextLabel" parent="Tutorial_text_console"]
+layout_mode = 0
+offset_left = -514.0
+offset_top = 86.0
+offset_right = -265.0
+offset_bottom = 182.0
+theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_font_sizes/normal_font_size = 15
+text = "Move with your controllers
+left stick
+or with left and right dpad buttons!"
+
+[node name="CONSOLE_MOVEMENT2" type="RichTextLabel" parent="Tutorial_text_console"]
+layout_mode = 0
+offset_left = -177.0
+offset_top = 56.0
+offset_right = 101.0
+offset_bottom = 171.0
+theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_font_sizes/normal_font_size = 15
+text = "Jump with:
+'X' or 'A' button  and
+Drop down with dpad down or left stick down!"
+
+[node name="CONSOLE_MOVEMENT3" type="RichTextLabel" parent="Tutorial_text_console"]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 86.0
+offset_right = 513.0
+offset_bottom = 168.0
+theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_font_sizes/normal_font_size = 15
+text = "You can sprint with 'circle' or 'B' button!"
+
+[node name="CONSOLE_MOVEMENT4" type="RichTextLabel" parent="Tutorial_text_console"]
+layout_mode = 0
+offset_left = 862.0
+offset_top = 81.0
+offset_right = 1080.0
+offset_bottom = 163.0
+theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_font_sizes/normal_font_size = 15
+text = "You can hide by pressing dpad up and unhide with dpad down!"
 
 [node name="Cells" type="Node" parent="."]
 

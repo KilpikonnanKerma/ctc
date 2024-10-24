@@ -5,9 +5,8 @@ extends Node2D
 
 @onready var settings = $"Player/Camera/CanvasLayer/Settings"
 
-@onready var txt1 = $Tutorial_text/PC_MOVEMENT
-@onready var txt2 = $Tutorial_text/PC_MOVEMENT2
-@onready var txt3 = $Tutorial_text/PC_MOVEMENT3
+@onready var pc_tutorial = $Tutorial_text
+@onready var console_tutorial = $Tutorial_text_console
 
 var paused = false
 
@@ -18,11 +17,11 @@ func _ready() -> void:
 	Engine.time_scale = 1
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
+	if (Input.is_action_just_pressed("pause")):
 		pauseMenu()
 
 func pauseMenu():
-	if paused:
+	if (paused):
 		pause_menu.hide()
 		Engine.time_scale = 1
 	else:
@@ -31,3 +30,14 @@ func pauseMenu():
 		#pause_menu.position.x = player.position.x
 
 	paused = !paused
+
+func _input(event: InputEvent) -> void:
+	if (event == InputEventKey):
+		pc_tutorial.hide()
+		console_tutorial.show()
+	elif (event == InputEventJoypadButton || event == InputEventJoypadMotion):
+		pc_tutorial.show()
+		console_tutorial.hide()
+	else:
+		pc_tutorial.show()
+		console_tutorial.hide()

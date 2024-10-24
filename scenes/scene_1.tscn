@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=35 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
@@ -44,6 +44,9 @@ size = Vector2(130, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1kb88"]
 size = Vector2(80, 102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glyqk"]
+size = Vector2(63, 482)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iunlr"]
 size = Vector2(64, 1055)
@@ -331,8 +334,8 @@ polygons = [PackedInt32Array(0, 1, 2, 3)]
 position = Vector2(-50, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/Wall2"]
-position = Vector2(-538.5, -321.5)
-shape = SubResource("RectangleShape2D_rnv31")
+position = Vector2(-542.5, -358)
+shape = SubResource("RectangleShape2D_glyqk")
 
 [node name="Wall01" type="Sprite2D" parent="ml_02/Wall2"]
 z_index = 9
@@ -397,3 +400,4 @@ scroll_active = false
 [connection signal="door_exited" from="ml_01/Key" to="ml_01/Door" method="_on_door_exited"]
 [connection signal="door_opened" from="ml_01/Key" to="ml_01/Door" method="_on_door_opened"]
 [connection signal="area_entered" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_entered"]
+[connection signal="area_exited" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_exited"]
