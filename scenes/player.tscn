@@ -1,4 +1,4 @@
-[gd_scene load_steps=146 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=149 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
@@ -130,6 +130,8 @@
 [ext_resource type="Texture2D" uid="uid://cb1awo26v0jml" path="res://sprites/player/explode08.png" id="77_ae5cc"]
 [ext_resource type="Texture2D" uid="uid://fhdl5y4vc0hs" path="res://sprites/player/explode09.png" id="78_ygeqk"]
 [ext_resource type="Texture2D" uid="uid://clluf8s7e71sm" path="res://sprites/player/explode10.png" id="79_4lg0f"]
+[ext_resource type="Texture2D" uid="uid://bkccif6o4e644" path="res://sprites/shit/shadow.png" id="126_rnck5"]
+[ext_resource type="Texture2D" uid="uid://hp23w83lwvpq" path="res://sprites/shit/shadow_unavailable.png" id="127_h5apl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hunum"]
 animations = [{
@@ -662,7 +664,26 @@ animations = [{
 }],
 "loop": true,
 "name": &"HP_REGEN",
-"speed": 0.27
+"speed": 0.14
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gtyon"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("126_rnck5")
+}],
+"loop": true,
+"name": &"available",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("127_h5apl")
+}],
+"loop": true,
+"name": &"unavailable",
+"speed": 5.0
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o2av2"]
@@ -901,6 +922,19 @@ position = Vector2(113, 41)
 sprite_frames = SubResource("SpriteFrames_glql0")
 animation = &"HP_REGEN"
 
+[node name="HIDE" type="AnimatedSprite2D" parent="Camera/CanvasLayer/HUD"]
+position = Vector2(41, 133)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_gtyon")
+animation = &"available"
+
+[node name="HIDE_REGEN" type="AnimatedSprite2D" parent="Camera/CanvasLayer/HUD"]
+visible = false
+position = Vector2(113, 133)
+sprite_frames = SubResource("SpriteFrames_glql0")
+animation = &"HP_REGEN"
+frame_progress = 0.0546626
+
 [node name="Stamina" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
 layout_mode = 0
 offset_left = 23.0
@@ -942,7 +976,6 @@ visible = false
 z_index = 13
 
 [node name="Settings" parent="Camera/CanvasLayer" instance=ExtResource("69_libtr")]
-visible = false
 z_index = 23
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

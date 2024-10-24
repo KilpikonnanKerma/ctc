@@ -7,6 +7,7 @@ extends Node2D
 
 @onready var hp = $"Player/Camera/CanvasLayer/HUD/HP"
 @onready var hp_regen_anim = $"Player/Camera/CanvasLayer/HUD/HP_REGEN"
+@onready var hide_regen_anim = $"Player/Camera/CanvasLayer/HUD/HIDE_REGEN"
 
 @onready var settings = $"Player/Camera/CanvasLayer/Settings"
 
@@ -18,6 +19,9 @@ var cur_victim
 
 var hp_regen = 0
 
+var hide_available = true
+var hide_regen = 0
+
 var aggro = false
 var searching = false
 
@@ -25,6 +29,8 @@ func _ready() -> void:
 	gen_timer.one_shot = true
 	paused = false
 	Engine.time_scale = 1
+
+	hide_available = true
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -58,6 +64,8 @@ func _physics_process(_delta: float) -> void:
 		hp_regen_anim.play("HP_REGEN")
 		hp_regen += 1
 
+	hide_regeneration()
+
 	if player.health == 3:
 		hp.play("hp_full")
 	elif player.health == 2:
@@ -86,3 +94,15 @@ func eatConfirm(ison, victim):
 
 	etex = ison
 	cur_victim = victim
+
+
+func hide_regeneration():
+	if hide_regen == 3900:
+		hide_available = true
+		hide_regen = 0
+		hide_regen_anim.hide()
+
+	if (!hide_available):
+		hide_regen_anim.show()
+		hide_regen_anim.play("HP_REGEN")
+		hide_regen += 1

@@ -79,7 +79,7 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("jump") and is_on_floor() && !is_on_ladder:
 				velocity.y = JUMP_VELOCITY
 
-			if Input.is_action_just_pressed("hide") and is_on_floor() && !is_on_ladder:
+			if Input.is_action_just_pressed("hide") and is_on_floor() && !is_on_ladder && main.hide_available:
 				state = PlayerState.TRS_TO_HIDE
 				player.play("hide_transition")
 				hide_timer.start(1.4) # 5fps ja 7 frames
@@ -202,6 +202,7 @@ func _on_hide_transition_finished():
 	if state == PlayerState.TRS_FROM_HIDE:
 		state = PlayerState.NORMAL
 		player.play("idle")
+		main.hide_available = false
 	if state == PlayerState.EATING:
 		last_ate = 0
 		heartbeat.hide()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://btkp18hj05lh"]
+[gd_scene load_steps=22 format=3 uid="uid://btkp18hj05lh"]
 
 [ext_resource type="Script" path="res://scripts/levels/tutorial.gd" id="1_8ff0h"]
 [ext_resource type="Texture2D" uid="uid://blcyjlysb4352" path="res://sprites/maps/brick02.png" id="2_k8o12"]
 [ext_resource type="Texture2D" uid="uid://mclps312dkw" path="res://sprites/maps/floor_02.png" id="3_e3w67"]
+[ext_resource type="Shader" path="res://scripts/shaders/vignette.gdshader" id="3_hukho"]
 [ext_resource type="Texture2D" uid="uid://c3alr4np4lra7" path="res://sprites/maps/wall02.png" id="5_4awxl"]
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="5_8teqe"]
 [ext_resource type="Texture2D" uid="uid://b1sgcksvx11ek" path="res://sprites/Props/bookshelf02.png" id="7_cvc7t"]
@@ -10,13 +11,22 @@
 [ext_resource type="PackedScene" uid="uid://cjtxxl7udssej" path="res://scenes/door.tscn" id="9_jrk24"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="10_ourhg"]
 [ext_resource type="Texture2D" uid="uid://b71ay054kncvs" path="res://sprites/Props/cell.png" id="11_0113m"]
+[ext_resource type="PackedScene" uid="uid://mc4sqy001dnp" path="res://scenes/props/ladder.tscn" id="12_h85bl"]
+[ext_resource type="Texture2D" uid="uid://mq03jyofbkl2" path="res://sprites/maps/ladder01.png" id="13_x8h2t"]
 [ext_resource type="Texture2D" uid="uid://cf80cig18upxk" path="res://sprites/Props/operation_table.png" id="116_l8y3g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3vhkf"]
+resource_local_to_scene = true
+shader = ExtResource("3_hukho")
+shader_parameter/vignette_intensity = 0.8
+shader_parameter/vignette_opacity = 1.0
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f867"]
 size = Vector2(2488, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmm3d"]
-size = Vector2(541, 64)
+size = Vector2(510, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iu0c3"]
 size = Vector2(128, 6)
@@ -27,12 +37,21 @@ size = Vector2(62, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ev4s"]
 size = Vector2(80, 102)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7scl4"]
+size = Vector2(28, 940)
+
 [node name="Prologue" type="Node2D"]
 script = ExtResource("1_8ff0h")
 
-[node name="Player" parent="." instance=ExtResource("5_8teqe")]
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("5_8teqe")]
 unique_name_in_owner = true
 position = Vector2(-386, 313)
+
+[node name="Vignette" parent="Player/Camera/CanvasLayer" index="1"]
+material = SubResource("ShaderMaterial_3vhkf")
+
+[node name="Heartbeat" parent="Player/Camera/CanvasLayer" index="2"]
+material = SubResource("ShaderMaterial_3vhkf")
 
 [node name="Background" type="Polygon2D" parent="."]
 modulate = Color(1, 1, 1, 0.588235)
@@ -42,7 +61,7 @@ texture_repeat = 2
 position = Vector2(372.475, -348)
 texture = ExtResource("2_k8o12")
 texture_scale = Vector2(0.75, 0.75)
-polygon = PackedVector2Array(1523.53, 236, 61, 259, -933, 250, -942.078, 317.878, -944, 686.924, 65.3661, 680.933, 1537.53, 685, 1528.53, 468)
+polygon = PackedVector2Array(1523.53, 236, 1333.78, 238.984, 1349.53, -377, 1198.53, -383, 1036.53, -383, 1059.53, 243.297, 61, 259, -933, 250, -942.078, 317.878, -944, 686.924, 65.3661, 680.933, 1537.53, 685, 1528.53, 468)
 
 [node name="Ceiling" type="Node2D" parent="."]
 z_index = -1
@@ -124,57 +143,95 @@ position = Vector2(0, -350)
 position = Vector2(616, 341)
 shape = SubResource("RectangleShape2D_3f867")
 
-[node name="Back_wall" type="Node2D" parent="."]
+[node name="Walls" type="Node" parent="."]
+
+[node name="Back_wall" type="Node2D" parent="Walls"]
 z_index = -1
 position = Vector2(-573, 188)
 
-[node name="Collision" type="StaticBody2D" parent="Back_wall"]
+[node name="Collision" type="StaticBody2D" parent="Walls/Back_wall"]
 rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Back_wall/Collision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Back_wall/Collision"]
 shape = SubResource("RectangleShape2D_3f867")
 
-[node name="Sprite2D" type="Sprite2D" parent="Back_wall"]
+[node name="Sprite2D" type="Sprite2D" parent="Walls/Back_wall"]
 z_index = 12
 texture_filter = 1
 position = Vector2(-15, -69)
 scale = Vector2(1, 2.5)
 texture = ExtResource("5_4awxl")
 
-[node name="cell_wall" type="Node2D" parent="."]
+[node name="cell_wall" type="Node2D" parent="Walls"]
 z_index = -1
 position = Vector2(200, 188)
 
-[node name="Collision" type="StaticBody2D" parent="cell_wall"]
+[node name="Collision" type="StaticBody2D" parent="Walls/cell_wall"]
 rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="cell_wall/Collision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/cell_wall/Collision"]
 position = Vector2(-181.5, 15)
 shape = SubResource("RectangleShape2D_vmm3d")
 
-[node name="Sprite2D" type="Sprite2D" parent="cell_wall"]
+[node name="Sprite2D" type="Sprite2D" parent="Walls/cell_wall"]
 z_index = 11
 texture_filter = 1
 position = Vector2(-15, -69)
 scale = Vector2(1, 2.5)
 texture = ExtResource("5_4awxl")
 
-[node name="front_wall" type="Node2D" parent="."]
+[node name="front_wall" type="Node2D" parent="Walls"]
 z_index = -1
 position = Vector2(1914, 188)
 
-[node name="Collision" type="StaticBody2D" parent="front_wall"]
+[node name="Collision" type="StaticBody2D" parent="Walls/front_wall"]
 rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="front_wall/Collision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/front_wall/Collision"]
 position = Vector2(-102.5, 15)
 shape = SubResource("RectangleShape2D_vmm3d")
 
-[node name="Sprite2D" type="Sprite2D" parent="front_wall"]
+[node name="Sprite2D" type="Sprite2D" parent="Walls/front_wall"]
 z_index = 11
 texture_filter = 1
 position = Vector2(-15, -69)
 scale = Vector2(1, 2.5)
+texture = ExtResource("5_4awxl")
+
+[node name="ladder_wall" type="Node2D" parent="Walls"]
+z_index = -1
+position = Vector2(1715, -340)
+
+[node name="Collision" type="StaticBody2D" parent="Walls/ladder_wall"]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/ladder_wall/Collision"]
+position = Vector2(-5.00006, 15)
+shape = SubResource("RectangleShape2D_vmm3d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/ladder_wall"]
+z_index = 11
+texture_filter = 1
+position = Vector2(-15, -5)
+scale = Vector2(1, 2)
+texture = ExtResource("5_4awxl")
+
+[node name="ladder_wall2" type="Node2D" parent="Walls"]
+z_index = -1
+position = Vector2(1447, -340)
+
+[node name="Collision" type="StaticBody2D" parent="Walls/ladder_wall2"]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/ladder_wall2/Collision"]
+position = Vector2(-5, 15)
+shape = SubResource("RectangleShape2D_vmm3d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/ladder_wall2"]
+z_index = 11
+texture_filter = 1
+position = Vector2(-15, -5)
+scale = Vector2(1, 2)
 texture = ExtResource("5_4awxl")
 
 [node name="operation_table" type="StaticBody2D" parent="."]
@@ -246,7 +303,6 @@ position = Vector2(0, 26)
 shape = SubResource("RectangleShape2D_6ev4s")
 
 [node name="Tutorial_text" type="NinePatchRect" parent="."]
-visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -294,7 +350,19 @@ theme_override_fonts/normal_font = ExtResource("10_ourhg")
 theme_override_font_sizes/normal_font_size = 15
 text = "You can hide by pressing 'w' and unhide with 'S'"
 
+[node name="PC_MOVEMENT5" type="RichTextLabel" parent="Tutorial_text"]
+layout_mode = 0
+offset_left = 1316.0
+offset_top = 24.0
+offset_right = 1534.0
+offset_bottom = 106.0
+theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_font_sizes/normal_font_size = 15
+text = "Climb with 'W' and 'S' or
+up arrow and down arrow!"
+
 [node name="Tutorial_text_console" type="NinePatchRect" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -342,6 +410,16 @@ theme_override_fonts/normal_font = ExtResource("10_ourhg")
 theme_override_font_sizes/normal_font_size = 15
 text = "You can hide by pressing dpad up and unhide with dpad down!"
 
+[node name="PC_MOVEMENT5" type="RichTextLabel" parent="Tutorial_text_console"]
+layout_mode = 0
+offset_left = 1316.0
+offset_top = 24.0
+offset_right = 1534.0
+offset_bottom = 106.0
+theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_font_sizes/normal_font_size = 15
+text = "Climb with up and down dpad buttons"
+
 [node name="Cells" type="Node" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Cells"]
@@ -364,8 +442,42 @@ z_index = -25
 position = Vector2(1280, 265)
 texture = ExtResource("11_0113m")
 
+[node name="Ladder" parent="." instance=ExtResource("12_h85bl")]
+position = Vector2(1569, 201)
+
+[node name="CollisionShape2D" parent="Ladder" index="0"]
+position = Vector2(-0.5, -355.5)
+shape = SubResource("RectangleShape2D_7scl4")
+
+[node name="StaticBody2D" parent="Ladder" index="2"]
+position = Vector2(0, -717)
+
+[node name="Platform2" type="Sprite2D" parent="Ladder"]
+z_index = -6
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, -239)
+texture = ExtResource("13_x8h2t")
+
+[node name="Platform3" type="Sprite2D" parent="Ladder"]
+z_index = -6
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, -478)
+texture = ExtResource("13_x8h2t")
+
+[node name="Platform4" type="Sprite2D" parent="Ladder"]
+z_index = -6
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, -717)
+texture = ExtResource("13_x8h2t")
+
 [connection signal="door_entered" from="Key" to="Door" method="_on_door_entered"]
 [connection signal="door_exited" from="Key" to="Door" method="_on_door_exited"]
 [connection signal="door_opened" from="Key" to="Door" method="_on_door_opened"]
 [connection signal="area_entered" from="Door/Area2D" to="Key" method="_on_door_zone_entered"]
 [connection signal="area_exited" from="Door/Area2D" to="Key" method="_on_door_zone_exited"]
+
+[editable path="Player"]
+[editable path="Ladder"]
