@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var pause_menu = $"Player/Camera/CanvasLayer/PauseMenu"
-@onready var eat_text = $"Eat_text"
+@onready var eat_text = $"Player/Eat_text"
 @onready var player = %"Player"
 @onready var player_anim = %"Player/AnimatedSprite2D"
 
@@ -32,24 +32,13 @@ func _ready() -> void:
 
 	hide_available = true
 
+	player.animPlayer.play("camera_zoom_out")
+
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		pauseMenu()
 
-	if player.last_ate >= 3000 && player.last_ate <= 6500 && !paused:
-		player.is_hungry = true
-		player.heartbeat.show()
-		player.animPlayer.play("heartbeat_on")
-		player.last_ate += 1
-	if player.last_ate >= 6500 && !paused:
-		player.animPlayer.play("heartbeat")
-		player.last_ate += 1
-	if player.last_ate >= 10000 && !player.death_has_been_called:
-		player.die()
-		player.death_has_been_called = true
-	else:
-		if !paused:
-			player.last_ate += 1
+	update_hunger_status()
 
 	if player.health == 0:
 		hp.hide()
@@ -73,6 +62,32 @@ func _physics_process(_delta: float) -> void:
 	elif player.health == 1:
 		hp.play("hp_empty")
 
+func update_hunger_status():
+	if paused:
+		return
+	
+	player.last_ate += 1
+
+	match player.hunger_state:
+		player.HungerState.FULL:
+			if player.last_ate >= 4500:
+				player.hunger_state = player.HungerState.HUNGRY
+				player.is_hungry = true
+				player.heartbeat.show()
+				player.animPlayer.play("heartbeat_on")
+		
+		player.HungerState.HUNGRY:
+			if player.last_ate >= 8000:
+				player.hunger_state = player.HungerState.STARVING
+				player.animPlayer.play("heartbeat")
+
+		player.HungerState.STARVING:
+			if player.last_ate >= 12000 and !player.death_has_been_called:
+				player.die()
+				player.death_has_been_called = true
+
+
+
 func pauseMenu():
 	if paused:
 		pause_menu.hide()
@@ -89,8 +104,8 @@ func eatConfirm(ison, victim):
 		eat_text.hide()
 	else:
 		eat_text.show()
-		eat_text.position.x = player.position.x
-		eat_text.position.y = player.position.y - 40
+		#eat_text.position.x = player.position.x
+		#eat_text.position.y = player.position.y - 40
 
 	etex = ison
 	cur_victim = victim

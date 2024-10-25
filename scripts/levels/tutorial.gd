@@ -1,43 +1,43 @@
 extends Node2D
 
-@onready var pause_menu = $"Player/Camera/CanvasLayer/PauseMenu"
 @onready var player = %Player
+@onready var anim_player = %Player/AnimationPlayer
+@onready var camera = %Player/Camera
 
-@onready var settings = $"Player/Camera/CanvasLayer/Settings"
-
-@onready var pc_tutorial = $Tutorial_text
-@onready var console_tutorial = $Tutorial_text_console
+@onready var ballsack = $"../Tutorial_text"
+@onready var pp = $"../Tutorial_text_console"
 
 var paused = false
 
+var tutorial_completed = false
+
 func _ready() -> void:
-	player.animPlayer.play("camera_zoom_out")
-	pause_menu.hide()
-	paused = false
-	Engine.time_scale = 1
+	pass
 
 func _process(_delta: float) -> void:
-	if (Input.is_action_just_pressed("pause")):
-		pauseMenu()
-
-func pauseMenu():
-	if (paused):
-		pause_menu.hide()
-		Engine.time_scale = 1
-	else:
-		pause_menu.show()
-		Engine.time_scale = 0
-		#pause_menu.position.x = player.position.x
-
-	paused = !paused
+	pass
 
 func _input(event: InputEvent) -> void:
-	if (event == InputEventKey):
-		pc_tutorial.hide()
-		console_tutorial.show()
-	elif (event == InputEventJoypadButton || event == InputEventJoypadMotion):
-		pc_tutorial.show()
-		console_tutorial.hide()
-	else:
-		pc_tutorial.show()
-		console_tutorial.hide()
+	if !tutorial_completed:
+		if (event == InputEventKey):
+			ballsack.show()
+			pp.hide()
+		elif (event == InputEventJoypadButton || event == InputEventJoypadMotion):
+			ballsack.hide()
+			pp.show()
+		else:
+			ballsack.show()
+			pp.hide()
+
+
+func _on_camera_change_entered(area: Area2D):
+	if (area.is_in_group("Player") && !area.is_in_group("Enemy")):
+		if (player.last_input == "left"):
+			_change_limits(-525)
+		elif (player.last_input == "right"):
+			_change_limits(425)
+
+func _change_limits(bottom: int):
+	var tween = get_tree().create_tween()
+
+	tween.tween_property(camera, "limit_bottom", bottom, 2.0).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)

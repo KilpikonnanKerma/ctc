@@ -41,7 +41,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwr7t"]
 size = Vector2(58, 15)
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["Eatable"]]
+[node name="Baby01" type="CharacterBody2D" groups=["Eatable"]]
 script = ExtResource("1_elahu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

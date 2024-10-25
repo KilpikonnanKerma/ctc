@@ -68,14 +68,14 @@ background_mode = 3
 ssao_intensity = 1.0
 fog_density = 0.1
 adjustment_enabled = true
-adjustment_contrast = 1.05
-adjustment_saturation = 0.8
+adjustment_contrast = 1.1
+adjustment_saturation = 0.75
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f867"]
 size = Vector2(2488, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jahay"]
-size = Vector2(2284, 13)
+size = Vector2(1280, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmm3d"]
 size = Vector2(510, 64)
@@ -103,7 +103,10 @@ script = ExtResource("1_7n0go")
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("1_5o17h")]
 unique_name_in_owner = true
-position = Vector2(-386, 313)
+position = Vector2(1507, -704)
+
+[node name="Tutorial2" type="Node2D" parent="."]
+script = ExtResource("25_pcryp")
 
 [node name="ml_01" type="StaticBody2D" parent="."]
 position = Vector2(-1471, -1049)
@@ -410,12 +413,12 @@ one_way_collision = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ehrrk")
 
-[node name="Tutorial" type="Node2D" parent="."]
+[node name="Prologue" type="Node2D" parent="."]
 
-[node name="Tutorial" type="Node2D" parent="Tutorial"]
+[node name="Tutorial" type="Node2D" parent="Prologue"]
 script = ExtResource("25_pcryp")
 
-[node name="Background" type="Polygon2D" parent="Tutorial"]
+[node name="Background" type="Polygon2D" parent="Prologue"]
 modulate = Color(1, 1, 1, 0.588235)
 z_index = -50
 texture_filter = 1
@@ -425,11 +428,11 @@ texture = ExtResource("26_f0f5u")
 texture_scale = Vector2(0.75, 0.75)
 polygon = PackedVector2Array(1523.53, 236, 1333.78, 238.984, 1345.53, -647, 1199.53, -648, 1051.53, -648, 1059.53, 243.297, 61, 259, -933, 250, -942.078, 317.878, -944, 686.924, 65.3661, 680.933, 1537.53, 685, 1528.53, 468)
 
-[node name="Ceiling" type="Node2D" parent="Tutorial"]
+[node name="Ceiling" type="Node2D" parent="Prologue"]
 z_index = -1
 position = Vector2(0, -100)
 
-[node name="Ground32x64" type="Polygon2D" parent="Tutorial/Ceiling"]
+[node name="Ground32x64" type="Polygon2D" parent="Prologue/Ceiling"]
 z_index = 10
 texture_filter = 1
 texture_repeat = 2
@@ -442,7 +445,7 @@ polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
-[node name="Ground32x64_3" type="Polygon2D" parent="Tutorial/Ceiling"]
+[node name="Ground32x64_3" type="Polygon2D" parent="Prologue/Ceiling"]
 z_index = 10
 texture_filter = 1
 texture_repeat = 2
@@ -455,7 +458,7 @@ polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
-[node name="Ground32x64_4" type="Polygon2D" parent="Tutorial/Ceiling"]
+[node name="Ground32x64_4" type="Polygon2D" parent="Prologue/Ceiling"]
 z_index = 10
 texture_filter = 1
 texture_repeat = 2
@@ -468,11 +471,11 @@ polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
-[node name="Floor" type="Node2D" parent="Tutorial"]
+[node name="Floor" type="Node2D" parent="Prologue"]
 z_index = -1
 position = Vector2(0, 350)
 
-[node name="Ground32x64" type="Polygon2D" parent="Tutorial/Floor"]
+[node name="Ground32x64" type="Polygon2D" parent="Prologue/Floor"]
 z_index = 10
 texture_filter = 1
 texture_repeat = 2
@@ -485,7 +488,7 @@ polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
-[node name="Ground32x64_2" type="Polygon2D" parent="Tutorial/Floor"]
+[node name="Ground32x64_2" type="Polygon2D" parent="Prologue/Floor"]
 z_index = 10
 texture_filter = 1
 texture_repeat = 2
@@ -498,12 +501,12 @@ polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
-[node name="Ground32x64_3" type="Polygon2D" parent="Tutorial/Floor"]
+[node name="Ground32x64_3" type="Polygon2D" parent="Prologue/Floor"]
 z_index = 10
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(589, -967)
-scale = Vector2(71.4375, 2)
+position = Vector2(1092, -967)
+scale = Vector2(40, 2)
 texture = ExtResource("27_n80yv")
 texture_offset = Vector2(0, 8)
 texture_scale = Vector2(40, 2)
@@ -511,186 +514,186 @@ polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
-[node name="Collision" type="StaticBody2D" parent="Tutorial/Floor"]
+[node name="Collision" type="StaticBody2D" parent="Prologue/Floor"]
 position = Vector2(0, -350)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Floor/Collision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/Floor/Collision"]
 position = Vector2(616, 341)
 shape = SubResource("RectangleShape2D_3f867")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Tutorial/Floor/Collision"]
-position = Vector2(590, -626.5)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Prologue/Floor/Collision"]
+position = Vector2(1092, -630)
 shape = SubResource("RectangleShape2D_jahay")
 one_way_collision = true
 
-[node name="Walls" type="Node" parent="Tutorial"]
+[node name="Walls" type="Node" parent="Prologue"]
 
-[node name="Back_wall" type="Node2D" parent="Tutorial/Walls"]
+[node name="Back_wall" type="Node2D" parent="Prologue/Walls"]
 z_index = -1
 position = Vector2(-573, 188)
 
-[node name="Collision" type="StaticBody2D" parent="Tutorial/Walls/Back_wall"]
+[node name="Collision" type="StaticBody2D" parent="Prologue/Walls/Back_wall"]
 rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Walls/Back_wall/Collision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/Walls/Back_wall/Collision"]
 shape = SubResource("RectangleShape2D_3f867")
 
-[node name="Sprite2D" type="Sprite2D" parent="Tutorial/Walls/Back_wall"]
+[node name="Sprite2D" type="Sprite2D" parent="Prologue/Walls/Back_wall"]
 z_index = 12
 texture_filter = 1
 position = Vector2(-15, -69)
 scale = Vector2(1, 2.5)
 texture = ExtResource("28_jiubu")
 
-[node name="cell_wall" type="Node2D" parent="Tutorial/Walls"]
+[node name="cell_wall" type="Node2D" parent="Prologue/Walls"]
 z_index = -1
 position = Vector2(200, 188)
 
-[node name="Collision" type="StaticBody2D" parent="Tutorial/Walls/cell_wall"]
+[node name="Collision" type="StaticBody2D" parent="Prologue/Walls/cell_wall"]
 rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Walls/cell_wall/Collision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/Walls/cell_wall/Collision"]
 position = Vector2(-209, 17.0008)
 shape = SubResource("RectangleShape2D_vmm3d")
 
-[node name="Sprite2D" type="Sprite2D" parent="Tutorial/Walls/cell_wall"]
+[node name="Sprite2D" type="Sprite2D" parent="Prologue/Walls/cell_wall"]
 z_index = 11
 texture_filter = 1
 position = Vector2(-15, -69)
 scale = Vector2(1, 2.5)
 texture = ExtResource("28_jiubu")
 
-[node name="front_wall" type="Node2D" parent="Tutorial/Walls"]
+[node name="front_wall" type="Node2D" parent="Prologue/Walls"]
 z_index = -1
 position = Vector2(1914, 188)
 
-[node name="Collision" type="StaticBody2D" parent="Tutorial/Walls/front_wall"]
+[node name="Collision" type="StaticBody2D" parent="Prologue/Walls/front_wall"]
 rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Walls/front_wall/Collision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/Walls/front_wall/Collision"]
 position = Vector2(-102.5, 15)
 shape = SubResource("RectangleShape2D_vmm3d")
 
-[node name="Sprite2D" type="Sprite2D" parent="Tutorial/Walls/front_wall"]
+[node name="Sprite2D" type="Sprite2D" parent="Prologue/Walls/front_wall"]
 z_index = 11
 texture_filter = 1
 position = Vector2(-15, -26)
 scale = Vector2(1, 2.16406)
 texture = ExtResource("28_jiubu")
 
-[node name="ladder_wall" type="Node2D" parent="Tutorial/Walls"]
+[node name="ladder_wall" type="Node2D" parent="Prologue/Walls"]
 z_index = -1
 position = Vector2(1715, -340)
 
-[node name="Collision" type="StaticBody2D" parent="Tutorial/Walls/ladder_wall"]
+[node name="Collision" type="StaticBody2D" parent="Prologue/Walls/ladder_wall"]
 rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Walls/ladder_wall/Collision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/Walls/ladder_wall/Collision"]
 position = Vector2(-21, 15)
 shape = SubResource("RectangleShape2D_ip83h")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Tutorial/Walls/ladder_wall/Collision"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Prologue/Walls/ladder_wall/Collision"]
 position = Vector2(-400, 15)
 shape = SubResource("RectangleShape2D_ip83h")
 
-[node name="Sprite2D" type="Sprite2D" parent="Tutorial/Walls/ladder_wall"]
+[node name="Sprite2D" type="Sprite2D" parent="Prologue/Walls/ladder_wall"]
 z_index = 11
 texture_filter = 1
 position = Vector2(-15, -205)
 scale = Vector2(1, 3.5625)
 texture = ExtResource("28_jiubu")
 
-[node name="ladder_wall2" type="Node2D" parent="Tutorial/Walls"]
+[node name="ladder_wall2" type="Node2D" parent="Prologue/Walls"]
 z_index = -1
 position = Vector2(1447, -340)
 
-[node name="Collision" type="StaticBody2D" parent="Tutorial/Walls/ladder_wall2"]
+[node name="Collision" type="StaticBody2D" parent="Prologue/Walls/ladder_wall2"]
 rotation = 1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Walls/ladder_wall2/Collision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/Walls/ladder_wall2/Collision"]
 position = Vector2(-21.0001, 15.0001)
 shape = SubResource("RectangleShape2D_ip83h")
 
-[node name="Sprite2D" type="Sprite2D" parent="Tutorial/Walls/ladder_wall2"]
+[node name="Sprite2D" type="Sprite2D" parent="Prologue/Walls/ladder_wall2"]
 z_index = 11
 texture_filter = 1
 position = Vector2(-15, -205)
 scale = Vector2(1, 3.5625)
 texture = ExtResource("28_jiubu")
 
-[node name="operation_table" type="StaticBody2D" parent="Tutorial"]
+[node name="operation_table" type="StaticBody2D" parent="Prologue"]
 z_index = -5
 position = Vector2(-410, 297)
 
-[node name="Sprite2D" type="Sprite2D" parent="Tutorial/operation_table"]
+[node name="Sprite2D" type="Sprite2D" parent="Prologue/operation_table"]
 texture = ExtResource("29_b6m1y")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/operation_table"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/operation_table"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_iu0c3")
 one_way_collision = true
 
-[node name="Bookshelf02" type="Sprite2D" parent="Tutorial"]
+[node name="Bookshelf02" type="Sprite2D" parent="Prologue"]
 z_index = -1
 texture_filter = 1
 position = Vector2(-94, 265)
 texture = ExtResource("30_3odiu")
 
-[node name="lower_platform" type="StaticBody2D" parent="Tutorial/Bookshelf02"]
+[node name="lower_platform" type="StaticBody2D" parent="Prologue/Bookshelf02"]
 position = Vector2(179, 85)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf02/lower_platform"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/Bookshelf02/lower_platform"]
 position = Vector2(-177, -124)
 shape = SubResource("RectangleShape2D_matyd")
 one_way_collision = true
 
-[node name="upper_platform" type="StaticBody2D" parent="Tutorial/Bookshelf02"]
+[node name="upper_platform" type="StaticBody2D" parent="Prologue/Bookshelf02"]
 position = Vector2(179, 41)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf02/upper_platform"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/Bookshelf02/upper_platform"]
 position = Vector2(-180, -102)
 shape = SubResource("RectangleShape2D_matyd")
 one_way_collision = true
 
-[node name="platform" type="StaticBody2D" parent="Tutorial/Bookshelf02"]
+[node name="platform" type="StaticBody2D" parent="Prologue/Bookshelf02"]
 position = Vector2(0, -19)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf02/platform"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/Bookshelf02/platform"]
 shape = SubResource("RectangleShape2D_matyd")
 one_way_collision = true
 
-[node name="platform2" type="StaticBody2D" parent="Tutorial/Bookshelf02"]
+[node name="platform2" type="StaticBody2D" parent="Prologue/Bookshelf02"]
 position = Vector2(0, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf02/platform2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/Bookshelf02/platform2"]
 shape = SubResource("RectangleShape2D_matyd")
 one_way_collision = true
 
-[node name="platform3" type="StaticBody2D" parent="Tutorial/Bookshelf02"]
+[node name="platform3" type="StaticBody2D" parent="Prologue/Bookshelf02"]
 position = Vector2(-1, 21)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf02/platform3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/Bookshelf02/platform3"]
 shape = SubResource("RectangleShape2D_matyd")
 one_way_collision = true
 
-[node name="Key" parent="Tutorial" node_paths=PackedStringArray("area") instance=ExtResource("19_kivdw")]
+[node name="Key" parent="Prologue" node_paths=PackedStringArray("area") instance=ExtResource("19_kivdw")]
 position = Vector2(-80, 193)
 area = NodePath("../Door/Area2D")
 
-[node name="Door" parent="Tutorial" instance=ExtResource("20_msxws")]
+[node name="Door" parent="Prologue" instance=ExtResource("20_msxws")]
 position = Vector2(186, 262)
 
-[node name="Area2D" type="Area2D" parent="Tutorial/Door"]
+[node name="Area2D" type="Area2D" parent="Prologue/Door"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Door/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/Door/Area2D"]
 position = Vector2(0, 26)
 shape = SubResource("RectangleShape2D_6ev4s")
 
-[node name="Tutorial_text" type="NinePatchRect" parent="Tutorial"]
+[node name="Tutorial_text" type="NinePatchRect" parent="Prologue"]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="PC_MOVEMENT" type="RichTextLabel" parent="Tutorial/Tutorial_text"]
+[node name="PC_MOVEMENT" type="RichTextLabel" parent="Prologue/Tutorial_text"]
 layout_mode = 0
 offset_left = -514.0
 offset_top = 86.0
@@ -702,7 +705,7 @@ text = "Move with:
 'A' and 'D' or with:
 left arrow and right arrow keys!"
 
-[node name="PC_MOVEMENT2" type="RichTextLabel" parent="Tutorial/Tutorial_text"]
+[node name="PC_MOVEMENT2" type="RichTextLabel" parent="Prologue/Tutorial_text"]
 layout_mode = 0
 offset_left = -177.0
 offset_top = 56.0
@@ -714,7 +717,7 @@ text = "Jump with:
 'SPACEBAR' and
 Drop down with 'S' or down arrow!"
 
-[node name="PC_MOVEMENT3" type="RichTextLabel" parent="Tutorial/Tutorial_text"]
+[node name="PC_MOVEMENT3" type="RichTextLabel" parent="Prologue/Tutorial_text"]
 layout_mode = 0
 offset_left = 295.0
 offset_top = 86.0
@@ -724,7 +727,7 @@ theme_override_fonts/normal_font = ExtResource("31_dicg2")
 theme_override_font_sizes/normal_font_size = 15
 text = "You can sprint with 'shift'"
 
-[node name="PC_MOVEMENT4" type="RichTextLabel" parent="Tutorial/Tutorial_text"]
+[node name="PC_MOVEMENT4" type="RichTextLabel" parent="Prologue/Tutorial_text"]
 layout_mode = 0
 offset_left = 862.0
 offset_top = 81.0
@@ -734,7 +737,7 @@ theme_override_fonts/normal_font = ExtResource("31_dicg2")
 theme_override_font_sizes/normal_font_size = 15
 text = "You can hide by pressing 'w' and unhide with 'S'"
 
-[node name="PC_MOVEMENT5" type="RichTextLabel" parent="Tutorial/Tutorial_text"]
+[node name="PC_MOVEMENT5" type="RichTextLabel" parent="Prologue/Tutorial_text"]
 layout_mode = 0
 offset_left = 1316.0
 offset_top = 24.0
@@ -745,12 +748,12 @@ theme_override_font_sizes/normal_font_size = 15
 text = "Climb with 'W' and 'S' or
 up arrow and down arrow!"
 
-[node name="Tutorial_text_console" type="NinePatchRect" parent="Tutorial"]
+[node name="Tutorial_text_console" type="NinePatchRect" parent="Prologue"]
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CONSOLE_MOVEMENT" type="RichTextLabel" parent="Tutorial/Tutorial_text_console"]
+[node name="CONSOLE_MOVEMENT" type="RichTextLabel" parent="Prologue/Tutorial_text_console"]
 layout_mode = 0
 offset_left = -514.0
 offset_top = 86.0
@@ -762,7 +765,7 @@ text = "Move with your controllers
 left stick
 or with left and right dpad buttons!"
 
-[node name="CONSOLE_MOVEMENT2" type="RichTextLabel" parent="Tutorial/Tutorial_text_console"]
+[node name="CONSOLE_MOVEMENT2" type="RichTextLabel" parent="Prologue/Tutorial_text_console"]
 layout_mode = 0
 offset_left = -177.0
 offset_top = 56.0
@@ -774,7 +777,7 @@ text = "Jump with:
 'X' or 'A' button  and
 Drop down with dpad down or left stick down!"
 
-[node name="CONSOLE_MOVEMENT3" type="RichTextLabel" parent="Tutorial/Tutorial_text_console"]
+[node name="CONSOLE_MOVEMENT3" type="RichTextLabel" parent="Prologue/Tutorial_text_console"]
 layout_mode = 0
 offset_left = 295.0
 offset_top = 86.0
@@ -784,7 +787,7 @@ theme_override_fonts/normal_font = ExtResource("31_dicg2")
 theme_override_font_sizes/normal_font_size = 15
 text = "You can sprint with 'circle' or 'B' button!"
 
-[node name="CONSOLE_MOVEMENT4" type="RichTextLabel" parent="Tutorial/Tutorial_text_console"]
+[node name="CONSOLE_MOVEMENT4" type="RichTextLabel" parent="Prologue/Tutorial_text_console"]
 layout_mode = 0
 offset_left = 862.0
 offset_top = 81.0
@@ -794,7 +797,7 @@ theme_override_fonts/normal_font = ExtResource("31_dicg2")
 theme_override_font_sizes/normal_font_size = 15
 text = "You can hide by pressing dpad up and unhide with dpad down!"
 
-[node name="PC_MOVEMENT5" type="RichTextLabel" parent="Tutorial/Tutorial_text_console"]
+[node name="PC_MOVEMENT5" type="RichTextLabel" parent="Prologue/Tutorial_text_console"]
 layout_mode = 0
 offset_left = 1316.0
 offset_top = 24.0
@@ -804,69 +807,69 @@ theme_override_fonts/normal_font = ExtResource("31_dicg2")
 theme_override_font_sizes/normal_font_size = 15
 text = "Climb with up and down dpad buttons"
 
-[node name="Cells" type="Node" parent="Tutorial"]
+[node name="Cells" type="Node" parent="Prologue"]
 
-[node name="Sprite2D" type="Sprite2D" parent="Tutorial/Cells"]
+[node name="Sprite2D" type="Sprite2D" parent="Prologue/Cells"]
 z_index = -25
 position = Vector2(381, 265)
 texture = ExtResource("32_dig3s")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Tutorial/Cells"]
+[node name="Sprite2D2" type="Sprite2D" parent="Prologue/Cells"]
 z_index = -25
 position = Vector2(680, 265)
 texture = ExtResource("32_dig3s")
 
-[node name="Sprite2D3" type="Sprite2D" parent="Tutorial/Cells"]
+[node name="Sprite2D3" type="Sprite2D" parent="Prologue/Cells"]
 z_index = -25
 position = Vector2(980, 265)
 texture = ExtResource("32_dig3s")
 
-[node name="Sprite2D4" type="Sprite2D" parent="Tutorial/Cells"]
+[node name="Sprite2D4" type="Sprite2D" parent="Prologue/Cells"]
 z_index = -25
 position = Vector2(1280, 265)
 texture = ExtResource("32_dig3s")
 
-[node name="Ladder" parent="Tutorial" instance=ExtResource("19_3pfd3")]
+[node name="Ladder" parent="Prologue" instance=ExtResource("19_3pfd3")]
 position = Vector2(1569, 201)
 
-[node name="CollisionShape2D" parent="Tutorial/Ladder" index="0"]
+[node name="CollisionShape2D" parent="Prologue/Ladder" index="0"]
 position = Vector2(-0.5, -355.5)
 shape = SubResource("RectangleShape2D_7scl4")
 
-[node name="StaticBody2D" parent="Tutorial/Ladder" index="2"]
+[node name="StaticBody2D" parent="Prologue/Ladder" index="2"]
 position = Vector2(0, -717)
 
-[node name="LadderPlatform" parent="Tutorial/Ladder/StaticBody2D" index="0"]
+[node name="LadderPlatform" parent="Prologue/Ladder/StaticBody2D" index="0"]
 disabled = true
 
-[node name="Platform2" type="Sprite2D" parent="Tutorial/Ladder"]
+[node name="Platform2" type="Sprite2D" parent="Prologue/Ladder"]
 z_index = -6
 texture_filter = 1
 texture_repeat = 1
 position = Vector2(0, -239)
 texture = ExtResource("33_1gd44")
 
-[node name="Platform3" type="Sprite2D" parent="Tutorial/Ladder"]
+[node name="Platform3" type="Sprite2D" parent="Prologue/Ladder"]
 z_index = -6
 texture_filter = 1
 texture_repeat = 1
 position = Vector2(0, -478)
 texture = ExtResource("33_1gd44")
 
-[node name="Platform4" type="Sprite2D" parent="Tutorial/Ladder"]
+[node name="Platform4" type="Sprite2D" parent="Prologue/Ladder"]
 z_index = -6
 texture_filter = 1
 texture_repeat = 1
 position = Vector2(0, -717)
 texture = ExtResource("33_1gd44")
 
-[node name="Baby01" parent="Tutorial" instance=ExtResource("9_tywij")]
+[node name="Baby01" parent="Prologue" instance=ExtResource("9_tywij")]
 position = Vector2(1647, -649)
 
-[node name="change_camera_limit" type="Area2D" parent="Tutorial"]
+[node name="change_camera_limit" type="Area2D" parent="Prologue"]
 position = Vector2(1422, -652)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/change_camera_limit"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Prologue/change_camera_limit"]
 position = Vector2(6.5, -33.5)
 shape = SubResource("RectangleShape2D_sal3g")
 
@@ -875,11 +878,11 @@ shape = SubResource("RectangleShape2D_sal3g")
 [connection signal="door_opened" from="ml_01/Key" to="ml_01/Door" method="_on_door_opened"]
 [connection signal="area_entered" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_entered"]
 [connection signal="area_exited" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_exited"]
-[connection signal="door_entered" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_entered"]
-[connection signal="door_exited" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_exited"]
-[connection signal="door_opened" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_opened"]
-[connection signal="area_entered" from="Tutorial/Door/Area2D" to="Tutorial/Key" method="_on_door_zone_entered"]
-[connection signal="area_exited" from="Tutorial/Door/Area2D" to="Tutorial/Key" method="_on_door_zone_exited"]
-[connection signal="area_entered" from="Tutorial/change_camera_limit" to="Tutorial/Tutorial" method="_on_camera_change_entered"]
+[connection signal="door_entered" from="Prologue/Key" to="Prologue/Door" method="_on_door_entered"]
+[connection signal="door_exited" from="Prologue/Key" to="Prologue/Door" method="_on_door_exited"]
+[connection signal="door_opened" from="Prologue/Key" to="Prologue/Door" method="_on_door_opened"]
+[connection signal="area_entered" from="Prologue/Door/Area2D" to="Prologue/Key" method="_on_door_zone_entered"]
+[connection signal="area_exited" from="Prologue/Door/Area2D" to="Prologue/Key" method="_on_door_zone_exited"]
+[connection signal="area_entered" from="Prologue/change_camera_limit" to="Prologue/Tutorial" method="_on_camera_change_entered"]
 
-[editable path="Tutorial/Ladder"]
+[editable path="Prologue/Ladder"]

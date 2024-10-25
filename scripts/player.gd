@@ -30,6 +30,9 @@ var is_eating
 var enemy_body
 var is_hungry: bool = false
 
+enum HungerState {FULL, HUNGRY, STARVING}
+var hunger_state = HungerState.FULL
+
 var death_has_been_called = false # <--- Ettei kuolemaa kutsuta kokoajan uudestaan
 
 enum PlayerState {

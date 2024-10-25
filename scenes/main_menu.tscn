@@ -124,7 +124,6 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="Settings" parent="." instance=ExtResource("5_2eljm")]
-visible = false
 z_index = 10
 layout_mode = 1
 
