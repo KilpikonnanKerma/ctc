@@ -979,39 +979,6 @@ z_index = 13
 [node name="Settings" parent="Camera/CanvasLayer" instance=ExtResource("69_libtr")]
 z_index = 23
 
-[node name="MUST_CONSUME" type="NinePatchRect" parent="Camera/CanvasLayer"]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -55.0
-offset_right = 55.0
-offset_bottom = 60.0
-grow_horizontal = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Camera/CanvasLayer/MUST_CONSUME"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -346.5
-offset_top = -33.0
-offset_right = 346.5
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera/CanvasLayer/MUST_CONSUME/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("133_uqj37")
-theme_override_font_sizes/normal_font_size = 55
-text = "I MUST CONSUME!"
-fit_content = true
-scroll_active = false
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_75ai5")
@@ -1026,7 +993,6 @@ monitorable = false
 shape = SubResource("RectangleShape2D_n3klj")
 
 [node name="Eat_text" type="NinePatchRect" parent="."]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1039,15 +1005,53 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Eat_text"]
-layout_mode = 0
-offset_right = 119.0
-offset_bottom = 23.0
+[node name="pc" type="VBoxContainer" parent="Eat_text"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -11.5
+offset_right = 79.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Eat_text/VBoxContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Eat_text/pc"]
+z_index = 3378
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("133_uqj37")
+theme_override_font_sizes/normal_font_size = 12
 text = "Press 'E' to eat"
+fit_content = true
+scroll_active = false
+
+[node name="controller" type="VBoxContainer" parent="Eat_text"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.5
+offset_top = -20.0
+offset_right = 77.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Eat_text/controller"]
+z_index = 4096
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("133_uqj37")
+theme_override_font_sizes/normal_font_size = 12
+text = "Press 'X' or 'SQUARE' to eat"
 fit_content = true
 scroll_active = false
 

@@ -1,7 +1,10 @@
 extends Node2D
 
 @onready var pause_menu = $"Player/Camera/CanvasLayer/PauseMenu"
-@onready var eat_text = $"Player/Eat_text"
+
+@onready var eat_text_pc = $"Player/Eat_text/pc"
+@onready var eat_text_ctrl = $"Player/Eat_text/controller"
+
 @onready var player = %"Player"
 @onready var player_anim = %"Player/AnimatedSprite2D"
 
@@ -24,6 +27,8 @@ var hide_regen = 0
 
 var aggro = false
 var searching = false
+
+var is_using_controller: bool = false
 
 func _ready() -> void:
 	gen_timer.one_shot = true
@@ -61,6 +66,12 @@ func _physics_process(_delta: float) -> void:
 		hp.play("hp_half")
 	elif player.health == 1:
 		hp.play("hp_empty")
+
+func _input(event: InputEvent):
+	if (event is InputEventKey):
+		is_using_controller = false
+	elif (event is InputEventJoypadButton or event is InputEventJoypadMotion):
+		is_using_controller = true
 
 func update_hunger_status():
 	if paused:
@@ -100,12 +111,15 @@ func pauseMenu():
 	paused = !paused
 
 func eatConfirm(ison, victim):
+	
 	if ison == false:
-		eat_text.hide()
+		eat_text_pc.hide()
+		eat_text_ctrl.hide()
 	else:
-		eat_text.show()
-		#eat_text.position.x = player.position.x
-		#eat_text.position.y = player.position.y - 40
+		if is_using_controller:
+			eat_text_ctrl.show()
+		else:
+			eat_text_pc.show()
 
 	etex = ison
 	cur_victim = victim

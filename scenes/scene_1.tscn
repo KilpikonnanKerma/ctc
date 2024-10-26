@@ -1,7 +1,8 @@
-[gd_scene load_steps=53 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=60 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
+[ext_resource type="Shader" path="res://scripts/shaders/vignette.gdshader" id="3_x6lxb"]
 [ext_resource type="Texture2D" uid="uid://c374smsv6tout" path="res://sprites/maps/floor_01_nobrdr.png" id="4_rxghq"]
 [ext_resource type="Texture2D" uid="uid://bg8xxtavq8nfy" path="res://sprites/maps/kukkakakka2_big.png" id="4_y0abg"]
 [ext_resource type="Texture2D" uid="uid://dirjy71u0jxra" path="res://sprites/maps/floor_01_nobrdr32x16.png" id="5_7pkgf"]
@@ -28,10 +29,20 @@
 [ext_resource type="Texture2D" uid="uid://mclps312dkw" path="res://sprites/maps/floor_02.png" id="27_n80yv"]
 [ext_resource type="Texture2D" uid="uid://c3alr4np4lra7" path="res://sprites/maps/wall02.png" id="28_jiubu"]
 [ext_resource type="Texture2D" uid="uid://cf80cig18upxk" path="res://sprites/Props/operation_table.png" id="29_b6m1y"]
+[ext_resource type="Texture2D" uid="uid://bnvm6rnqjcsir" path="res://sprites/maps/wall01-02.png" id="29_jtrhp"]
 [ext_resource type="Texture2D" uid="uid://b1sgcksvx11ek" path="res://sprites/Props/bookshelf02.png" id="30_3odiu"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="31_dicg2"]
 [ext_resource type="Texture2D" uid="uid://b71ay054kncvs" path="res://sprites/Props/cell.png" id="32_dig3s"]
 [ext_resource type="Texture2D" uid="uid://mq03jyofbkl2" path="res://sprites/maps/ladder01.png" id="33_1gd44"]
+[ext_resource type="PackedScene" uid="uid://dg325baeocxb1" path="res://scenes/camera_change.tscn" id="34_hlxjn"]
+[ext_resource type="Texture2D" uid="uid://dpv5undmr08eb" path="res://sprites/Props/goofy_sofa.png" id="36_h6ps0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gnr2q"]
+resource_local_to_scene = true
+shader = ExtResource("3_x6lxb")
+shader_parameter/vignette_intensity = 0.8
+shader_parameter/vignette_opacity = 1.0
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1197, 28.5)
@@ -75,13 +86,16 @@ adjustment_saturation = 0.8
 size = Vector2(2488, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jahay"]
-size = Vector2(2284, 13)
+size = Vector2(2296, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmm3d"]
 size = Vector2(510, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip83h"]
-size = Vector2(544, 64)
+size = Vector2(908, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mn4o"]
+size = Vector2(370, 60.0016)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iu0c3"]
 size = Vector2(128, 6)
@@ -93,10 +107,13 @@ size = Vector2(62, 6)
 size = Vector2(80, 102)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7scl4"]
-size = Vector2(28, 940)
+size = Vector2(28, 780.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sal3g"]
-size = Vector2(33, 105)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xaefk"]
+size = Vector2(20, 4.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfek7"]
+size = Vector2(81, 2)
 
 [node name="Scene1" type="Node2D"]
 script = ExtResource("1_7n0go")
@@ -104,6 +121,12 @@ script = ExtResource("1_7n0go")
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("1_5o17h")]
 unique_name_in_owner = true
 position = Vector2(-386, 313)
+
+[node name="Vignette" parent="Player/Camera/CanvasLayer" index="1"]
+material = SubResource("ShaderMaterial_gnr2q")
+
+[node name="Heartbeat" parent="Player/Camera/CanvasLayer" index="2"]
+material = SubResource("ShaderMaterial_gnr2q")
 
 [node name="ml_01" type="StaticBody2D" parent="."]
 position = Vector2(-1471, -1049)
@@ -396,7 +419,7 @@ texture = ExtResource("6_las7y")
 [node name="Upstairs" type="Node" parent="ml_02"]
 
 [node name="TV" type="StaticBody2D" parent="ml_02/Upstairs"]
-position = Vector2(743, -219)
+position = Vector2(-335, -1683)
 
 [node name="TV" type="Sprite2D" parent="ml_02/Upstairs/TV"]
 z_index = -5
@@ -418,7 +441,7 @@ script = ExtResource("25_pcryp")
 [node name="Background" type="Polygon2D" parent="Tutorial"]
 modulate = Color(1, 1, 1, 0.588235)
 z_index = -50
-texture_filter = 1
+texture_filter = 2
 texture_repeat = 2
 position = Vector2(372.475, -348)
 texture = ExtResource("26_f0f5u")
@@ -468,6 +491,19 @@ polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
+[node name="Ground32x64_5" type="Polygon2D" parent="Tutorial/Ceiling"]
+z_index = 10
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(1563, -885)
+scale = Vector2(-7.86808, -2)
+texture = ExtResource("27_n80yv")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(40, 2)
+polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
 [node name="Floor" type="Node2D" parent="Tutorial"]
 z_index = -1
 position = Vector2(0, 350)
@@ -502,12 +538,12 @@ polygons = [PackedInt32Array(0, 1, 2, 3)]
 z_index = 10
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(589, -967)
+position = Vector2(589, -800)
 scale = Vector2(71.4375, 2)
 texture = ExtResource("27_n80yv")
 texture_offset = Vector2(0, 8)
 texture_scale = Vector2(40, 2)
-polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
+polygon = PackedVector2Array(-16.4059, 7.5, -16.4199, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
@@ -519,7 +555,7 @@ position = Vector2(616, 341)
 shape = SubResource("RectangleShape2D_3f867")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Tutorial/Floor/Collision"]
-position = Vector2(590, -626.5)
+position = Vector2(584, -458)
 shape = SubResource("RectangleShape2D_jahay")
 one_way_collision = true
 
@@ -538,9 +574,16 @@ shape = SubResource("RectangleShape2D_3f867")
 [node name="Sprite2D" type="Sprite2D" parent="Tutorial/Walls/Back_wall"]
 z_index = 12
 texture_filter = 1
-position = Vector2(-15, -69)
-scale = Vector2(1, 2.5)
+position = Vector2(-15, -284.5)
+scale = Vector2(1, 4.18359)
 texture = ExtResource("28_jiubu")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Tutorial/Walls/Back_wall"]
+z_index = 12
+texture_filter = 1
+position = Vector2(-15, -1026.38)
+scale = Vector2(-1, -1.614)
+texture = ExtResource("29_jtrhp")
 
 [node name="cell_wall" type="Node2D" parent="Tutorial/Walls"]
 z_index = -1
@@ -556,9 +599,16 @@ shape = SubResource("RectangleShape2D_vmm3d")
 [node name="Sprite2D" type="Sprite2D" parent="Tutorial/Walls/cell_wall"]
 z_index = 11
 texture_filter = 1
-position = Vector2(-15, -69)
-scale = Vector2(1, 2.5)
+position = Vector2(-15, -287.5)
+scale = Vector2(1, 4.20703)
 texture = ExtResource("28_jiubu")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Tutorial/Walls/cell_wall"]
+z_index = 12
+texture_filter = 1
+position = Vector2(-15, -1026.38)
+scale = Vector2(-1, -1.614)
+texture = ExtResource("29_jtrhp")
 
 [node name="front_wall" type="Node2D" parent="Tutorial/Walls"]
 z_index = -1
@@ -586,11 +636,7 @@ position = Vector2(1715, -340)
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Walls/ladder_wall/Collision"]
-position = Vector2(-21, 15)
-shape = SubResource("RectangleShape2D_ip83h")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Tutorial/Walls/ladder_wall/Collision"]
-position = Vector2(-400, 15)
+position = Vector2(-206, 14.9999)
 shape = SubResource("RectangleShape2D_ip83h")
 
 [node name="Sprite2D" type="Sprite2D" parent="Tutorial/Walls/ladder_wall"]
@@ -608,8 +654,8 @@ position = Vector2(1447, -340)
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Walls/ladder_wall2/Collision"]
-position = Vector2(-21.0001, 15.0001)
-shape = SubResource("RectangleShape2D_ip83h")
+position = Vector2(65, 15.9999)
+shape = SubResource("RectangleShape2D_4mn4o")
 
 [node name="Sprite2D" type="Sprite2D" parent="Tutorial/Walls/ladder_wall2"]
 z_index = 11
@@ -687,6 +733,7 @@ position = Vector2(0, 26)
 shape = SubResource("RectangleShape2D_6ev4s")
 
 [node name="Tutorial_text" type="NinePatchRect" parent="Tutorial"]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -727,12 +774,14 @@ text = "You can sprint with 'shift'"
 [node name="PC_MOVEMENT4" type="RichTextLabel" parent="Tutorial/Tutorial_text"]
 layout_mode = 0
 offset_left = 862.0
-offset_top = 81.0
+offset_top = -22.0
 offset_right = 1080.0
 offset_bottom = 163.0
 theme_override_fonts/normal_font = ExtResource("31_dicg2")
 theme_override_font_sizes/normal_font_size = 15
-text = "You can hide by pressing 'w' and unhide with 'S'"
+text = "You can hide by pressing 'w' and unhide with 'S'
+
+Note that you can hide only once and then you have to wait for the 'shadow' to recharge"
 
 [node name="PC_MOVEMENT5" type="RichTextLabel" parent="Tutorial/Tutorial_text"]
 layout_mode = 0
@@ -746,7 +795,6 @@ text = "Climb with 'W' and 'S' or
 up arrow and down arrow!"
 
 [node name="Tutorial_text_console" type="NinePatchRect" parent="Tutorial"]
-visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -787,14 +835,16 @@ text = "You can sprint with 'circle' or 'B' button!"
 [node name="CONSOLE_MOVEMENT4" type="RichTextLabel" parent="Tutorial/Tutorial_text_console"]
 layout_mode = 0
 offset_left = 862.0
-offset_top = 81.0
+offset_top = -42.0
 offset_right = 1080.0
 offset_bottom = 163.0
 theme_override_fonts/normal_font = ExtResource("31_dicg2")
 theme_override_font_sizes/normal_font_size = 15
-text = "You can hide by pressing dpad up and unhide with dpad down!"
+text = "You can hide by pressing dpad up and unhide with dpad down!
 
-[node name="PC_MOVEMENT5" type="RichTextLabel" parent="Tutorial/Tutorial_text_console"]
+Note that you can hide only once and then you have to wait for the 'shadow' to recharge"
+
+[node name="CONSOLE_MOVEMENT5" type="RichTextLabel" parent="Tutorial/Tutorial_text_console"]
 layout_mode = 0
 offset_left = 1316.0
 offset_top = 24.0
@@ -830,7 +880,7 @@ texture = ExtResource("32_dig3s")
 position = Vector2(1569, 201)
 
 [node name="CollisionShape2D" parent="Tutorial/Ladder" index="0"]
-position = Vector2(-0.5, -355.5)
+position = Vector2(-0.5, -275.75)
 shape = SubResource("RectangleShape2D_7scl4")
 
 [node name="StaticBody2D" parent="Tutorial/Ladder" index="2"]
@@ -861,14 +911,40 @@ position = Vector2(0, -717)
 texture = ExtResource("33_1gd44")
 
 [node name="Baby01" parent="Tutorial" instance=ExtResource("9_tywij")]
-position = Vector2(1647, -649)
+position = Vector2(1641, -482)
 
-[node name="change_camera_limit" type="Area2D" parent="Tutorial"]
-position = Vector2(1422, -652)
+[node name="camera_change2" parent="Tutorial" node_paths=PackedStringArray("player", "camera") instance=ExtResource("34_hlxjn")]
+position = Vector2(1429, -522)
+player = NodePath("../../Player")
+camera = NodePath("../../Player/Camera")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/change_camera_limit"]
-position = Vector2(6.5, -33.5)
-shape = SubResource("RectangleShape2D_sal3g")
+[node name="Guards_room" type="Node" parent="Tutorial"]
+
+[node name="Sofa" type="StaticBody2D" parent="Tutorial/Guards_room"]
+position = Vector2(954, -498)
+
+[node name="Sprite2D" type="Sprite2D" parent="Tutorial/Guards_room/Sofa"]
+z_index = -10
+texture = ExtResource("36_h6ps0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Tutorial/Guards_room/Sofa"]
+polygon = PackedVector2Array(0, -23, -56, -23, -57, -28, 0, -30, 57, -28, 57, -23)
+one_way_collision = true
+
+[node name="handrest" type="CollisionShape2D" parent="Tutorial/Guards_room/Sofa"]
+position = Vector2(50, 7.125)
+shape = SubResource("RectangleShape2D_xaefk")
+one_way_collision = true
+
+[node name="handrest02" type="CollisionShape2D" parent="Tutorial/Guards_room/Sofa"]
+position = Vector2(-51, 7.25)
+shape = SubResource("RectangleShape2D_xaefk")
+one_way_collision = true
+
+[node name="sofa" type="CollisionShape2D" parent="Tutorial/Guards_room/Sofa"]
+position = Vector2(-0.5, 10)
+shape = SubResource("RectangleShape2D_hfek7")
+one_way_collision = true
 
 [connection signal="door_entered" from="ml_01/Key" to="ml_01/Door" method="_on_door_entered"]
 [connection signal="door_exited" from="ml_01/Key" to="ml_01/Door" method="_on_door_exited"]
@@ -880,6 +956,6 @@ shape = SubResource("RectangleShape2D_sal3g")
 [connection signal="door_opened" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_opened"]
 [connection signal="area_entered" from="Tutorial/Door/Area2D" to="Tutorial/Key" method="_on_door_zone_entered"]
 [connection signal="area_exited" from="Tutorial/Door/Area2D" to="Tutorial/Key" method="_on_door_zone_exited"]
-[connection signal="area_entered" from="Tutorial/change_camera_limit" to="Tutorial/Tutorial" method="_on_camera_change_entered"]
 
+[editable path="Player"]
 [editable path="Tutorial/Ladder"]
