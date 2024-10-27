@@ -71,18 +71,21 @@ func _physics_process(delta: float) -> void:
 		die()
 		death_has_been_called = true
 
+	if (hiding):
+		stop_movement()
+
+
 	var direction := Input.get_axis("mv_left", "mv_right")
 
 	match state:
 		PlayerState.NORMAL:
 			vignette.hide()
 			is_eating = false
-			hiding = false
 
 			if Input.is_action_just_pressed("jump") and is_on_floor() && !is_on_ladder:
 				velocity.y = JUMP_VELOCITY
 
-			if Input.is_action_just_pressed("hide") and is_on_floor() && !is_on_ladder && main.hide_available:
+			if Input.is_action_just_pressed("hide") and is_on_floor() && !is_on_ladder && main.hide_available && !main.is_on_hide_area:
 				state = PlayerState.TRS_TO_HIDE
 				player.play("hide_transition")
 				hide_timer.start(1.4) # 5fps ja 7 frames
@@ -99,7 +102,7 @@ func _physics_process(delta: float) -> void:
 				eat(main.cur_victim)
 
 			if direction:
-				if Input.is_action_pressed("run") && stamina_bar.value > 0: #voi ns. dashata ilmassa, jos painaa shiftiä (it's not a bug it's a feature)
+				if (Input.is_action_pressed("run") && stamina_bar.value > 0 && !hiding): #voi ns. dashata ilmassa, jos painaa shiftiä (it's not a bug it's a feature)
 					velocity.x = move_toward(velocity.x, direction * run_speed, run_speed * acceleration)
 					if is_hungry:
 						stamina_bar.value -= 8
@@ -177,7 +180,7 @@ func _physics_process(delta: float) -> void:
 	# 	print("Collided with: ", body.name)
 
 func _input(event: InputEvent):
-	if(event.is_action_pressed("mv_down") and state == PlayerState.NORMAL):
+	if(event.is_action_pressed("mv_down") and state == PlayerState.NORMAL && !hiding):
 		position.y += 1
 
 func stop_movement():
@@ -192,7 +195,7 @@ func eat(body):
 	body.queue_free()
 
 	if last_input == "right":
-		player.position.x += 16
+			player.position.x += 16
 	elif last_input == "left":
 		player.position.x -= 16
 
@@ -206,6 +209,7 @@ func _on_hide_transition_finished():
 		state = PlayerState.NORMAL
 		player.play("idle")
 		main.hide_available = false
+		hiding = false
 	if state == PlayerState.EATING:
 		last_ate = 0
 		heartbeat.hide()

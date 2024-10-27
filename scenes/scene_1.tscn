@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=63 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
@@ -36,6 +36,8 @@
 [ext_resource type="Texture2D" uid="uid://mq03jyofbkl2" path="res://sprites/maps/ladder01.png" id="33_1gd44"]
 [ext_resource type="PackedScene" uid="uid://dg325baeocxb1" path="res://scenes/camera_change.tscn" id="34_hlxjn"]
 [ext_resource type="Texture2D" uid="uid://dpv5undmr08eb" path="res://sprites/Props/goofy_sofa.png" id="36_h6ps0"]
+[ext_resource type="Texture2D" uid="uid://462sylxi8c3" path="res://sprites/Props/taulu05.png" id="37_aqc2y"]
+[ext_resource type="PackedScene" uid="uid://bhgiutvahkdwr" path="res://scenes/props/hiding_area.tscn" id="37_p1cp5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gnr2q"]
 resource_local_to_scene = true
@@ -86,7 +88,7 @@ adjustment_saturation = 0.8
 size = Vector2(2488, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jahay"]
-size = Vector2(2296, 14)
+size = Vector2(2296, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmm3d"]
 size = Vector2(510, 64)
@@ -108,6 +110,17 @@ size = Vector2(80, 102)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7scl4"]
 size = Vector2(28, 780.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_beo2a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("36_h6ps0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xaefk"]
 size = Vector2(20, 4.25)
@@ -555,7 +568,7 @@ position = Vector2(616, 341)
 shape = SubResource("RectangleShape2D_3f867")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Tutorial/Floor/Collision"]
-position = Vector2(584, -458)
+position = Vector2(584, -458.5)
 shape = SubResource("RectangleShape2D_jahay")
 one_way_collision = true
 
@@ -923,9 +936,13 @@ camera = NodePath("../../Player/Camera")
 [node name="Sofa" type="StaticBody2D" parent="Tutorial/Guards_room"]
 position = Vector2(954, -498)
 
-[node name="Sprite2D" type="Sprite2D" parent="Tutorial/Guards_room/Sofa"]
+[node name="normal" type="Sprite2D" parent="Tutorial/Guards_room/Sofa"]
 z_index = -10
 texture = ExtResource("36_h6ps0")
+
+[node name="hiding" type="AnimatedSprite2D" parent="Tutorial/Guards_room/Sofa"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_beo2a")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Tutorial/Guards_room/Sofa"]
 polygon = PackedVector2Array(0, -23, -56, -23, -57, -28, 0, -30, 57, -28, 57, -23)
@@ -944,6 +961,31 @@ one_way_collision = true
 [node name="sofa" type="CollisionShape2D" parent="Tutorial/Guards_room/Sofa"]
 position = Vector2(-0.5, 10)
 shape = SubResource("RectangleShape2D_hfek7")
+one_way_collision = true
+
+[node name="hiding_area" parent="Tutorial/Guards_room/Sofa" node_paths=PackedStringArray("main", "player", "normal_sprite", "hiding_sprite") instance=ExtResource("37_p1cp5")]
+position = Vector2(-1, 21)
+main = NodePath("../../../..")
+player = NodePath("../../../../Player")
+normal_sprite = NodePath("../normal")
+hiding_sprite = NodePath("../hiding")
+
+[node name="platform" parent="Tutorial/Guards_room" instance=ExtResource("9_8s4m4")]
+position = Vector2(1107, -563)
+
+[node name="taulu" type="StaticBody2D" parent="Tutorial/Guards_room"]
+texture_filter = 1
+position = Vector2(955, -584)
+
+[node name="Platform" type="Sprite2D" parent="Tutorial/Guards_room/taulu"]
+z_index = -6
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("37_aqc2y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Guards_room/taulu"]
+position = Vector2(0, -30)
+shape = SubResource("RectangleShape2D_llgek")
 one_way_collision = true
 
 [connection signal="door_entered" from="ml_01/Key" to="ml_01/Door" method="_on_door_entered"]

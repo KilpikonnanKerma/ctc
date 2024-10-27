@@ -11,6 +11,7 @@ extends Node2D
 @onready var hp = $"Player/Camera/CanvasLayer/HUD/HP"
 @onready var hp_regen_anim = $"Player/Camera/CanvasLayer/HUD/HP_REGEN"
 @onready var hide_regen_anim = $"Player/Camera/CanvasLayer/HUD/HIDE_REGEN"
+@onready var hide = $"Player/Camera/CanvasLayer/HUD/HIDE"
 
 @onready var settings = $"Player/Camera/CanvasLayer/Settings"
 
@@ -29,6 +30,8 @@ var aggro = false
 var searching = false
 
 var is_using_controller: bool = false
+var is_on_hide_area: bool = false
+
 
 func _ready() -> void:
 	gen_timer.one_shot = true
@@ -66,6 +69,11 @@ func _physics_process(_delta: float) -> void:
 		hp.play("hp_half")
 	elif player.health == 1:
 		hp.play("hp_empty")
+
+	if !hide_available:
+		hide.play("unavailable")
+	else:
+		hide.play("available")
 
 func _input(event: InputEvent):
 	if (event is InputEventKey):

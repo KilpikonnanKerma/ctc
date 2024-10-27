@@ -1,4 +1,4 @@
-[gd_scene load_steps=150 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=151 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
@@ -130,8 +130,9 @@
 [ext_resource type="Texture2D" uid="uid://cb1awo26v0jml" path="res://sprites/player/explode08.png" id="77_ae5cc"]
 [ext_resource type="Texture2D" uid="uid://fhdl5y4vc0hs" path="res://sprites/player/explode09.png" id="78_ygeqk"]
 [ext_resource type="Texture2D" uid="uid://clluf8s7e71sm" path="res://sprites/player/explode10.png" id="79_4lg0f"]
-[ext_resource type="Texture2D" uid="uid://bkccif6o4e644" path="res://sprites/shit/shadow.png" id="126_rnck5"]
-[ext_resource type="Texture2D" uid="uid://hp23w83lwvpq" path="res://sprites/shit/shadow_unavailable.png" id="127_h5apl"]
+[ext_resource type="Texture2D" uid="uid://dlkm5cdd1gijx" path="res://sprites/player/hide_under.png" id="91_lqwiy"]
+[ext_resource type="Texture2D" uid="uid://qdn6fx5vp4j5" path="res://sprites/shit/shadow32x32.png" id="126_6pcad"]
+[ext_resource type="Texture2D" uid="uid://doc6sgrmcpfja" path="res://sprites/shit/shadow_unavailable_32x.png" id="127_evkdw"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="133_uqj37"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hunum"]
@@ -476,6 +477,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("91_lqwiy")
+}],
+"loop": true,
+"name": &"hide_under",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_a4u02")
 }, {
 "duration": 1.0,
@@ -672,7 +681,7 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("126_rnck5")
+"texture": ExtResource("126_6pcad")
 }],
 "loop": true,
 "name": &"available",
@@ -680,7 +689,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("127_h5apl")
+"texture": ExtResource("127_evkdw")
 }],
 "loop": true,
 "name": &"unavailable",
@@ -875,9 +884,7 @@ script = ExtResource("1_q5ei5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hunum")
-animation = &"idle"
-frame = 2
-frame_progress = 0.10997
+animation = &"hide_under"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -925,7 +932,6 @@ animation = &"HP_REGEN"
 
 [node name="HIDE" type="AnimatedSprite2D" parent="Camera/CanvasLayer/HUD"]
 position = Vector2(41, 133)
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_gtyon")
 animation = &"available"
 
@@ -1013,9 +1019,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -79.5
+offset_left = -35.5
 offset_top = -11.5
-offset_right = 79.5
+offset_right = 35.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -1026,7 +1032,7 @@ z_index = 3378
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("133_uqj37")
 theme_override_font_sizes/normal_font_size = 12
-text = "Press 'E' to eat"
+text = "'E' eat"
 fit_content = true
 scroll_active = false
 
@@ -1038,10 +1044,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -77.5
-offset_top = -20.0
-offset_right = 77.5
-offset_bottom = 20.0
+offset_left = -80.0
+offset_top = -9.5
+offset_right = 80.0
+offset_bottom = 9.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -1051,7 +1057,7 @@ z_index = 4096
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("133_uqj37")
 theme_override_font_sizes/normal_font_size = 12
-text = "Press 'X' or 'SQUARE' to eat"
+text = "'x'/'square' eat"
 fit_content = true
 scroll_active = false
 

@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhgiutvahkdwr"]
+
+[ext_resource type="Script" path="res://scripts/hiding_area.gd" id="1_hs0wj"]
+[ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="2_sxg63"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76nmn"]
+size = Vector2(76, 20)
+
+[node name="hiding_area" type="Area2D"]
+script = ExtResource("1_hs0wj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_76nmn")
+
+[node name="pc_text" type="NinePatchRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -150.0
+offset_right = 20.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PC_MOVEMENT" type="RichTextLabel" parent="pc_text"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -11.5
+offset_right = 52.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_sxg63")
+theme_override_font_sizes/normal_font_size = 15
+text = "'W' hide"
+
+[node name="controller_text" type="NinePatchRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -150.0
+offset_right = 20.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PC_MOVEMENT" type="RichTextLabel" parent="controller_text"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -11.5
+offset_right = 88.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_sxg63")
+theme_override_font_sizes/normal_font_size = 15
+text = "'dpad up' hide"
+
+[connection signal="area_entered" from="." to="." method="_on_hide_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_hide_area_exited"]
