@@ -884,7 +884,9 @@ script = ExtResource("1_q5ei5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hunum")
-animation = &"hide_under"
+animation = &"explode02"
+frame = 9
+frame_progress = 0.9065
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 		player.hiding = true
 
 		hiding_sprite.show()
+		hiding_sprite.play("hiding")
 
 	if(player.hiding && Input.is_action_just_pressed("unhide")):
 		normal_sprite.show()

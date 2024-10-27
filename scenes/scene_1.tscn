@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://b56dj5ds4rp8e"]
+[gd_scene load_steps=64 format=3 uid="uid://b56dj5ds4rp8e"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://dpv5undmr08eb" path="res://sprites/Props/goofy_sofa.png" id="36_h6ps0"]
 [ext_resource type="Texture2D" uid="uid://462sylxi8c3" path="res://sprites/Props/taulu05.png" id="37_aqc2y"]
 [ext_resource type="PackedScene" uid="uid://bhgiutvahkdwr" path="res://scenes/props/hiding_area.tscn" id="37_p1cp5"]
+[ext_resource type="Texture2D" uid="uid://oamdxauco7i6" path="res://sprites/Props/sofa_plr01.png" id="37_ptmmq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gnr2q"]
 resource_local_to_scene = true
@@ -120,6 +121,29 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_ptmmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_ptmmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_ptmmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_ptmmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_ptmmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_h6ps0")
+}],
+"loop": true,
+"name": &"hiding",
+"speed": 1.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xaefk"]
@@ -794,7 +818,7 @@ theme_override_fonts/normal_font = ExtResource("31_dicg2")
 theme_override_font_sizes/normal_font_size = 15
 text = "You can hide by pressing 'w' and unhide with 'S'
 
-Note that you can hide only once and then you have to wait for the 'shadow' to recharge"
+Note that you can hide only once and then you have to wait for the \"shadow\" to recharge"
 
 [node name="PC_MOVEMENT5" type="RichTextLabel" parent="Tutorial/Tutorial_text"]
 layout_mode = 0
@@ -855,7 +879,7 @@ theme_override_fonts/normal_font = ExtResource("31_dicg2")
 theme_override_font_sizes/normal_font_size = 15
 text = "You can hide by pressing dpad up and unhide with dpad down!
 
-Note that you can hide only once and then you have to wait for the 'shadow' to recharge"
+Note that you can hide only once and then you have to wait for the \"shadow\" to recharge"
 
 [node name="CONSOLE_MOVEMENT5" type="RichTextLabel" parent="Tutorial/Tutorial_text_console"]
 layout_mode = 0
@@ -943,6 +967,9 @@ texture = ExtResource("36_h6ps0")
 [node name="hiding" type="AnimatedSprite2D" parent="Tutorial/Guards_room/Sofa"]
 visible = false
 sprite_frames = SubResource("SpriteFrames_beo2a")
+animation = &"hiding"
+frame = 1
+frame_progress = 0.178058
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Tutorial/Guards_room/Sofa"]
 polygon = PackedVector2Array(0, -23, -56, -23, -57, -28, 0, -30, 57, -28, 57, -23)
