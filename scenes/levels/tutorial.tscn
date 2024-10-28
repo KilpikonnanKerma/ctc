@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://btkp18hj05lh"]
+[gd_scene load_steps=63 format=3 uid="uid://btkp18hj05lh"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_6xrhj"]
 [ext_resource type="Script" path="res://scripts/levels/tutorial.gd" id="1_c6cl2"]
@@ -23,7 +23,24 @@
 [ext_resource type="Texture2D" uid="uid://462sylxi8c3" path="res://sprites/Props/taulu05.png" id="20_wxrh7"]
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="21_scvav"]
 [ext_resource type="Texture2D" uid="uid://cq037g6xr6t3y" path="res://sprites/maps/brick03.png" id="22_73ws1"]
+[ext_resource type="Texture2D" uid="uid://d0v5s81y4qqlo" path="res://sprites/Props/taulu04.png" id="22_vgswg"]
 [ext_resource type="Shader" path="res://scripts/shaders/vignette.gdshader" id="22_vlgxt"]
+[ext_resource type="Script" path="res://scripts/daddy.gd" id="24_j7sf0"]
+[ext_resource type="Texture2D" uid="uid://b3pkuv43v115g" path="res://sprites/enemies/paren01_00_ver2.png" id="25_x53ya"]
+[ext_resource type="Texture2D" uid="uid://cyxyjta2j8osy" path="res://sprites/enemies/parent01_idle02.png" id="26_x67tf"]
+[ext_resource type="Texture2D" uid="uid://cfqhbdtqby26h" path="res://sprites/enemies/parent01_idle03.png" id="27_ohhag"]
+[ext_resource type="Texture2D" uid="uid://ocje617u3pju" path="res://sprites/shit/timerfull.png" id="28_g61jy"]
+[ext_resource type="Texture2D" uid="uid://ddc7nwwg8cxje" path="res://sprites/shit/timer_005.png" id="29_2h46g"]
+[ext_resource type="Texture2D" uid="uid://b0cp5md2f8une" path="res://sprites/shit/timer_01.png" id="30_ikple"]
+[ext_resource type="Texture2D" uid="uid://bvt7nqywc2fq2" path="res://sprites/shit/timer_015.png" id="31_3exjk"]
+[ext_resource type="Texture2D" uid="uid://nhnaius4edmm" path="res://sprites/shit/timer_02.png" id="32_3cxkx"]
+[ext_resource type="Texture2D" uid="uid://dcn0u4yqi6ij7" path="res://sprites/shit/timer_025.png" id="33_ko4up"]
+[ext_resource type="Texture2D" uid="uid://dtmpho0lxoega" path="res://sprites/shit/timer_03.png" id="34_duoaq"]
+[ext_resource type="Texture2D" uid="uid://cfvkceiplu1hc" path="res://sprites/shit/timer_035.png" id="35_4ij67"]
+[ext_resource type="Texture2D" uid="uid://bsg6abrr27e2o" path="res://sprites/shit/timer_04.png" id="36_rkfyr"]
+[ext_resource type="Texture2D" uid="uid://bk2pk53hlica" path="res://sprites/shit/huutomerkki.png" id="37_d5kr4"]
+[ext_resource type="Texture2D" uid="uid://cjteld6qflwhx" path="res://sprites/shit/kymysys.png" id="38_45ru5"]
+[ext_resource type="Script" path="res://scripts/levels/level_switch.gd" id="41_5mr7f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f867"]
 size = Vector2(2488, 24)
@@ -98,12 +115,79 @@ size = Vector2(81, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_llgek"]
 size = Vector2(130, 4)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_b1yff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_x53ya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_x67tf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_ohhag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_x67tf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.5
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tpasg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_g61jy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_2h46g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_ikple")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_3exjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_3cxkx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_ko4up")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_duoaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_4ij67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_rkfyr")
+}],
+"loop": true,
+"name": &"timer",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_syo84"]
+size = Vector2(461.5, 125.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_118b4"]
+size = Vector2(64, 102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_framm"]
+size = Vector2(20, 89)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ov048"]
 resource_local_to_scene = true
 shader = ExtResource("22_vlgxt")
 shader_parameter/vignette_intensity = 0.8
 shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yfd5j"]
+size = Vector2(87, 83)
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_6xrhj")
@@ -640,6 +724,9 @@ hiding_sprite = NodePath("../hiding")
 [node name="platform" parent="Guards_room" instance=ExtResource("19_0h1a5")]
 position = Vector2(1107, -563)
 
+[node name="platform2" parent="Guards_room" instance=ExtResource("19_0h1a5")]
+position = Vector2(585, -625)
+
 [node name="taulu" type="StaticBody2D" parent="Guards_room"]
 texture_filter = 1
 position = Vector2(955, -584)
@@ -655,6 +742,21 @@ position = Vector2(0, -30)
 shape = SubResource("RectangleShape2D_llgek")
 one_way_collision = true
 
+[node name="taulu2" type="StaticBody2D" parent="Guards_room"]
+texture_filter = 1
+position = Vector2(762, -609)
+
+[node name="Platform" type="Sprite2D" parent="Guards_room/taulu2"]
+z_index = -6
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("22_vgswg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Guards_room/taulu2"]
+position = Vector2(0, -30)
+shape = SubResource("RectangleShape2D_llgek")
+one_way_collision = true
+
 [node name="Background" type="Polygon2D" parent="Guards_room"]
 modulate = Color(1, 1, 1, 0.588235)
 z_index = -50
@@ -664,6 +766,58 @@ position = Vector2(399, -1124)
 texture = ExtResource("22_73ws1")
 texture_scale = Vector2(0.75, 0.75)
 polygon = PackedVector2Array(1032, 137, -219, 137, -207, 351, -202, 679, 65.3661, 680.933, 1036, 668, 1028, 444)
+
+[node name="Guard" type="CharacterBody2D" parent="Guards_room" groups=["Enemy"]]
+position = Vector2(326, -514)
+script = ExtResource("24_j7sf0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Guards_room/Guard"]
+sprite_frames = SubResource("SpriteFrames_b1yff")
+animation = &"idle"
+frame_progress = 0.0738316
+
+[node name="RayCast2D" type="RayCast2D" parent="Guards_room/Guard"]
+visible = false
+
+[node name="notice_timer" type="AnimatedSprite2D" parent="Guards_room/Guard"]
+visible = false
+position = Vector2(0, -64)
+sprite_frames = SubResource("SpriteFrames_tpasg")
+animation = &"timer"
+frame = 4
+frame_progress = 0.0440759
+
+[node name="Huutomerkki" type="Sprite2D" parent="Guards_room/Guard"]
+visible = false
+texture_filter = 1
+position = Vector2(0, -64)
+texture = ExtResource("37_d5kr4")
+
+[node name="kymysys" type="Sprite2D" parent="Guards_room/Guard"]
+visible = false
+texture_filter = 1
+position = Vector2(0, -64)
+texture = ExtResource("38_45ru5")
+
+[node name="Area2D" type="Area2D" parent="Guards_room/Guard" groups=["Enemy"]]
+
+[node name="notice_area" type="CollisionShape2D" parent="Guards_room/Guard/Area2D"]
+visible = false
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_syo84")
+
+[node name="Attack_area" type="Area2D" parent="Guards_room/Guard" groups=["Enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Guards_room/Guard/Attack_area"]
+visible = false
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_118b4")
+
+[node name="Collision" type="CollisionShape2D" parent="Guards_room/Guard"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_framm")
+disabled = true
+debug_color = Color(0.964151, 0, 0.494479, 0.42)
 
 [node name="Player" parent="." instance=ExtResource("21_scvav")]
 unique_name_in_owner = true
@@ -678,11 +832,24 @@ material = SubResource("ShaderMaterial_ov048")
 [node name="Heartbeat" parent="Player/Camera/CanvasLayer" index="2"]
 material = SubResource("ShaderMaterial_ov048")
 
+[node name="level_switch" type="Area2D" parent="."]
+position = Vector2(-213, -478)
+script = ExtResource("41_5mr7f")
+level_path = "res://scenes/scene_1.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level_switch"]
+position = Vector2(-1.5, -31.5)
+shape = SubResource("RectangleShape2D_yfd5j")
+
 [connection signal="door_entered" from="Key" to="Door" method="_on_door_entered"]
 [connection signal="door_exited" from="Key" to="Door" method="_on_door_exited"]
 [connection signal="door_opened" from="Key" to="Door" method="_on_door_opened"]
 [connection signal="area_entered" from="Door/Area2D" to="Key" method="_on_door_zone_entered"]
 [connection signal="area_exited" from="Door/Area2D" to="Key" method="_on_door_zone_exited"]
+[connection signal="area_entered" from="Guards_room/Guard/Area2D" to="Guards_room/Guard" method="close_to_player"]
+[connection signal="area_exited" from="Guards_room/Guard/Area2D" to="Guards_room/Guard" method="far_from_player"]
+[connection signal="area_entered" from="Guards_room/Guard/Attack_area" to="Guards_room/Guard" method="attackus"]
+[connection signal="area_entered" from="level_switch" to="level_switch" method="_you"]
 
 [editable path="Ladder"]
 [editable path="Player"]

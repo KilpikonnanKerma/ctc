@@ -111,14 +111,14 @@ texture_filter = 1
 position = Vector2(0, -64)
 texture = ExtResource("4_owf87")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["Enemy"]]
 
 [node name="notice_area" type="CollisionShape2D" parent="Area2D"]
 visible = false
 position = Vector2(0, -17)
 shape = SubResource("RectangleShape2D_syo84")
 
-[node name="Attack_area" type="Area2D" parent="."]
+[node name="Attack_area" type="Area2D" parent="." groups=["Enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_area"]
 visible = false
