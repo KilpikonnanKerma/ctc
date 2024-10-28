@@ -13,11 +13,11 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
-		get_tree().change_scene_to_file("res://scenes/scene_1.tscn")
+		get_tree().change_scene_to_file("res://scenes/levels/tutorial.tscn")
 
 
 func _on_cutscene_ended(_anim: StringName):
-	get_tree().change_scene_to_file("res://scenes/scene_1.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/tutorial.tscn")
 	
 func instantiate_player(pos): # ei tarvita mutta voi olla hyödyllinen joskus muulloin
 	var instance = player.instantiate()

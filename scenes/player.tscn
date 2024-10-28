@@ -885,8 +885,8 @@ script = ExtResource("1_q5ei5")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hunum")
 animation = &"explode02"
-frame = 9
-frame_progress = 0.9065
+frame = 10
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -902,7 +902,7 @@ shape = SubResource("RectangleShape2D_eoymx")
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(1, 1)
 process_callback = 0
-limit_left = -570
+limit_left = -100000
 limit_bottom = 425
 limit_smoothed = true
 position_smoothing_enabled = true

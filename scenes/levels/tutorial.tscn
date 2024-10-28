@@ -1,31 +1,47 @@
-[gd_scene load_steps=24 format=3 uid="uid://btkp18hj05lh"]
+[gd_scene load_steps=40 format=3 uid="uid://btkp18hj05lh"]
 
-[ext_resource type="Script" path="res://scripts/levels/tutorial.gd" id="1_8ff0h"]
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_bol6j"]
-[ext_resource type="Texture2D" uid="uid://blcyjlysb4352" path="res://sprites/maps/brick02.png" id="2_k8o12"]
-[ext_resource type="Texture2D" uid="uid://mclps312dkw" path="res://sprites/maps/floor_02.png" id="3_e3w67"]
-[ext_resource type="Texture2D" uid="uid://c3alr4np4lra7" path="res://sprites/maps/wall02.png" id="5_4awxl"]
-[ext_resource type="Texture2D" uid="uid://b1sgcksvx11ek" path="res://sprites/Props/bookshelf02.png" id="7_cvc7t"]
-[ext_resource type="PackedScene" uid="uid://dsy134i7uchnh" path="res://scenes/key.tscn" id="8_v8mhp"]
-[ext_resource type="PackedScene" uid="uid://cjtxxl7udssej" path="res://scenes/door.tscn" id="9_jrk24"]
-[ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="10_ourhg"]
-[ext_resource type="Texture2D" uid="uid://b71ay054kncvs" path="res://sprites/Props/cell.png" id="11_0113m"]
-[ext_resource type="PackedScene" uid="uid://mc4sqy001dnp" path="res://scenes/props/ladder.tscn" id="12_h85bl"]
-[ext_resource type="Texture2D" uid="uid://mq03jyofbkl2" path="res://sprites/maps/ladder01.png" id="13_x8h2t"]
-[ext_resource type="PackedScene" uid="uid://d2yg68dgyqq4u" path="res://scenes/baby_01.tscn" id="16_38n50"]
-[ext_resource type="Texture2D" uid="uid://cf80cig18upxk" path="res://sprites/Props/operation_table.png" id="116_l8y3g"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_6xrhj"]
+[ext_resource type="Script" path="res://scripts/levels/tutorial.gd" id="1_c6cl2"]
+[ext_resource type="Texture2D" uid="uid://blcyjlysb4352" path="res://sprites/maps/brick02.png" id="2_tioxk"]
+[ext_resource type="Texture2D" uid="uid://mclps312dkw" path="res://sprites/maps/floor_02.png" id="3_scxge"]
+[ext_resource type="Texture2D" uid="uid://c3alr4np4lra7" path="res://sprites/maps/wall02.png" id="4_4fvnh"]
+[ext_resource type="Texture2D" uid="uid://bnvm6rnqjcsir" path="res://sprites/maps/wall01-02.png" id="5_ipdiu"]
+[ext_resource type="Texture2D" uid="uid://cf80cig18upxk" path="res://sprites/Props/operation_table.png" id="6_lbwct"]
+[ext_resource type="Texture2D" uid="uid://b1sgcksvx11ek" path="res://sprites/Props/bookshelf02.png" id="7_y4g5a"]
+[ext_resource type="PackedScene" uid="uid://dsy134i7uchnh" path="res://scenes/key.tscn" id="8_1wiat"]
+[ext_resource type="PackedScene" uid="uid://cjtxxl7udssej" path="res://scenes/door.tscn" id="9_b7kew"]
+[ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="10_ycbxp"]
+[ext_resource type="Texture2D" uid="uid://b71ay054kncvs" path="res://sprites/Props/cell.png" id="11_d0i2b"]
+[ext_resource type="PackedScene" uid="uid://mc4sqy001dnp" path="res://scenes/props/ladder.tscn" id="12_ovl1i"]
+[ext_resource type="Texture2D" uid="uid://mq03jyofbkl2" path="res://sprites/maps/ladder01.png" id="13_ji543"]
+[ext_resource type="PackedScene" uid="uid://d2yg68dgyqq4u" path="res://scenes/baby_01.tscn" id="14_dkec7"]
+[ext_resource type="PackedScene" uid="uid://dg325baeocxb1" path="res://scenes/camera_change.tscn" id="15_jtcym"]
+[ext_resource type="Texture2D" uid="uid://dpv5undmr08eb" path="res://sprites/Props/goofy_sofa.png" id="16_00rkh"]
+[ext_resource type="Texture2D" uid="uid://oamdxauco7i6" path="res://sprites/Props/sofa_plr01.png" id="17_0cl5p"]
+[ext_resource type="PackedScene" uid="uid://bhgiutvahkdwr" path="res://scenes/props/hiding_area.tscn" id="18_wyjfj"]
+[ext_resource type="PackedScene" uid="uid://rk7xiy7p0fxr" path="res://scenes/props/platform.tscn" id="19_0h1a5"]
+[ext_resource type="Texture2D" uid="uid://462sylxi8c3" path="res://sprites/Props/taulu05.png" id="20_wxrh7"]
+[ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="21_scvav"]
+[ext_resource type="Texture2D" uid="uid://cq037g6xr6t3y" path="res://sprites/maps/brick03.png" id="22_73ws1"]
+[ext_resource type="Shader" path="res://scripts/shaders/vignette.gdshader" id="22_vlgxt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f867"]
 size = Vector2(2488, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jahay"]
-size = Vector2(1280, 6)
+size = Vector2(2028, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bo1do"]
+size = Vector2(269, 20.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmm3d"]
 size = Vector2(510, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip83h"]
-size = Vector2(544, 64)
+size = Vector2(908, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mn4o"]
+size = Vector2(370, 60.0016)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iu0c3"]
 size = Vector2(128, 6)
@@ -37,24 +53,71 @@ size = Vector2(62, 6)
 size = Vector2(80, 102)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7scl4"]
-size = Vector2(28, 940)
+size = Vector2(28, 780.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sal3g"]
-size = Vector2(33, 105)
+[sub_resource type="SpriteFrames" id="SpriteFrames_beo2a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_00rkh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_0cl5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_0cl5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_0cl5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_0cl5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_0cl5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_00rkh")
+}],
+"loop": true,
+"name": &"hiding",
+"speed": 1.0
+}]
 
-[node name="Prologue" type="Node2D"]
-script = ExtResource("1_bol6j")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xaefk"]
+size = Vector2(20, 4.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfek7"]
+size = Vector2(81, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llgek"]
+size = Vector2(130, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ov048"]
+resource_local_to_scene = true
+shader = ExtResource("22_vlgxt")
+shader_parameter/vignette_intensity = 0.8
+shader_parameter/vignette_opacity = 1.0
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_6xrhj")
 
 [node name="Tutorial" type="Node2D" parent="."]
-script = ExtResource("1_8ff0h")
+script = ExtResource("1_c6cl2")
 
 [node name="Background" type="Polygon2D" parent="."]
 modulate = Color(1, 1, 1, 0.588235)
 z_index = -50
-texture_filter = 1
+texture_filter = 2
 texture_repeat = 2
 position = Vector2(372.475, -348)
-texture = ExtResource("2_k8o12")
+texture = ExtResource("2_tioxk")
 texture_scale = Vector2(0.75, 0.75)
 polygon = PackedVector2Array(1523.53, 236, 1333.78, 238.984, 1345.53, -647, 1199.53, -648, 1051.53, -648, 1059.53, 243.297, 61, 259, -933, 250, -942.078, 317.878, -944, 686.924, 65.3661, 680.933, 1537.53, 685, 1528.53, 468)
 
@@ -68,7 +131,7 @@ texture_filter = 1
 texture_repeat = 2
 position = Vector2(0, -5)
 scale = Vector2(-40, -2)
-texture = ExtResource("3_e3w67")
+texture = ExtResource("3_scxge")
 texture_offset = Vector2(0, 8)
 texture_scale = Vector2(40, 2)
 polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
@@ -81,7 +144,7 @@ texture_filter = 1
 texture_repeat = 2
 position = Vector2(1052.12, -5)
 scale = Vector2(-25.7573, -2)
-texture = ExtResource("3_e3w67")
+texture = ExtResource("3_scxge")
 texture_offset = Vector2(0, 8)
 texture_scale = Vector2(40, 2)
 polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
@@ -94,7 +157,20 @@ texture_filter = 1
 texture_repeat = 2
 position = Vector2(1793.77, -5)
 scale = Vector2(-7.86808, -2)
-texture = ExtResource("3_e3w67")
+texture = ExtResource("3_scxge")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(40, 2)
+polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Ground32x64_5" type="Polygon2D" parent="Ceiling"]
+z_index = 10
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(1563, -885)
+scale = Vector2(-7.86808, -2)
+texture = ExtResource("3_scxge")
 texture_offset = Vector2(0, 8)
 texture_scale = Vector2(40, 2)
 polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
@@ -111,7 +187,7 @@ texture_filter = 1
 texture_repeat = 2
 position = Vector2(0, -5)
 scale = Vector2(40, 2)
-texture = ExtResource("3_e3w67")
+texture = ExtResource("3_scxge")
 texture_offset = Vector2(0, 8)
 texture_scale = Vector2(40, 2)
 polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
@@ -124,7 +200,7 @@ texture_filter = 1
 texture_repeat = 2
 position = Vector2(1280, -5)
 scale = Vector2(40, 2)
-texture = ExtResource("3_e3w67")
+texture = ExtResource("3_scxge")
 texture_offset = Vector2(0, 8)
 texture_scale = Vector2(40, 2)
 polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
@@ -135,12 +211,12 @@ polygons = [PackedInt32Array(0, 1, 2, 3)]
 z_index = 10
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(1092, -967)
-scale = Vector2(40, 2)
-texture = ExtResource("3_e3w67")
+position = Vector2(589, -800)
+scale = Vector2(71.4375, 2)
+texture = ExtResource("3_scxge")
 texture_offset = Vector2(0, 8)
 texture_scale = Vector2(40, 2)
-polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
+polygon = PackedVector2Array(-16.4059, 7.5, -16.4199, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
@@ -152,8 +228,12 @@ position = Vector2(616, 341)
 shape = SubResource("RectangleShape2D_3f867")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor/Collision"]
-position = Vector2(1092, -630)
+position = Vector2(450, -458.5)
 shape = SubResource("RectangleShape2D_jahay")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor/Collision"]
+position = Vector2(1597.5, -455.75)
+shape = SubResource("RectangleShape2D_bo1do")
 one_way_collision = true
 
 [node name="Walls" type="Node" parent="."]
@@ -171,9 +251,16 @@ shape = SubResource("RectangleShape2D_3f867")
 [node name="Sprite2D" type="Sprite2D" parent="Walls/Back_wall"]
 z_index = 12
 texture_filter = 1
-position = Vector2(-15, -69)
-scale = Vector2(1, 2.5)
-texture = ExtResource("5_4awxl")
+position = Vector2(-15, -284.5)
+scale = Vector2(1, 4.18359)
+texture = ExtResource("4_4fvnh")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Walls/Back_wall"]
+z_index = 12
+texture_filter = 1
+position = Vector2(-15, -1026.38)
+scale = Vector2(-1, -1.614)
+texture = ExtResource("5_ipdiu")
 
 [node name="cell_wall" type="Node2D" parent="Walls"]
 z_index = -1
@@ -189,9 +276,16 @@ shape = SubResource("RectangleShape2D_vmm3d")
 [node name="Sprite2D" type="Sprite2D" parent="Walls/cell_wall"]
 z_index = 11
 texture_filter = 1
-position = Vector2(-15, -69)
-scale = Vector2(1, 2.5)
-texture = ExtResource("5_4awxl")
+position = Vector2(-15, -287.5)
+scale = Vector2(1, 4.20703)
+texture = ExtResource("4_4fvnh")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Walls/cell_wall"]
+z_index = 12
+texture_filter = 1
+position = Vector2(-15, -1026.38)
+scale = Vector2(-1, -1.614)
+texture = ExtResource("5_ipdiu")
 
 [node name="front_wall" type="Node2D" parent="Walls"]
 z_index = -1
@@ -209,7 +303,7 @@ z_index = 11
 texture_filter = 1
 position = Vector2(-15, -26)
 scale = Vector2(1, 2.16406)
-texture = ExtResource("5_4awxl")
+texture = ExtResource("4_4fvnh")
 
 [node name="ladder_wall" type="Node2D" parent="Walls"]
 z_index = -1
@@ -219,11 +313,7 @@ position = Vector2(1715, -340)
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/ladder_wall/Collision"]
-position = Vector2(-21, 15)
-shape = SubResource("RectangleShape2D_ip83h")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls/ladder_wall/Collision"]
-position = Vector2(-400, 15)
+position = Vector2(-206, 14.9999)
 shape = SubResource("RectangleShape2D_ip83h")
 
 [node name="Sprite2D" type="Sprite2D" parent="Walls/ladder_wall"]
@@ -231,7 +321,7 @@ z_index = 11
 texture_filter = 1
 position = Vector2(-15, -205)
 scale = Vector2(1, 3.5625)
-texture = ExtResource("5_4awxl")
+texture = ExtResource("4_4fvnh")
 
 [node name="ladder_wall2" type="Node2D" parent="Walls"]
 z_index = -1
@@ -241,22 +331,22 @@ position = Vector2(1447, -340)
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/ladder_wall2/Collision"]
-position = Vector2(-21.0001, 15.0001)
-shape = SubResource("RectangleShape2D_ip83h")
+position = Vector2(65, 15.9999)
+shape = SubResource("RectangleShape2D_4mn4o")
 
 [node name="Sprite2D" type="Sprite2D" parent="Walls/ladder_wall2"]
 z_index = 11
 texture_filter = 1
 position = Vector2(-15, -205)
 scale = Vector2(1, 3.5625)
-texture = ExtResource("5_4awxl")
+texture = ExtResource("4_4fvnh")
 
 [node name="operation_table" type="StaticBody2D" parent="."]
 z_index = -5
 position = Vector2(-410, 297)
 
 [node name="Sprite2D" type="Sprite2D" parent="operation_table"]
-texture = ExtResource("116_l8y3g")
+texture = ExtResource("6_lbwct")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="operation_table"]
 position = Vector2(0, -8)
@@ -267,7 +357,7 @@ one_way_collision = true
 z_index = -1
 texture_filter = 1
 position = Vector2(-94, 265)
-texture = ExtResource("7_cvc7t")
+texture = ExtResource("7_y4g5a")
 
 [node name="lower_platform" type="StaticBody2D" parent="Bookshelf02"]
 position = Vector2(179, 85)
@@ -306,11 +396,11 @@ position = Vector2(-1, 21)
 shape = SubResource("RectangleShape2D_matyd")
 one_way_collision = true
 
-[node name="Key" parent="." node_paths=PackedStringArray("area") instance=ExtResource("8_v8mhp")]
+[node name="Key" parent="." node_paths=PackedStringArray("area") instance=ExtResource("8_1wiat")]
 position = Vector2(-80, 193)
 area = NodePath("../Door/Area2D")
 
-[node name="Door" parent="." instance=ExtResource("9_jrk24")]
+[node name="Door" parent="." instance=ExtResource("9_b7kew")]
 position = Vector2(186, 262)
 
 [node name="Area2D" type="Area2D" parent="Door"]
@@ -320,6 +410,7 @@ position = Vector2(0, 26)
 shape = SubResource("RectangleShape2D_6ev4s")
 
 [node name="Tutorial_text" type="NinePatchRect" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -329,7 +420,7 @@ offset_left = -514.0
 offset_top = 86.0
 offset_right = -285.0
 offset_bottom = 185.0
-theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_fonts/normal_font = ExtResource("10_ycbxp")
 theme_override_font_sizes/normal_font_size = 15
 text = "Move with:
 'A' and 'D' or with:
@@ -341,7 +432,7 @@ offset_left = -177.0
 offset_top = 56.0
 offset_right = 41.0
 offset_bottom = 152.0
-theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_fonts/normal_font = ExtResource("10_ycbxp")
 theme_override_font_sizes/normal_font_size = 15
 text = "Jump with:
 'SPACEBAR' and
@@ -353,19 +444,21 @@ offset_left = 295.0
 offset_top = 86.0
 offset_right = 513.0
 offset_bottom = 168.0
-theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_fonts/normal_font = ExtResource("10_ycbxp")
 theme_override_font_sizes/normal_font_size = 15
 text = "You can sprint with 'shift'"
 
 [node name="PC_MOVEMENT4" type="RichTextLabel" parent="Tutorial_text"]
 layout_mode = 0
 offset_left = 862.0
-offset_top = 81.0
+offset_top = -22.0
 offset_right = 1080.0
 offset_bottom = 163.0
-theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_fonts/normal_font = ExtResource("10_ycbxp")
 theme_override_font_sizes/normal_font_size = 15
-text = "You can hide by pressing 'w' and unhide with 'S'"
+text = "You can hide by pressing 'w' and unhide with 'S'
+
+Note that you can hide only once and then you have to wait for the \"shadow\" to recharge"
 
 [node name="PC_MOVEMENT5" type="RichTextLabel" parent="Tutorial_text"]
 layout_mode = 0
@@ -373,13 +466,12 @@ offset_left = 1316.0
 offset_top = 24.0
 offset_right = 1534.0
 offset_bottom = 106.0
-theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_fonts/normal_font = ExtResource("10_ycbxp")
 theme_override_font_sizes/normal_font_size = 15
 text = "Climb with 'W' and 'S' or
 up arrow and down arrow!"
 
 [node name="Tutorial_text_console" type="NinePatchRect" parent="."]
-visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -389,7 +481,7 @@ offset_left = -514.0
 offset_top = 86.0
 offset_right = -265.0
 offset_bottom = 182.0
-theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_fonts/normal_font = ExtResource("10_ycbxp")
 theme_override_font_sizes/normal_font_size = 15
 text = "Move with your controllers
 left stick
@@ -401,7 +493,7 @@ offset_left = -177.0
 offset_top = 56.0
 offset_right = 101.0
 offset_bottom = 171.0
-theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_fonts/normal_font = ExtResource("10_ycbxp")
 theme_override_font_sizes/normal_font_size = 15
 text = "Jump with:
 'X' or 'A' button  and
@@ -413,27 +505,29 @@ offset_left = 295.0
 offset_top = 86.0
 offset_right = 513.0
 offset_bottom = 168.0
-theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_fonts/normal_font = ExtResource("10_ycbxp")
 theme_override_font_sizes/normal_font_size = 15
 text = "You can sprint with 'circle' or 'B' button!"
 
 [node name="CONSOLE_MOVEMENT4" type="RichTextLabel" parent="Tutorial_text_console"]
 layout_mode = 0
 offset_left = 862.0
-offset_top = 81.0
+offset_top = -42.0
 offset_right = 1080.0
 offset_bottom = 163.0
-theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_fonts/normal_font = ExtResource("10_ycbxp")
 theme_override_font_sizes/normal_font_size = 15
-text = "You can hide by pressing dpad up and unhide with dpad down!"
+text = "You can hide by pressing dpad up and unhide with dpad down!
 
-[node name="PC_MOVEMENT5" type="RichTextLabel" parent="Tutorial_text_console"]
+Note that you can hide only once and then you have to wait for the \"shadow\" to recharge"
+
+[node name="CONSOLE_MOVEMENT5" type="RichTextLabel" parent="Tutorial_text_console"]
 layout_mode = 0
 offset_left = 1316.0
 offset_top = 24.0
 offset_right = 1534.0
 offset_bottom = 106.0
-theme_override_fonts/normal_font = ExtResource("10_ourhg")
+theme_override_fonts/normal_font = ExtResource("10_ycbxp")
 theme_override_font_sizes/normal_font_size = 15
 text = "Climb with up and down dpad buttons"
 
@@ -442,28 +536,28 @@ text = "Climb with up and down dpad buttons"
 [node name="Sprite2D" type="Sprite2D" parent="Cells"]
 z_index = -25
 position = Vector2(381, 265)
-texture = ExtResource("11_0113m")
+texture = ExtResource("11_d0i2b")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Cells"]
 z_index = -25
 position = Vector2(680, 265)
-texture = ExtResource("11_0113m")
+texture = ExtResource("11_d0i2b")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Cells"]
 z_index = -25
 position = Vector2(980, 265)
-texture = ExtResource("11_0113m")
+texture = ExtResource("11_d0i2b")
 
 [node name="Sprite2D4" type="Sprite2D" parent="Cells"]
 z_index = -25
 position = Vector2(1280, 265)
-texture = ExtResource("11_0113m")
+texture = ExtResource("11_d0i2b")
 
-[node name="Ladder" parent="." instance=ExtResource("12_h85bl")]
+[node name="Ladder" parent="." instance=ExtResource("12_ovl1i")]
 position = Vector2(1569, 201)
 
 [node name="CollisionShape2D" parent="Ladder" index="0"]
-position = Vector2(-0.5, -355.5)
+position = Vector2(-0.5, -275.75)
 shape = SubResource("RectangleShape2D_7scl4")
 
 [node name="StaticBody2D" parent="Ladder" index="2"]
@@ -477,37 +571,118 @@ z_index = -6
 texture_filter = 1
 texture_repeat = 1
 position = Vector2(0, -239)
-texture = ExtResource("13_x8h2t")
+texture = ExtResource("13_ji543")
 
 [node name="Platform3" type="Sprite2D" parent="Ladder"]
 z_index = -6
 texture_filter = 1
 texture_repeat = 1
 position = Vector2(0, -478)
-texture = ExtResource("13_x8h2t")
+texture = ExtResource("13_ji543")
 
 [node name="Platform4" type="Sprite2D" parent="Ladder"]
 z_index = -6
 texture_filter = 1
 texture_repeat = 1
 position = Vector2(0, -717)
-texture = ExtResource("13_x8h2t")
+texture = ExtResource("13_ji543")
 
-[node name="Baby01" parent="." instance=ExtResource("16_38n50")]
-position = Vector2(1647, -649)
+[node name="Baby01" parent="." instance=ExtResource("14_dkec7")]
+position = Vector2(1641, -482)
 
-[node name="change_camera_limit" type="Area2D" parent="."]
-position = Vector2(1422, -652)
+[node name="camera_change2" parent="." node_paths=PackedStringArray("player", "camera") instance=ExtResource("15_jtcym")]
+position = Vector2(1429, -522)
+player = NodePath("../Player")
+camera = NodePath("../Player/Camera")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="change_camera_limit"]
-position = Vector2(6.5, -33.5)
-shape = SubResource("RectangleShape2D_sal3g")
+[node name="Guards_room" type="Node" parent="."]
+
+[node name="Sofa" type="StaticBody2D" parent="Guards_room"]
+position = Vector2(954, -498)
+
+[node name="normal" type="Sprite2D" parent="Guards_room/Sofa"]
+z_index = -10
+texture = ExtResource("16_00rkh")
+
+[node name="hiding" type="AnimatedSprite2D" parent="Guards_room/Sofa"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_beo2a")
+animation = &"hiding"
+frame = 1
+frame_progress = 0.178058
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Guards_room/Sofa"]
+polygon = PackedVector2Array(0, -23, -56, -23, -57, -28, 0, -30, 57, -28, 57, -23)
+one_way_collision = true
+
+[node name="handrest" type="CollisionShape2D" parent="Guards_room/Sofa"]
+position = Vector2(50, 7.125)
+shape = SubResource("RectangleShape2D_xaefk")
+one_way_collision = true
+
+[node name="handrest02" type="CollisionShape2D" parent="Guards_room/Sofa"]
+position = Vector2(-51, 7.25)
+shape = SubResource("RectangleShape2D_xaefk")
+one_way_collision = true
+
+[node name="sofa" type="CollisionShape2D" parent="Guards_room/Sofa"]
+position = Vector2(-0.5, 10)
+shape = SubResource("RectangleShape2D_hfek7")
+one_way_collision = true
+
+[node name="hiding_area" parent="Guards_room/Sofa" node_paths=PackedStringArray("main", "player", "normal_sprite", "hiding_sprite") instance=ExtResource("18_wyjfj")]
+position = Vector2(-1, 21)
+main = NodePath("../../..")
+player = NodePath("../../../Player")
+normal_sprite = NodePath("../normal")
+hiding_sprite = NodePath("../hiding")
+
+[node name="platform" parent="Guards_room" instance=ExtResource("19_0h1a5")]
+position = Vector2(1107, -563)
+
+[node name="taulu" type="StaticBody2D" parent="Guards_room"]
+texture_filter = 1
+position = Vector2(955, -584)
+
+[node name="Platform" type="Sprite2D" parent="Guards_room/taulu"]
+z_index = -6
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("20_wxrh7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Guards_room/taulu"]
+position = Vector2(0, -30)
+shape = SubResource("RectangleShape2D_llgek")
+one_way_collision = true
+
+[node name="Background" type="Polygon2D" parent="Guards_room"]
+modulate = Color(1, 1, 1, 0.588235)
+z_index = -50
+texture_filter = 2
+texture_repeat = 2
+position = Vector2(399, -1124)
+texture = ExtResource("22_73ws1")
+texture_scale = Vector2(0.75, 0.75)
+polygon = PackedVector2Array(1032, 137, -219, 137, -207, 351, -202, 679, 65.3661, 680.933, 1036, 668, 1028, 444)
+
+[node name="Player" parent="." instance=ExtResource("21_scvav")]
+unique_name_in_owner = true
+position = Vector2(-386, 313)
+
+[node name="Camera" parent="Player" index="3"]
+limit_left = -570
+
+[node name="Vignette" parent="Player/Camera/CanvasLayer" index="1"]
+material = SubResource("ShaderMaterial_ov048")
+
+[node name="Heartbeat" parent="Player/Camera/CanvasLayer" index="2"]
+material = SubResource("ShaderMaterial_ov048")
 
 [connection signal="door_entered" from="Key" to="Door" method="_on_door_entered"]
 [connection signal="door_exited" from="Key" to="Door" method="_on_door_exited"]
 [connection signal="door_opened" from="Key" to="Door" method="_on_door_opened"]
 [connection signal="area_entered" from="Door/Area2D" to="Key" method="_on_door_zone_entered"]
 [connection signal="area_exited" from="Door/Area2D" to="Key" method="_on_door_zone_exited"]
-[connection signal="area_entered" from="change_camera_limit" to="Tutorial" method="_on_camera_change_entered"]
 
 [editable path="Ladder"]
+[editable path="Player"]

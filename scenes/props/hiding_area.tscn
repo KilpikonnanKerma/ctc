@@ -13,7 +13,6 @@ script = ExtResource("1_hs0wj")
 shape = SubResource("RectangleShape2D_76nmn")
 
 [node name="pc_text" type="NinePatchRect" parent="."]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -27,6 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PC_MOVEMENT" type="RichTextLabel" parent="pc_text"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -43,8 +43,25 @@ theme_override_fonts/normal_font = ExtResource("2_sxg63")
 theme_override_font_sizes/normal_font_size = 15
 text = "'W' hide"
 
-[node name="controller_text" type="NinePatchRect" parent="."]
+[node name="PC_MOVEMENT2" type="RichTextLabel" parent="pc_text"]
 visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = -11.5
+offset_right = 63.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_sxg63")
+theme_override_font_sizes/normal_font_size = 15
+text = "'S' unhide"
+
+[node name="controller_text" type="NinePatchRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -58,6 +75,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PC_MOVEMENT" type="RichTextLabel" parent="controller_text"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -73,6 +91,24 @@ grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("2_sxg63")
 theme_override_font_sizes/normal_font_size = 15
 text = "'dpad up' hide"
+
+[node name="PC_MOVEMENT2" type="RichTextLabel" parent="controller_text"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.5
+offset_top = -11.5
+offset_right = 114.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_sxg63")
+theme_override_font_sizes/normal_font_size = 15
+text = "'dpad down' unhide"
 
 [connection signal="area_entered" from="." to="." method="_on_hide_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_hide_area_exited"]

@@ -25,7 +25,7 @@ func _on_change_cam(area: Area2D):
 	if (area.is_in_group("Player") && !area.is_in_group("Enemy")):
 		if (player.last_input == "left"):
 			_change_limits(end_left, end_right, end_top, end_bottom)
-		elif (player.last_input == "right"):
+		if (player.last_input == "right"):
 			_change_limits(start_left, start_right, start_top, start_bottom)
 
 func _change_limits(left:int, right: int, top: int, bottom: int):
