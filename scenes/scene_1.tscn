@@ -67,7 +67,7 @@ script = ExtResource("1_7n0go")
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("1_5o17h")]
 unique_name_in_owner = true
-position = Vector2(401, 105)
+position = Vector2(1140, 377)
 
 [node name="ml_01" type="StaticBody2D" parent="."]
 position = Vector2(-28, 415)

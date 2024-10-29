@@ -38,7 +38,7 @@ func _ready() -> void:
 	paused = false
 	Engine.time_scale = 1
 
-	hide_available = true
+	#hide_available = true
 
 	player.animPlayer.play("camera_zoom_out")
 

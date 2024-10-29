@@ -179,15 +179,15 @@ size = Vector2(64, 102)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_framm"]
 size = Vector2(20, 89)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yfd5j"]
+size = Vector2(87, 83)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ov048"]
 resource_local_to_scene = true
 shader = ExtResource("22_vlgxt")
 shader_parameter/vignette_intensity = 0.8
 shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yfd5j"]
-size = Vector2(87, 83)
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_6xrhj")
@@ -765,10 +765,10 @@ texture_repeat = 2
 position = Vector2(399, -1124)
 texture = ExtResource("22_73ws1")
 texture_scale = Vector2(0.75, 0.75)
-polygon = PackedVector2Array(1032, 137, -219, 137, -207, 351, -202, 679, 65.3661, 680.933, 1036, 668, 1028, 444)
+polygon = PackedVector2Array(1032, 137, -996, 132, -999, 330, -1007, 681, 65.3661, 680.933, 1036, 668, 1028, 444)
 
 [node name="Guard" type="CharacterBody2D" parent="Guards_room" groups=["Enemy"]]
-position = Vector2(326, -514)
+position = Vector2(692, -514)
 script = ExtResource("24_j7sf0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Guards_room/Guard"]
@@ -819,6 +819,15 @@ shape = SubResource("RectangleShape2D_framm")
 disabled = true
 debug_color = Color(0.964151, 0, 0.494479, 0.42)
 
+[node name="level_switch" type="Area2D" parent="."]
+position = Vector2(-213, -478)
+script = ExtResource("41_5mr7f")
+level_path = "res://scenes/scene_1.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level_switch"]
+position = Vector2(-1.5, -31.5)
+shape = SubResource("RectangleShape2D_yfd5j")
+
 [node name="Player" parent="." instance=ExtResource("21_scvav")]
 unique_name_in_owner = true
 position = Vector2(-386, 313)
@@ -831,15 +840,6 @@ material = SubResource("ShaderMaterial_ov048")
 
 [node name="Heartbeat" parent="Player/Camera/CanvasLayer" index="2"]
 material = SubResource("ShaderMaterial_ov048")
-
-[node name="level_switch" type="Area2D" parent="."]
-position = Vector2(-213, -478)
-script = ExtResource("41_5mr7f")
-level_path = "res://scenes/scene_1.tscn"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="level_switch"]
-position = Vector2(-1.5, -31.5)
-shape = SubResource("RectangleShape2D_yfd5j")
 
 [connection signal="door_entered" from="Key" to="Door" method="_on_door_entered"]
 [connection signal="door_exited" from="Key" to="Door" method="_on_door_exited"]

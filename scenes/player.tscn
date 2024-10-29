@@ -1,4 +1,4 @@
-[gd_scene load_steps=151 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=152 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
@@ -751,7 +751,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(2, 2)]
 }
 
 [sub_resource type="Animation" id="Animation_rhjxu"]
@@ -864,9 +864,26 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_5cxod"]
+resource_name = "camera_zoom_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75ai5"]
 _data = {
 "RESET": SubResource("Animation_qabcx"),
+"camera_zoom_in": SubResource("Animation_5cxod"),
 "camera_zoom_out": SubResource("Animation_rhjxu"),
 "heartbeat": SubResource("Animation_wc3hu"),
 "heartbeat_on": SubResource("Animation_vhtix"),
@@ -901,6 +918,7 @@ shape = SubResource("RectangleShape2D_eoymx")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(1, 1)
+zoom = Vector2(2, 2)
 process_callback = 0
 limit_left = -100000
 limit_bottom = 425
