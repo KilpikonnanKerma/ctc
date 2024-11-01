@@ -25,6 +25,7 @@ const JUMP_VELOCITY = -300.0
 
 var hiding: bool = false
 var is_on_ladder: bool = false
+var is_on_level_switch_area = false
 
 var is_eating
 var enemy_body
@@ -61,7 +62,9 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor() && !is_on_ladder:
 		velocity += get_gravity() * delta
 
-	if stamina_bar.value <= 1000 && not Input.is_action_pressed("run"):
+	var direction := Input.get_axis("mv_left", "mv_right")
+
+	if stamina_bar.value <= 1000 && not Input.is_action_just_pressed("run"):
 		if is_on_floor():
 			stamina_bar.value += 1
 		else:
@@ -74,9 +77,6 @@ func _physics_process(delta: float) -> void:
 	if (hiding):
 		stop_movement()
 
-
-	var direction := Input.get_axis("mv_left", "mv_right")
-
 	match state:
 		PlayerState.NORMAL:
 			vignette.hide()
@@ -85,7 +85,7 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("jump") and is_on_floor() && !is_on_ladder:
 				velocity.y = JUMP_VELOCITY
 
-			if Input.is_action_just_pressed("hide") and is_on_floor() && !is_on_ladder && main.hide_available && !main.is_on_hide_area:
+			if Input.is_action_just_pressed("hide") and is_on_floor() && !is_on_ladder && main.hide_available && !main.is_on_hide_area && !is_on_level_switch_area:
 				state = PlayerState.TRS_TO_HIDE
 				player.play("hide_transition")
 				hide_timer.start(1.4) # 5fps ja 7 frames

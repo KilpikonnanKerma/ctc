@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://btkp18hj05lh"]
+[gd_scene load_steps=64 format=3 uid="uid://btkp18hj05lh"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_6xrhj"]
 [ext_resource type="Script" path="res://scripts/levels/tutorial.gd" id="1_c6cl2"]
@@ -40,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://bsg6abrr27e2o" path="res://sprites/shit/timer_04.png" id="36_rkfyr"]
 [ext_resource type="Texture2D" uid="uid://bk2pk53hlica" path="res://sprites/shit/huutomerkki.png" id="37_d5kr4"]
 [ext_resource type="Texture2D" uid="uid://cjteld6qflwhx" path="res://sprites/shit/kymysys.png" id="38_45ru5"]
+[ext_resource type="Texture2D" uid="uid://otitf0rcfbdw" path="res://sprites/maps/stairs_up.png" id="40_40yqi"]
 [ext_resource type="Script" path="res://scripts/levels/level_switch.gd" id="41_5mr7f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f867"]
@@ -180,7 +181,7 @@ size = Vector2(64, 102)
 size = Vector2(20, 89)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfd5j"]
-size = Vector2(87, 83)
+size = Vector2(64, 64)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ov048"]
 resource_local_to_scene = true
@@ -819,14 +820,48 @@ shape = SubResource("RectangleShape2D_framm")
 disabled = true
 debug_color = Color(0.964151, 0, 0.494479, 0.42)
 
-[node name="level_switch" type="Area2D" parent="."]
+[node name="level_switch" type="Area2D" parent="." node_paths=PackedStringArray("pc_text", "controller_text", "player", "main")]
 position = Vector2(-213, -478)
 script = ExtResource("41_5mr7f")
 level_path = "res://scenes/scene_1.tscn"
+pc_text = NodePath("text/PC_MOVEMENT")
+controller_text = NodePath("text/CONTROLLER_MOVEMENT")
+player = NodePath("../Player")
+main = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="level_switch"]
-position = Vector2(-1.5, -31.5)
+position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_yfd5j")
+
+[node name="Sprite2D" type="Sprite2D" parent="level_switch"]
+position = Vector2(0, -20)
+texture = ExtResource("40_40yqi")
+
+[node name="text" type="NinePatchRect" parent="level_switch"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PC_MOVEMENT" type="RichTextLabel" parent="level_switch/text"]
+visible = false
+layout_mode = 0
+offset_left = -121.0
+offset_top = -129.0
+offset_right = 129.0
+offset_bottom = -108.0
+theme_override_fonts/normal_font = ExtResource("10_ycbxp")
+theme_override_font_sizes/normal_font_size = 15
+text = "'W' climb the stairs"
+
+[node name="CONTROLLER_MOVEMENT" type="RichTextLabel" parent="level_switch/text"]
+visible = false
+layout_mode = 0
+offset_left = -157.0
+offset_top = -130.0
+offset_right = 175.0
+offset_bottom = -107.0
+theme_override_fonts/normal_font = ExtResource("10_ycbxp")
+theme_override_font_sizes/normal_font_size = 15
+text = "'DPAD UP' CLIMB the stairs"
 
 [node name="Player" parent="." instance=ExtResource("21_scvav")]
 unique_name_in_owner = true
@@ -850,6 +885,7 @@ material = SubResource("ShaderMaterial_ov048")
 [connection signal="area_exited" from="Guards_room/Guard/Area2D" to="Guards_room/Guard" method="far_from_player"]
 [connection signal="area_entered" from="Guards_room/Guard/Attack_area" to="Guards_room/Guard" method="attackus"]
 [connection signal="area_entered" from="level_switch" to="level_switch" method="_you"]
+[connection signal="area_exited" from="level_switch" to="level_switch" method="_exit"]
 
 [editable path="Ladder"]
 [editable path="Player"]

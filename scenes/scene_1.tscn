@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cwbvwij44oxv1"]
+[gd_scene load_steps=41 format=3 uid="uid://cwbvwij44oxv1"]
 
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="1_5o17h"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7n0go"]
@@ -23,6 +23,11 @@
 [ext_resource type="PackedScene" uid="uid://dsy134i7uchnh" path="res://scenes/key.tscn" id="19_kivdw"]
 [ext_resource type="PackedScene" uid="uid://cjtxxl7udssej" path="res://scenes/door.tscn" id="20_msxws"]
 [ext_resource type="Texture2D" uid="uid://u8s5oi808t4d" path="res://sprites/Props/tv.png" id="22_v2mbb"]
+[ext_resource type="Script" path="res://scripts/levels/level_switch.gd" id="24_pkrii"]
+[ext_resource type="Texture2D" uid="uid://d3sxxibcqwky6" path="res://sprites/maps/stairs02.png" id="25_yrx4a"]
+[ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="26_f3utp"]
+[ext_resource type="Texture2D" uid="uid://cflrckbahorq2" path="res://sprites/Props/taulu06.png" id="27_3nhqp"]
+[ext_resource type="Texture2D" uid="uid://dbmxatuqypb4t" path="res://sprites/Props/bookshelf03.png" id="28_11kmj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1197, 28.5)
@@ -49,10 +54,13 @@ size = Vector2(80, 102)
 size = Vector2(63, 482)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iunlr"]
-size = Vector2(64, 1055)
+size = Vector2(64, 1188)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1b7g"]
 size = Vector2(65, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpo45"]
+size = Vector2(64, 64)
 
 [sub_resource type="Environment" id="Environment_ehrrk"]
 background_mode = 3
@@ -347,14 +355,15 @@ texture = ExtResource("6_las7y")
 position = Vector2(-55, -570)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/Floor02"]
-position = Vector2(17.5, 3.05176e-05)
+position = Vector2(84, 0.000274658)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_iunlr")
 
 [node name="Wall01" type="Sprite2D" parent="ml_02/Floor02"]
 z_index = 6
+position = Vector2(64.8118, 0.000234618)
 rotation = 1.5708
-scale = Vector2(1, 4.29102)
+scale = Vector2(1, 4.79736)
 texture = ExtResource("6_las7y")
 
 [node name="Upstairs" type="Node" parent="ml_02"]
@@ -371,11 +380,98 @@ position = Vector2(0.5, -27.5)
 shape = SubResource("RectangleShape2D_p1b7g")
 one_way_collision = true
 
+[node name="level_switch" type="Area2D" parent="ml_02" node_paths=PackedStringArray("pc_text", "controller_text", "player", "main")]
+z_index = -3
+position = Vector2(-30, -33)
+script = ExtResource("24_pkrii")
+level_path = "res://scenes/levels/tutorial.tscn"
+pc_text = NodePath("text/PC_MOVEMENT")
+controller_text = NodePath("text/CONTROLLER_MOVEMENT")
+player = NodePath("../../Player")
+main = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/level_switch"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_hpo45")
+
+[node name="Sprite2D" type="Sprite2D" parent="ml_02/level_switch"]
+position = Vector2(0, -20)
+texture = ExtResource("25_yrx4a")
+
+[node name="text" type="NinePatchRect" parent="ml_02/level_switch"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PC_MOVEMENT" type="RichTextLabel" parent="ml_02/level_switch/text"]
+visible = false
+layout_mode = 0
+offset_left = -121.0
+offset_top = -129.0
+offset_right = 129.0
+offset_bottom = -108.0
+theme_override_fonts/normal_font = ExtResource("26_f3utp")
+theme_override_font_sizes/normal_font_size = 15
+text = "'W' climb the stairs"
+
+[node name="CONTROLLER_MOVEMENT" type="RichTextLabel" parent="ml_02/level_switch/text"]
+visible = false
+layout_mode = 0
+offset_left = -157.0
+offset_top = -130.0
+offset_right = 175.0
+offset_bottom = -107.0
+theme_override_fonts/normal_font = ExtResource("26_f3utp")
+theme_override_font_sizes/normal_font_size = 15
+text = "'DPAD UP' CLIMB the stairs"
+
+[node name="platform7" type="StaticBody2D" parent="ml_02"]
+texture_filter = 1
+position = Vector2(-236, -186)
+
+[node name="Platform" type="Sprite2D" parent="ml_02/platform7"]
+z_index = -6
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("27_3nhqp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/platform7"]
+position = Vector2(0, -62)
+shape = SubResource("RectangleShape2D_llgek")
+one_way_collision = true
+
+[node name="Bookshelf01" type="Sprite2D" parent="ml_02"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-378, -85)
+texture = ExtResource("28_11kmj")
+
+[node name="upper_platform" type="StaticBody2D" parent="ml_02/Bookshelf01"]
+position = Vector2(179, 41)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/Bookshelf01/upper_platform"]
+position = Vector2(-180, -102)
+shape = SubResource("RectangleShape2D_a6nti")
+one_way_collision = true
+
+[node name="platform" parent="ml_02" instance=ExtResource("9_8s4m4")]
+position = Vector2(-312, -66)
+
+[node name="platform2" parent="ml_02" instance=ExtResource("9_8s4m4")]
+position = Vector2(-442, -97)
+
+[node name="platform3" parent="ml_02" instance=ExtResource("9_8s4m4")]
+position = Vector2(-477, -183)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ehrrk")
+
+[node name="Ladder" parent="." instance=ExtResource("19_3pfd3")]
+position = Vector2(778, 81)
 
 [connection signal="door_entered" from="ml_01/Key" to="ml_01/Door" method="_on_door_entered"]
 [connection signal="door_exited" from="ml_01/Key" to="ml_01/Door" method="_on_door_exited"]
 [connection signal="door_opened" from="ml_01/Key" to="ml_01/Door" method="_on_door_opened"]
 [connection signal="area_entered" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_entered"]
 [connection signal="area_exited" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_exited"]
+[connection signal="area_entered" from="ml_02/level_switch" to="ml_02/level_switch" method="_you"]
+[connection signal="area_exited" from="ml_02/level_switch" to="ml_02/level_switch" method="_exit"]

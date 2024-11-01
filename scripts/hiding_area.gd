@@ -15,7 +15,10 @@ extends Area2D
 @export var hiding_sprite: AnimatedSprite2D
 
 func _ready() -> void:
-	pass
+	pc_text.hide()
+	pc_text_unhide.hide()
+	controller_text.hide()
+	controller_text_unhide.hide()
 
 
 func _process(_delta: float) -> void:
