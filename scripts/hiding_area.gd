@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 		hiding_sprite.show()
 		hiding_sprite.play("hiding")
 
-	if (player.hiding):
+	if (player.hiding && main.is_on_hide_area):
 		if(main.is_using_controller):
 			controller_text.hide()
 			pc_text.hide()
@@ -52,8 +52,8 @@ func _process(_delta: float) -> void:
 
 		hiding_sprite.hide()
 
-func _on_hide_area_entered(area: Area2D):
-	if (!area.is_in_group("Enemy")):
+func _on_hide_area_entered(area: Area2D) -> void:
+	if (!area.is_in_group("Enemy") && area.is_in_group("Player")):
 		if (main.is_using_controller):
 			controller_text.show()
 			pc_text.hide()
@@ -62,8 +62,8 @@ func _on_hide_area_entered(area: Area2D):
 			pc_text.show()
 		main.is_on_hide_area = true
 	
-func _on_hide_area_exited(area: Area2D):
-	if(!area.is_in_group("Enemy")):
+func _on_hide_area_exited(area: Area2D) -> void:
+	if(!area.is_in_group("Enemy") && area.is_in_group("Player")):
 		controller_text.hide()
 		pc_text.hide()
 		controller_text_unhide.hide()

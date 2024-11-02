@@ -462,11 +462,11 @@ position = Vector2(-442, -97)
 [node name="platform3" parent="ml_02" instance=ExtResource("9_8s4m4")]
 position = Vector2(-477, -183)
 
+[node name="platform4" parent="ml_02" instance=ExtResource("9_8s4m4")]
+position = Vector2(-378, -221)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ehrrk")
-
-[node name="Ladder" parent="." instance=ExtResource("19_3pfd3")]
-position = Vector2(778, 81)
 
 [connection signal="door_entered" from="ml_01/Key" to="ml_01/Door" method="_on_door_entered"]
 [connection signal="door_exited" from="ml_01/Key" to="ml_01/Door" method="_on_door_exited"]

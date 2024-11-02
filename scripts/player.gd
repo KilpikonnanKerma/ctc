@@ -102,7 +102,7 @@ func _physics_process(delta: float) -> void:
 				eat(main.cur_victim)
 
 			if direction:
-				if (Input.is_action_pressed("run") && stamina_bar.value > 0 && !hiding): #voi ns. dashata ilmassa, jos painaa shiftiä (it's not a bug it's a feature)
+				if (Input.is_action_pressed("run") && stamina_bar.value >= 50 && !hiding): #voi ns. dashata ilmassa, jos painaa shiftiä (it's not a bug it's a feature)
 					velocity.x = move_toward(velocity.x, direction * run_speed, run_speed * acceleration)
 					if is_hungry:
 						stamina_bar.value -= 8

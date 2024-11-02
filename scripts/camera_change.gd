@@ -33,9 +33,9 @@ func _change_limits(left:int, right: int, top: int, bottom: int):
 
 	if (left != 0):
 		tween.tween_property(camera, "limit_left", left, 2.0).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	if (bottom != 0):
+		tween.tween_property(camera, "limit_bottom", bottom, 2.0).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	if (right != 0):
 		tween.tween_property(camera, "limit_right", right, 2.0).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
 	if (top != 0):
 		tween.tween_property(camera, "limit_top", top, 2.0).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-	if (bottom != 0):
-		tween.tween_property(camera, "limit_bottom", bottom, 2.0).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)

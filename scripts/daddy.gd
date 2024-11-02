@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@onready var main = $"../.."
-@onready var player = $"../../Player"
+@export var main: Node2D
+@export var player: CharacterBody2D
 @onready var htmrk = $"Huutomerkki"
 @onready var qstn = $"kymysys"
 @onready var notice_timer = $"notice_timer"
@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		anim.stop()
 
-	if main.aggro && player.state == player.PlayerState.HIDING: # TODO: Vihollinen huomaa, jos meet piilon sen lähellä (käytä ehkä daddyn is_close boolia)
+	if main.aggro && player.hiding:#player.state == player.PlayerState.HIDING: # TODO: Vihollinen huomaa, jos meet piilon sen lähellä (käytä ehkä daddyn is_close boolia)
 		main.searching = true
 		main.aggro = false
 
@@ -83,9 +83,10 @@ func _physics_process(delta: float) -> void:
 		htmrk.show()
 		if !facing_right:
 			direction = (player.position - position).normalized()
-			velocity.x = (direction.x*2 * -speed*2) * delta
+			velocity.x = (direction.x*2 * -speed*1.5) * delta
 		else:
 			flip()
+
 	elif main.searching: #searching
 		htmrk.hide()
 		qstn.show()

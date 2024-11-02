@@ -113,7 +113,7 @@ size = Vector2(20, 4.25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hfek7"]
 size = Vector2(81, 2)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_llgek"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81jah"]
 size = Vector2(130, 4)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b1yff"]
@@ -740,7 +740,7 @@ texture = ExtResource("20_wxrh7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Guards_room/taulu"]
 position = Vector2(0, -30)
-shape = SubResource("RectangleShape2D_llgek")
+shape = SubResource("RectangleShape2D_81jah")
 one_way_collision = true
 
 [node name="taulu2" type="StaticBody2D" parent="Guards_room"]
@@ -755,7 +755,7 @@ texture = ExtResource("22_vgswg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Guards_room/taulu2"]
 position = Vector2(0, -30)
-shape = SubResource("RectangleShape2D_llgek")
+shape = SubResource("RectangleShape2D_81jah")
 one_way_collision = true
 
 [node name="Background" type="Polygon2D" parent="Guards_room"]
