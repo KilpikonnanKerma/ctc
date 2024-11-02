@@ -12,6 +12,8 @@ extends CharacterBody2D
 
 @onready var stamina_bar = $Camera/CanvasLayer/HUD/Stamina
 
+var blood_splatter01 = preload("res://scenes/props/blood_splatter01.tscn")
+
 var run_speed = 200.0
 var health = 3
 
@@ -200,6 +202,10 @@ func eat(body):
 		player.position.x -= 16
 
 	state = PlayerState.DINNER_TIME
+
+func blood_splatter(pos): # maybe todo
+	var instance = blood_splatter01.instantiate()
+	instance.position = pos
 
 func _on_hide_transition_finished():
 	if state == PlayerState.TRS_TO_HIDE:

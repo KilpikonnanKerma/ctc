@@ -7,7 +7,9 @@ extends Area2D
 @export var player: CharacterBody2D
 @export var main: Node2D
 
+@export var player_start_position_y: int
 @export var player_end_position_y: int
+@export var is_return: bool
 
 @onready var animPlayer = %Player/AnimationPlayer
 
@@ -31,7 +33,10 @@ func _process(_delta: float) -> void:
 
 func switch_level():
 	#get_tree().change_scene_to_file(level_path)
-	player.position.y = player_end_position_y
+	if (!is_return):
+		player.position.y = player_end_position_y
+	elif (is_return):
+		player.position.y = player_start_position_y
 	main.aggro = false
 
 func _you(area: Area2D):

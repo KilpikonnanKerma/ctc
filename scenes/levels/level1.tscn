@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://cncmsau8mljmi"]
+[gd_scene load_steps=100 format=3 uid="uid://cncmsau8mljmi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8b47d"]
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="2_did6k"]
@@ -24,8 +24,10 @@
 [ext_resource type="Texture2D" uid="uid://j7ilkad0cwl1" path="res://sprites/maps/grön.png" id="22_q82ip"]
 [ext_resource type="Texture2D" uid="uid://u8s5oi808t4d" path="res://sprites/Props/tv.png" id="23_f81r4"]
 [ext_resource type="Script" path="res://scripts/camera_change.gd" id="24_i6f4c"]
+[ext_resource type="Script" path="res://scripts/dumbshit/block_stairs_lv1.gd" id="25_5r74c"]
 [ext_resource type="Script" path="res://scripts/levels/level_switch.gd" id="25_kx0n2"]
 [ext_resource type="Texture2D" uid="uid://d3sxxibcqwky6" path="res://sprites/maps/stairs02.png" id="26_7187y"]
+[ext_resource type="Texture2D" uid="uid://boeyeow1504sm" path="res://sprites/maps/ladder_locked.png" id="27_hmypa"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="27_yu1dw"]
 [ext_resource type="Texture2D" uid="uid://cflrckbahorq2" path="res://sprites/Props/taulu06.png" id="28_7bbpl"]
 [ext_resource type="Texture2D" uid="uid://dbmxatuqypb4t" path="res://sprites/Props/bookshelf03.png" id="29_png4s"]
@@ -34,10 +36,11 @@
 [ext_resource type="Texture2D" uid="uid://mclps312dkw" path="res://sprites/maps/floor_02.png" id="32_4b1ux"]
 [ext_resource type="Texture2D" uid="uid://c3alr4np4lra7" path="res://sprites/maps/wall02.png" id="33_kvaog"]
 [ext_resource type="Texture2D" uid="uid://bnvm6rnqjcsir" path="res://sprites/maps/wall01-02.png" id="34_utbcj"]
-[ext_resource type="Texture2D" uid="uid://cf80cig18upxk" path="res://sprites/Props/operation_table.png" id="35_ablls"]
+[ext_resource type="Texture2D" uid="uid://doqypiy3gj7h7" path="res://sprites/Props/operation_table_blood.png" id="35_rjl1t"]
 [ext_resource type="Texture2D" uid="uid://b1sgcksvx11ek" path="res://sprites/Props/bookshelf02.png" id="36_eou8w"]
 [ext_resource type="Texture2D" uid="uid://b71ay054kncvs" path="res://sprites/Props/cell.png" id="37_de1j1"]
 [ext_resource type="Texture2D" uid="uid://mq03jyofbkl2" path="res://sprites/maps/ladder01.png" id="38_8db5e"]
+[ext_resource type="Texture2D" uid="uid://ducncqgk0v6vn" path="res://sprites/Props/cell02.png" id="39_2qg28"]
 [ext_resource type="PackedScene" uid="uid://dg325baeocxb1" path="res://scenes/camera_change.tscn" id="39_b81qq"]
 [ext_resource type="Texture2D" uid="uid://otitf0rcfbdw" path="res://sprites/maps/stairs_up.png" id="40_gjxmr"]
 [ext_resource type="Texture2D" uid="uid://dpv5undmr08eb" path="res://sprites/Props/goofy_sofa.png" id="41_csosk"]
@@ -103,8 +106,8 @@ size = Vector2(65, 9)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_od48m"]
 size = Vector2(64, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpo45"]
-size = Vector2(64, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmioy"]
+size = Vector2(278, 79)
 
 [sub_resource type="Environment" id="Environment_ehrrk"]
 background_mode = 3
@@ -259,7 +262,9 @@ script = ExtResource("1_8b47d")
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("2_did6k")]
 unique_name_in_owner = true
-position = Vector2(1039, 1777)
+position = Vector2(1013, 1777)
+acceleration = 0.1
+deceleration = 0.5
 
 [node name="Camera" parent="Player" index="3"]
 limit_left = 800
@@ -583,49 +588,22 @@ end_bottom = 450
 position = Vector2(0, 52)
 shape = SubResource("RectangleShape2D_od48m")
 
-[node name="level_switch" type="Area2D" parent="ml_02" node_paths=PackedStringArray("pc_text", "controller_text", "player", "main")]
-z_index = -3
-position = Vector2(0, -33)
-script = ExtResource("25_kx0n2")
-level_path = "res://scenes/levels/tutorial.tscn"
-pc_text = NodePath("text/PC_MOVEMENT")
-controller_text = NodePath("text/CONTROLLER_MOVEMENT")
-player = NodePath("../../Player")
-main = NodePath("../..")
+[node name="Stairs" type="Area2D" parent="ml_02"]
+position = Vector2(-1, -53)
+script = ExtResource("25_5r74c")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/level_switch"]
-position = Vector2(0, -20)
-shape = SubResource("RectangleShape2D_hpo45")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/Stairs"]
+position = Vector2(-1, -5.5)
+shape = SubResource("RectangleShape2D_vmioy")
 
-[node name="Sprite2D" type="Sprite2D" parent="ml_02/level_switch"]
-position = Vector2(0, -20)
+[node name="Stairs" type="Sprite2D" parent="ml_02/Stairs"]
+position = Vector2(1, 0)
 texture = ExtResource("26_7187y")
 
-[node name="text" type="NinePatchRect" parent="ml_02/level_switch"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PC_MOVEMENT" type="RichTextLabel" parent="ml_02/level_switch/text"]
+[node name="Stair_block" type="Sprite2D" parent="ml_02/Stairs"]
 visible = false
-layout_mode = 0
-offset_left = -121.0
-offset_top = -129.0
-offset_right = 129.0
-offset_bottom = -108.0
-theme_override_fonts/normal_font = ExtResource("27_yu1dw")
-theme_override_font_sizes/normal_font_size = 15
-text = "'W' climb the stairs"
-
-[node name="CONTROLLER_MOVEMENT" type="RichTextLabel" parent="ml_02/level_switch/text"]
-visible = false
-layout_mode = 0
-offset_left = -157.0
-offset_top = -130.0
-offset_right = 175.0
-offset_bottom = -107.0
-theme_override_fonts/normal_font = ExtResource("27_yu1dw")
-theme_override_font_sizes/normal_font_size = 15
-text = "'DPAD UP' CLIMB the stairs"
+position = Vector2(1, 0)
+texture = ExtResource("27_hmypa")
 
 [node name="platform7" type="StaticBody2D" parent="ml_02"]
 texture_filter = 1
@@ -912,7 +890,7 @@ z_index = -5
 position = Vector2(-410, 297)
 
 [node name="Sprite2D" type="Sprite2D" parent="Tutorial/operation_table"]
-texture = ExtResource("35_ablls")
+texture = ExtResource("35_rjl1t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/operation_table"]
 position = Vector2(0, -8)
@@ -1113,7 +1091,7 @@ texture = ExtResource("37_de1j1")
 [node name="Sprite2D2" type="Sprite2D" parent="Tutorial/Cells"]
 z_index = -25
 position = Vector2(-164, 1)
-texture = ExtResource("37_de1j1")
+texture = ExtResource("39_2qg28")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Tutorial/Cells"]
 z_index = -25
@@ -1301,7 +1279,7 @@ texture_repeat = 2
 position = Vector2(399, -1124)
 texture = ExtResource("46_0h8un")
 texture_scale = Vector2(0.75, 0.75)
-polygon = PackedVector2Array(1032, 137, -996, 132, -999, 330, -1007, 681, 65.3661, 680.933, 1036, 668, 1028, 444)
+polygon = PackedVector2Array(1032, 137, -221.687, 133.909, -996, 132, -1007, 681, 65.3661, 680.933, 1036, 668, 1028, 444)
 
 [node name="Guard" type="CharacterBody2D" parent="." node_paths=PackedStringArray("main", "player") groups=["Enemy"]]
 position = Vector2(2085, 950)
@@ -1368,8 +1346,7 @@ player = NodePath("../Player")
 [connection signal="area_entered" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_entered"]
 [connection signal="area_exited" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_exited"]
 [connection signal="area_entered" from="ml_02/camera_change" to="ml_02/camera_change" method="_on_change_cam"]
-[connection signal="area_entered" from="ml_02/level_switch" to="ml_02/level_switch" method="_you"]
-[connection signal="area_exited" from="ml_02/level_switch" to="ml_02/level_switch" method="_exit"]
+[connection signal="area_exited" from="ml_02/Stairs" to="ml_02/Stairs" method="_on_area_exited"]
 [connection signal="door_entered" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_entered"]
 [connection signal="door_exited" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_exited"]
 [connection signal="door_opened" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_opened"]

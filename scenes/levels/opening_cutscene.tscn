@@ -115,9 +115,9 @@
 [ext_resource type="Texture2D" uid="uid://cv3ggdgcit7f1" path="res://sprites/player/player_walk_right_3.png" id="113_8ff4r"]
 [ext_resource type="Texture2D" uid="uid://cb1rrnm8xgrgb" path="res://sprites/player/player_walk_right_4.png" id="114_pi71m"]
 [ext_resource type="Texture2D" uid="uid://blq7i1mqxbr4i" path="res://sprites/player/player_walk_right_5.png" id="115_ir1pr"]
-[ext_resource type="Texture2D" uid="uid://cf80cig18upxk" path="res://sprites/Props/operation_table.png" id="116_08rdc"]
 [ext_resource type="Shader" path="res://scripts/shaders/vignette.gdshader" id="116_a648e"]
 [ext_resource type="Texture2D" uid="uid://c3alr4np4lra7" path="res://sprites/maps/wall02.png" id="116_xguht"]
+[ext_resource type="Texture2D" uid="uid://doqypiy3gj7h7" path="res://sprites/Props/operation_table_blood.png" id="118_d6cpe"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="119_0h0um"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f867"]
@@ -803,7 +803,7 @@ texture_repeat = 2
 position = Vector2(-57, -348)
 texture = ExtResource("2_r3jad")
 texture_scale = Vector2(0.75, 0.75)
-polygon = PackedVector2Array(1063, 252, 61, 259, -933, 250, -942.078, 317.878, -944, 686.924, 65.3661, 680.933, 1065, 675)
+polygon = PackedVector2Array(1063, 252, 61, 259, -933, 250, -942.078, 317.878, -944, 686.924, -343.724, 683.361, 65.3661, 680.933, 1065, 675)
 
 [node name="Floor" type="Node2D" parent="."]
 z_index = -1
@@ -917,7 +917,7 @@ z_index = -5
 position = Vector2(-410, 297)
 
 [node name="Sprite2D" type="Sprite2D" parent="operation_table"]
-texture = ExtResource("116_08rdc")
+texture = ExtResource("118_d6cpe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="operation_table"]
 position = Vector2(0, -8)
@@ -944,6 +944,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="text1" type="VBoxContainer" parent="cutscene_text"]
+visible = false
 layout_mode = 0
 offset_right = 167.0
 offset_bottom = 80.0
