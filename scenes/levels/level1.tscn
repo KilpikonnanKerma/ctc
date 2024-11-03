@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://cncmsau8mljmi"]
+[gd_scene load_steps=98 format=3 uid="uid://cncmsau8mljmi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8b47d"]
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="2_did6k"]
@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://cjtxxl7udssej" path="res://scenes/door.tscn" id="21_0mu2f"]
 [ext_resource type="Texture2D" uid="uid://j7ilkad0cwl1" path="res://sprites/maps/grön.png" id="22_q82ip"]
 [ext_resource type="Texture2D" uid="uid://u8s5oi808t4d" path="res://sprites/Props/tv.png" id="23_f81r4"]
-[ext_resource type="Script" path="res://scripts/camera_change.gd" id="24_i6f4c"]
 [ext_resource type="Script" path="res://scripts/dumbshit/block_stairs_lv1.gd" id="25_5r74c"]
 [ext_resource type="Script" path="res://scripts/levels/level_switch.gd" id="25_kx0n2"]
 [ext_resource type="Texture2D" uid="uid://d3sxxibcqwky6" path="res://sprites/maps/stairs02.png" id="26_7187y"]
@@ -103,19 +102,8 @@ size = Vector2(64, 1188)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1b7g"]
 size = Vector2(65, 9)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_od48m"]
-size = Vector2(64, 8)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmioy"]
 size = Vector2(278, 79)
-
-[sub_resource type="Environment" id="Environment_ehrrk"]
-background_mode = 3
-ssao_intensity = 1.0
-fog_density = 0.1
-adjustment_enabled = true
-adjustment_contrast = 1.1
-adjustment_saturation = 0.75
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f867"]
 size = Vector2(2488, 24)
@@ -257,14 +245,21 @@ size = Vector2(64, 102)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_framm"]
 size = Vector2(20, 89)
 
+[sub_resource type="Environment" id="Environment_ehrrk"]
+background_mode = 3
+ssao_intensity = 1.0
+fog_density = 0.1
+adjustment_enabled = true
+adjustment_contrast = 1.12
+adjustment_saturation = 0.75
+
 [node name="Scene1" type="Node2D"]
 script = ExtResource("1_8b47d")
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("2_did6k")]
+[node name="Player" parent="." node_paths=PackedStringArray("main") groups=["Player"] instance=ExtResource("2_did6k")]
 unique_name_in_owner = true
 position = Vector2(1013, 1777)
-acceleration = 0.1
-deceleration = 0.5
+main = NodePath("..")
 
 [node name="Camera" parent="Player" index="3"]
 limit_left = 800
@@ -576,18 +571,6 @@ position = Vector2(0.5, -27.5)
 shape = SubResource("RectangleShape2D_p1b7g")
 one_way_collision = true
 
-[node name="camera_change" type="Area2D" parent="ml_02" node_paths=PackedStringArray("player", "camera")]
-position = Vector2(0, -77)
-script = ExtResource("24_i6f4c")
-player = NodePath("../../Player")
-camera = NodePath("../../Player/Camera")
-end_left = 500
-end_bottom = 450
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="ml_02/camera_change"]
-position = Vector2(0, 52)
-shape = SubResource("RectangleShape2D_od48m")
-
 [node name="Stairs" type="Area2D" parent="ml_02"]
 position = Vector2(-1, -53)
 script = ExtResource("25_5r74c")
@@ -597,11 +580,13 @@ position = Vector2(-1, -5.5)
 shape = SubResource("RectangleShape2D_vmioy")
 
 [node name="Stairs" type="Sprite2D" parent="ml_02/Stairs"]
+z_index = -8
 position = Vector2(1, 0)
 texture = ExtResource("26_7187y")
 
 [node name="Stair_block" type="Sprite2D" parent="ml_02/Stairs"]
 visible = false
+z_index = -8
 position = Vector2(1, 0)
 texture = ExtResource("27_hmypa")
 
@@ -646,8 +631,9 @@ position = Vector2(-477, -183)
 [node name="platform4" parent="ml_02" instance=ExtResource("10_ibu8j")]
 position = Vector2(-378, -221)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ehrrk")
+[node name="MovingLamp" parent="ml_02" instance=ExtResource("18_2tlfl")]
+position = Vector2(-127, -251)
+scale = Vector2(-1, 1)
 
 [node name="Tutorial" type="Node2D" parent="."]
 position = Vector2(1393, 1464)
@@ -1147,7 +1133,7 @@ camera = NodePath("../../Player/Camera")
 start_bottom = 1850
 end_bottom = 1100
 
-[node name="level_switch" type="Area2D" parent="Tutorial" node_paths=PackedStringArray("pc_text", "controller_text", "player", "main")]
+[node name="level_switch" type="Area2D" parent="Tutorial" node_paths=PackedStringArray("pc_text", "controller_text", "player", "camera", "main")]
 z_index = -7
 position = Vector2(-213, -478)
 script = ExtResource("25_kx0n2")
@@ -1155,8 +1141,12 @@ level_path = "res://scenes/scene_1.tscn"
 pc_text = NodePath("text/PC_MOVEMENT")
 controller_text = NodePath("text/CONTROLLER_MOVEMENT")
 player = NodePath("../../Player")
+camera = NodePath("../../Player/Camera")
 main = NodePath("../..")
 player_end_position_y = 340
+also_change_camera = true
+cam_left = 500
+cam_bottom = 450
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/level_switch"]
 position = Vector2(0, -20)
@@ -1340,12 +1330,14 @@ position = Vector2(274, 346)
 main = NodePath("..")
 player = NodePath("../Player")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ehrrk")
+
 [connection signal="door_entered" from="ml_01/Key" to="ml_01/Door" method="_on_door_entered"]
 [connection signal="door_exited" from="ml_01/Key" to="ml_01/Door" method="_on_door_exited"]
 [connection signal="door_opened" from="ml_01/Key" to="ml_01/Door" method="_on_door_opened"]
 [connection signal="area_entered" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_entered"]
 [connection signal="area_exited" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_exited"]
-[connection signal="area_entered" from="ml_02/camera_change" to="ml_02/camera_change" method="_on_change_cam"]
 [connection signal="area_exited" from="ml_02/Stairs" to="ml_02/Stairs" method="_on_area_exited"]
 [connection signal="door_entered" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_entered"]
 [connection signal="door_exited" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_exited"]

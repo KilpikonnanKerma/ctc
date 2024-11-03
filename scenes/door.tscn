@@ -42,3 +42,5 @@ theme_override_fonts/normal_font = ExtResource("2_fuq24")
 text = "You need the key to go through"
 fit_content = true
 scroll_active = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

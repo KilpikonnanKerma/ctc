@@ -3,11 +3,13 @@ extends CharacterBody2D
 @export_range(0,1) var acceleration = 0.1
 @export_range(0,1) var deceleration = 0.5
 
-@onready var main = $".."
+@export var main: Node2D
+
 @onready var vignette = $Camera/CanvasLayer/Vignette
 @onready var heartbeat = $Camera/CanvasLayer/Heartbeat
 @onready var player = $AnimatedSprite2D
 @onready var animPlayer = $AnimationPlayer
+@onready var cameraAnim = $CameraAnim
 @onready var hide_timer = Timer.new()
 
 @onready var stamina_bar = $Camera/CanvasLayer/HUD/Stamina

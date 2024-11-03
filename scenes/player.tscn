@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=158 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
@@ -815,35 +815,6 @@ tracks/1/keys = {
 "values": [0.5, 1.0, 0.5]
 }
 
-[sub_resource type="Animation" id="Animation_vhtix"]
-resource_name = "heartbeat_on"
-length = 3.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_rgb")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.63333, 1.73333, 2.23333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0.750667, 1.2514e-06, 3.85046e-07, 1), Color(0, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_opacity")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.63333, 1.73333, 2.23333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.5, 1.0, 0.5]
-}
-
 [sub_resource type="Animation" id="Animation_yvqc7"]
 resource_name = "stamina"
 length = 6.0
@@ -880,16 +851,133 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_vhtix"]
+resource_name = "heartbeat_on"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_rgb")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.63333, 1.73333, 2.23333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0.750667, 1.2514e-06, 3.85046e-07, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.63333, 1.73333, 2.23333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.5, 1.0, 0.5]
+}
+
+[sub_resource type="Animation" id="Animation_7y4dy"]
+resource_name = "heartbeat_fast"
+length = 0.35
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_rgb")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.750667, 1.2514e-06, 3.85046e-07, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.5, 1.0, 0.5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75ai5"]
 _data = {
 "RESET": SubResource("Animation_qabcx"),
 "camera_zoom_in": SubResource("Animation_5cxod"),
 "camera_zoom_out": SubResource("Animation_rhjxu"),
 "heartbeat": SubResource("Animation_wc3hu"),
+"heartbeat_fast": SubResource("Animation_7y4dy"),
 "heartbeat_on": SubResource("Animation_vhtix"),
 "stamina": SubResource("Animation_yvqc7"),
 "vignette_anim": SubResource("Animation_lolrt"),
 "vignette_anim_off": SubResource("Animation_gjb8k")
+}
+
+[sub_resource type="Animation" id="Animation_5s44s"]
+resource_name = "camera_zoom_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_sauxk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mxuqu"]
+resource_name = "camera_zoom_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h3o3s"]
+resource_name = "camera_zoom_in_slow"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y04cb"]
+_data = {
+"RESET": SubResource("Animation_sauxk"),
+"camera_zoom_in": SubResource("Animation_5s44s"),
+"camera_zoom_in_slow": SubResource("Animation_h3o3s"),
+"camera_zoom_out": SubResource("Animation_mxuqu")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n3klj"]
@@ -918,7 +1006,6 @@ shape = SubResource("RectangleShape2D_eoymx")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(1, 1)
-zoom = Vector2(2, 2)
 process_callback = 0
 limit_left = -100000
 limit_bottom = 425
@@ -1008,6 +1095,11 @@ z_index = 23
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_75ai5")
+}
+
+[node name="CameraAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y04cb")
 }
 
 [node name="Eat_range" type="Area2D" parent="." groups=["Player"]]

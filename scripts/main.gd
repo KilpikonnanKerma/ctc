@@ -40,7 +40,7 @@ func _ready() -> void:
 
 	#hide_available = true
 
-	player.animPlayer.play("camera_zoom_out")
+	player.cameraAnim.play("camera_zoom_out")
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -91,16 +91,19 @@ func update_hunger_status():
 		player.HungerState.FULL:
 			if player.last_ate >= 4500:
 				player.hunger_state = player.HungerState.HUNGRY
-				player.is_hungry = true
 				player.heartbeat.show()
 				player.animPlayer.play("heartbeat_on")
 		
 		player.HungerState.HUNGRY:
 			if player.last_ate >= 8000:
+				player.cameraAnim.play("camera_zoom_in_slow")
 				player.hunger_state = player.HungerState.STARVING
+				player.is_hungry = true
 				player.animPlayer.play("heartbeat")
 
 		player.HungerState.STARVING:
+			if player.last_ate >= 11000:
+				player.animPlayer.play("heartbeat_fast")
 			if player.last_ate >= 12000 and !player.death_has_been_called:
 				player.die()
 				player.death_has_been_called = true
