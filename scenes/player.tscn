@@ -815,6 +815,64 @@ tracks/1/keys = {
 "values": [0.5, 1.0, 0.5]
 }
 
+[sub_resource type="Animation" id="Animation_7y4dy"]
+resource_name = "heartbeat_fast"
+length = 0.35
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_rgb")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.750667, 1.2514e-06, 3.85046e-07, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.5, 1.0, 0.5]
+}
+
+[sub_resource type="Animation" id="Animation_vhtix"]
+resource_name = "heartbeat_on"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_rgb")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.63333, 1.73333, 2.23333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0.750667, 1.2514e-06, 3.85046e-07, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_opacity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.63333, 1.73333, 2.23333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.5, 1.0, 0.5]
+}
+
 [sub_resource type="Animation" id="Animation_yvqc7"]
 resource_name = "stamina"
 length = 6.0
@@ -851,64 +909,6 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_vhtix"]
-resource_name = "heartbeat_on"
-length = 3.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_rgb")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.63333, 1.73333, 2.23333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0.750667, 1.2514e-06, 3.85046e-07, 1), Color(0, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_opacity")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.63333, 1.73333, 2.23333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.5, 1.0, 0.5]
-}
-
-[sub_resource type="Animation" id="Animation_7y4dy"]
-resource_name = "heartbeat_fast"
-length = 0.35
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_rgb")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 1), Color(0.750667, 1.2514e-06, 3.85046e-07, 1), Color(0, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera/CanvasLayer/Heartbeat:material:shader_parameter/vignette_opacity")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.5, 1.0, 0.5]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75ai5"]
 _data = {
 "RESET": SubResource("Animation_qabcx"),
@@ -920,6 +920,21 @@ _data = {
 "stamina": SubResource("Animation_yvqc7"),
 "vignette_anim": SubResource("Animation_lolrt"),
 "vignette_anim_off": SubResource("Animation_gjb8k")
+}
+
+[sub_resource type="Animation" id="Animation_sauxk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_5s44s"]
@@ -938,20 +953,8 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(2, 2)]
 }
 
-[sub_resource type="Animation" id="Animation_sauxk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
+[sub_resource type="Animation" id="Animation_h3o3s"]
+resource_name = "camera_zoom_in_slow"
 
 [sub_resource type="Animation" id="Animation_mxuqu"]
 resource_name = "camera_zoom_out"
@@ -968,9 +971,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(2, 2), Vector2(1, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_h3o3s"]
-resource_name = "camera_zoom_in_slow"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y04cb"]
 _data = {

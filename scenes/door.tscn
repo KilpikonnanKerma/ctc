@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjtxxl7udssej"]
+[gd_scene load_steps=5 format=3 uid="uid://cjtxxl7udssej"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_p3ahg"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="2_fuq24"]
+[ext_resource type="Texture2D" uid="uid://bilegap3q403q" path="res://sprites/shit/lock.png" id="3_fipdp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_df3ld"]
 size = Vector2(52, 138)
@@ -39,8 +40,14 @@ alignment = 1
 [node name="RichTextLabel" type="RichTextLabel" parent="Block/key_text/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_fuq24")
-text = "You need the key to go through"
+text = "You need a key to go through"
 fit_content = true
 scroll_active = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="lock" type="Sprite2D" parent="."]
+z_index = 2525
+texture_filter = 1
+position = Vector2(0, -128)
+texture = ExtResource("3_fipdp")

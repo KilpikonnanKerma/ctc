@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if key_taken && in_door_zone:
-		emit_signal("door_opened", area)
+		emit_signal("door_opened", area) 
 	elif !key_taken && in_door_zone:
 		emit_signal("door_entered", area)
 

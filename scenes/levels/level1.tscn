@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://cncmsau8mljmi"]
+[gd_scene load_steps=107 format=3 uid="uid://cncmsau8mljmi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8b47d"]
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="2_did6k"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://boeyeow1504sm" path="res://sprites/maps/ladder_locked.png" id="27_hmypa"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="27_yu1dw"]
 [ext_resource type="Texture2D" uid="uid://cflrckbahorq2" path="res://sprites/Props/taulu06.png" id="28_7bbpl"]
+[ext_resource type="Script" path="res://scripts/camera_change.gd" id="29_ntuk0"]
 [ext_resource type="Texture2D" uid="uid://dbmxatuqypb4t" path="res://sprites/Props/bookshelf03.png" id="29_png4s"]
 [ext_resource type="Script" path="res://scripts/levels/tutorial.gd" id="30_lo3jd"]
 [ext_resource type="Texture2D" uid="uid://blcyjlysb4352" path="res://sprites/maps/brick02.png" id="31_3j2ia"]
@@ -51,6 +52,7 @@
 [ext_resource type="Script" path="res://scripts/daddy.gd" id="47_hehc1"]
 [ext_resource type="Texture2D" uid="uid://b3pkuv43v115g" path="res://sprites/enemies/paren01_00_ver2.png" id="48_784wd"]
 [ext_resource type="Texture2D" uid="uid://cyxyjta2j8osy" path="res://sprites/enemies/parent01_idle02.png" id="49_lx1ih"]
+[ext_resource type="Script" path="res://scripts/door.gd" id="50_55gme"]
 [ext_resource type="Texture2D" uid="uid://cfqhbdtqby26h" path="res://sprites/enemies/parent01_idle03.png" id="50_tqbuf"]
 [ext_resource type="Texture2D" uid="uid://ocje617u3pju" path="res://sprites/shit/timerfull.png" id="51_v67rp"]
 [ext_resource type="Texture2D" uid="uid://ddc7nwwg8cxje" path="res://sprites/shit/timer_005.png" id="52_6rm6r"]
@@ -73,7 +75,7 @@ shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
-size = Vector2(1197, 28.5)
+size = Vector2(1218, 28.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6nti"]
 size = Vector2(62, 6)
@@ -105,6 +107,18 @@ size = Vector2(65, 9)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmioy"]
 size = Vector2(278, 79)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xv5mi"]
+size = Vector2(1071, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmbgj"]
+size = Vector2(206, 176)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6ayl"]
+size = Vector2(1934, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uyhj"]
+size = Vector2(40.5, 1328)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f867"]
 size = Vector2(2488, 24)
 
@@ -113,6 +127,9 @@ size = Vector2(2028, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bo1do"]
 size = Vector2(269, 20.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_noo5b"]
+size = Vector2(1268, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmm3d"]
 size = Vector2(510, 64)
@@ -180,6 +197,12 @@ size = Vector2(81, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81jah"]
 size = Vector2(130, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_161fi"]
+size = Vector2(20, 172)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbj0u"]
+size = Vector2(20, 113)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b1yff"]
 animations = [{
@@ -635,6 +658,214 @@ position = Vector2(-378, -221)
 position = Vector2(-127, -251)
 scale = Vector2(-1, 1)
 
+[node name="ml_03" type="StaticBody2D" parent="."]
+position = Vector2(2385, 415)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03"]
+position = Vector2(-61.5, -5)
+shape = SubResource("RectangleShape2D_xv5mi")
+
+[node name="Background" type="Sprite2D" parent="ml_03"]
+z_index = -10
+position = Vector2(9.00044, -668.5)
+scale = Vector2(38.3125, 41.0937)
+texture = ExtResource("22_q82ip")
+
+[node name="Floor" type="Node2D" parent="ml_03"]
+z_index = -1
+
+[node name="Ground16x32" type="Polygon2D" parent="ml_03/Floor"]
+visible = false
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, -5)
+scale = Vector2(40, 2)
+texture = ExtResource("5_xdo3h")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(20, 1)
+polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Ground32x64" type="Polygon2D" parent="ml_03/Floor"]
+z_index = 10
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, -5)
+scale = Vector2(40, 2)
+texture = ExtResource("6_yoilk")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(40, 2)
+polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Wall2" type="StaticBody2D" parent="ml_03"]
+position = Vector2(-50, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/Wall2"]
+position = Vector2(-542.5, -358)
+shape = SubResource("RectangleShape2D_glyqk")
+
+[node name="Wall01" type="Sprite2D" parent="ml_03/Wall2"]
+z_index = 9
+position = Vector2(-542, -635.5)
+scale = Vector2(1, 5.19141)
+texture = ExtResource("8_ershx")
+
+[node name="Key" parent="ml_03" node_paths=PackedStringArray("area") instance=ExtResource("20_4e4xm")]
+position = Vector2(381, -29)
+area = NodePath("../../Tutorial/Door2/Area2D")
+
+[node name="camera_change" type="Area2D" parent="ml_03" node_paths=PackedStringArray("player", "camera")]
+position = Vector2(607, -12)
+script = ExtResource("29_ntuk0")
+player = NodePath("../../Player")
+camera = NodePath("../../Player/Camera")
+start_left = 800
+start_bottom = 1850
+end_left = 800
+end_bottom = 1850
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ml_03/camera_change"]
+position = Vector2(-34, 82)
+shape = SubResource("RectangleShape2D_dmbgj")
+
+[node name="ml_04" type="StaticBody2D" parent="."]
+position = Vector2(3685, 415)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_04"]
+position = Vector2(-82, -5)
+shape = SubResource("RectangleShape2D_xv5mi")
+
+[node name="Background" type="Sprite2D" parent="ml_04"]
+z_index = -10
+position = Vector2(-35.9996, -668.5)
+scale = Vector2(41.125, 41.0937)
+texture = ExtResource("22_q82ip")
+
+[node name="Floor" type="Node2D" parent="ml_04"]
+z_index = -1
+position = Vector2(-20.5, 0)
+
+[node name="Ground16x32" type="Polygon2D" parent="ml_04/Floor"]
+visible = false
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, -5)
+scale = Vector2(40, 2)
+texture = ExtResource("5_xdo3h")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(20, 1)
+polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Ground32x64" type="Polygon2D" parent="ml_04/Floor"]
+z_index = 10
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, -5)
+scale = Vector2(40, 2)
+texture = ExtResource("6_yoilk")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(40, 2)
+polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Wall2" type="StaticBody2D" parent="ml_04"]
+position = Vector2(-50, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_04/Wall2"]
+position = Vector2(-542.5, -358)
+shape = SubResource("RectangleShape2D_glyqk")
+
+[node name="Wall01" type="Sprite2D" parent="ml_04/Wall2"]
+z_index = 9
+position = Vector2(-542, -635.5)
+scale = Vector2(1, 5.19141)
+texture = ExtResource("8_ershx")
+
+[node name="ml_05" type="StaticBody2D" parent="."]
+position = Vector2(134, 1814)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_05"]
+position = Vector2(-286, -8)
+shape = SubResource("RectangleShape2D_l6ayl")
+
+[node name="Background2" type="Polygon2D" parent="ml_05"]
+modulate = Color(1, 1, 1, 0.588235)
+z_index = -50
+texture_filter = 2
+texture_repeat = 2
+position = Vector2(-490, -555)
+texture = ExtResource("31_3j2ia")
+texture_scale = Vector2(0.75, 0.75)
+polygon = PackedVector2Array(-219, 103, -214, -1668, -739, -1673, -754, 552, 312, 547, 1160, 548, 1149, 99)
+
+[node name="Floor" type="Node2D" parent="ml_05"]
+z_index = -1
+position = Vector2(-20.5, 0)
+
+[node name="Ground16x32" type="Polygon2D" parent="ml_05/Floor"]
+visible = false
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, -5)
+scale = Vector2(40, 2)
+texture = ExtResource("5_xdo3h")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(20, 1)
+polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Ground32x64" type="Polygon2D" parent="ml_05/Floor"]
+z_index = 10
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, -5)
+scale = Vector2(40, 2)
+texture = ExtResource("32_4b1ux")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(40, 2)
+polygon = PackedVector2Array(-30.7875, 8.5, -30.6875, -7.5, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Roof" type="Polygon2D" parent="ml_05/Floor"]
+z_index = 10
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0.5, -455)
+scale = Vector2(-40, -2)
+texture = ExtResource("32_4b1ux")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(40, 2)
+polygon = PackedVector2Array(-17.25, 8, -17.175, -8, 17.65, -9.5, 17.65, 9, 0.0489311, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Wall2" type="StaticBody2D" parent="ml_05"]
+position = Vector2(-692, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_05/Wall2"]
+position = Vector2(-532.25, -605)
+shape = SubResource("RectangleShape2D_2uyhj")
+
+[node name="Wall01" type="Sprite2D" parent="ml_05/Wall2"]
+z_index = 9
+position = Vector2(-544, -1078.75)
+scale = Vector2(1, 8.83789)
+texture = ExtResource("8_ershx")
+
+[node name="Wall02" type="Sprite2D" parent="ml_05/Wall2"]
+z_index = 9
+position = Vector2(-12, -887.063)
+scale = Vector2(1, 3.64893)
+texture = ExtResource("8_ershx")
+
 [node name="Tutorial" type="Node2D" parent="."]
 position = Vector2(1393, 1464)
 
@@ -776,7 +1007,8 @@ position = Vector2(-573, 188)
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Walls/Back_wall/Collision"]
-shape = SubResource("RectangleShape2D_3f867")
+position = Vector2(-592, 15)
+shape = SubResource("RectangleShape2D_noo5b")
 
 [node name="Sprite2D" type="Sprite2D" parent="Tutorial/Walls/Back_wall"]
 z_index = 12
@@ -940,7 +1172,6 @@ position = Vector2(0, 26)
 shape = SubResource("RectangleShape2D_6ev4s")
 
 [node name="Tutorial_text" type="NinePatchRect" parent="Tutorial"]
-visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -1002,6 +1233,7 @@ text = "Climb with 'W' and 'S' or
 up arrow and down arrow!"
 
 [node name="Tutorial_text_console" type="NinePatchRect" parent="Tutorial"]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
@@ -1271,6 +1503,53 @@ texture = ExtResource("46_0h8un")
 texture_scale = Vector2(0.75, 0.75)
 polygon = PackedVector2Array(1032, 137, -221.687, 133.909, -996, 132, -1007, 681, 65.3661, 680.933, 1036, 668, 1028, 444)
 
+[node name="Door2" type="Node2D" parent="Tutorial"]
+position = Vector2(-498, 249)
+script = ExtResource("50_55gme")
+
+[node name="Block" type="StaticBody2D" parent="Tutorial/Door2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Door2/Block"]
+position = Vector2(-68, 17)
+shape = SubResource("RectangleShape2D_161fi")
+
+[node name="key_text" type="NinePatchRect" parent="Tutorial/Door2/Block"]
+visible = false
+z_index = 20
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -69.0
+offset_right = -29.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/Door2/Block/key_text"]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 80.0
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial/Door2/Block/key_text/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("27_yu1dw")
+text = "You need the key to go through"
+fit_content = true
+scroll_active = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Tutorial/Door2"]
+
+[node name="Area2D" type="Area2D" parent="Tutorial/Door2"]
+position = Vector2(10, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Door2/Area2D"]
+position = Vector2(-58, 34.5)
+shape = SubResource("RectangleShape2D_vbj0u")
+
 [node name="Guard" type="CharacterBody2D" parent="." node_paths=PackedStringArray("main", "player") groups=["Enemy"]]
 position = Vector2(2085, 950)
 script = ExtResource("47_hehc1")
@@ -1333,12 +1612,19 @@ player = NodePath("../Player")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ehrrk")
 
+[node name="Ladder" parent="." instance=ExtResource("19_v6ogj")]
+position = Vector2(-833, 1665)
+
 [connection signal="door_entered" from="ml_01/Key" to="ml_01/Door" method="_on_door_entered"]
 [connection signal="door_exited" from="ml_01/Key" to="ml_01/Door" method="_on_door_exited"]
 [connection signal="door_opened" from="ml_01/Key" to="ml_01/Door" method="_on_door_opened"]
 [connection signal="area_entered" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_entered"]
 [connection signal="area_exited" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_exited"]
 [connection signal="area_exited" from="ml_02/Stairs" to="ml_02/Stairs" method="_on_area_exited"]
+[connection signal="door_entered" from="ml_03/Key" to="Tutorial/Door2" method="_on_door_entered"]
+[connection signal="door_exited" from="ml_03/Key" to="Tutorial/Door2" method="_on_door_exited"]
+[connection signal="door_opened" from="ml_03/Key" to="Tutorial/Door2" method="_on_door_opened"]
+[connection signal="area_entered" from="ml_03/camera_change" to="ml_03/camera_change" method="_on_change_cam"]
 [connection signal="door_entered" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_entered"]
 [connection signal="door_exited" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_exited"]
 [connection signal="door_opened" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_opened"]
@@ -1346,6 +1632,8 @@ environment = SubResource("Environment_ehrrk")
 [connection signal="area_exited" from="Tutorial/Door/Area2D" to="Tutorial/Key" method="_on_door_zone_exited"]
 [connection signal="area_entered" from="Tutorial/level_switch" to="Tutorial/level_switch" method="_you"]
 [connection signal="area_exited" from="Tutorial/level_switch" to="Tutorial/level_switch" method="_exit"]
+[connection signal="area_entered" from="Tutorial/Door2/Area2D" to="ml_03/Key" method="_on_door_zone_entered"]
+[connection signal="area_exited" from="Tutorial/Door2/Area2D" to="ml_03/Key" method="_on_door_zone_exited"]
 [connection signal="area_entered" from="Guard/Area2D" to="Guard" method="close_to_player"]
 [connection signal="area_exited" from="Guard/Area2D" to="Guard" method="far_from_player"]
 [connection signal="area_entered" from="Guard/Attack_area" to="Guard" method="attackus"]
