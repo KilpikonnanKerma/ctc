@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://cncmsau8mljmi"]
+[gd_scene load_steps=109 format=3 uid="uid://cncmsau8mljmi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8b47d"]
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="2_did6k"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://boeyeow1504sm" path="res://sprites/maps/ladder_locked.png" id="27_hmypa"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="27_yu1dw"]
 [ext_resource type="Texture2D" uid="uid://cflrckbahorq2" path="res://sprites/Props/taulu06.png" id="28_7bbpl"]
+[ext_resource type="Texture2D" uid="uid://c02h2qorvwvu4" path="res://sprites/Props/taulu07.png" id="28_rx4tl"]
 [ext_resource type="Script" path="res://scripts/camera_change.gd" id="29_ntuk0"]
 [ext_resource type="Texture2D" uid="uid://dbmxatuqypb4t" path="res://sprites/Props/bookshelf03.png" id="29_png4s"]
 [ext_resource type="Script" path="res://scripts/levels/tutorial.gd" id="30_lo3jd"]
@@ -54,6 +55,7 @@
 [ext_resource type="Texture2D" uid="uid://cyxyjta2j8osy" path="res://sprites/enemies/parent01_idle02.png" id="49_lx1ih"]
 [ext_resource type="Script" path="res://scripts/door.gd" id="50_55gme"]
 [ext_resource type="Texture2D" uid="uid://cfqhbdtqby26h" path="res://sprites/enemies/parent01_idle03.png" id="50_tqbuf"]
+[ext_resource type="Texture2D" uid="uid://bilegap3q403q" path="res://sprites/shit/lock.png" id="51_nay57"]
 [ext_resource type="Texture2D" uid="uid://ocje617u3pju" path="res://sprites/shit/timerfull.png" id="51_v67rp"]
 [ext_resource type="Texture2D" uid="uid://ddc7nwwg8cxje" path="res://sprites/shit/timer_005.png" id="52_6rm6r"]
 [ext_resource type="Texture2D" uid="uid://b0cp5md2f8une" path="res://sprites/shit/timer_01.png" id="53_0ltmq"]
@@ -70,7 +72,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iiy87"]
 resource_local_to_scene = true
 shader = ExtResource("3_c5t16")
-shader_parameter/vignette_intensity = 0.8
+shader_parameter/vignette_intensity = 1.0
 shader_parameter/vignette_opacity = 1.0
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
@@ -273,8 +275,8 @@ background_mode = 3
 ssao_intensity = 1.0
 fog_density = 0.1
 adjustment_enabled = true
-adjustment_contrast = 1.12
-adjustment_saturation = 0.75
+adjustment_contrast = 1.13
+adjustment_saturation = 0.69
 
 [node name="Scene1" type="Node2D"]
 script = ExtResource("1_8b47d")
@@ -334,7 +336,7 @@ scale = Vector2(40, 2)
 texture = ExtResource("6_yoilk")
 texture_offset = Vector2(0, 8)
 texture_scale = Vector2(40, 2)
-polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
+polygon = PackedVector2Array(-13.475, 8, -13.5, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
@@ -628,6 +630,21 @@ position = Vector2(0, -62)
 shape = SubResource("RectangleShape2D_llgek")
 one_way_collision = true
 
+[node name="platform8" type="StaticBody2D" parent="ml_02"]
+texture_filter = 1
+position = Vector2(212, -186)
+
+[node name="Platform" type="Sprite2D" parent="ml_02/platform8"]
+z_index = -6
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("28_rx4tl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/platform8"]
+position = Vector2(0, -62)
+shape = SubResource("RectangleShape2D_llgek")
+one_way_collision = true
+
 [node name="Bookshelf01" type="Sprite2D" parent="ml_02"]
 z_index = -1
 texture_filter = 1
@@ -843,7 +860,7 @@ scale = Vector2(-40, -2)
 texture = ExtResource("32_4b1ux")
 texture_offset = Vector2(0, 8)
 texture_scale = Vector2(40, 2)
-polygon = PackedVector2Array(-17.25, 8, -17.175, -8, 17.65, -9.5, 17.65, 9, 0.0489311, 8)
+polygon = PackedVector2Array(-17.25, 8, -17.175, -8, 17.65, -9.5, 17.65, 8.5, 0.0500002, 9)
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
@@ -856,15 +873,30 @@ shape = SubResource("RectangleShape2D_2uyhj")
 
 [node name="Wall01" type="Sprite2D" parent="ml_05/Wall2"]
 z_index = 9
-position = Vector2(-544, -1078.75)
-scale = Vector2(1, 8.83789)
+position = Vector2(-544, -174.75)
+scale = Vector2(1, 1.77539)
+texture = ExtResource("33_kvaog")
+
+[node name="Wall03" type="Sprite2D" parent="ml_05/Wall2"]
+z_index = 9
+position = Vector2(-544, -879.224)
+scale = Vector2(-1, -3.72831)
+texture = ExtResource("34_utbcj")
+
+[node name="Wall04" type="Sprite2D" parent="ml_05/Wall2"]
+z_index = 9
+position = Vector2(-544, -1808)
+scale = Vector2(-1, -3.52518)
 texture = ExtResource("8_ershx")
 
 [node name="Wall02" type="Sprite2D" parent="ml_05/Wall2"]
 z_index = 9
 position = Vector2(-12, -887.063)
-scale = Vector2(1, 3.64893)
-texture = ExtResource("8_ershx")
+scale = Vector2(-1, -3.649)
+texture = ExtResource("34_utbcj")
+
+[node name="Ladder" parent="ml_05" instance=ExtResource("19_v6ogj")]
+position = Vector2(-967, -149)
 
 [node name="Tutorial" type="Node2D" parent="."]
 position = Vector2(1393, 1464)
@@ -1512,6 +1544,7 @@ script = ExtResource("50_55gme")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Door2/Block"]
 position = Vector2(-68, 17)
 shape = SubResource("RectangleShape2D_161fi")
+disabled = true
 
 [node name="key_text" type="NinePatchRect" parent="Tutorial/Door2/Block"]
 visible = false
@@ -1549,6 +1582,20 @@ position = Vector2(10, -6)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Door2/Area2D"]
 position = Vector2(-58, 34.5)
 shape = SubResource("RectangleShape2D_vbj0u")
+
+[node name="lock" type="Sprite2D" parent="Tutorial/Door2"]
+z_index = 2525
+texture_filter = 1
+position = Vector2(-90, -115)
+texture = ExtResource("51_nay57")
+
+[node name="camera_change" parent="Tutorial" node_paths=PackedStringArray("player", "camera") instance=ExtResource("39_b81qq")]
+position = Vector2(-586, 273)
+player = NodePath("../../Player")
+camera = NodePath("../../Player/Camera")
+start_bottom = 0
+end_left = -1100
+end_bottom = 0
 
 [node name="Guard" type="CharacterBody2D" parent="." node_paths=PackedStringArray("main", "player") groups=["Enemy"]]
 position = Vector2(2085, 950)
@@ -1612,8 +1659,8 @@ player = NodePath("../Player")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ehrrk")
 
-[node name="Ladder" parent="." instance=ExtResource("19_v6ogj")]
-position = Vector2(-833, 1665)
+[node name="Baby01" parent="." instance=ExtResource("15_p4ljk")]
+position = Vector2(1429, 149)
 
 [connection signal="door_entered" from="ml_01/Key" to="ml_01/Door" method="_on_door_entered"]
 [connection signal="door_exited" from="ml_01/Key" to="ml_01/Door" method="_on_door_exited"]
