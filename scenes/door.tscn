@@ -25,9 +25,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -69.0
-offset_top = -69.0
+offset_top = -128.0
 offset_right = -29.0
-offset_bottom = -29.0
+offset_bottom = -88.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -49,5 +49,4 @@ scroll_active = false
 [node name="lock" type="Sprite2D" parent="."]
 z_index = 2525
 texture_filter = 1
-position = Vector2(0, -128)
 texture = ExtResource("3_fipdp")

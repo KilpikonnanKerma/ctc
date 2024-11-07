@@ -1586,7 +1586,7 @@ shape = SubResource("RectangleShape2D_vbj0u")
 [node name="lock" type="Sprite2D" parent="Tutorial/Door2"]
 z_index = 2525
 texture_filter = 1
-position = Vector2(-90, -115)
+position = Vector2(-90, 15)
 texture = ExtResource("51_nay57")
 
 [node name="camera_change" parent="Tutorial" node_paths=PackedStringArray("player", "camera") instance=ExtResource("39_b81qq")]
