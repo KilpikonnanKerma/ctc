@@ -5,6 +5,8 @@ extends CharacterBody2D
 
 @export var main: Node2D
 
+@export var globals: Node
+
 @onready var vignette = $Camera/CanvasLayer/Vignette
 @onready var heartbeat = $Camera/CanvasLayer/Heartbeat
 @onready var player = $AnimatedSprite2D
@@ -205,9 +207,12 @@ func eat(body):
 
 	state = PlayerState.DINNER_TIME
 
-func blood_splatter(pos): # maybe todo
-	var instance = blood_splatter01.instantiate()
-	instance.position = pos
+	globals.babies_ate += 1
+	print(globals.babies_ate)
+
+# func blood_splatter(pos): # maybe todo
+# 	var instance = blood_splatter01.instantiate()
+# 	instance.position = pos
 
 func _on_hide_transition_finished():
 	if state == PlayerState.TRS_TO_HIDE:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=109 format=3 uid="uid://cncmsau8mljmi"]
+[gd_scene load_steps=116 format=3 uid="uid://cncmsau8mljmi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8b47d"]
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="2_did6k"]
+[ext_resource type="Script" path="res://scripts/globals.gd" id="2_oi67x"]
 [ext_resource type="Shader" path="res://scripts/shaders/vignette.gdshader" id="3_c5t16"]
 [ext_resource type="Texture2D" uid="uid://bg8xxtavq8nfy" path="res://sprites/maps/kukkakakka2_big.png" id="4_7fo1i"]
 [ext_resource type="Texture2D" uid="uid://dirjy71u0jxra" path="res://sprites/maps/floor_01_nobrdr32x16.png" id="5_xdo3h"]
@@ -34,8 +35,11 @@
 [ext_resource type="Texture2D" uid="uid://dbmxatuqypb4t" path="res://sprites/Props/bookshelf03.png" id="29_png4s"]
 [ext_resource type="Script" path="res://scripts/levels/tutorial.gd" id="30_lo3jd"]
 [ext_resource type="Texture2D" uid="uid://blcyjlysb4352" path="res://sprites/maps/brick02.png" id="31_3j2ia"]
+[ext_resource type="Texture2D" uid="uid://dgfmrgbqpf7gc" path="res://sprites/Props/table.png" id="31_gc78j"]
+[ext_resource type="Texture2D" uid="uid://dcis2ssvp3ss0" path="res://sprites/maps/keittiökakeli.png" id="31_ndsfq"]
 [ext_resource type="Texture2D" uid="uid://mclps312dkw" path="res://sprites/maps/floor_02.png" id="32_4b1ux"]
 [ext_resource type="Texture2D" uid="uid://c3alr4np4lra7" path="res://sprites/maps/wall02.png" id="33_kvaog"]
+[ext_resource type="Texture2D" uid="uid://h2nptaad5mj6" path="res://sprites/shit/roskis.png" id="34_l7kvt"]
 [ext_resource type="Texture2D" uid="uid://bnvm6rnqjcsir" path="res://sprites/maps/wall01-02.png" id="34_utbcj"]
 [ext_resource type="Texture2D" uid="uid://doqypiy3gj7h7" path="res://sprites/Props/operation_table_blood.png" id="35_rjl1t"]
 [ext_resource type="Texture2D" uid="uid://b1sgcksvx11ek" path="res://sprites/Props/bookshelf02.png" id="36_eou8w"]
@@ -110,10 +114,19 @@ size = Vector2(65, 9)
 size = Vector2(278, 79)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xv5mi"]
-size = Vector2(1071, 32)
+size = Vector2(1150, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mun52"]
+size = Vector2(102, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmbgj"]
-size = Vector2(206, 176)
+size = Vector2(58, 176)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_so4fd"]
+size = Vector2(256, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ttrc"]
+size = Vector2(7, 59)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6ayl"]
 size = Vector2(1934, 26)
@@ -281,10 +294,14 @@ adjustment_saturation = 0.69
 [node name="Scene1" type="Node2D"]
 script = ExtResource("1_8b47d")
 
-[node name="Player" parent="." node_paths=PackedStringArray("main") groups=["Player"] instance=ExtResource("2_did6k")]
+[node name="Globals" type="Node" parent="."]
+script = ExtResource("2_oi67x")
+
+[node name="Player" parent="." node_paths=PackedStringArray("main", "globals") groups=["Player"] instance=ExtResource("2_did6k")]
 unique_name_in_owner = true
 position = Vector2(1013, 1777)
 main = NodePath("..")
+globals = NodePath("../Globals")
 
 [node name="Camera" parent="Player" index="3"]
 limit_left = 800
@@ -679,14 +696,22 @@ scale = Vector2(-1, 1)
 position = Vector2(2385, 415)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03"]
-position = Vector2(-61.5, -5)
+position = Vector2(-22, -5)
 shape = SubResource("RectangleShape2D_xv5mi")
 
-[node name="Background" type="Sprite2D" parent="ml_03"]
-z_index = -10
-position = Vector2(9.00044, -668.5)
-scale = Vector2(38.3125, 41.0937)
-texture = ExtResource("22_q82ip")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ml_03"]
+position = Vector2(661, -5)
+shape = SubResource("RectangleShape2D_mun52")
+
+[node name="Background2" type="Polygon2D" parent="ml_03"]
+modulate = Color(1, 1, 1, 0.588235)
+z_index = -50
+texture_filter = 2
+texture_repeat = 2
+position = Vector2(-490, -555)
+texture = ExtResource("31_ndsfq")
+texture_scale = Vector2(0.75, 0.75)
+polygon = PackedVector2Array(1182, -754, -108, -743, -101, 542, 312, 547, 1188, 553)
 
 [node name="Floor" type="Node2D" parent="ml_03"]
 z_index = -1
@@ -745,8 +770,42 @@ end_left = 800
 end_bottom = 1850
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ml_03/camera_change"]
-position = Vector2(-34, 82)
+position = Vector2(-25, 82)
 shape = SubResource("RectangleShape2D_dmbgj")
+
+[node name="Kitchen_table" type="StaticBody2D" parent="ml_03"]
+position = Vector2(-252, -53)
+
+[node name="Sprite2D" type="Sprite2D" parent="ml_03/Kitchen_table"]
+z_index = -10
+texture = ExtResource("31_gc78j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/Kitchen_table"]
+position = Vector2(0, -29)
+shape = SubResource("RectangleShape2D_so4fd")
+
+[node name="Trash" type="Sprite2D" parent="ml_03"]
+position = Vector2(582, -46)
+texture = ExtResource("34_l7kvt")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ml_03/Trash"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/Trash/StaticBody2D"]
+position = Vector2(-28.5, 1.5)
+shape = SubResource("RectangleShape2D_3ttrc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ml_03/Trash/StaticBody2D"]
+position = Vector2(28, 1)
+shape = SubResource("RectangleShape2D_3ttrc")
+
+[node name="platform" parent="ml_03" instance=ExtResource("10_ibu8j")]
+position = Vector2(522, -52)
+
+[node name="platform2" parent="ml_03" instance=ExtResource("10_ibu8j")]
+position = Vector2(-434, -52)
+
+[node name="platform3" parent="ml_03" instance=ExtResource("10_ibu8j")]
+position = Vector2(-27, -118)
 
 [node name="ml_04" type="StaticBody2D" parent="."]
 position = Vector2(3685, 415)
@@ -757,8 +816,8 @@ shape = SubResource("RectangleShape2D_xv5mi")
 
 [node name="Background" type="Sprite2D" parent="ml_04"]
 z_index = -10
-position = Vector2(-35.9996, -668.5)
-scale = Vector2(41.125, 41.0937)
+position = Vector2(16.0001, -668.5)
+scale = Vector2(37.875, 41.0937)
 texture = ExtResource("22_q82ip")
 
 [node name="Floor" type="Node2D" parent="ml_04"]
@@ -1544,7 +1603,6 @@ script = ExtResource("50_55gme")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Door2/Block"]
 position = Vector2(-68, 17)
 shape = SubResource("RectangleShape2D_161fi")
-disabled = true
 
 [node name="key_text" type="NinePatchRect" parent="Tutorial/Door2/Block"]
 visible = false
