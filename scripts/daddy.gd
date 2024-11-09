@@ -26,6 +26,9 @@ var direction
 
 var i = 0
 
+var just_attacked: bool = false
+var attack_cooldown = 100
+
 func _ready() -> void:
 	pass
 
@@ -37,6 +40,11 @@ func _physics_process(delta: float) -> void:
 		anim.play("idle")
 	else:
 		anim.stop()
+
+	if (just_attacked && attack_cooldown >= 0):
+		attack_cooldown -= 1
+	else:
+		just_attacked = false
 
 	if main.aggro && player.hiding:#player.state == player.PlayerState.HIDING: # TODO: Vihollinen huomaa, jos meet piilon sen lähellä (käytä ehkä daddyn is_close boolia)
 		main.searching = true
@@ -139,17 +147,19 @@ func far_from_player(area: Area2D) -> void:
 			is_close = false
 
 func attackus(_area: Area2D) -> void:
-	var kick = 5
+	var kick = 10
 	var kickdir
 
-	if main.aggro:
+	if main.aggro && just_attacked == false:
 		var dir = (player.position.x - position.x) #.normalized()
 		if dir < 0: # player is on the left
 			kickdir = kick * (dir*1)
 			player.velocity.x = player.velocity.x + kickdir
 		elif dir > 0:
-			kickdir = kick * (dir*-3)
+			kickdir = kick * (dir*-1)
 			player.velocity.x = player.velocity.x - kickdir
 			
 		player.health -= 1
 		player.stamina_bar.value -= 200
+		just_attacked = true
+		attack_cooldown = 100

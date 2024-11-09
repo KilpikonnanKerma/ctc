@@ -299,7 +299,7 @@ script = ExtResource("2_oi67x")
 
 [node name="Player" parent="." node_paths=PackedStringArray("main", "globals") groups=["Player"] instance=ExtResource("2_did6k")]
 unique_name_in_owner = true
-position = Vector2(1013, 1777)
+position = Vector2(1013, 1779)
 main = NodePath("..")
 globals = NodePath("../Globals")
 
