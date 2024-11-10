@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://cncmsau8mljmi"]
+[gd_scene load_steps=124 format=3 uid="uid://cncmsau8mljmi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8b47d"]
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="2_did6k"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dsy134i7uchnh" path="res://scenes/key.tscn" id="20_4e4xm"]
 [ext_resource type="PackedScene" uid="uid://cjtxxl7udssej" path="res://scenes/door.tscn" id="21_0mu2f"]
 [ext_resource type="Texture2D" uid="uid://j7ilkad0cwl1" path="res://sprites/maps/grön.png" id="22_q82ip"]
+[ext_resource type="Texture2D" uid="uid://dh0rroadwra4v" path="res://sprites/Props/kaapitus.png" id="23_er6u8"]
 [ext_resource type="Texture2D" uid="uid://u8s5oi808t4d" path="res://sprites/Props/tv.png" id="23_f81r4"]
 [ext_resource type="Script" path="res://scripts/dumbshit/block_stairs_lv1.gd" id="25_5r74c"]
 [ext_resource type="Script" path="res://scripts/levels/level_switch.gd" id="25_kx0n2"]
@@ -136,6 +137,9 @@ size = Vector2(64, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6ayl"]
 size = Vector2(1934, 26)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63eal"]
+size = Vector2(541, 23)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uyhj"]
 size = Vector2(40.5, 1328)
 
@@ -144,6 +148,9 @@ size = Vector2(25, 1903)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kcv42"]
 size = Vector2(32, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rg2ni"]
+size = Vector2(63, 170)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f867"]
 size = Vector2(2488, 24)
@@ -310,7 +317,7 @@ script = ExtResource("2_oi67x")
 
 [node name="Player" parent="." node_paths=PackedStringArray("main", "globals") groups=["Player"] instance=ExtResource("2_did6k")]
 unique_name_in_owner = true
-position = Vector2(1013, 1779)
+position = Vector2(1013, 1777)
 main = NodePath("..")
 globals = NodePath("../Globals")
 
@@ -539,6 +546,11 @@ position = Vector2(606, -90)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_01/Door/Area2D"]
 position = Vector2(0, 26)
 shape = SubResource("RectangleShape2D_1kb88")
+
+[node name="Kaapitus" type="Sprite2D" parent="ml_01"]
+z_index = 10
+position = Vector2(-478, -85)
+texture = ExtResource("23_er6u8")
 
 [node name="ml_02" type="StaticBody2D" parent="."]
 position = Vector2(1169, 415)
@@ -891,6 +903,10 @@ position = Vector2(134, 1814)
 position = Vector2(-286, -8)
 shape = SubResource("RectangleShape2D_l6ayl")
 
+[node name="roof_collision" type="CollisionShape2D" parent="ml_05"]
+position = Vector2(-975.5, -2251.5)
+shape = SubResource("RectangleShape2D_63eal")
+
 [node name="Background2" type="Polygon2D" parent="ml_05"]
 modulate = Color(1, 1, 1, 0.588235)
 z_index = -50
@@ -1058,6 +1074,23 @@ position = Vector2(0, -1659)
 position = Vector2(0, -126)
 shape = SubResource("RectangleShape2D_kcv42")
 one_way_collision = true
+
+[node name="platform" parent="ml_05" instance=ExtResource("10_ibu8j")]
+position = Vector2(-754, -1416)
+
+[node name="camera_change" type="Area2D" parent="ml_05" node_paths=PackedStringArray("player", "camera")]
+position = Vector2(-704, -1535)
+script = ExtResource("29_ntuk0")
+player = NodePath("../../Player")
+camera = NodePath("../../Player/Camera")
+start_left = -575
+start_bottom = 425
+end_left = -1100
+end_bottom = 1850
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ml_05/camera_change"]
+position = Vector2(0.5, 36)
+shape = SubResource("RectangleShape2D_rg2ni")
 
 [node name="Tutorial" type="Node2D" parent="."]
 position = Vector2(1393, 1464)
@@ -1705,7 +1738,6 @@ script = ExtResource("50_55gme")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Door2/Block"]
 position = Vector2(-68, 17)
 shape = SubResource("RectangleShape2D_161fi")
-disabled = true
 
 [node name="key_text" type="NinePatchRect" parent="Tutorial/Door2/Block"]
 visible = false
@@ -1835,6 +1867,7 @@ position = Vector2(1429, 149)
 [connection signal="area_entered" from="ml_03/camera_change" to="ml_03/camera_change" method="_on_change_cam"]
 [connection signal="area_entered" from="ml_05/Ladder" to="ml_05/Ladder" method="_on_ladder_entered"]
 [connection signal="area_exited" from="ml_05/Ladder" to="ml_05/Ladder" method="_on_ladder_exited"]
+[connection signal="area_entered" from="ml_05/camera_change" to="ml_05/camera_change" method="_on_change_cam"]
 [connection signal="door_entered" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_entered"]
 [connection signal="door_exited" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_exited"]
 [connection signal="door_opened" from="Tutorial/Key" to="Tutorial/Door" method="_on_door_opened"]
