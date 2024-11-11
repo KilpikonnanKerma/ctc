@@ -1,4 +1,4 @@
-[gd_scene load_steps=159 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=158 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
@@ -1033,10 +1033,8 @@ _data = {
 "camera_zoom_out": SubResource("Animation_mxuqu")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3klj"]
-size = Vector2(394.5, 243.5)
-
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 5
 script = ExtResource("1_q5ei5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -1044,15 +1042,14 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hunum")
 animation = &"eat01"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
 visible = false
 position = Vector2(1.25, 2.25)
 shape = SubResource("RectangleShape2D_o58d1")
 
 [node name="Range" type="Area2D" parent="." groups=["Player"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range" groups=["Player"]]
 position = Vector2(0, 3.5625)
 shape = SubResource("RectangleShape2D_eoymx")
 
@@ -1088,6 +1085,8 @@ visible = false
 position = Vector2(113, 41)
 sprite_frames = SubResource("SpriteFrames_glql0")
 animation = &"HP_REGEN"
+frame = 1
+frame_progress = 0.818982
 
 [node name="HIDE" type="AnimatedSprite2D" parent="Camera/CanvasLayer/HUD"]
 position = Vector2(41, 133)
@@ -1154,14 +1153,6 @@ libraries = {
 "": SubResource("AnimationLibrary_y04cb")
 }
 
-[node name="Eat_range" type="Area2D" parent="." groups=["Player"]]
-visible = false
-monitoring = false
-monitorable = false
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Eat_range"]
-shape = SubResource("RectangleShape2D_n3klj")
-
 [node name="Eat_text" type="NinePatchRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -1227,4 +1218,3 @@ scroll_active = false
 
 [connection signal="body_entered" from="Range" to="." method="_on_kill_range_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_kille_range_exited"]
-[connection signal="area_entered" from="Eat_range" to="." method="is_caught"]

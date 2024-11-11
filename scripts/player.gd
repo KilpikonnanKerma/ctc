@@ -73,8 +73,6 @@ func _physics_process(delta: float) -> void:
 	if stamina_bar.value <= 1000 && not Input.is_action_just_pressed("run"):
 		if is_on_floor():
 			stamina_bar.value += 1
-		else:
-			stamina_bar.value += 0.5
 
 	if health == 0 && !death_has_been_called:
 		die()

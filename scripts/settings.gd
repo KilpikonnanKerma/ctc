@@ -12,7 +12,8 @@ func _ready() -> void:
 		fullscreen_button.button_pressed = false
 
 func _process(_delta: float) -> void:
-	pass
+	if (Input.is_action_just_pressed("pause")):
+		settings.hide()
 
 
 func _on_fullscreen_toggled(toggled_on: bool) -> void:

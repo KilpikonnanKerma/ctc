@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=3 uid="uid://cncmsau8mljmi"]
+[gd_scene load_steps=140 format=3 uid="uid://cncmsau8mljmi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8b47d"]
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="2_did6k"]
@@ -28,9 +28,12 @@
 [ext_resource type="Script" path="res://scripts/dumbshit/block_stairs_lv1.gd" id="25_5r74c"]
 [ext_resource type="Script" path="res://scripts/levels/level_switch.gd" id="25_kx0n2"]
 [ext_resource type="Texture2D" uid="uid://d3sxxibcqwky6" path="res://sprites/maps/stairs02.png" id="26_7187y"]
+[ext_resource type="Texture2D" uid="uid://t3d4c3xnritc" path="res://sprites/Props/lever.png" id="26_egy51"]
+[ext_resource type="Script" path="res://scripts/lever.gd" id="26_pa4vg"]
 [ext_resource type="Texture2D" uid="uid://boeyeow1504sm" path="res://sprites/maps/ladder_locked.png" id="27_hmypa"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="27_yu1dw"]
 [ext_resource type="Texture2D" uid="uid://cflrckbahorq2" path="res://sprites/Props/taulu06.png" id="28_7bbpl"]
+[ext_resource type="Texture2D" uid="uid://07204ga8cben" path="res://sprites/Props/lever_pulled.png" id="28_7ymdv"]
 [ext_resource type="Texture2D" uid="uid://c02h2qorvwvu4" path="res://sprites/Props/taulu07.png" id="28_rx4tl"]
 [ext_resource type="Script" path="res://scripts/camera_change.gd" id="29_ntuk0"]
 [ext_resource type="Texture2D" uid="uid://dbmxatuqypb4t" path="res://sprites/Props/bookshelf03.png" id="29_png4s"]
@@ -40,12 +43,16 @@
 [ext_resource type="Texture2D" uid="uid://dcis2ssvp3ss0" path="res://sprites/maps/keittiökakeli.png" id="31_ndsfq"]
 [ext_resource type="Texture2D" uid="uid://mclps312dkw" path="res://sprites/maps/floor_02.png" id="32_4b1ux"]
 [ext_resource type="Texture2D" uid="uid://c3alr4np4lra7" path="res://sprites/maps/wall02.png" id="33_kvaog"]
+[ext_resource type="Script" path="res://scripts/levels/stop_tutorial.gd" id="34_bfsh3"]
 [ext_resource type="Texture2D" uid="uid://h2nptaad5mj6" path="res://sprites/shit/roskis.png" id="34_l7kvt"]
+[ext_resource type="Script" path="res://scripts/hiding_area.gd" id="34_u6ju2"]
 [ext_resource type="Texture2D" uid="uid://bnvm6rnqjcsir" path="res://sprites/maps/wall01-02.png" id="34_utbcj"]
 [ext_resource type="Texture2D" uid="uid://bpo3x1m4rh7i8" path="res://sprites/shit/kaappi.png" id="35_olxc3"]
 [ext_resource type="Texture2D" uid="uid://doqypiy3gj7h7" path="res://sprites/Props/operation_table_blood.png" id="35_rjl1t"]
 [ext_resource type="Texture2D" uid="uid://b1sgcksvx11ek" path="res://sprites/Props/bookshelf02.png" id="36_eou8w"]
 [ext_resource type="Texture2D" uid="uid://b71ay054kncvs" path="res://sprites/Props/cell.png" id="37_de1j1"]
+[ext_resource type="Texture2D" uid="uid://hv5ul4msmjob" path="res://sprites/Props/taulu08.png" id="37_jijuc"]
+[ext_resource type="Texture2D" uid="uid://odf01h4dyw5j" path="res://sprites/Props/table_hiding.png" id="37_vb7bl"]
 [ext_resource type="Texture2D" uid="uid://mq03jyofbkl2" path="res://sprites/maps/ladder01.png" id="38_8db5e"]
 [ext_resource type="Texture2D" uid="uid://ducncqgk0v6vn" path="res://sprites/Props/cell02.png" id="39_2qg28"]
 [ext_resource type="PackedScene" uid="uid://dg325baeocxb1" path="res://scenes/camera_change.tscn" id="39_b81qq"]
@@ -113,6 +120,9 @@ size = Vector2(64, 1188)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1b7g"]
 size = Vector2(65, 9)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2e02c"]
+size = Vector2(94, 52)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmioy"]
 size = Vector2(278, 79)
 
@@ -125,6 +135,23 @@ size = Vector2(102, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmbgj"]
 size = Vector2(58, 176)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ed36f"]
+size = Vector2(69, 86)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vge1k"]
+size = Vector2(32, 49)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p5ovr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_vb7bl")
+}],
+"loop": true,
+"name": &"hiding",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_so4fd"]
 size = Vector2(256, 6)
 
@@ -134,6 +161,15 @@ size = Vector2(7, 59)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vngvs"]
 size = Vector2(64, 5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y32wp"]
+size = Vector2(128, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_df3ld"]
+size = Vector2(52, 138)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jiwl4"]
+size = Vector2(53, 98)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6ayl"]
 size = Vector2(1934, 26)
 
@@ -142,6 +178,9 @@ size = Vector2(541, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uyhj"]
 size = Vector2(40.5, 1328)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6mrh"]
+size = Vector2(41, 970)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ileg2"]
 size = Vector2(25, 1903)
@@ -230,6 +269,9 @@ size = Vector2(81, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81jah"]
 size = Vector2(130, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2om72"]
+size = Vector2(64, 106)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_161fi"]
 size = Vector2(20, 172)
@@ -636,6 +678,57 @@ position = Vector2(0.5, -27.5)
 shape = SubResource("RectangleShape2D_p1b7g")
 one_way_collision = true
 
+[node name="lever" type="Area2D" parent="ml_02/Upstairs" node_paths=PackedStringArray("lever", "lever_pulled_sprt", "lever_text", "areaa")]
+position = Vector2(1165, -203)
+script = ExtResource("26_pa4vg")
+lever = NodePath("lever")
+lever_pulled_sprt = NodePath("lever2")
+lever_text = NodePath("lever_text")
+areaa = NodePath("../../../ml_03/Door/Area2D")
+
+[node name="lever" type="Sprite2D" parent="ml_02/Upstairs/lever"]
+z_index = -5
+texture_filter = 1
+texture = ExtResource("26_egy51")
+
+[node name="lever2" type="Sprite2D" parent="ml_02/Upstairs/lever"]
+visible = false
+z_index = -5
+texture_filter = 1
+texture = ExtResource("28_7ymdv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/Upstairs/lever"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_2e02c")
+
+[node name="lever_text" type="NinePatchRect" parent="ml_02/Upstairs/lever"]
+visible = false
+z_index = 20
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -128.0
+offset_right = -29.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ml_02/Upstairs/lever/lever_text"]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 80.0
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ml_02/Upstairs/lever/lever_text/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("27_yu1dw")
+text = "Press 'E' to pull lever"
+fit_content = true
+scroll_active = false
+
 [node name="Stairs" type="Area2D" parent="ml_02"]
 position = Vector2(-1, -53)
 script = ExtResource("25_5r74c")
@@ -779,7 +872,7 @@ scale = Vector2(1, 5.19141)
 texture = ExtResource("8_ershx")
 
 [node name="Key" parent="ml_03" node_paths=PackedStringArray("area") instance=ExtResource("20_4e4xm")]
-position = Vector2(381, -29)
+position = Vector2(289, -212)
 area = NodePath("../../Tutorial/Door2/Area2D")
 
 [node name="camera_change" type="Area2D" parent="ml_03" node_paths=PackedStringArray("player", "camera")]
@@ -796,22 +889,149 @@ end_bottom = 1850
 position = Vector2(-25, 82)
 shape = SubResource("RectangleShape2D_dmbgj")
 
-[node name="Kitchen_table" type="StaticBody2D" parent="ml_03"]
-position = Vector2(-252, -53)
+[node name="stop_tutorial" type="Area2D" parent="ml_03/camera_change" node_paths=PackedStringArray("main", "tutorial_text_pc", "tutorial_text_console")]
+script = ExtResource("34_bfsh3")
+main = NodePath("../../..")
+tutorial_text_pc = NodePath("../../../Tutorial/Tutorial_text")
+tutorial_text_console = NodePath("../../../Tutorial/Tutorial_text_console")
 
-[node name="Sprite2D" type="Sprite2D" parent="ml_03/Kitchen_table"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/camera_change/stop_tutorial"]
+position = Vector2(-24.5, 33)
+shape = SubResource("RectangleShape2D_ed36f")
+
+[node name="hiding_area" type="Area2D" parent="ml_03" node_paths=PackedStringArray("main", "player", "normal_sprite", "hiding_sprite")]
+position = Vector2(-370, -31)
+script = ExtResource("34_u6ju2")
+main = NodePath("../..")
+player = NodePath("../../Player")
+normal_sprite = NodePath("Kitchen_table/normal")
+hiding_sprite = NodePath("Kitchen_table/hiding")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ml_03/hiding_area"]
+position = Vector2(-6, -14.5)
+shape = SubResource("RectangleShape2D_vge1k")
+
+[node name="pc_text" type="NinePatchRect" parent="ml_03/hiding_area"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -150.0
+offset_right = 20.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PC_MOVEMENT" type="RichTextLabel" parent="ml_03/hiding_area/pc_text"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -11.5
+offset_right = 52.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("27_yu1dw")
+theme_override_font_sizes/normal_font_size = 15
+text = "'W' hide"
+
+[node name="PC_MOVEMENT2" type="RichTextLabel" parent="ml_03/hiding_area/pc_text"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = -11.5
+offset_right = 63.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("27_yu1dw")
+theme_override_font_sizes/normal_font_size = 15
+text = "'S' unhide"
+
+[node name="controller_text" type="NinePatchRect" parent="ml_03/hiding_area"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -150.0
+offset_right = 20.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PC_MOVEMENT" type="RichTextLabel" parent="ml_03/hiding_area/controller_text"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -11.5
+offset_right = 88.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("27_yu1dw")
+theme_override_font_sizes/normal_font_size = 15
+text = "'dpad up' hide"
+
+[node name="PC_MOVEMENT2" type="RichTextLabel" parent="ml_03/hiding_area/controller_text"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.5
+offset_top = -11.5
+offset_right = 114.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("27_yu1dw")
+theme_override_font_sizes/normal_font_size = 15
+text = "'dpad down' unhide"
+
+[node name="Kitchen_table" type="StaticBody2D" parent="ml_03/hiding_area"]
+position = Vector2(118, -22)
+
+[node name="normal" type="Sprite2D" parent="ml_03/hiding_area/Kitchen_table"]
 z_index = -10
 texture = ExtResource("31_gc78j")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/Kitchen_table"]
+[node name="hiding" type="AnimatedSprite2D" parent="ml_03/hiding_area/Kitchen_table"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_p5ovr")
+animation = &"hiding"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/hiding_area/Kitchen_table"]
 position = Vector2(0, -29)
 shape = SubResource("RectangleShape2D_so4fd")
+one_way_collision = true
 
 [node name="Trash" type="Sprite2D" parent="ml_03"]
 position = Vector2(582, -46)
 texture = ExtResource("34_l7kvt")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ml_03/Trash"]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/Trash/StaticBody2D"]
 position = Vector2(-28.5, 1.5)
@@ -820,9 +1040,6 @@ shape = SubResource("RectangleShape2D_3ttrc")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ml_03/Trash/StaticBody2D"]
 position = Vector2(28, 1)
 shape = SubResource("RectangleShape2D_3ttrc")
-
-[node name="platform" parent="ml_03" instance=ExtResource("10_ibu8j")]
-position = Vector2(522, -52)
 
 [node name="platform2" parent="ml_03" instance=ExtResource("10_ibu8j")]
 position = Vector2(-434, -52)
@@ -839,6 +1056,80 @@ texture = ExtResource("35_olxc3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/Cabinet"]
 position = Vector2(0, -45.5)
 shape = SubResource("RectangleShape2D_vngvs")
+one_way_collision = true
+
+[node name="quackmf" type="StaticBody2D" parent="ml_03"]
+position = Vector2(246, -172)
+
+[node name="Sprite2D" type="Sprite2D" parent="ml_03/quackmf"]
+texture = ExtResource("37_jijuc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/quackmf"]
+position = Vector2(0, -29)
+shape = SubResource("RectangleShape2D_y32wp")
+one_way_collision = true
+
+[node name="platform4" parent="ml_03" instance=ExtResource("10_ibu8j")]
+position = Vector2(423, -167)
+
+[node name="Baby02" parent="ml_03" instance=ExtResource("15_p4ljk")]
+position = Vector2(196, -220)
+
+[node name="platform" parent="ml_03" instance=ExtResource("10_ibu8j")]
+position = Vector2(524, -137)
+
+[node name="Door" type="Node2D" parent="ml_03"]
+position = Vector2(708, -88)
+script = ExtResource("50_55gme")
+
+[node name="Block" type="StaticBody2D" parent="ml_03/Door"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/Door/Block"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_df3ld")
+
+[node name="key_text" type="NinePatchRect" parent="ml_03/Door/Block"]
+visible = false
+z_index = 20
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -128.0
+offset_right = -29.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ml_03/Door/Block/key_text"]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 80.0
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ml_03/Door/Block/key_text/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("27_yu1dw")
+text = "You need to pull the lever to go through"
+fit_content = true
+scroll_active = false
+
+[node name="Sprite2D" type="Sprite2D" parent="ml_03/Door"]
+
+[node name="lock" type="Sprite2D" parent="ml_03/Door"]
+z_index = 2525
+texture_filter = 1
+texture = ExtResource("51_nay57")
+
+[node name="Area2D" type="Area2D" parent="ml_03/Door"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/Door/Area2D"]
+position = Vector2(-16.5, 18)
+shape = SubResource("RectangleShape2D_jiwl4")
 
 [node name="ml_04" type="StaticBody2D" parent="."]
 position = Vector2(3685, 415)
@@ -980,6 +1271,10 @@ position = Vector2(-692, -16)
 position = Vector2(-532.25, -605)
 shape = SubResource("RectangleShape2D_2uyhj")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ml_05/Wall2"]
+position = Vector2(-24.5, -906)
+shape = SubResource("RectangleShape2D_i6mrh")
+
 [node name="Wall01" type="Sprite2D" parent="ml_05/Wall2"]
 z_index = 9
 position = Vector2(-544, -174.75)
@@ -1095,8 +1390,9 @@ shape = SubResource("RectangleShape2D_rg2ni")
 [node name="Tutorial" type="Node2D" parent="."]
 position = Vector2(1393, 1464)
 
-[node name="Tutorial" type="Node2D" parent="Tutorial"]
+[node name="Tutorial" type="Node2D" parent="Tutorial" node_paths=PackedStringArray("main")]
 script = ExtResource("30_lo3jd")
+main = NodePath("../..")
 
 [node name="Background" type="Polygon2D" parent="Tutorial"]
 modulate = Color(1, 1, 1, 0.588235)
@@ -1729,6 +2025,15 @@ texture = ExtResource("46_0h8un")
 texture_scale = Vector2(0.75, 0.75)
 polygon = PackedVector2Array(1032, 137, -221.687, 133.909, -996, 132, -1007, 681, 65.3661, 680.933, 1036, 668, 1028, 444)
 
+[node name="Enemy_block" type="StaticBody2D" parent="Tutorial/Guards_room"]
+position = Vector2(1437, -503)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Guards_room/Enemy_block"]
+position = Vector2(-5, 3)
+shape = SubResource("RectangleShape2D_2om72")
+
 [node name="Door2" type="Node2D" parent="Tutorial"]
 position = Vector2(-498, 249)
 script = ExtResource("50_55gme")
@@ -1845,7 +2150,7 @@ disabled = true
 debug_color = Color(0.964151, 0, 0.494479, 0.42)
 
 [node name="Daddy" parent="." node_paths=PackedStringArray("main", "player") instance=ExtResource("62_fk142")]
-position = Vector2(274, 346)
+position = Vector2(398, 346)
 main = NodePath("..")
 player = NodePath("../Player")
 
@@ -1855,16 +2160,29 @@ environment = SubResource("Environment_ehrrk")
 [node name="Baby01" parent="." instance=ExtResource("15_p4ljk")]
 position = Vector2(1429, 149)
 
+[node name="Mommy" parent="." node_paths=PackedStringArray("main", "player") instance=ExtResource("62_fk142")]
+position = Vector2(2778, 346)
+main = NodePath("..")
+player = NodePath("../Player")
+
 [connection signal="door_entered" from="ml_01/Key" to="ml_01/Door" method="_on_door_entered"]
 [connection signal="door_exited" from="ml_01/Key" to="ml_01/Door" method="_on_door_exited"]
 [connection signal="door_opened" from="ml_01/Key" to="ml_01/Door" method="_on_door_opened"]
 [connection signal="area_entered" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_entered"]
 [connection signal="area_exited" from="ml_01/Door/Area2D" to="ml_01/Key" method="_on_door_zone_exited"]
+[connection signal="area_entered" from="ml_02/Upstairs/lever" to="ml_02/Upstairs/lever" method="_on_lever_area_entered"]
+[connection signal="area_exited" from="ml_02/Upstairs/lever" to="ml_02/Upstairs/lever" method="_on_lever_area_exited"]
+[connection signal="lever_pulled" from="ml_02/Upstairs/lever" to="ml_03/Door" method="_on_door_opened"]
 [connection signal="area_exited" from="ml_02/Stairs" to="ml_02/Stairs" method="_on_area_exited"]
 [connection signal="door_entered" from="ml_03/Key" to="Tutorial/Door2" method="_on_door_entered"]
 [connection signal="door_exited" from="ml_03/Key" to="Tutorial/Door2" method="_on_door_exited"]
 [connection signal="door_opened" from="ml_03/Key" to="Tutorial/Door2" method="_on_door_opened"]
 [connection signal="area_entered" from="ml_03/camera_change" to="ml_03/camera_change" method="_on_change_cam"]
+[connection signal="area_entered" from="ml_03/camera_change/stop_tutorial" to="ml_03/camera_change/stop_tutorial" method="_on_tutorial_ended"]
+[connection signal="area_entered" from="ml_03/hiding_area" to="ml_03/hiding_area" method="_on_hide_area_entered"]
+[connection signal="area_exited" from="ml_03/hiding_area" to="ml_03/hiding_area" method="_on_hide_area_exited"]
+[connection signal="area_entered" from="ml_03/Door/Area2D" to="ml_03/Door" method="_on_door_entered"]
+[connection signal="area_exited" from="ml_03/Door/Area2D" to="ml_03/Door" method="_on_door_exited"]
 [connection signal="area_entered" from="ml_05/Ladder" to="ml_05/Ladder" method="_on_ladder_entered"]
 [connection signal="area_exited" from="ml_05/Ladder" to="ml_05/Ladder" method="_on_ladder_exited"]
 [connection signal="area_entered" from="ml_05/camera_change" to="ml_05/camera_change" method="_on_change_cam"]

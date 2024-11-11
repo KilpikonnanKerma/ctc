@@ -17,6 +17,7 @@ var max_move = 700
 var movement = 0
 var searchi = 0
 var is_close = false
+var is_on_attack_zone = false
 var close_counter = 0
 var forget_counter = 0
 
@@ -27,7 +28,7 @@ var direction
 var i = 0
 
 var just_attacked: bool = false
-var attack_cooldown = 100
+var attack_cooldown = 200
 
 func _ready() -> void:
 	pass
@@ -147,19 +148,25 @@ func far_from_player(area: Area2D) -> void:
 			is_close = false
 
 func attackus(_area: Area2D) -> void:
-	var kick = 10
+	var kick = 690
 	var kickdir
+	is_on_attack_zone = true
 
-	if main.aggro && just_attacked == false:
-		var dir = (player.position.x - position.x) #.normalized()
-		if dir < 0: # player is on the left
-			kickdir = kick * (dir*1)
-			player.velocity.x = player.velocity.x + kickdir
-		elif dir > 0:
-			kickdir = kick * (dir*-1)
-			player.velocity.x = player.velocity.x - kickdir
+	if main.aggro && just_attacked == false && is_on_attack_zone:
+		var dir = (player.position - position).normalized()
+		if dir.x > 0: #position.x: # player is on the left
+			kickdir = kick #+ (dir*1)
+			player.velocity.x += kickdir
+		if dir.x < 0:
+			kickdir = -kick#+ (dir*-1)
+			player.velocity.x += kickdir
 			
+		print(dir)
+
 		player.health -= 1
 		player.stamina_bar.value -= 200
 		just_attacked = true
-		attack_cooldown = 100
+		attack_cooldown = 200
+
+func attack_exited(_area: Area2D) -> void:
+	is_on_attack_zone = false

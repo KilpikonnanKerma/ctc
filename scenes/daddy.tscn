@@ -72,15 +72,17 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_syo84"]
-size = Vector2(461.5, 125.5)
+size = Vector2(461.5, 95.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_118b4"]
-size = Vector2(64, 102)
+size = Vector2(31, 89)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_framm"]
 size = Vector2(20, 89)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_ednn7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -115,22 +117,22 @@ texture = ExtResource("4_owf87")
 
 [node name="notice_area" type="CollisionShape2D" parent="Area2D"]
 visible = false
-position = Vector2(0, -17)
+position = Vector2(0, -2.125)
 shape = SubResource("RectangleShape2D_syo84")
 
 [node name="Attack_area" type="Area2D" parent="." groups=["Enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_area"]
 visible = false
-position = Vector2(0, -5)
+position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_118b4")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_framm")
-disabled = true
 debug_color = Color(0.964151, 0, 0.494479, 0.42)
 
 [connection signal="area_entered" from="Area2D" to="." method="close_to_player"]
 [connection signal="area_exited" from="Area2D" to="." method="far_from_player"]
 [connection signal="area_entered" from="Attack_area" to="." method="attackus"]
+[connection signal="area_exited" from="Attack_area" to="." method="attack_exited"]

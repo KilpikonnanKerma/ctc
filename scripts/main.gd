@@ -32,6 +32,7 @@ var searching = false
 var is_using_controller: bool = false
 var is_on_hide_area: bool = false
 
+var tutorial_ended = false
 
 func _ready() -> void:
 	gen_timer.one_shot = true
@@ -51,17 +52,18 @@ func _physics_process(_delta: float) -> void:
 	if player.health == 0:
 		hp.hide()
 
-	if hp_regen == 2000:
+	if hp_regen == 2000 && !paused:
 		player.health += 1
 		hp_regen = 0
 		hp_regen_anim.hide()
 
-	if player.health != 3:
+	if player.health != 3 && !paused:
 		hp_regen_anim.show()
 		hp_regen_anim.play("HP_REGEN")
 		hp_regen += 1
 
-	hide_regeneration()
+	if !paused:
+		hide_regeneration()
 
 	if player.health == 3:
 		hp.play("hp_full")

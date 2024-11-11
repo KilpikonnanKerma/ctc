@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var main: Node2D
+
 @onready var player = %Player
 @onready var anim_player = %Player/AnimationPlayer
 @onready var camera = %Player/Camera
@@ -9,8 +11,6 @@ extends Node2D
 
 var paused = false
 
-var tutorial_completed = false
-
 func _ready() -> void:
 	pass
 
@@ -18,7 +18,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func _input(event: InputEvent) -> void:
-	if !tutorial_completed:
+	if !main.tutorial_ended:
 		if (event is InputEventKey):
 			ballsack.show()
 			pp.hide()
