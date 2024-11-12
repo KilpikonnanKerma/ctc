@@ -94,18 +94,18 @@ func update_hunger_status():
 			if player.last_ate >= 4500:
 				player.hunger_state = player.HungerState.HUNGRY
 				player.heartbeat.show()
-				player.animPlayer.play("heartbeat_on")
+				player.heartbeat_animPlayer.play("heartbeat_on")
 		
 		player.HungerState.HUNGRY:
 			if player.last_ate >= 8000:
 				player.cameraAnim.play("camera_zoom_in_slow")
 				player.hunger_state = player.HungerState.STARVING
 				player.is_hungry = true
-				player.animPlayer.play("heartbeat")
+				player.heartbeat_animPlayer.play("heartbeat")
 
 		player.HungerState.STARVING:
 			if player.last_ate >= 11000:
-				player.animPlayer.play("heartbeat_fast")
+				player.heartbeat_animPlayer.play("heartbeat_fast")
 			if player.last_ate >= 12000 and !player.death_has_been_called:
 				player.die()
 				player.death_has_been_called = true

@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var heartbeat = $Camera/CanvasLayer/Heartbeat
 @onready var player = $AnimatedSprite2D
 @onready var animPlayer = $AnimationPlayer
+@onready var heartbeat_animPlayer = $HeartbeatAnim
 @onready var cameraAnim = $CameraAnim
 @onready var hide_timer = Timer.new()
 
