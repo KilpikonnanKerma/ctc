@@ -14,7 +14,7 @@ func _on_door_opened(area: Area2D):
 		lock.hide()
 
 func _on_door_entered(area: Area2D):
-	if !area.is_in_group("Enemy"): #&& area.is_in_group("Player"):
+	if !area.is_in_group("Enemy") && block.disabled == false: #&& area.is_in_group("Player"):
 		text.show()
 
 func _on_door_exited(area: Area2D):

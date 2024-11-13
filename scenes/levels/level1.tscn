@@ -137,7 +137,7 @@ size = Vector2(102, 32)
 size = Vector2(58, 176)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ed36f"]
-size = Vector2(69, 86)
+size = Vector2(69, 76)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vge1k"]
 size = Vector2(32, 49)
@@ -366,7 +366,7 @@ script = ExtResource("2_oi67x")
 
 [node name="Player" parent="." node_paths=PackedStringArray("main", "globals") groups=["Player"] instance=ExtResource("2_did6k")]
 unique_name_in_owner = true
-position = Vector2(3236, 310)
+position = Vector2(1013, 1777)
 main = NodePath("..")
 globals = NodePath("../Globals")
 
@@ -918,7 +918,7 @@ tutorial_text_pc = NodePath("../../../Tutorial/Tutorial_text")
 tutorial_text_console = NodePath("../../../Tutorial/Tutorial_text_console")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/camera_change/stop_tutorial"]
-position = Vector2(-24.5, 33)
+position = Vector2(-24.5, 38)
 shape = SubResource("RectangleShape2D_ed36f")
 
 [node name="hiding_area" type="Area2D" parent="ml_03" node_paths=PackedStringArray("main", "player", "normal_sprite", "hiding_sprite")]
@@ -1153,6 +1153,9 @@ texture = ExtResource("51_nay57")
 position = Vector2(-16.5, 18)
 shape = SubResource("RectangleShape2D_jiwl4")
 
+[node name="platform5" parent="ml_03" instance=ExtResource("10_ibu8j")]
+position = Vector2(514, -54)
+
 [node name="ml_04" type="StaticBody2D" parent="."]
 position = Vector2(3685, 415)
 
@@ -1233,6 +1236,9 @@ player = NodePath("../../../Player")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_04/VICTORY/Area2D"]
 position = Vector2(17, 3.5)
 shape = SubResource("RectangleShape2D_5dtbk")
+
+[node name="Baby02" parent="ml_04" instance=ExtResource("15_p4ljk")]
+position = Vector2(-509, -37)
 
 [node name="ml_05" type="StaticBody2D" parent="."]
 position = Vector2(134, 1814)

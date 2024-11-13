@@ -4,10 +4,10 @@ extends Control
 @export var baby_text: RichTextLabel
 
 func _ready() -> void:
-	baby_text.text = str(globals.babies_ate)
+	pass
 
 func _process(_delta: float) -> void:
-	pass
+	baby_text.text = str(globals.babies_ate)
 
 func _on_continue_button_pressed() -> void:
 	pass
