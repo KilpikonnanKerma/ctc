@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=3 uid="uid://cncmsau8mljmi"]
+[gd_scene load_steps=143 format=3 uid="uid://cncmsau8mljmi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8b47d"]
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="2_did6k"]
@@ -65,6 +65,7 @@
 [ext_resource type="Texture2D" uid="uid://d0v5s81y4qqlo" path="res://sprites/Props/taulu04.png" id="45_mlnra"]
 [ext_resource type="Texture2D" uid="uid://cq037g6xr6t3y" path="res://sprites/maps/brick03.png" id="46_0h8un"]
 [ext_resource type="Script" path="res://scripts/daddy.gd" id="47_hehc1"]
+[ext_resource type="Script" path="res://scripts/levels/victory.gd" id="47_himyh"]
 [ext_resource type="Texture2D" uid="uid://b3pkuv43v115g" path="res://sprites/enemies/paren01_00_ver2.png" id="48_784wd"]
 [ext_resource type="Texture2D" uid="uid://cyxyjta2j8osy" path="res://sprites/enemies/parent01_idle02.png" id="49_lx1ih"]
 [ext_resource type="Script" path="res://scripts/door.gd" id="50_55gme"]
@@ -88,7 +89,7 @@ resource_local_to_scene = true
 shader = ExtResource("3_c5t16")
 shader_parameter/vignette_intensity = 1.0
 shader_parameter/vignette_opacity = 1.0
-shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+shader_parameter/vignette_rgb = Color(0, 0, 0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjyij"]
 size = Vector2(1218, 28.5)
@@ -115,7 +116,7 @@ size = Vector2(80, 102)
 size = Vector2(63, 482)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iunlr"]
-size = Vector2(64, 1188)
+size = Vector2(63.9999, 542)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1b7g"]
 size = Vector2(65, 9)
@@ -169,6 +170,12 @@ size = Vector2(52, 138)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jiwl4"]
 size = Vector2(53, 98)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p42uh"]
+size = Vector2(402, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dtbk"]
+size = Vector2(84, 127)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6ayl"]
 size = Vector2(1934, 26)
@@ -359,19 +366,24 @@ script = ExtResource("2_oi67x")
 
 [node name="Player" parent="." node_paths=PackedStringArray("main", "globals") groups=["Player"] instance=ExtResource("2_did6k")]
 unique_name_in_owner = true
-position = Vector2(1013, 1777)
+position = Vector2(3236, 310)
 main = NodePath("..")
 globals = NodePath("../Globals")
 
 [node name="Camera" parent="Player" index="3"]
 limit_left = 800
 limit_bottom = 1850
+editor_draw_limits = true
 
 [node name="Vignette" parent="Player/Camera/CanvasLayer" index="1"]
 material = SubResource("ShaderMaterial_iiy87")
 
 [node name="Heartbeat" parent="Player/Camera/CanvasLayer" index="2"]
 material = SubResource("ShaderMaterial_iiy87")
+
+[node name="DAWIN" parent="Player/Camera/CanvasLayer" index="5" node_paths=PackedStringArray("globals", "baby_text")]
+globals = NodePath("../../../../Globals")
+baby_text = NodePath("Text/BABIES")
 
 [node name="ml_01" type="StaticBody2D" parent="."]
 position = Vector2(-28, 415)
@@ -653,15 +665,25 @@ texture = ExtResource("8_ershx")
 position = Vector2(-55, -570)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_02/Floor02"]
-position = Vector2(84, 0.000274658)
+position = Vector2(-239, -0.000946045)
 rotation = 1.5708
+shape = SubResource("RectangleShape2D_iunlr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ml_02/Floor02"]
+position = Vector2(6, -239)
 shape = SubResource("RectangleShape2D_iunlr")
 
 [node name="Wall01" type="Sprite2D" parent="ml_02/Floor02"]
 z_index = 6
-position = Vector2(64.8118, 0.000234618)
+position = Vector2(-258.457, -0.000935612)
 rotation = 1.5708
-scale = Vector2(1, 4.79736)
+scale = Vector2(1, 2.27182)
+texture = ExtResource("8_ershx")
+
+[node name="Wall02" type="Sprite2D" parent="ml_02/Floor02"]
+z_index = 6
+position = Vector2(6, -347.103)
+scale = Vector2(1, 2.96013)
 texture = ExtResource("8_ershx")
 
 [node name="Upstairs" type="Node" parent="ml_02"]
@@ -679,7 +701,7 @@ shape = SubResource("RectangleShape2D_p1b7g")
 one_way_collision = true
 
 [node name="lever" type="Area2D" parent="ml_02/Upstairs" node_paths=PackedStringArray("lever", "lever_pulled_sprt", "lever_text", "areaa")]
-position = Vector2(1165, -203)
+position = Vector2(854, -203)
 script = ExtResource("26_pa4vg")
 lever = NodePath("lever")
 lever_pulled_sprt = NodePath("lever2")
@@ -1135,31 +1157,18 @@ shape = SubResource("RectangleShape2D_jiwl4")
 position = Vector2(3685, 415)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_04"]
-position = Vector2(-82, -5)
-shape = SubResource("RectangleShape2D_xv5mi")
+position = Vector2(-424, -8)
+shape = SubResource("RectangleShape2D_p42uh")
 
 [node name="Background" type="Sprite2D" parent="ml_04"]
 z_index = -10
-position = Vector2(16.0001, -668.5)
-scale = Vector2(37.875, 41.0937)
+position = Vector2(-407.5, -133)
+scale = Vector2(11.4063, 7.62497)
 texture = ExtResource("22_q82ip")
 
 [node name="Floor" type="Node2D" parent="ml_04"]
 z_index = -1
 position = Vector2(-20.5, 0)
-
-[node name="Ground16x32" type="Polygon2D" parent="ml_04/Floor"]
-visible = false
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(0, -5)
-scale = Vector2(40, 2)
-texture = ExtResource("5_xdo3h")
-texture_offset = Vector2(0, 8)
-texture_scale = Vector2(20, 1)
-polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8)
-uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
-polygons = [PackedInt32Array(0, 1, 2, 3)]
 
 [node name="Ground32x64" type="Polygon2D" parent="ml_04/Floor"]
 z_index = 10
@@ -1170,7 +1179,20 @@ scale = Vector2(40, 2)
 texture = ExtResource("6_yoilk")
 texture_offset = Vector2(0, 8)
 texture_scale = Vector2(40, 2)
-polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
+polygon = PackedVector2Array(-16, 8, -16, -8, -5.0625, -8, -5.0625, 8, 16, 8, 0.0489311, 8)
+uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="Ceiling" type="Polygon2D" parent="ml_04/Floor"]
+z_index = 10
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, -250)
+scale = Vector2(40, -2)
+texture = ExtResource("6_yoilk")
+texture_offset = Vector2(0, 8)
+texture_scale = Vector2(40, 2)
+polygon = PackedVector2Array(-14.2875, 8, -14.2875, -8, -5.0625, -8, -5.0625, 8, 16, 8, 0.0489311, 8)
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
 
@@ -1186,6 +1208,31 @@ z_index = 9
 position = Vector2(-542, -635.5)
 scale = Vector2(1, 5.19141)
 texture = ExtResource("8_ershx")
+
+[node name="Wall3" type="StaticBody2D" parent="ml_04"]
+position = Vector2(332, -25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_04/Wall3"]
+position = Vector2(-542.5, -358)
+shape = SubResource("RectangleShape2D_glyqk")
+
+[node name="Wall01" type="Sprite2D" parent="ml_04/Wall3"]
+z_index = 9
+position = Vector2(-542, -635.5)
+scale = Vector2(1, 5.19141)
+texture = ExtResource("8_ershx")
+
+[node name="VICTORY" type="Node2D" parent="ml_04"]
+position = Vector2(-253, -85)
+
+[node name="Area2D" type="Area2D" parent="ml_04/VICTORY" node_paths=PackedStringArray("win_screen", "player")]
+script = ExtResource("47_himyh")
+win_screen = NodePath("../../../Player/Camera/CanvasLayer/DAWIN")
+player = NodePath("../../../Player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_04/VICTORY/Area2D"]
+position = Vector2(17, 3.5)
+shape = SubResource("RectangleShape2D_5dtbk")
 
 [node name="ml_05" type="StaticBody2D" parent="."]
 position = Vector2(134, 1814)
@@ -2165,6 +2212,8 @@ position = Vector2(2778, 346)
 main = NodePath("..")
 player = NodePath("../Player")
 
+[connection signal="button_down" from="Player/Camera/CanvasLayer/DAWIN/buttons/play2" to="Player/Camera/CanvasLayer/DAWIN" method="_on_continue_button_pressed"]
+[connection signal="button_down" from="Player/Camera/CanvasLayer/DAWIN/buttons/exit2" to="Player/Camera/CanvasLayer/DAWIN" method="_on_exit_button_pressed"]
 [connection signal="door_entered" from="ml_01/Key" to="ml_01/Door" method="_on_door_entered"]
 [connection signal="door_exited" from="ml_01/Key" to="ml_01/Door" method="_on_door_exited"]
 [connection signal="door_opened" from="ml_01/Key" to="ml_01/Door" method="_on_door_opened"]
@@ -2183,6 +2232,7 @@ player = NodePath("../Player")
 [connection signal="area_exited" from="ml_03/hiding_area" to="ml_03/hiding_area" method="_on_hide_area_exited"]
 [connection signal="area_entered" from="ml_03/Door/Area2D" to="ml_03/Door" method="_on_door_entered"]
 [connection signal="area_exited" from="ml_03/Door/Area2D" to="ml_03/Door" method="_on_door_exited"]
+[connection signal="area_entered" from="ml_04/VICTORY/Area2D" to="ml_04/VICTORY/Area2D" method="_on_win_area_entered"]
 [connection signal="area_entered" from="ml_05/Ladder" to="ml_05/Ladder" method="_on_ladder_entered"]
 [connection signal="area_exited" from="ml_05/Ladder" to="ml_05/Ladder" method="_on_ladder_exited"]
 [connection signal="area_entered" from="ml_05/camera_change" to="ml_05/camera_change" method="_on_change_cam"]
@@ -2200,4 +2250,5 @@ player = NodePath("../Player")
 [connection signal="area_entered" from="Guard/Attack_area" to="Guard" method="attackus"]
 
 [editable path="Player"]
+[editable path="Player/Camera/CanvasLayer/DAWIN"]
 [editable path="Tutorial/Ladder"]

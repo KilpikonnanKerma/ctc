@@ -1,0 +1,144 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpetj4l6fdd7d"]
+
+[ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="1_2rn80"]
+[ext_resource type="Script" path="res://scripts/levels/win_screen.gd" id="1_k2iu2"]
+[ext_resource type="FontFile" uid="uid://casytw2pdx7eq" path="res://fonts/OldLondon.ttf" id="1_ks1cy"]
+[ext_resource type="Texture2D" uid="uid://c48ygxgcbhea" path="res://sprites/shit/gui.png" id="2_8sias"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_goy62"]
+texture = ExtResource("2_8sias")
+region_rect = Rect2(0, 16, 64, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ojiy"]
+texture = ExtResource("2_8sias")
+region_rect = Rect2(0, 32, 64, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3vx8k"]
+texture = ExtResource("2_8sias")
+region_rect = Rect2(0, 0, 64, 16)
+modulate_color = Color(1, 1, 1, 0.352941)
+
+[node name="DAWIN" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k2iu2")
+
+[node name="Text" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Title" type="RichTextLabel" parent="Text"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -367.0
+offset_top = 7.0
+offset_right = 368.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_ks1cy")
+theme_override_font_sizes/normal_font_size = 65
+text = "You have escaped successfully!"
+
+[node name="Title2" type="RichTextLabel" parent="Text"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = 172.0
+offset_right = 152.0
+offset_bottom = 246.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_2rn80")
+theme_override_font_sizes/normal_font_size = 20
+text = "you ate: 	babies"
+
+[node name="BABIES" type="RichTextLabel" parent="Text"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = 170.0
+offset_right = 32.0
+offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_2rn80")
+theme_override_font_sizes/normal_font_size = 20
+text = "69"
+
+[node name="buttons" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 130.0
+offset_right = 20.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="play2" type="Button" parent="buttons"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -50.0
+offset_right = 96.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_2rn80")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxTexture_goy62")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5ojiy")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3vx8k")
+text = "continue"
+
+[node name="exit2" type="Button" parent="buttons"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.0
+offset_right = 138.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_2rn80")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxTexture_goy62")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5ojiy")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3vx8k")
+text = "Exit to menu"
