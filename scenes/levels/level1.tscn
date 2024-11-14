@@ -675,15 +675,15 @@ shape = SubResource("RectangleShape2D_iunlr")
 
 [node name="Wall01" type="Sprite2D" parent="ml_02/Floor02"]
 z_index = 6
-position = Vector2(-258.457, -0.000935612)
+position = Vector2(75.1431, 0.000272017)
 rotation = 1.5708
-scale = Vector2(1, 2.27182)
+scale = Vector2(1, 4.87807)
 texture = ExtResource("8_ershx")
 
 [node name="Wall02" type="Sprite2D" parent="ml_02/Floor02"]
 z_index = 6
-position = Vector2(6, -347.103)
-scale = Vector2(1, 2.96013)
+position = Vector2(6, -379)
+scale = Vector2(1, 2.71094)
 texture = ExtResource("8_ershx")
 
 [node name="Upstairs" type="Node" parent="ml_02"]
