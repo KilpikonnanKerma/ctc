@@ -1,12 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://5c5eh2fjkx6i"]
+[gd_scene load_steps=19 format=3 uid="uid://5c5eh2fjkx6i"]
 
 [ext_resource type="Script" path="res://scripts/daddy.gd" id="1_ednn7"]
-[ext_resource type="Texture2D" uid="uid://b3pkuv43v115g" path="res://sprites/enemies/paren01_00_ver2.png" id="2_3uvg6"]
+[ext_resource type="Texture2D" uid="uid://bl28uo2bjpykx" path="res://sprites/enemies/chonk_daddy01.png" id="2_007f2"]
 [ext_resource type="Texture2D" uid="uid://bk2pk53hlica" path="res://sprites/shit/huutomerkki.png" id="3_w82xr"]
 [ext_resource type="Texture2D" uid="uid://cjteld6qflwhx" path="res://sprites/shit/kymysys.png" id="4_owf87"]
-[ext_resource type="Texture2D" uid="uid://cyxyjta2j8osy" path="res://sprites/enemies/parent01_idle02.png" id="4_qe70m"]
 [ext_resource type="Texture2D" uid="uid://ddc7nwwg8cxje" path="res://sprites/shit/timer_005.png" id="4_reqsv"]
-[ext_resource type="Texture2D" uid="uid://cfqhbdtqby26h" path="res://sprites/enemies/parent01_idle03.png" id="5_g0gw6"]
 [ext_resource type="Texture2D" uid="uid://ocje617u3pju" path="res://sprites/shit/timerfull.png" id="5_v07gj"]
 [ext_resource type="Texture2D" uid="uid://b0cp5md2f8une" path="res://sprites/shit/timer_01.png" id="6_16fad"]
 [ext_resource type="Texture2D" uid="uid://bvt7nqywc2fq2" path="res://sprites/shit/timer_015.png" id="6_260xe"]
@@ -20,16 +18,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_3uvg6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_qe70m")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_g0gw6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_qe70m")
+"texture": ExtResource("2_007f2")
 }],
 "loop": true,
 "name": &"idle",

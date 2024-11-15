@@ -148,13 +148,11 @@ func far_from_player(area: Area2D) -> void:
 			is_close = false
 
 func attackus(_area: Area2D) -> void:
-	var kick = 690 # irl 1.6 km/s
-	var kickdir
 	is_on_attack_zone = true
 
-	# todo: katso pelaajan suunta suhteessa viholliseen
-
-	if main.aggro && just_attacked == false && is_on_attack_zone:
+	if (main.aggro and just_attacked == false and is_on_attack_zone):
+		var kick = 690 # irl 1.6 km/s
+		var kickdir
 		var dir = (player.position - position).normalized()
 		if dir.x > 0: #position.x: # player is on the left
 			kickdir = kick #+ (dir*1)
@@ -167,6 +165,8 @@ func attackus(_area: Area2D) -> void:
 		player.stamina_bar.value -= 200
 		just_attacked = true
 		attack_cooldown = 200
+
+	# todo: katso pelaajan suunta suhteessa viholliseen
 
 func attack_exited(_area: Area2D) -> void:
 	is_on_attack_zone = false

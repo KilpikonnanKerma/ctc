@@ -366,7 +366,7 @@ script = ExtResource("2_oi67x")
 
 [node name="Player" parent="." node_paths=PackedStringArray("main", "globals") groups=["Player"] instance=ExtResource("2_did6k")]
 unique_name_in_owner = true
-position = Vector2(1013, 1777)
+position = Vector2(2891, 919)
 main = NodePath("..")
 globals = NodePath("../Globals")
 
@@ -689,7 +689,7 @@ texture = ExtResource("8_ershx")
 [node name="Upstairs" type="Node" parent="ml_02"]
 
 [node name="TV" type="StaticBody2D" parent="ml_02/Upstairs"]
-position = Vector2(743, -219)
+position = Vector2(1039, -219)
 
 [node name="TV" type="Sprite2D" parent="ml_02/Upstairs/TV"]
 z_index = -5
@@ -2081,7 +2081,6 @@ polygon = PackedVector2Array(1032, 137, -221.687, 133.909, -996, 132, -1007, 681
 [node name="Enemy_block" type="StaticBody2D" parent="Tutorial/Guards_room"]
 position = Vector2(1437, -503)
 collision_layer = 2
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Guards_room/Enemy_block"]
 position = Vector2(-5, 3)
@@ -2149,7 +2148,9 @@ end_left = -1100
 end_bottom = 0
 
 [node name="Guard" type="CharacterBody2D" parent="." node_paths=PackedStringArray("main", "player") groups=["Enemy"]]
-position = Vector2(2085, 950)
+position = Vector2(5524, 1224)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("47_hehc1")
 main = NodePath("..")
 player = NodePath("../Player")
@@ -2201,6 +2202,11 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_framm")
 disabled = true
 debug_color = Color(0.964151, 0, 0.494479, 0.42)
+
+[node name="Guard2" parent="." node_paths=PackedStringArray("main", "player") instance=ExtResource("62_fk142")]
+position = Vector2(2024, 950)
+main = NodePath("..")
+player = NodePath("../Player")
 
 [node name="Daddy" parent="." node_paths=PackedStringArray("main", "player") instance=ExtResource("62_fk142")]
 position = Vector2(398, 346)
