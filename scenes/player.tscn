@@ -673,7 +673,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("71_840vn")
 }],
-"loop": true,
+"loop": false,
 "name": &"HP_REGEN",
 "speed": 0.14
 }]

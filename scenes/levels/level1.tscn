@@ -1,4 +1,4 @@
-[gd_scene load_steps=143 format=3 uid="uid://cncmsau8mljmi"]
+[gd_scene load_steps=149 format=3 uid="uid://cncmsau8mljmi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8b47d"]
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="2_did6k"]
@@ -83,6 +83,7 @@
 [ext_resource type="Texture2D" uid="uid://bk2pk53hlica" path="res://sprites/shit/huutomerkki.png" id="60_f15cj"]
 [ext_resource type="Texture2D" uid="uid://cjteld6qflwhx" path="res://sprites/shit/kymysys.png" id="61_cywne"]
 [ext_resource type="PackedScene" uid="uid://5c5eh2fjkx6i" path="res://scenes/daddy.tscn" id="62_fk142"]
+[ext_resource type="Texture2D" uid="uid://b8oe6qtlc34i2" path="res://sprites/enemies/mommy.png" id="84_8apax"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iiy87"]
 resource_local_to_scene = true
@@ -157,7 +158,7 @@ animations = [{
 size = Vector2(256, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ttrc"]
-size = Vector2(7, 59)
+size = Vector2(7, 49.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vngvs"]
 size = Vector2(64, 5)
@@ -170,6 +171,9 @@ size = Vector2(52, 138)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jiwl4"]
 size = Vector2(53, 98)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2om72"]
+size = Vector2(64, 106)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p42uh"]
 size = Vector2(402, 26)
@@ -277,9 +281,6 @@ size = Vector2(81, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_81jah"]
 size = Vector2(130, 4)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2om72"]
-size = Vector2(64, 106)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_161fi"]
 size = Vector2(20, 172)
 
@@ -358,6 +359,61 @@ adjustment_enabled = true
 adjustment_contrast = 1.15
 adjustment_saturation = 0.6
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_umy7t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("84_8apax")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jc1ek"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("51_v67rp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_6rm6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_0ltmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_nejl3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_e8mus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_0kdgq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_yqsr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_ljmpy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_qo87n")
+}],
+"loop": true,
+"name": &"timer",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_421xh"]
+size = Vector2(461.5, 95.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fk8cy"]
+size = Vector2(31, 89)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4wak"]
+size = Vector2(20, 89)
+
 [node name="Scene1" type="Node2D"]
 script = ExtResource("1_8b47d")
 
@@ -366,7 +422,7 @@ script = ExtResource("2_oi67x")
 
 [node name="Player" parent="." node_paths=PackedStringArray("main", "globals") groups=["Player"] instance=ExtResource("2_did6k")]
 unique_name_in_owner = true
-position = Vector2(2891, 919)
+position = Vector2(1534, 304)
 main = NodePath("..")
 globals = NodePath("../Globals")
 
@@ -1056,11 +1112,11 @@ texture = ExtResource("34_l7kvt")
 collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/Trash/StaticBody2D"]
-position = Vector2(-28.5, 1.5)
+position = Vector2(-29, 6)
 shape = SubResource("RectangleShape2D_3ttrc")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ml_03/Trash/StaticBody2D"]
-position = Vector2(28, 1)
+position = Vector2(28, 5.75)
 shape = SubResource("RectangleShape2D_3ttrc")
 
 [node name="platform2" parent="ml_03" instance=ExtResource("10_ibu8j")]
@@ -1084,6 +1140,7 @@ one_way_collision = true
 position = Vector2(246, -172)
 
 [node name="Sprite2D" type="Sprite2D" parent="ml_03/quackmf"]
+z_index = -7
 texture = ExtResource("37_jijuc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/quackmf"]
@@ -1153,8 +1210,21 @@ texture = ExtResource("51_nay57")
 position = Vector2(-16.5, 18)
 shape = SubResource("RectangleShape2D_jiwl4")
 
-[node name="platform5" parent="ml_03" instance=ExtResource("10_ibu8j")]
-position = Vector2(514, -54)
+[node name="Enemy_block" type="StaticBody2D" parent="ml_03"]
+position = Vector2(-1802, -72)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/Enemy_block"]
+position = Vector2(-5, 3)
+shape = SubResource("RectangleShape2D_2om72")
+
+[node name="Enemy_block2" type="StaticBody2D" parent="ml_03"]
+position = Vector2(-586, -75)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ml_03/Enemy_block2"]
+position = Vector2(-5, 3)
+shape = SubResource("RectangleShape2D_2om72")
 
 [node name="ml_04" type="StaticBody2D" parent="."]
 position = Vector2(3685, 415)
@@ -2219,10 +2289,59 @@ environment = SubResource("Environment_ehrrk")
 [node name="Baby01" parent="." instance=ExtResource("15_p4ljk")]
 position = Vector2(1429, 149)
 
-[node name="Mommy" parent="." node_paths=PackedStringArray("main", "player") instance=ExtResource("62_fk142")]
+[node name="Mommy" type="CharacterBody2D" parent="." node_paths=PackedStringArray("main", "player") groups=["Enemy"]]
 position = Vector2(2778, 346)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("47_hehc1")
 main = NodePath("..")
 player = NodePath("../Player")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Mommy"]
+sprite_frames = SubResource("SpriteFrames_umy7t")
+animation = &"idle"
+
+[node name="RayCast2D" type="RayCast2D" parent="Mommy"]
+visible = false
+
+[node name="notice_timer" type="AnimatedSprite2D" parent="Mommy"]
+visible = false
+position = Vector2(0, -64)
+sprite_frames = SubResource("SpriteFrames_jc1ek")
+animation = &"timer"
+frame = 4
+frame_progress = 0.0440759
+
+[node name="Huutomerkki" type="Sprite2D" parent="Mommy"]
+visible = false
+texture_filter = 1
+position = Vector2(0, -64)
+texture = ExtResource("60_f15cj")
+
+[node name="kymysys" type="Sprite2D" parent="Mommy"]
+visible = false
+texture_filter = 1
+position = Vector2(0, -64)
+texture = ExtResource("61_cywne")
+
+[node name="Area2D" type="Area2D" parent="Mommy" groups=["Enemy"]]
+
+[node name="notice_area" type="CollisionShape2D" parent="Mommy/Area2D"]
+visible = false
+position = Vector2(0, -2.125)
+shape = SubResource("RectangleShape2D_421xh")
+
+[node name="Attack_area" type="Area2D" parent="Mommy" groups=["Enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mommy/Attack_area"]
+visible = false
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_fk8cy")
+
+[node name="Collision" type="CollisionShape2D" parent="Mommy"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_m4wak")
+debug_color = Color(0.964151, 0, 0.494479, 0.42)
 
 [connection signal="button_down" from="Player/Camera/CanvasLayer/DAWIN/buttons/play2" to="Player/Camera/CanvasLayer/DAWIN" method="_on_continue_button_pressed"]
 [connection signal="button_down" from="Player/Camera/CanvasLayer/DAWIN/buttons/exit2" to="Player/Camera/CanvasLayer/DAWIN" method="_on_exit_button_pressed"]
@@ -2260,6 +2379,10 @@ player = NodePath("../Player")
 [connection signal="area_entered" from="Guard/Area2D" to="Guard" method="close_to_player"]
 [connection signal="area_exited" from="Guard/Area2D" to="Guard" method="far_from_player"]
 [connection signal="area_entered" from="Guard/Attack_area" to="Guard" method="attackus"]
+[connection signal="area_entered" from="Mommy/Area2D" to="Mommy" method="close_to_player"]
+[connection signal="area_exited" from="Mommy/Area2D" to="Mommy" method="far_from_player"]
+[connection signal="area_entered" from="Mommy/Attack_area" to="Mommy" method="attackus"]
+[connection signal="area_exited" from="Mommy/Attack_area" to="Mommy" method="attack_exited"]
 
 [editable path="Player"]
 [editable path="Player/Camera/CanvasLayer/DAWIN"]

@@ -25,7 +25,7 @@ animations = [{
 "speed": 2.5
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_tpasg"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_jc1ek"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -60,13 +60,13 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_syo84"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_421xh"]
 size = Vector2(461.5, 95.75)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_118b4"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fk8cy"]
 size = Vector2(31, 89)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_framm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4wak"]
 size = Vector2(20, 89)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
@@ -85,7 +85,7 @@ visible = false
 [node name="notice_timer" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(0, -64)
-sprite_frames = SubResource("SpriteFrames_tpasg")
+sprite_frames = SubResource("SpriteFrames_jc1ek")
 animation = &"timer"
 frame = 4
 frame_progress = 0.0440759
@@ -107,18 +107,18 @@ texture = ExtResource("4_owf87")
 [node name="notice_area" type="CollisionShape2D" parent="Area2D"]
 visible = false
 position = Vector2(0, -2.125)
-shape = SubResource("RectangleShape2D_syo84")
+shape = SubResource("RectangleShape2D_421xh")
 
 [node name="Attack_area" type="Area2D" parent="." groups=["Enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_area"]
 visible = false
 position = Vector2(0.5, 1.5)
-shape = SubResource("RectangleShape2D_118b4")
+shape = SubResource("RectangleShape2D_fk8cy")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_framm")
+shape = SubResource("RectangleShape2D_m4wak")
 debug_color = Color(0.964151, 0, 0.494479, 0.42)
 
 [connection signal="area_entered" from="Area2D" to="." method="close_to_player"]
