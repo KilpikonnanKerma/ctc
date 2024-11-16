@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://nam4pcxle4c0"]
+
+[ext_resource type="Script" path="res://scripts/baby.gd" id="1_nwe2l"]
+[ext_resource type="Texture2D" uid="uid://b2nollu7b25ke" path="res://sprites/Props/baby02_idle_00.png" id="2_hgd8a"]
+[ext_resource type="Texture2D" uid="uid://bq6wrtlvmglu3" path="res://sprites/Props/baby02_idle_01.png" id="3_qc7fo"]
+[ext_resource type="Texture2D" uid="uid://cmvbms2koapam" path="res://sprites/Props/baby02_idle_03.png" id="4_wvwsy"]
+[ext_resource type="Texture2D" uid="uid://bytst6cgnin2m" path="res://sprites/Props/baby02_idle_04.png" id="5_iul3g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3puc1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hgd8a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qc7fo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hgd8a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wvwsy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hgd8a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qc7fo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hgd8a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_iul3g")
+}],
+"loop": true,
+"name": &"baby_idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwr7t"]
+size = Vector2(58, 15)
+
+[node name="Baby01" type="CharacterBody2D" groups=["Eatable"]]
+script = ExtResource("1_nwe2l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_3puc1")
+animation = &"baby_idle"
+frame = 7
+frame_progress = 0.0647395
+speed_scale = 0.8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-9.53674e-07, 8.5)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_rwr7t")
+one_way_collision = true
+one_way_collision_margin = 0.0
