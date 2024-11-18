@@ -675,7 +675,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"HP_REGEN",
-"speed": 0.14
+"speed": 0.27
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gtyon"]

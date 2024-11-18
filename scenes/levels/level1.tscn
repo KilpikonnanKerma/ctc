@@ -1,4 +1,4 @@
-[gd_scene load_steps=151 format=3 uid="uid://cncmsau8mljmi"]
+[gd_scene load_steps=152 format=3 uid="uid://cncmsau8mljmi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8b47d"]
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="2_did6k"]
@@ -86,6 +86,7 @@
 [ext_resource type="Texture2D" uid="uid://cjteld6qflwhx" path="res://sprites/shit/kymysys.png" id="61_cywne"]
 [ext_resource type="PackedScene" uid="uid://5c5eh2fjkx6i" path="res://scenes/daddy.tscn" id="62_fk142"]
 [ext_resource type="Texture2D" uid="uid://byhmad5pkp0dx" path="res://sprites/enemies/mommy_w_hair.png" id="84_uuttu"]
+[ext_resource type="Texture2D" uid="uid://b3a18k117fp0p" path="res://sprites/enemies/mommy_mad.png" id="86_0hf6g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iiy87"]
 resource_local_to_scene = true
@@ -365,6 +366,14 @@ adjustment_saturation = 0.6
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("86_0hf6g")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("84_uuttu")
 }],
 "loop": true,
@@ -424,7 +433,7 @@ script = ExtResource("2_oi67x")
 
 [node name="Player" parent="." node_paths=PackedStringArray("main", "globals") groups=["Player"] instance=ExtResource("2_did6k")]
 unique_name_in_owner = true
-position = Vector2(1534, 304)
+position = Vector2(1013, 1777)
 main = NodePath("..")
 globals = NodePath("../Globals")
 

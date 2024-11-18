@@ -21,6 +21,14 @@ animations = [{
 "texture": ExtResource("2_007f2")
 }],
 "loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_007f2")
+}],
+"loop": true,
 "name": &"idle",
 "speed": 2.5
 }]
@@ -76,8 +84,7 @@ script = ExtResource("1_ednn7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b1yff")
-animation = &"idle"
-frame_progress = 0.0738316
+animation = &"angry"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false

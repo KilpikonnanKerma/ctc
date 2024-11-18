@@ -48,8 +48,8 @@ script = ExtResource("1_nwe2l")
 z_index = -1
 sprite_frames = SubResource("SpriteFrames_3puc1")
 animation = &"baby_idle"
-frame = 7
-frame_progress = 0.0647395
+frame = 6
+frame_progress = 0.120803
 speed_scale = 0.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

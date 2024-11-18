@@ -53,7 +53,7 @@ func _process(_delta: float) -> void:
 		hiding_sprite.hide()
 
 func _on_hide_area_entered(area: Area2D) -> void:
-	if (!area.is_in_group("Enemy") && area.is_in_group("Player")):
+	if (area.name == "Range"):
 		if (main.is_using_controller):
 			controller_text.show()
 			pc_text.hide()

@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	#if not is_on_floor(): daddy ain't getting gravity
 	#	velocity += get_gravity() * delta
 
-	if velocity.x == 0:
+	if (velocity.x == 0 && not main.aggro):
 		anim.play("idle")
 	else:
 		anim.stop()
@@ -88,6 +88,7 @@ func _physics_process(delta: float) -> void:
 				movement = 0
 				i = 0
 	elif main.aggro:		# aggro
+		anim.play("angry")
 		qstn.hide()
 		htmrk.show()
 		if !facing_right:
