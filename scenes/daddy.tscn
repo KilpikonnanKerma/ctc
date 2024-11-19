@@ -124,6 +124,7 @@ position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_fk8cy")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_m4wak")
 debug_color = Color(0.964151, 0, 0.494479, 0.42)
