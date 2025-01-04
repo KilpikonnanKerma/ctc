@@ -8,8 +8,11 @@ extends Node2D
 @onready var player = %"Player"
 @onready var player_anim = %"Player/AnimatedSprite2D"
 
-@onready var hp = $"Player/Camera/CanvasLayer/HUD/HP"
-@onready var hp_regen_anim = $"Player/Camera/CanvasLayer/HUD/HP_REGEN"
+@onready var hp = $"Player/Camera/CanvasLayer/HUD/Health"
+@onready var health_regen = $"Player/Camera/CanvasLayer/HUD/Health_regen"
+@onready var hp_regen_anim = $"Player/HealthRegen"
+@onready var hungerbar = $"Player/Camera/CanvasLayer/HUD/Hunger"
+
 @onready var hide_regen_anim = $"Player/Camera/CanvasLayer/HUD/HIDE_REGEN"
 @onready var hide = $"Player/Camera/CanvasLayer/HUD/HIDE"
 
@@ -48,29 +51,10 @@ func _physics_process(_delta: float) -> void:
 		pauseMenu()
 
 	update_hunger_status()
-
-	if player.health == 0:
-		hp.hide()
-
-	if hp_regen == 2000 && !paused:
-		player.health += 1
-		hp_regen = 0
-		hp_regen_anim.hide()
-
-	if player.health != 3 && !paused:
-		hp_regen_anim.show()
-		hp_regen_anim.play("HP_REGEN")
-		hp_regen += 1
+	update_health_status()
 
 	if !paused:
 		hide_regeneration()
-
-	if player.health == 3:
-		hp.play("hp_full")
-	elif player.health == 2:
-		hp.play("hp_half")
-	elif player.health == 1:
-		hp.play("hp_empty")
 
 	if !hide_available:
 		hide.play("unavailable")
@@ -83,11 +67,28 @@ func _input(event: InputEvent):
 	elif (event is InputEventJoypadButton or event is InputEventJoypadMotion):
 		is_using_controller = true
 
+func update_health_status():
+	if player.hp.value == 0:
+			hp.hide()
+
+	if hp_regen == 2000 && !paused:
+		player.hp.value += 1
+		hp_regen = 0
+		hp_regen_anim.hide()
+
+	if player.hp.value != 3 && !paused:
+		hp_regen_anim.show()
+		hp_regen_anim.play("HealthRegen")
+		health_regen.value = player.hp.value + 1	# Shows only the "regenerating" health flashing
+													# and not the whole health bar
+		hp_regen += 1
+
 func update_hunger_status():
 	if paused:
 		return
 	
 	player.last_ate += 1
+	hungerbar.value = player.last_ate
 
 	match player.hunger_state:
 		player.HungerState.FULL:

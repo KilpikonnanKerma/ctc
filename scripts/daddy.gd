@@ -162,7 +162,7 @@ func attackus(_area: Area2D) -> void:
 			kickdir = -kick#+ (dir*-1)
 			player.velocity.x += kickdir
 
-		player.health -= 1
+		player.hp.value -= 1
 		player.stamina_bar.value -= 200
 		just_attacked = true
 		attack_cooldown = 200

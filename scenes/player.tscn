@@ -1,4 +1,4 @@
-[gd_scene load_steps=164 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=167 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
@@ -101,10 +101,7 @@
 [ext_resource type="Texture2D" uid="uid://c4thequ5s3gun" path="res://sprites/player/eplode07.png" id="62_kglpw"]
 [ext_resource type="Texture2D" uid="uid://chc3tbxhud148" path="res://sprites/player/eplode08.png" id="63_vsyux"]
 [ext_resource type="Texture2D" uid="uid://n5wybbv0umd" path="res://sprites/player/eplode09.png" id="64_30cr1"]
-[ext_resource type="Texture2D" uid="uid://boe1066twercm" path="res://sprites/shit/hp_empty.png" id="64_w7qfq"]
 [ext_resource type="Texture2D" uid="uid://dff7ypcvm2s71" path="res://sprites/player/eplode10.png" id="65_hul5x"]
-[ext_resource type="Texture2D" uid="uid://yj8vp3xe01jd" path="res://sprites/shit/hp_half.png" id="66_fk1xy"]
-[ext_resource type="Texture2D" uid="uid://cw43yrvplbhhx" path="res://sprites/shit/hp_full.png" id="66_j2fkb"]
 [ext_resource type="Texture2D" uid="uid://dvxg4akctqh6g" path="res://sprites/player/eplode11.png" id="66_poi6j"]
 [ext_resource type="Texture2D" uid="uid://310kf0xgmvnl" path="res://sprites/player/eplode12.png" id="67_8ml80"]
 [ext_resource type="Texture2D" uid="uid://clar3lqfutn8w" path="res://sprites/shit/empty_bar.png" id="67_h3fvh"]
@@ -131,8 +128,12 @@
 [ext_resource type="Texture2D" uid="uid://fhdl5y4vc0hs" path="res://sprites/player/explode09.png" id="78_ygeqk"]
 [ext_resource type="Texture2D" uid="uid://clluf8s7e71sm" path="res://sprites/player/explode10.png" id="79_4lg0f"]
 [ext_resource type="Texture2D" uid="uid://dlkm5cdd1gijx" path="res://sprites/player/hide_under.png" id="91_lqwiy"]
+[ext_resource type="Texture2D" uid="uid://c702s62dphwt6" path="res://sprites/shit/empty_bar02.png" id="115_8b6e6"]
+[ext_resource type="Texture2D" uid="uid://b2jpogev1th30" path="res://sprites/shit/empty_hp_bar.png" id="115_n0bad"]
 [ext_resource type="Texture2D" uid="uid://qdn6fx5vp4j5" path="res://sprites/shit/shadow32x32.png" id="126_6pcad"]
 [ext_resource type="Texture2D" uid="uid://doc6sgrmcpfja" path="res://sprites/shit/shadow_unavailable_32x.png" id="127_evkdw"]
+[ext_resource type="Texture2D" uid="uid://bm7mb3bbhcoie" path="res://sprites/maps/red.png" id="128_dfbw5"]
+[ext_resource type="Texture2D" uid="uid://dvs3mes7oglnm" path="res://sprites/maps/redder.png" id="129_hwqqi"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="133_uqj37"]
 [ext_resource type="PackedScene" uid="uid://bpetj4l6fdd7d" path="res://scenes/levels/dawin.tscn" id="134_ao84w"]
 
@@ -616,30 +617,22 @@ size = Vector2(26.5, 26.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eoymx"]
 size = Vector2(24, 25.125)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_cjopr"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_gtyon"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("64_w7qfq")
+"texture": ExtResource("126_6pcad")
 }],
 "loop": true,
-"name": &"hp_empty",
+"name": &"available",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("66_j2fkb")
+"texture": ExtResource("127_evkdw")
 }],
 "loop": true,
-"name": &"hp_full",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("66_fk1xy")
-}],
-"loop": true,
-"name": &"hp_half",
+"name": &"unavailable",
 "speed": 5.0
 }]
 
@@ -676,25 +669,6 @@ animations = [{
 "loop": false,
 "name": &"HP_REGEN",
 "speed": 0.27
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_gtyon"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("126_6pcad")
-}],
-"loop": true,
-"name": &"available",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("127_evkdw")
-}],
-"loop": true,
-"name": &"unavailable",
-"speed": 5.0
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o2av2"]
@@ -1180,6 +1154,43 @@ _data = {
 "camera_zoom_out": SubResource("Animation_mxuqu")
 }
 
+[sub_resource type="Animation" id="Animation_0bxk8"]
+resource_name = "HealthRegen"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/CanvasLayer/HUD/Health_regen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.72549), Color(1, 1, 1, 0.470588)]
+}
+
+[sub_resource type="Animation" id="Animation_jm25q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera/CanvasLayer/HUD/Health_regen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.72549)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2vtfk"]
+_data = {
+"HealthRegen": SubResource("Animation_0bxk8"),
+"RESET": SubResource("Animation_jm25q")
+}
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 5
 script = ExtResource("1_q5ei5")
@@ -1221,40 +1232,100 @@ offset_right = 41.0
 offset_bottom = 41.0
 metadata/_edit_use_anchors_ = true
 
-[node name="HP" type="AnimatedSprite2D" parent="Camera/CanvasLayer/HUD"]
-position = Vector2(55, 41)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_cjopr")
-animation = &"hp_full"
+[node name="Health_regen" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
+modulate = Color(1, 1, 1, 0.72549)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.325
+anchor_top = -0.9
+anchor_right = -0.325
+anchor_bottom = -0.9
+offset_left = 23.0
+offset_top = 46.0
+offset_right = 87.0
+offset_bottom = 79.0
+scale = Vector2(1.5, 1)
+max_value = 3.0
+value = 3.0
+nine_patch_stretch = true
+texture_over = ExtResource("115_n0bad")
+texture_progress = ExtResource("129_hwqqi")
+metadata/_edit_use_anchors_ = true
 
-[node name="HP_REGEN" type="AnimatedSprite2D" parent="Camera/CanvasLayer/HUD"]
-visible = false
-position = Vector2(113, 41)
-sprite_frames = SubResource("SpriteFrames_glql0")
-animation = &"HP_REGEN"
-frame = 1
-frame_progress = 0.818982
+[node name="Health" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.325
+anchor_top = -0.9
+anchor_right = -0.325
+anchor_bottom = -0.9
+offset_left = 23.0
+offset_top = 46.0
+offset_right = 87.0
+offset_bottom = 79.0
+scale = Vector2(1.5, 1)
+max_value = 3.0
+value = 3.0
+nine_patch_stretch = true
+texture_over = ExtResource("115_n0bad")
+texture_progress = ExtResource("128_dfbw5")
+metadata/_edit_use_anchors_ = true
 
 [node name="HIDE" type="AnimatedSprite2D" parent="Camera/CanvasLayer/HUD"]
-position = Vector2(41, 133)
+visible = false
+position = Vector2(41, 93)
 sprite_frames = SubResource("SpriteFrames_gtyon")
 animation = &"available"
 
 [node name="HIDE_REGEN" type="AnimatedSprite2D" parent="Camera/CanvasLayer/HUD"]
 visible = false
-position = Vector2(113, 133)
+position = Vector2(41, 93)
 sprite_frames = SubResource("SpriteFrames_glql0")
 animation = &"HP_REGEN"
-frame_progress = 0.0546626
+frame = 2
+frame_progress = 0.0106871
 
 [node name="Stamina" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
 layout_mode = 0
-offset_left = 23.0
-offset_top = 70.0
-offset_right = 87.0
-offset_bottom = 103.0
+offset_left = 10.0
+offset_top = 48.0
+offset_right = 74.0
+offset_bottom = 81.0
+scale = Vector2(1, 0.5)
 max_value = 1000.0
 value = 1000.0
+nine_patch_stretch = true
+texture_over = ExtResource("115_8b6e6")
+texture_progress = ExtResource("68_71q8t")
+metadata/_edit_use_anchors_ = true
+
+[node name="Hide" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 67.0
+offset_right = 74.0
+offset_bottom = 100.0
+scale = Vector2(1, 0.5)
+max_value = 1000.0
+value = 1000.0
+nine_patch_stretch = true
+texture_over = ExtResource("115_8b6e6")
+texture_progress = ExtResource("68_71q8t")
+metadata/_edit_use_anchors_ = true
+
+[node name="Hunger" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 22.5
+anchor_top = 11.55
+anchor_right = 22.5
+anchor_bottom = 11.55
+offset_left = 15.0
+offset_top = 68.0
+offset_right = 79.0
+offset_bottom = 100.0
+rotation = -1.5708
+max_value = 12000.0
 nine_patch_stretch = true
 texture_over = ExtResource("67_h3fvh")
 texture_progress = ExtResource("68_71q8t")
@@ -1370,6 +1441,11 @@ theme_override_font_sizes/normal_font_size = 12
 text = "'x'/'square' eat"
 fit_content = true
 scroll_active = false
+
+[node name="HealthRegen" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2vtfk")
+}
 
 [connection signal="body_entered" from="Range" to="." method="_on_kill_range_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_kille_range_exited"]

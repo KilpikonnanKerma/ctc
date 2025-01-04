@@ -16,11 +16,11 @@ extends CharacterBody2D
 @onready var hide_timer = Timer.new()
 
 @onready var stamina_bar = $Camera/CanvasLayer/HUD/Stamina
+@onready var hp = $Camera/CanvasLayer/HUD/Health
 
 var blood_splatter01 = preload("res://scenes/props/blood_splatter01.tscn")
 
 var run_speed = 200.0
-var health = 3
 
 var last_ate = 0
 
@@ -75,7 +75,7 @@ func _physics_process(delta: float) -> void:
 		if is_on_floor():
 			stamina_bar.value += 1
 
-	if health == 0 && !death_has_been_called:
+	if hp.value == 0 && !death_has_been_called:
 		die()
 		death_has_been_called = true
 
