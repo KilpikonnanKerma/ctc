@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwpp8ir58y2yf"
-path="res://.godot/imported/hide05.png-b99ed7ad2a38ab519d5c9ece2defb182.ctex"
+uid="uid://cdoyst57foj4p"
+path="res://.godot/imported/explode.png-56e3457697c01d7bf962213cb5bacf74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player/hide05.png"
-dest_files=["res://.godot/imported/hide05.png-b99ed7ad2a38ab519d5c9ece2defb182.ctex"]
+source_file="res://sprites/player/explode.png"
+dest_files=["res://.godot/imported/explode.png-56e3457697c01d7bf962213cb5bacf74.ctex"]
 
 [params]
 

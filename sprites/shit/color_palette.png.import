@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clluf8s7e71sm"
-path="res://.godot/imported/explode10.png-54c8db8be9f910ddb3e5987c91780df8.ctex"
+uid="uid://bcfg78n0ym8u6"
+path="res://.godot/imported/color_palette.png-2556789d9e00e7f41a3d0bc4a1da70a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player/explode10.png"
-dest_files=["res://.godot/imported/explode10.png-54c8db8be9f910ddb3e5987c91780df8.ctex"]
+source_file="res://sprites/shit/color_palette.png"
+dest_files=["res://.godot/imported/color_palette.png-2556789d9e00e7f41a3d0bc4a1da70a9.ctex"]
 
 [params]
 
