@@ -1,4 +1,4 @@
-[gd_scene load_steps=165 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=164 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
@@ -91,15 +91,14 @@
 [ext_resource type="Texture2D" uid="uid://bsg6abrr27e2o" path="res://sprites/shit/timer_04.png" id="71_840vn"]
 [ext_resource type="Texture2D" uid="uid://dcn0u4yqi6ij7" path="res://sprites/shit/timer_025.png" id="72_hwyvn"]
 [ext_resource type="Texture2D" uid="uid://cfvkceiplu1hc" path="res://sprites/shit/timer_035.png" id="74_6jdyg"]
+[ext_resource type="Texture2D" uid="uid://2gd035amv6yt" path="res://sprites/shit/HealthBar.png" id="84_4bwyu"]
 [ext_resource type="Texture2D" uid="uid://d1g1rbsbcjl2h" path="res://sprites/player/hide_animation.png" id="85_a0v51"]
 [ext_resource type="Texture2D" uid="uid://dlkm5cdd1gijx" path="res://sprites/player/hide_under.png" id="91_lqwiy"]
 [ext_resource type="Texture2D" uid="uid://u78o5o0bt2js" path="res://sprites/player/player_idle_left.png" id="93_mhf28"]
 [ext_resource type="Texture2D" uid="uid://bos6gbkcm3ekx" path="res://sprites/player/player_idle.png" id="95_8k4rj"]
 [ext_resource type="Texture2D" uid="uid://c702s62dphwt6" path="res://sprites/shit/empty_bar02.png" id="115_8b6e6"]
-[ext_resource type="Texture2D" uid="uid://b2jpogev1th30" path="res://sprites/shit/empty_hp_bar.png" id="115_n0bad"]
 [ext_resource type="Texture2D" uid="uid://qdn6fx5vp4j5" path="res://sprites/shit/shadow32x32.png" id="126_6pcad"]
 [ext_resource type="Texture2D" uid="uid://doc6sgrmcpfja" path="res://sprites/shit/shadow_unavailable_32x.png" id="127_evkdw"]
-[ext_resource type="Texture2D" uid="uid://bm7mb3bbhcoie" path="res://sprites/maps/red.png" id="128_dfbw5"]
 [ext_resource type="Texture2D" uid="uid://dvs3mes7oglnm" path="res://sprites/maps/redder.png" id="129_hwqqi"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="133_uqj37"]
 [ext_resource type="PackedScene" uid="uid://bpetj4l6fdd7d" path="res://scenes/levels/dawin.tscn" id="134_ao84w"]
@@ -1201,33 +1200,9 @@ _data = {
 [sub_resource type="Animation" id="Animation_0bxk8"]
 resource_name = "HealthRegen"
 loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/CanvasLayer/HUD/Health_regen:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.72549), Color(1, 1, 1, 0.470588)]
-}
 
 [sub_resource type="Animation" id="Animation_jm25q"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera/CanvasLayer/HUD/Health_regen:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.72549)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2vtfk"]
 _data = {
@@ -1276,44 +1251,28 @@ offset_right = 41.0
 offset_bottom = 41.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Health_regen" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
-modulate = Color(1, 1, 1, 0.72549)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.325
-anchor_top = -0.9
-anchor_right = -0.325
-anchor_bottom = -0.9
-offset_left = 23.0
-offset_top = 46.0
-offset_right = 87.0
-offset_bottom = 79.0
-scale = Vector2(1.5, 1)
-max_value = 3.0
-value = 3.0
-nine_patch_stretch = true
-texture_over = ExtResource("115_n0bad")
-texture_progress = ExtResource("129_hwqqi")
-metadata/_edit_use_anchors_ = true
+[node name="HealthBar" type="Node2D" parent="Camera/CanvasLayer/HUD"]
+position = Vector2(57, 27)
 
-[node name="Health" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.325
-anchor_top = -0.9
-anchor_right = -0.325
-anchor_bottom = -0.9
-offset_left = 23.0
-offset_top = 46.0
-offset_right = 87.0
-offset_bottom = 79.0
-scale = Vector2(1.5, 1)
+[node name="Health" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD/HealthBar"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -8.0
+offset_right = 45.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
 max_value = 3.0
 value = 3.0
 nine_patch_stretch = true
-texture_over = ExtResource("115_n0bad")
-texture_progress = ExtResource("128_dfbw5")
-metadata/_edit_use_anchors_ = true
+texture_progress = ExtResource("129_hwqqi")
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera/CanvasLayer/HUD/HealthBar"]
+texture = ExtResource("84_4bwyu")
 
 [node name="HIDE" type="AnimatedSprite2D" parent="Camera/CanvasLayer/HUD"]
 visible = false

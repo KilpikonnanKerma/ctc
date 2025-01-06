@@ -16,7 +16,7 @@ extends CharacterBody2D
 @onready var hide_timer = Timer.new()
 
 @onready var stamina_bar = $Camera/CanvasLayer/HUD/Stamina
-@onready var hp = $Camera/CanvasLayer/HUD/Health
+@onready var hp = $Camera/CanvasLayer/HUD/HealthBar/Health
 
 var blood_splatter01 = preload("res://scenes/props/blood_splatter01.tscn")
 

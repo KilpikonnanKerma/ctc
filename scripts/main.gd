@@ -8,9 +8,7 @@ extends Node2D
 @onready var player = %"Player"
 @onready var player_anim = %"Player/AnimatedSprite2D"
 
-@onready var hp = $"Player/Camera/CanvasLayer/HUD/Health"
-@onready var health_regen = $"Player/Camera/CanvasLayer/HUD/Health_regen"
-@onready var hp_regen_anim = $"Player/HealthRegen"
+@onready var hp = $"Player/Camera/CanvasLayer/HUD/HealthBar/Health"
 @onready var hungerbar = $"Player/Camera/CanvasLayer/HUD/Hunger"
 
 @onready var hide_regen_anim = $"Player/Camera/CanvasLayer/HUD/HIDE_REGEN"
@@ -74,13 +72,8 @@ func update_health_status():
 	if hp_regen == 2000 && !paused:
 		player.hp.value += 1
 		hp_regen = 0
-		hp_regen_anim.hide()
 
 	if player.hp.value != 3 && !paused:
-		hp_regen_anim.show()
-		hp_regen_anim.play("HealthRegen")
-		health_regen.value = player.hp.value + 1	# Shows only the "regenerating" health flashing
-													# and not the whole health bar
 		hp_regen += 1
 
 func update_hunger_status():
