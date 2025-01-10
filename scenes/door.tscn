@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjtxxl7udssej"]
+[gd_scene load_steps=11 format=3 uid="uid://cjtxxl7udssej"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_p3ahg"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="2_fuq24"]
@@ -6,6 +6,49 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_df3ld"]
 size = Vector2(52, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uhyk"]
+atlas = ExtResource("3_fipdp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pisp1"]
+atlas = ExtResource("3_fipdp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhfua"]
+atlas = ExtResource("3_fipdp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ai7ta"]
+atlas = ExtResource("3_fipdp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bry2"]
+atlas = ExtResource("3_fipdp")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q58gj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uhyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pisp1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhfua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ai7ta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bry2")
+}],
+"loop": false,
+"name": &"yellow_anim",
+"speed": 10.0
+}]
 
 [node name="Door" type="Node2D"]
 script = ExtResource("1_p3ahg")
@@ -48,7 +91,9 @@ scroll_active = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="lock" type="Sprite2D" parent="."]
-z_index = 2525
-texture_filter = 1
-texture = ExtResource("3_fipdp")
+[node name="lock" type="AnimatedSprite2D" parent="."]
+z_index = 15
+sprite_frames = SubResource("SpriteFrames_q58gj")
+animation = &"yellow_anim"
+frame = 4
+frame_progress = 1.0
