@@ -1,6 +1,7 @@
-[gd_scene load_steps=150 format=3 uid="uid://cncmsau8mljmi"]
+[gd_scene load_steps=150 format=4 uid="uid://cncmsau8mljmi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8b47d"]
+[ext_resource type="Texture2D" uid="uid://c4vtnb4odetpa" path="res://sprites/maps/mapsheet.png" id="2_be2kg"]
 [ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="2_did6k"]
 [ext_resource type="Script" path="res://scripts/globals.gd" id="2_oi67x"]
 [ext_resource type="Shader" path="res://scripts/shaders/vignette.gdshader" id="3_c5t16"]
@@ -86,6 +87,21 @@
 [ext_resource type="PackedScene" uid="uid://5c5eh2fjkx6i" path="res://scenes/daddy.tscn" id="62_fk142"]
 [ext_resource type="Texture2D" uid="uid://byhmad5pkp0dx" path="res://sprites/enemies/mommy_w_hair.png" id="84_uuttu"]
 [ext_resource type="Texture2D" uid="uid://b3a18k117fp0p" path="res://sprites/enemies/mommy_mad.png" id="86_0hf6g"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ogexx"]
+texture = ExtResource("2_be2kg")
+0:0/size_in_atlas = Vector2i(4, 2)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -16, 32, -16, 32, 16, -32, 16)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+4:0/size_in_atlas = Vector2i(4, 2)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -16, 32, -16, 32, 16, -32, 16)
+4:0/0/physics_layer_0/polygon_0/one_way = true
+
+[sub_resource type="TileSet" id="TileSet_jq120"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_ogexx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iiy87"]
 resource_local_to_scene = true
@@ -203,15 +219,6 @@ size = Vector2(32, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rg2ni"]
 size = Vector2(63, 170)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3f867"]
-size = Vector2(2488, 24)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jahay"]
-size = Vector2(2028, 15)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bo1do"]
-size = Vector2(269, 20.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_noo5b"]
 size = Vector2(1268, 64)
@@ -423,6 +430,10 @@ size = Vector2(20, 89)
 
 [node name="Scene1" type="Node2D"]
 script = ExtResource("1_8b47d")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAyAHEAAAAEAAAAAAA2AHEAAAAEAAAAAAA6AHEAAAAEAAAAAAA+AHEAAAAEAAAAAABCAHEAAAAEAAAAAABGAHEAAAAEAAAAAABKAHEAAAAEAAAAAABOAHEAAAAEAAAAAABSAHEAAAAEAAAAAABWAHEAAAAEAAAAAABaAHEAAAAEAAAAAABeAHEAAAAEAAAAAABiAHEAAAAEAAAAAABmAHEAAAAEAAAAAABqAHEAAAAEAAAAAABuAHEAAAAEAAAAAAByAHEAAAAEAAAAAAB2AHEAAAAEAAAAAAB6AHEAAAAEAAAAAAB+AHEAAAAEAAAAAACCAHEAAAAEAAAAAACGAHEAAAAEAAAAAACKAHEAAAAEAAAAAACOAHEAAAAEAAAAAACSAHEAAAAEAAAAAACWAHEAAAAEAAAAAACaAHEAAAAEAAAAAACeAHEAAAAEAAAAAACiAHEAAAAEAAAAAACmAHEAAAAEAAAAAACqAHEAAAAEAAAAAACuAHEAAAAEAAAAAACyAHEAAAAEAAAAAAC2AHEAAAAEAAAAAAC6AHEAAAAEAAAAAAC+AHEAAAAEAAAAAADCAHEAAAAEAAAAAADGAHEAAAAEAAAAAADKAHEAAAAEAAAAAAC+AEAAAAAEAAAAAAC6AEAAAAAEAAAAAAC2AEAAAAAEAAAAAACyAEAAAAAEAAAAAACuAEAAAAAEAAAAAACqAEAAAAAEAAAAAACmAEAAAAAEAAAAAACiAEAAAAAEAAAAAACeAEAAAAAEAAAAAACaAEAAAAAEAAAAAACWAEAAAAAEAAAAAACSAEAAAAAEAAAAAACOAEAAAAAEAAAAAACKAEAAAAAEAAAAAACGAEAAAAAEAAAAAACCAEAAAAAEAAAAAAB+AEAAAAAEAAAAAAB6AEAAAAAEAAAAAAB2AEAAAAAEAAAAAAByAEAAAAAEAAAAAABuAEAAAAAEAAAAAABqAEAAAAAEAAAAAABmAEAAAAAEAAAAAABiAEAAAAAEAAAAAABeAEAAAAAEAAAAAABaAEAAAAAEAAAAAABWAEAAAAAEAAAAAABSAEAAAAAEAAAAAABOAEAAAAAEAAAAAABKAEAAAAAEAAAAAABGAEAAAAAEAAAAAABCAEAAAAAEAAAAAAA+AEAAAAAEAAAAAAA6AEAAAAAEAAAAAAA2AEAAAAAEAAAAAAAyAEAAAAAEAAAAAAAyAFUAAAAEAAAAACA2AFUAAAAEAAAAACA6AFUAAAAEAAAAACA+AFUAAAAEAAAAACBCAFUAAAAEAAAAACBGAFUAAAAEAAAAACBKAFUAAAAEAAAAACBOAFUAAAAEAAAAACBSAFUAAAAEAAAAACBWAFUAAAAEAAAAACBaAFUAAAAEAAAAACBeAFUAAAAEAAAAACBiAFUAAAAEAAAAACBmAFUAAAAEAAAAACBqAFUAAAAEAAAAACBuAFUAAAAEAAAAACByAFUAAAAEAAAAACB2AFUAAAAEAAAAACB6AFUAAAAEAAAAACB+AFUAAAAEAAAAACCCAFUAAAAEAAAAACCGAFUAAAAEAAAAACCKAFUAAAAEAAAAACCOAFUAAAAEAAAAACCSAFUAAAAEAAAAACCWAFUAAAAEAAAAACCaAFUAAAAEAAAAACCeAFUAAAAEAAAAACCiAFUAAAAEAAAAACCmAFUAAAAEAAAAACCqAFUAAAAEAAAAACCuAFUAAAAEAAAAACDKAFUAAAAEAAAAACDGAFUAAAAEAAAAACDCAFUAAAAEAAAAACA=")
+tile_set = SubResource("TileSet_jq120")
 
 [node name="Globals" type="Node" parent="."]
 script = ExtResource("2_oi67x")
@@ -1529,7 +1540,7 @@ position = Vector2(-369, -84)
 texture = ExtResource("37_de1j1")
 
 [node name="Tutorial" type="Node2D" parent="."]
-position = Vector2(1393, 1464)
+position = Vector2(1393, 1472)
 
 [node name="Tutorial" type="Node2D" parent="Tutorial" node_paths=PackedStringArray("main")]
 script = ExtResource("30_lo3jd")
@@ -1546,6 +1557,7 @@ texture_scale = Vector2(0.75, 0.75)
 polygon = PackedVector2Array(1523.53, 236, 1333.78, 238.984, 1345.53, -647, 1199.53, -648, 1051.53, -648, 1059.53, 243.297, 61, 259, -933, 250, -942.078, 317.878, -944, 686.924, 65.3661, 680.933, 1537.53, 685, 1528.53, 468)
 
 [node name="Ceiling" type="Node2D" parent="Tutorial"]
+visible = false
 z_index = -1
 position = Vector2(0, -100)
 
@@ -1600,65 +1612,6 @@ texture_scale = Vector2(40, 2)
 polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
 uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
-
-[node name="Floor" type="Node2D" parent="Tutorial"]
-z_index = -1
-position = Vector2(0, 350)
-
-[node name="Ground32x64" type="Polygon2D" parent="Tutorial/Floor"]
-z_index = 10
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(0, -5)
-scale = Vector2(40, 2)
-texture = ExtResource("32_4b1ux")
-texture_offset = Vector2(0, 8)
-texture_scale = Vector2(40, 2)
-polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
-uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
-polygons = [PackedInt32Array(0, 1, 2, 3)]
-
-[node name="Ground32x64_2" type="Polygon2D" parent="Tutorial/Floor"]
-z_index = 10
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(1280, -5)
-scale = Vector2(40, 2)
-texture = ExtResource("32_4b1ux")
-texture_offset = Vector2(0, 8)
-texture_scale = Vector2(40, 2)
-polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
-uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
-polygons = [PackedInt32Array(0, 1, 2, 3)]
-
-[node name="Ground32x64_3" type="Polygon2D" parent="Tutorial/Floor"]
-z_index = 10
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(589, -800)
-scale = Vector2(71.4375, 2)
-texture = ExtResource("32_4b1ux")
-texture_offset = Vector2(0, 8)
-texture_scale = Vector2(40, 2)
-polygon = PackedVector2Array(-16.4059, 7.5, -16.4199, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
-uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
-polygons = [PackedInt32Array(0, 1, 2, 3)]
-
-[node name="Collision" type="StaticBody2D" parent="Tutorial/Floor"]
-position = Vector2(0, -350)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Floor/Collision"]
-position = Vector2(616, 341)
-shape = SubResource("RectangleShape2D_3f867")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Tutorial/Floor/Collision"]
-position = Vector2(450, -458.5)
-shape = SubResource("RectangleShape2D_jahay")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Tutorial/Floor/Collision"]
-position = Vector2(1597.5, -455.75)
-shape = SubResource("RectangleShape2D_bo1do")
-one_way_collision = true
 
 [node name="Walls" type="Node2D" parent="Tutorial"]
 
@@ -2186,6 +2139,7 @@ end_bottom = 0
 [node name="Door2" parent="Tutorial" node_paths=PackedStringArray("lock") instance=ExtResource("21_0mu2f")]
 position = Vector2(-588, 261)
 lock = NodePath("lock")
+key_color = 3
 
 [node name="Area2D" type="Area2D" parent="Tutorial/Door2"]
 

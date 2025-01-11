@@ -1,11 +1,53 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjtxxl7udssej"]
+[gd_scene load_steps=23 format=3 uid="uid://cjtxxl7udssej"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_p3ahg"]
 [ext_resource type="FontFile" uid="uid://ckklruywi4tw4" path="res://fonts/joystix monospace.otf" id="2_fuq24"]
 [ext_resource type="Texture2D" uid="uid://bilegap3q403q" path="res://sprites/shit/lock.png" id="3_fipdp"]
+[ext_resource type="Texture2D" uid="uid://bnb4c56gdnw6c" path="res://sprites/shit/green_lock.png" id="3_nhnf8"]
+[ext_resource type="Texture2D" uid="uid://x67h2622878c" path="res://sprites/shit/blue_lock.png" id="3_nvxgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_df3ld"]
 size = Vector2(52, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qn6t"]
+atlas = ExtResource("3_nvxgq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2curu"]
+atlas = ExtResource("3_nvxgq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vd3g"]
+atlas = ExtResource("3_nvxgq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn7w5"]
+atlas = ExtResource("3_nvxgq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfogo"]
+atlas = ExtResource("3_nvxgq")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f08mn"]
+atlas = ExtResource("3_nhnf8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxba8"]
+atlas = ExtResource("3_nhnf8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mw3l6"]
+atlas = ExtResource("3_nhnf8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsncn"]
+atlas = ExtResource("3_nhnf8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2t3x"]
+atlas = ExtResource("3_nhnf8")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3uhyk"]
 atlas = ExtResource("3_fipdp")
@@ -29,6 +71,46 @@ region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q58gj"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qn6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2curu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vd3g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gn7w5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfogo")
+}],
+"loop": true,
+"name": &"blue_anim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f08mn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxba8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mw3l6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsncn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2t3x")
+}],
+"loop": false,
+"name": &"green_anim",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3uhyk")
@@ -94,6 +176,4 @@ scroll_active = false
 [node name="lock" type="AnimatedSprite2D" parent="."]
 z_index = 15
 sprite_frames = SubResource("SpriteFrames_q58gj")
-animation = &"yellow_anim"
-frame = 4
-frame_progress = 1.0
+animation = &"blue_anim"
