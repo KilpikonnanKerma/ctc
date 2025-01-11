@@ -1,4 +1,4 @@
-[gd_scene load_steps=150 format=4 uid="uid://cncmsau8mljmi"]
+[gd_scene load_steps=149 format=4 uid="uid://cncmsau8mljmi"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_8b47d"]
 [ext_resource type="Texture2D" uid="uid://c4vtnb4odetpa" path="res://sprites/maps/mapsheet.png" id="2_be2kg"]
@@ -51,7 +51,6 @@
 [ext_resource type="Texture2D" uid="uid://bnvm6rnqjcsir" path="res://sprites/maps/wall01-02.png" id="34_utbcj"]
 [ext_resource type="Texture2D" uid="uid://bpo3x1m4rh7i8" path="res://sprites/shit/kaappi.png" id="35_olxc3"]
 [ext_resource type="Texture2D" uid="uid://doqypiy3gj7h7" path="res://sprites/Props/operation_table_blood.png" id="35_rjl1t"]
-[ext_resource type="Texture2D" uid="uid://b1sgcksvx11ek" path="res://sprites/Props/bookshelf02.png" id="36_eou8w"]
 [ext_resource type="Texture2D" uid="uid://b71ay054kncvs" path="res://sprites/Props/cell.png" id="37_de1j1"]
 [ext_resource type="Texture2D" uid="uid://hv5ul4msmjob" path="res://sprites/Props/taulu08.png" id="37_jijuc"]
 [ext_resource type="Texture2D" uid="uid://odf01h4dyw5j" path="res://sprites/Props/table_hiding.png" id="37_vb7bl"]
@@ -90,14 +89,62 @@
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ogexx"]
 texture = ExtResource("2_be2kg")
-0:0/size_in_atlas = Vector2i(4, 2)
+0:0/size_in_atlas = Vector2i(4, 3)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -16, 32, -16, 32, 16, -32, 16)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -24, 32, -24, 32, 8, -32, 8)
 0:0/0/physics_layer_0/polygon_0/one_way = true
-4:0/size_in_atlas = Vector2i(4, 2)
+4:0/size_in_atlas = Vector2i(4, 3)
 4:0/0 = 0
-4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -16, 32, -16, 32, 16, -32, 16)
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -24, 32, -24, 32, 8, -32, 8)
 4:0/0/physics_layer_0/polygon_0/one_way = true
+0:10/size_in_atlas = Vector2i(4, 1)
+0:10/0 = 0
+0:9/size_in_atlas = Vector2i(4, 1)
+0:9/0 = 0
+0:8/size_in_atlas = Vector2i(4, 1)
+0:8/0 = 0
+0:7/size_in_atlas = Vector2i(4, 1)
+0:7/0 = 0
+0:6/size_in_atlas = Vector2i(4, 1)
+0:6/0 = 0
+0:5/size_in_atlas = Vector2i(4, 1)
+0:5/0 = 0
+0:4/size_in_atlas = Vector2i(4, 1)
+0:4/0 = 0
+0:3/size_in_atlas = Vector2i(4, 1)
+0:3/0 = 0
+4:10/size_in_atlas = Vector2i(4, 1)
+4:10/0 = 0
+4:9/size_in_atlas = Vector2i(4, 1)
+4:9/0 = 0
+4:8/size_in_atlas = Vector2i(4, 1)
+4:8/0 = 0
+4:7/size_in_atlas = Vector2i(4, 1)
+4:7/0 = 0
+4:6/size_in_atlas = Vector2i(4, 1)
+4:6/0 = 0
+4:5/size_in_atlas = Vector2i(4, 1)
+4:5/0 = 0
+4:4/size_in_atlas = Vector2i(4, 1)
+4:4/0 = 0
+4:3/size_in_atlas = Vector2i(4, 1)
+4:3/0 = 0
+8:10/size_in_atlas = Vector2i(4, 1)
+8:10/0 = 0
+8:9/size_in_atlas = Vector2i(4, 1)
+8:9/0 = 0
+8:8/size_in_atlas = Vector2i(4, 1)
+8:8/0 = 0
+8:7/size_in_atlas = Vector2i(4, 1)
+8:7/0 = 0
+8:6/size_in_atlas = Vector2i(4, 1)
+8:6/0 = 0
+8:5/size_in_atlas = Vector2i(4, 1)
+8:5/0 = 0
+8:4/size_in_atlas = Vector2i(4, 1)
+8:4/0 = 0
+8:3/size_in_atlas = Vector2i(4, 1)
+8:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_jq120"]
 physics_layer_0/collision_layer = 1
@@ -432,7 +479,7 @@ size = Vector2(20, 89)
 script = ExtResource("1_8b47d")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAyAHEAAAAEAAAAAAA2AHEAAAAEAAAAAAA6AHEAAAAEAAAAAAA+AHEAAAAEAAAAAABCAHEAAAAEAAAAAABGAHEAAAAEAAAAAABKAHEAAAAEAAAAAABOAHEAAAAEAAAAAABSAHEAAAAEAAAAAABWAHEAAAAEAAAAAABaAHEAAAAEAAAAAABeAHEAAAAEAAAAAABiAHEAAAAEAAAAAABmAHEAAAAEAAAAAABqAHEAAAAEAAAAAABuAHEAAAAEAAAAAAByAHEAAAAEAAAAAAB2AHEAAAAEAAAAAAB6AHEAAAAEAAAAAAB+AHEAAAAEAAAAAACCAHEAAAAEAAAAAACGAHEAAAAEAAAAAACKAHEAAAAEAAAAAACOAHEAAAAEAAAAAACSAHEAAAAEAAAAAACWAHEAAAAEAAAAAACaAHEAAAAEAAAAAACeAHEAAAAEAAAAAACiAHEAAAAEAAAAAACmAHEAAAAEAAAAAACqAHEAAAAEAAAAAACuAHEAAAAEAAAAAACyAHEAAAAEAAAAAAC2AHEAAAAEAAAAAAC6AHEAAAAEAAAAAAC+AHEAAAAEAAAAAADCAHEAAAAEAAAAAADGAHEAAAAEAAAAAADKAHEAAAAEAAAAAAC+AEAAAAAEAAAAAAC6AEAAAAAEAAAAAAC2AEAAAAAEAAAAAACyAEAAAAAEAAAAAACuAEAAAAAEAAAAAACqAEAAAAAEAAAAAACmAEAAAAAEAAAAAACiAEAAAAAEAAAAAACeAEAAAAAEAAAAAACaAEAAAAAEAAAAAACWAEAAAAAEAAAAAACSAEAAAAAEAAAAAACOAEAAAAAEAAAAAACKAEAAAAAEAAAAAACGAEAAAAAEAAAAAACCAEAAAAAEAAAAAAB+AEAAAAAEAAAAAAB6AEAAAAAEAAAAAAB2AEAAAAAEAAAAAAByAEAAAAAEAAAAAABuAEAAAAAEAAAAAABqAEAAAAAEAAAAAABmAEAAAAAEAAAAAABiAEAAAAAEAAAAAABeAEAAAAAEAAAAAABaAEAAAAAEAAAAAABWAEAAAAAEAAAAAABSAEAAAAAEAAAAAABOAEAAAAAEAAAAAABKAEAAAAAEAAAAAABGAEAAAAAEAAAAAABCAEAAAAAEAAAAAAA+AEAAAAAEAAAAAAA6AEAAAAAEAAAAAAA2AEAAAAAEAAAAAAAyAEAAAAAEAAAAAAAyAFUAAAAEAAAAACA2AFUAAAAEAAAAACA6AFUAAAAEAAAAACA+AFUAAAAEAAAAACBCAFUAAAAEAAAAACBGAFUAAAAEAAAAACBKAFUAAAAEAAAAACBOAFUAAAAEAAAAACBSAFUAAAAEAAAAACBWAFUAAAAEAAAAACBaAFUAAAAEAAAAACBeAFUAAAAEAAAAACBiAFUAAAAEAAAAACBmAFUAAAAEAAAAACBqAFUAAAAEAAAAACBuAFUAAAAEAAAAACByAFUAAAAEAAAAACB2AFUAAAAEAAAAACB6AFUAAAAEAAAAACB+AFUAAAAEAAAAACCCAFUAAAAEAAAAACCGAFUAAAAEAAAAACCKAFUAAAAEAAAAACCOAFUAAAAEAAAAACCSAFUAAAAEAAAAACCWAFUAAAAEAAAAACCaAFUAAAAEAAAAACCeAFUAAAAEAAAAACCiAFUAAAAEAAAAACCmAFUAAAAEAAAAACCqAFUAAAAEAAAAACCuAFUAAAAEAAAAACDKAFUAAAAEAAAAACDGAFUAAAAEAAAAACDCAFUAAAAEAAAAACA=")
+tile_map_data = PackedByteArray("AAAyAHEAAAAEAAAAAAA2AHEAAAAEAAAAAAA6AHEAAAAEAAAAAAA+AHEAAAAEAAAAAABCAHEAAAAEAAAAAABGAHEAAAAEAAAAAABKAHEAAAAEAAAAAABOAHEAAAAEAAAAAABSAHEAAAAEAAAAAABWAHEAAAAEAAAAAABaAHEAAAAEAAAAAABeAHEAAAAEAAAAAABiAHEAAAAEAAAAAABmAHEAAAAEAAAAAABqAHEAAAAEAAAAAABuAHEAAAAEAAAAAAByAHEAAAAEAAAAAAB2AHEAAAAEAAAAAAB6AHEAAAAEAAAAAAB+AHEAAAAEAAAAAACCAHEAAAAEAAAAAACGAHEAAAAEAAAAAACKAHEAAAAEAAAAAACOAHEAAAAEAAAAAACSAHEAAAAEAAAAAACWAHEAAAAEAAAAAACaAHEAAAAEAAAAAACeAHEAAAAEAAAAAACiAHEAAAAEAAAAAACmAHEAAAAEAAAAAACqAHEAAAAEAAAAAACuAHEAAAAEAAAAAACyAHEAAAAEAAAAAAC2AHEAAAAEAAAAAAC6AHEAAAAEAAAAAAC+AHEAAAAEAAAAAADCAHEAAAAEAAAAAADGAHEAAAAEAAAAAADKAHEAAAAEAAAAAAC+AEAAAAAEAAAAAAC6AEAAAAAEAAAAAAC2AEAAAAAEAAAAAACyAEAAAAAEAAAAAACuAEAAAAAEAAAAAACqAEAAAAAEAAAAAACmAEAAAAAEAAAAAACiAEAAAAAEAAAAAACeAEAAAAAEAAAAAACaAEAAAAAEAAAAAACWAEAAAAAEAAAAAACSAEAAAAAEAAAAAACOAEAAAAAEAAAAAACKAEAAAAAEAAAAAACGAEAAAAAEAAAAAACCAEAAAAAEAAAAAAB+AEAAAAAEAAAAAAB6AEAAAAAEAAAAAAB2AEAAAAAEAAAAAAByAEAAAAAEAAAAAABuAEAAAAAEAAAAAABqAEAAAAAEAAAAAABmAEAAAAAEAAAAAABiAEAAAAAEAAAAAABeAEAAAAAEAAAAAABaAEAAAAAEAAAAAABWAEAAAAAEAAAAAABSAEAAAAAEAAAAAABOAEAAAAAEAAAAAABKAEAAAAAEAAAAAABGAEAAAAAEAAAAAABCAEAAAAAEAAAAAAA+AEAAAAAEAAAAAAA6AEAAAAAEAAAAAAA2AEAAAAAEAAAAAAAyAEAAAAAEAAAAAAAyAFUAAAAEAAAAACA2AFUAAAAEAAAAACA6AFUAAAAEAAAAACA+AFUAAAAEAAAAACBCAFUAAAAEAAAAACBGAFUAAAAEAAAAACBKAFUAAAAEAAAAACBOAFUAAAAEAAAAACBSAFUAAAAEAAAAACBWAFUAAAAEAAAAACBaAFUAAAAEAAAAACBeAFUAAAAEAAAAACBiAFUAAAAEAAAAACBmAFUAAAAEAAAAACBqAFUAAAAEAAAAACBuAFUAAAAEAAAAACByAFUAAAAEAAAAACB2AFUAAAAEAAAAACB6AFUAAAAEAAAAACB+AFUAAAAEAAAAACCCAFUAAAAEAAAAACCGAFUAAAAEAAAAACCKAFUAAAAEAAAAACCOAFUAAAAEAAAAACCSAFUAAAAEAAAAACCWAFUAAAAEAAAAACCaAFUAAAAEAAAAACCeAFUAAAAEAAAAACCiAFUAAAAEAAAAACCmAFUAAAAEAAAAACCqAFUAAAAEAAAAACCuAFUAAAAEAAAAACDKAFUAAAAEAAAAACDGAFUAAAAEAAAAACDCAFUAAAAEAAAAACCwAEAAAAAEAAAAAABRAHAAAAAAAAkAAABRAGgAAAAAAAMAAABRAGkAAAAAAAQAAABRAGoAAAAAAAUAAABRAGsAAAAAAAYAAABRAGwAAAAAAAcAAABRAG0AAAAAAAgAAABRAG4AAAAAAAkAAABRAG8AAAAAAAoAAAA=")
 tile_set = SubResource("TileSet_jq120")
 
 [node name="Globals" type="Node" parent="."]
@@ -1556,63 +1603,6 @@ texture = ExtResource("31_3j2ia")
 texture_scale = Vector2(0.75, 0.75)
 polygon = PackedVector2Array(1523.53, 236, 1333.78, 238.984, 1345.53, -647, 1199.53, -648, 1051.53, -648, 1059.53, 243.297, 61, 259, -933, 250, -942.078, 317.878, -944, 686.924, 65.3661, 680.933, 1537.53, 685, 1528.53, 468)
 
-[node name="Ceiling" type="Node2D" parent="Tutorial"]
-visible = false
-z_index = -1
-position = Vector2(0, -100)
-
-[node name="Ground32x64" type="Polygon2D" parent="Tutorial/Ceiling"]
-z_index = 10
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(0, -5)
-scale = Vector2(-40, -2)
-texture = ExtResource("32_4b1ux")
-texture_offset = Vector2(0, 8)
-texture_scale = Vector2(40, 2)
-polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
-uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
-polygons = [PackedInt32Array(0, 1, 2, 3)]
-
-[node name="Ground32x64_3" type="Polygon2D" parent="Tutorial/Ceiling"]
-z_index = 10
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(1052.12, -5)
-scale = Vector2(-25.7573, -2)
-texture = ExtResource("32_4b1ux")
-texture_offset = Vector2(0, 8)
-texture_scale = Vector2(40, 2)
-polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
-uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
-polygons = [PackedInt32Array(0, 1, 2, 3)]
-
-[node name="Ground32x64_4" type="Polygon2D" parent="Tutorial/Ceiling"]
-z_index = 10
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(1793.77, -5)
-scale = Vector2(-7.86808, -2)
-texture = ExtResource("32_4b1ux")
-texture_offset = Vector2(0, 8)
-texture_scale = Vector2(40, 2)
-polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
-uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
-polygons = [PackedInt32Array(0, 1, 2, 3)]
-
-[node name="Ground32x64_5" type="Polygon2D" parent="Tutorial/Ceiling"]
-z_index = 10
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(1563, -885)
-scale = Vector2(-7.86808, -2)
-texture = ExtResource("32_4b1ux")
-texture_offset = Vector2(0, 8)
-texture_scale = Vector2(40, 2)
-polygon = PackedVector2Array(-16, 8, -16, -8, 16, -8, 16, 8, 16, 8, 0.0489311, 8)
-uv = PackedVector2Array(0, 16, 0, 0, 32, 0, 32, 16)
-polygons = [PackedInt32Array(0, 1, 2, 3)]
-
 [node name="Walls" type="Node2D" parent="Tutorial"]
 
 [node name="Back_wall" type="Node2D" parent="Tutorial/Walls"]
@@ -1731,51 +1721,55 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_iu0c3")
 one_way_collision = true
 
-[node name="Bookshelf02" type="Sprite2D" parent="Tutorial"]
-z_index = -1
-texture_filter = 1
-position = Vector2(-94, 265)
-texture = ExtResource("36_eou8w")
+[node name="Bookshelf" type="Node2D" parent="Tutorial"]
+position = Vector2(-88, 257)
 
-[node name="lower_platform" type="StaticBody2D" parent="Tutorial/Bookshelf02"]
+[node name="lower_platform" type="StaticBody2D" parent="Tutorial/Bookshelf"]
 position = Vector2(179, 85)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf02/lower_platform"]
-position = Vector2(-177, -124)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf/lower_platform"]
+position = Vector2(-180, -124)
 shape = SubResource("RectangleShape2D_matyd")
 one_way_collision = true
 
-[node name="upper_platform" type="StaticBody2D" parent="Tutorial/Bookshelf02"]
+[node name="upper_platform" type="StaticBody2D" parent="Tutorial/Bookshelf"]
 position = Vector2(179, 41)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf02/upper_platform"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf/upper_platform"]
 position = Vector2(-180, -102)
 shape = SubResource("RectangleShape2D_matyd")
 one_way_collision = true
 
-[node name="platform" type="StaticBody2D" parent="Tutorial/Bookshelf02"]
+[node name="platform" type="StaticBody2D" parent="Tutorial/Bookshelf"]
 position = Vector2(0, -19)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf02/platform"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf/platform"]
 shape = SubResource("RectangleShape2D_matyd")
 one_way_collision = true
 
-[node name="platform2" type="StaticBody2D" parent="Tutorial/Bookshelf02"]
+[node name="platform2" type="StaticBody2D" parent="Tutorial/Bookshelf"]
 position = Vector2(0, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf02/platform2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf/platform2"]
 shape = SubResource("RectangleShape2D_matyd")
 one_way_collision = true
 
-[node name="platform3" type="StaticBody2D" parent="Tutorial/Bookshelf02"]
+[node name="platform3" type="StaticBody2D" parent="Tutorial/Bookshelf"]
 position = Vector2(-1, 21)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf02/platform3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf/platform3"]
+shape = SubResource("RectangleShape2D_matyd")
+one_way_collision = true
+
+[node name="platform4" type="StaticBody2D" parent="Tutorial/Bookshelf"]
+position = Vector2(-1, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/Bookshelf/platform4"]
 shape = SubResource("RectangleShape2D_matyd")
 one_way_collision = true
 
 [node name="Key" parent="Tutorial" node_paths=PackedStringArray("area") instance=ExtResource("20_4e4xm")]
-position = Vector2(-80, 193)
+position = Vector2(-80, 184)
 area = NodePath("../Door/Area2D")
 
 [node name="Door" parent="Tutorial" node_paths=PackedStringArray("lock") instance=ExtResource("21_0mu2f")]
@@ -1973,7 +1967,7 @@ position = Vector2(0, -717)
 texture = ExtResource("38_8db5e")
 
 [node name="Baby01" parent="Tutorial" instance=ExtResource("15_p4ljk")]
-position = Vector2(1641, -482)
+position = Vector2(1641, -472)
 
 [node name="camera_change2" parent="Tutorial" node_paths=PackedStringArray("player", "camera") instance=ExtResource("39_b81qq")]
 position = Vector2(1429, -522)
@@ -2035,7 +2029,7 @@ text = "'DPAD UP' CLIMB the stairs"
 [node name="Guards_room" type="Node2D" parent="Tutorial"]
 
 [node name="Sofa" type="StaticBody2D" parent="Tutorial/Guards_room"]
-position = Vector2(954, -498)
+position = Vector2(954, -488)
 
 [node name="normal" type="Sprite2D" parent="Tutorial/Guards_room/Sofa"]
 z_index = -10
@@ -2075,14 +2069,14 @@ normal_sprite = NodePath("../normal")
 hiding_sprite = NodePath("../hiding")
 
 [node name="platform" parent="Tutorial/Guards_room" instance=ExtResource("10_ibu8j")]
-position = Vector2(1107, -563)
+position = Vector2(1107, -554)
 
 [node name="platform2" parent="Tutorial/Guards_room" instance=ExtResource("10_ibu8j")]
 position = Vector2(585, -625)
 
 [node name="taulu" type="StaticBody2D" parent="Tutorial/Guards_room"]
 texture_filter = 1
-position = Vector2(955, -584)
+position = Vector2(955, -575)
 
 [node name="Platform" type="Sprite2D" parent="Tutorial/Guards_room/taulu"]
 z_index = -6
@@ -2204,7 +2198,7 @@ disabled = true
 debug_color = Color(0.964151, 0, 0.494479, 0.42)
 
 [node name="Guard2" parent="." node_paths=PackedStringArray("main", "player") instance=ExtResource("62_fk142")]
-position = Vector2(2024, 950)
+position = Vector2(2024, 968)
 main = NodePath("..")
 player = NodePath("../Player")
 
