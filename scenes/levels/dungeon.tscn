@@ -1,0 +1,281 @@
+[gd_scene load_steps=17 format=4 uid="uid://cquad2jwg10ub"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_sbeud"]
+[ext_resource type="Texture2D" uid="uid://c4vtnb4odetpa" path="res://sprites/maps/mapsheet.png" id="1_tklrc"]
+[ext_resource type="PackedScene" uid="uid://blm5qbb3wbbbh" path="res://scenes/player.tscn" id="2_ck2s5"]
+[ext_resource type="Shader" path="res://scripts/shaders/vignette.gdshader" id="3_6eb8p"]
+[ext_resource type="Script" path="res://scripts/globals.gd" id="4_awas3"]
+[ext_resource type="Texture2D" uid="uid://doqypiy3gj7h7" path="res://sprites/Props/operation_table_blood.png" id="6_10lp1"]
+[ext_resource type="PackedScene" uid="uid://dsy134i7uchnh" path="res://scenes/key.tscn" id="7_h54sn"]
+[ext_resource type="PackedScene" uid="uid://cjtxxl7udssej" path="res://scenes/door.tscn" id="8_m61v6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4l1ff"]
+texture = ExtResource("1_tklrc")
+0:0/size_in_atlas = Vector2i(4, 3)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -24, 32, -24, 32, 8, -32, 8)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+4:0/size_in_atlas = Vector2i(4, 3)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -24, 32, -24, 32, 8, -32, 8)
+4:0/0/physics_layer_0/polygon_0/one_way = true
+0:10/size_in_atlas = Vector2i(4, 1)
+0:10/0 = 0
+0:9/size_in_atlas = Vector2i(4, 1)
+0:9/0 = 0
+0:8/size_in_atlas = Vector2i(4, 1)
+0:8/0 = 0
+0:7/size_in_atlas = Vector2i(4, 1)
+0:7/0 = 0
+0:6/size_in_atlas = Vector2i(4, 1)
+0:6/0 = 0
+0:5/size_in_atlas = Vector2i(4, 1)
+0:5/0 = 0
+0:4/size_in_atlas = Vector2i(4, 1)
+0:4/0 = 0
+0:3/size_in_atlas = Vector2i(4, 1)
+0:3/0 = 0
+4:10/size_in_atlas = Vector2i(4, 1)
+4:10/0 = 0
+4:9/size_in_atlas = Vector2i(4, 1)
+4:9/0 = 0
+4:8/size_in_atlas = Vector2i(4, 1)
+4:8/0 = 0
+4:7/size_in_atlas = Vector2i(4, 1)
+4:7/0 = 0
+4:6/size_in_atlas = Vector2i(4, 1)
+4:6/0 = 0
+4:5/size_in_atlas = Vector2i(4, 1)
+4:5/0 = 0
+4:4/size_in_atlas = Vector2i(4, 1)
+4:4/0 = 0
+4:3/size_in_atlas = Vector2i(4, 1)
+4:3/0 = 0
+8:10/size_in_atlas = Vector2i(4, 1)
+8:10/0 = 0
+8:9/size_in_atlas = Vector2i(4, 1)
+8:9/0 = 0
+8:8/size_in_atlas = Vector2i(4, 1)
+8:8/0 = 0
+8:7/size_in_atlas = Vector2i(4, 1)
+8:7/0 = 0
+8:6/size_in_atlas = Vector2i(4, 1)
+8:6/0 = 0
+8:5/size_in_atlas = Vector2i(4, 1)
+8:5/0 = 0
+8:4/size_in_atlas = Vector2i(4, 1)
+8:4/0 = 0
+8:3/size_in_atlas = Vector2i(4, 1)
+8:3/0 = 0
+8:0/size_in_atlas = Vector2i(4, 3)
+8:0/0 = 0
+12:0/size_in_atlas = Vector2i(4, 3)
+12:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_h8ae2"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_4l1ff")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0lku5"]
+texture = ExtResource("1_tklrc")
+0:0/size_in_atlas = Vector2i(4, 3)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -24, 32, -24, 32, 8, -32, 8)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+4:0/size_in_atlas = Vector2i(4, 3)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -24, 32, -24, 32, 8, -32, 8)
+4:0/0/physics_layer_0/polygon_0/one_way = true
+0:10/size_in_atlas = Vector2i(4, 1)
+0:10/0 = 0
+0:9/size_in_atlas = Vector2i(4, 1)
+0:9/0 = 0
+0:8/size_in_atlas = Vector2i(4, 1)
+0:8/0 = 0
+0:7/size_in_atlas = Vector2i(4, 1)
+0:7/0 = 0
+0:6/size_in_atlas = Vector2i(4, 1)
+0:6/0 = 0
+0:5/size_in_atlas = Vector2i(4, 1)
+0:5/0 = 0
+0:4/size_in_atlas = Vector2i(4, 1)
+0:4/0 = 0
+0:3/size_in_atlas = Vector2i(4, 1)
+0:3/0 = 0
+4:10/size_in_atlas = Vector2i(4, 1)
+4:10/0 = 0
+4:9/size_in_atlas = Vector2i(4, 1)
+4:9/0 = 0
+4:8/size_in_atlas = Vector2i(4, 1)
+4:8/0 = 0
+4:7/size_in_atlas = Vector2i(4, 1)
+4:7/0 = 0
+4:6/size_in_atlas = Vector2i(4, 1)
+4:6/0 = 0
+4:5/size_in_atlas = Vector2i(4, 1)
+4:5/0 = 0
+4:4/size_in_atlas = Vector2i(4, 1)
+4:4/0 = 0
+4:3/size_in_atlas = Vector2i(4, 1)
+4:3/0 = 0
+8:10/size_in_atlas = Vector2i(4, 1)
+8:10/0 = 0
+8:9/size_in_atlas = Vector2i(4, 1)
+8:9/0 = 0
+8:8/size_in_atlas = Vector2i(4, 1)
+8:8/0 = 0
+8:7/size_in_atlas = Vector2i(4, 1)
+8:7/0 = 0
+8:6/size_in_atlas = Vector2i(4, 1)
+8:6/0 = 0
+8:5/size_in_atlas = Vector2i(4, 1)
+8:5/0 = 0
+8:4/size_in_atlas = Vector2i(4, 1)
+8:4/0 = 0
+8:3/size_in_atlas = Vector2i(4, 1)
+8:3/0 = 0
+8:0/size_in_atlas = Vector2i(4, 3)
+8:0/0 = 0
+12:0/size_in_atlas = Vector2i(4, 3)
+12:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_gm723"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_0lku5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hx4tx"]
+resource_local_to_scene = true
+shader = ExtResource("3_6eb8p")
+shader_parameter/vignette_intensity = 1.0
+shader_parameter/vignette_opacity = 1.0
+shader_parameter/vignette_rgb = Color(0, 0, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_044b1"]
+size = Vector2(128, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcal0"]
+size = Vector2(62, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85sdb"]
+size = Vector2(83, 94)
+
+[node name="Dungeon" type="Node2D"]
+script = ExtResource("1_sbeud")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAABAAQAAAAEAAAAAAAFAAQAAAAEAAAAAAAJAAQAAAAEAAAAAAANAAQAAAAEAAAAAAARAAQAAAAEAAAAAAAVAAQAAAAEAAAAAAAZAAQAAAAEAAAAAAAdAAQAAAAEAAAAAAAhAAQAAAAEAAAAAAD9/wQAAAAEAAAAAAAlAAQAAAAEAAAAAAApAAQAAAAEAAAAAAAtAAQAAAAEAAAAAAAxAAQAAAAEAAAAAAA1AAQAAAAEAAAAAAA5AAQAAAAEAAAAAAA9AAQAAAAEAAAAAABBAAQAAAAEAAAAAAAjAPv/AAAAAAMAAAAjAPz/AAAAAAQAAAAjAP3/AAAAAAUAAAAjAP7/AAAAAAYAAAAjAP//AAAAAAcAAAAjAAAAAAAAAAgAAAAjAAEAAAAAAAkAAAAjAAIAAAAAAAoAAAA=")
+tile_set = SubResource("TileSet_h8ae2")
+
+[node name="ontopLayer" type="TileMapLayer" parent="."]
+z_index = 20
+tile_map_data = PackedByteArray("AAABAAMAAAAMAAAAAAABAAIAAAAMAAAAAAABAAEAAAAMAAAAAAABAAAAAAAMAAAAAAABAP//AAAMAAAAAAABAP7/AAAMAAAAAAABAP3/AAAMAAAAAAABAPz/AAAMAAAAAAABAPv/AAAMAAAAAAABAPr/AAAMAAAAAAABAPn/AAAMAAAAAAABAPj/AAAMAAAAAAABAPf/AAAMAAAAAAABAPb/AAAMAAAAAAABAPX/AAAMAAAAAAABAAQAAAAMAAAAAAABAAUAAAAMAAAAAAABAPP/AAAMAAAAAAABAPL/AAAMAAAAAAABAPH/AAAMAAAAAAABAPD/AAAMAAAAAAABAO//AAAMAAAAAAABAO7/AAAMAAAAAAABAO3/AAAMAAAAAAABAOz/AAAMAAAAAAABAOv/AAAMAAAAAAABAOr/AAAMAAAAAAABAOn/AAAMAAAAAAABAOj/AAAMAAAAAAABAOf/AAAMAAAAAAABAOb/AAAMAAAAAAABAOX/AAAMAAAAAAABAOT/AAAMAAAAAAABAOP/AAAMAAAAAAABAOL/AAAMAAAAAAABAOH/AAAMAAAAAAABAOD/AAAMAAAAAAABAN//AAAMAAAAAAArAAUAAAAMAAAAAAArAAIAAAAMAAAAAAArAP//AAAMAAAAAAArAPz/AAAMAAAAAAArAPn/AAAMAAAAAAArAPb/AAAMAAAAAAArAPP/AAAMAAAAAAArAPD/AAAMAAAAAAArAO3/AAAMAAAAAAArAOr/AAAMAAAAAAArAOf/AAAMAAAAAAArAOT/AAAMAAAAAAArAOH/AAAMAAAAAAArAOD/AAAMAAAAAAA=")
+tile_set = SubResource("TileSet_gm723")
+
+[node name="Player" parent="." node_paths=PackedStringArray("main", "globals") groups=["Player"] instance=ExtResource("2_ck2s5")]
+unique_name_in_owner = true
+position = Vector2(226, 32)
+main = NodePath("..")
+globals = NodePath("../Globals")
+
+[node name="Camera" parent="Player" index="3"]
+limit_left = 0
+limit_bottom = 100
+editor_draw_limits = true
+
+[node name="Vignette" parent="Player/Camera/CanvasLayer" index="1"]
+material = SubResource("ShaderMaterial_hx4tx")
+
+[node name="Heartbeat" parent="Player/Camera/CanvasLayer" index="2"]
+material = SubResource("ShaderMaterial_hx4tx")
+
+[node name="DAWIN" parent="Player/Camera/CanvasLayer" index="5" node_paths=PackedStringArray("globals", "baby_text")]
+globals = NodePath("../../../../Globals")
+baby_text = NodePath("Text/BABIES")
+
+[node name="Globals" type="Node" parent="."]
+script = ExtResource("4_awas3")
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="operation_table" type="StaticBody2D" parent="Props"]
+z_index = -5
+position = Vector2(186, 16)
+
+[node name="Sprite2D" type="Sprite2D" parent="Props/operation_table"]
+texture = ExtResource("6_10lp1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/operation_table"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_044b1")
+one_way_collision = true
+
+[node name="Bookshelf" type="Node2D" parent="Props"]
+position = Vector2(569, -16)
+
+[node name="lower_platform" type="StaticBody2D" parent="Props/Bookshelf"]
+position = Vector2(179, 85)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Bookshelf/lower_platform"]
+position = Vector2(-180, -124)
+shape = SubResource("RectangleShape2D_qcal0")
+one_way_collision = true
+
+[node name="upper_platform" type="StaticBody2D" parent="Props/Bookshelf"]
+position = Vector2(179, 41)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Bookshelf/upper_platform"]
+position = Vector2(-180, -102)
+shape = SubResource("RectangleShape2D_qcal0")
+one_way_collision = true
+
+[node name="platform" type="StaticBody2D" parent="Props/Bookshelf"]
+position = Vector2(0, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Bookshelf/platform"]
+shape = SubResource("RectangleShape2D_qcal0")
+one_way_collision = true
+
+[node name="platform2" type="StaticBody2D" parent="Props/Bookshelf"]
+position = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Bookshelf/platform2"]
+shape = SubResource("RectangleShape2D_qcal0")
+one_way_collision = true
+
+[node name="platform3" type="StaticBody2D" parent="Props/Bookshelf"]
+position = Vector2(-1, 21)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Bookshelf/platform3"]
+shape = SubResource("RectangleShape2D_qcal0")
+one_way_collision = true
+
+[node name="platform4" type="StaticBody2D" parent="Props/Bookshelf"]
+position = Vector2(-1, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Bookshelf/platform4"]
+shape = SubResource("RectangleShape2D_qcal0")
+one_way_collision = true
+
+[node name="Key" parent="Props" node_paths=PackedStringArray("area") instance=ExtResource("7_h54sn")]
+position = Vector2(586, -90)
+area = NodePath("../Door/Area2D")
+
+[node name="Door" parent="Props" node_paths=PackedStringArray("lock") instance=ExtResource("8_m61v6")]
+z_index = 15
+position = Vector2(696, -16)
+lock = NodePath("lock")
+
+[node name="Area2D" type="Area2D" parent="Props/Door"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Door/Area2D"]
+position = Vector2(-10.5, 18)
+shape = SubResource("RectangleShape2D_85sdb")
+
+[connection signal="door_entered" from="Props/Key" to="Props/Door" method="_on_door_entered"]
+[connection signal="door_exited" from="Props/Key" to="Props/Door" method="_on_door_exited"]
+[connection signal="door_opened" from="Props/Key" to="Props/Door" method="_on_door_opened"]
+[connection signal="area_entered" from="Props/Door/Area2D" to="Props/Key" method="_on_door_zone_entered"]
+[connection signal="area_exited" from="Props/Door/Area2D" to="Props/Key" method="_on_door_zone_exited"]
+
+[editable path="Player"]
+[editable path="Props/Door"]
