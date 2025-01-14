@@ -15,7 +15,8 @@ extends CharacterBody2D
 @onready var cameraAnim = $CameraAnim
 @onready var hide_timer = Timer.new()
 
-@onready var stamina_bar = $Camera/CanvasLayer/HUD/Stamina
+@onready var stamina_bar = $Stamina
+
 @onready var hp = $Camera/CanvasLayer/HUD/HealthBar/Health
 
 var blood_splatter01 = preload("res://scenes/props/blood_splatter01.tscn")
@@ -57,7 +58,7 @@ func _ready():
 	add_child(hide_timer)
 	hide_timer.one_shot = true
 	hide_timer.connect("timeout", Callable(self, "_on_hide_transition_finished"))
-	player.animation_finished.connect(Callable(self, "_on_animation_finished"))
+	# player.animation_finished.connect(Callable(self, "_on_animation_finished"))
 
 	hiding = false
 	is_on_ladder = false
@@ -74,6 +75,10 @@ func _physics_process(delta: float) -> void:
 	if stamina_bar.value <= 1000 && not Input.is_action_just_pressed("run"):
 		if is_on_floor():
 			stamina_bar.value += 1
+		stamina_bar.show()
+
+	if stamina_bar.value >= 900:
+		stamina_bar.hide()
 
 	if hp.value == 0 && !death_has_been_called:
 		die()
@@ -93,7 +98,7 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("hide") and is_on_floor() && !is_on_ladder && main.hide_available && !main.is_on_hide_area && !is_on_level_switch_area:
 				state = PlayerState.TRS_TO_HIDE
 				player.play("hide_transition")
-				hide_timer.start(1.4) # 5fps ja 7 frames
+				hide_timer.start(1.2) # 5fps ja 7 frames
 				stop_movement() # ei pysty liikkua
 				return
 
@@ -107,12 +112,13 @@ func _physics_process(delta: float) -> void:
 				eat(main.cur_victim)
 
 			if direction:
-				if (Input.is_action_pressed("run") && stamina_bar.value >= 50 && !hiding): #voi ns. dashata ilmassa, jos painaa shiftiä (it's not a bug it's a feature)
+				if (Input.is_action_pressed("run") && stamina_bar.value >= 25 && !hiding): #voi ns. dashata ilmassa, jos painaa shiftiä (it's not a bug it's a feature)
 					velocity.x = move_toward(velocity.x, direction * run_speed, run_speed * acceleration)
 					if is_hungry:
 						stamina_bar.value -= 8
 					else:
 						stamina_bar.value -= 4
+					stamina_bar.show()
 				else:
 					if is_hungry:
 						velocity.x = move_toward(velocity.x, direction * WALK_SPEED/2, WALK_SPEED/2 * acceleration)
@@ -152,7 +158,7 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("unhide"):
 				state = PlayerState.TRS_FROM_HIDE
 				player.play_backwards("hide_transition")
-				hide_timer.start(1.4)
+				hide_timer.start(1.2)
 				return
 
 		PlayerState.TRS_FROM_HIDE:

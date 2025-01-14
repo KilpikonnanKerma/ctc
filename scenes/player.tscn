@@ -1,13 +1,9 @@
-[gd_scene load_steps=164 format=3 uid="uid://blm5qbb3wbbbh"]
+[gd_scene load_steps=167 format=3 uid="uid://blm5qbb3wbbbh"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_q5ei5"]
 [ext_resource type="Texture2D" uid="uid://cixbyjhlopit5" path="res://sprites/player/consumption/eat01_00.png" id="2_1qwlm"]
-[ext_resource type="Texture2D" uid="uid://ct37lbd1s4std" path="res://sprites/player/hide_idle_0.png" id="2_75bhc"]
 [ext_resource type="Texture2D" uid="uid://dcgics0h7m46r" path="res://sprites/player/consumption/eat01_01.png" id="3_7r7eg"]
-[ext_resource type="Texture2D" uid="uid://cqu62dvkbkauq" path="res://sprites/player/hide_idle_1.png" id="3_8jwcu"]
-[ext_resource type="Texture2D" uid="uid://sflmbhikskom" path="res://sprites/player/hide_idle_2.png" id="4_mk2mh"]
 [ext_resource type="Texture2D" uid="uid://blp83x57lfpux" path="res://sprites/player/consumption/eat01_02.png" id="4_xex50"]
-[ext_resource type="Texture2D" uid="uid://cdjb36bwydy1n" path="res://sprites/player/hide_idle_3.png" id="5_2elok"]
 [ext_resource type="Texture2D" uid="uid://s6nfb0mhpg21" path="res://sprites/player/consumption/eat01_03.png" id="5_av1ku"]
 [ext_resource type="Texture2D" uid="uid://cxp1d56ijcc5h" path="res://sprites/player/consumption/eat01_04.png" id="6_1c2ts"]
 [ext_resource type="Texture2D" uid="uid://dbyxvaxeavi0d" path="res://sprites/player/player_walk_left_0.png" id="6_m83e7"]
@@ -77,6 +73,7 @@
 [ext_resource type="Texture2D" uid="uid://ctgjffutde6ku" path="res://sprites/player/consumption/eat01_25_l.png" id="54_3000n"]
 [ext_resource type="Texture2D" uid="uid://dxdmd8688l7lc" path="res://sprites/player/consumption/eat01_26_l.png" id="55_trq6j"]
 [ext_resource type="Texture2D" uid="uid://cdoyst57foj4p" path="res://sprites/player/explode.png" id="56_g4h3r"]
+[ext_resource type="Texture2D" uid="uid://cqmx270wyfy2y" path="res://sprites/player/hide_idle.png" id="58_dm53t"]
 [ext_resource type="Shader" path="res://scripts/shaders/vignette.gdshader" id="60_gy4ti"]
 [ext_resource type="PackedScene" uid="uid://dnmx7jhikyiry" path="res://scenes/pause_menu.tscn" id="61_rv1e6"]
 [ext_resource type="Texture2D" uid="uid://clar3lqfutn8w" path="res://sprites/shit/empty_bar.png" id="67_h3fvh"]
@@ -150,6 +147,30 @@ region = Rect2(640, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5xl44"]
 atlas = ExtResource("56_g4h3r")
 region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7yn8"]
+atlas = ExtResource("58_dm53t")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7rhi"]
+atlas = ExtResource("58_dm53t")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdluu"]
+atlas = ExtResource("58_dm53t")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6nw2"]
+atlas = ExtResource("58_dm53t")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmrha"]
+atlas = ExtResource("58_dm53t")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5uar"]
+atlas = ExtResource("58_dm53t")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i03ro"]
 atlas = ExtResource("95_8k4rj")
@@ -476,22 +497,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_75bhc")
+"texture": SubResource("AtlasTexture_e7yn8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_8jwcu")
+"texture": SubResource("AtlasTexture_l7rhi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_mk2mh")
+"texture": SubResource("AtlasTexture_jdluu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_2elok")
+"texture": SubResource("AtlasTexture_v6nw2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_mk2mh")
+"texture": SubResource("AtlasTexture_nmrha")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_8jwcu")
+"texture": SubResource("AtlasTexture_i5uar")
 }],
 "loop": true,
 "name": &"hide",
@@ -1199,10 +1220,34 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_0bxk8"]
 resource_name = "HealthRegen"
-loop_mode = 2
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stamina:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_jm25q"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Stamina:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2vtfk"]
 _data = {
@@ -1217,7 +1262,9 @@ script = ExtResource("1_q5ei5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hunum")
-animation = &"idle"
+animation = &"hide"
+frame = 2
+frame_progress = 0.202048
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
 visible = false
@@ -1287,20 +1334,6 @@ sprite_frames = SubResource("SpriteFrames_glql0")
 animation = &"HP_REGEN"
 frame = 2
 frame_progress = 0.0106871
-
-[node name="Stamina" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 48.0
-offset_right = 74.0
-offset_bottom = 81.0
-scale = Vector2(1, 0.5)
-max_value = 1000.0
-value = 1000.0
-nine_patch_stretch = true
-texture_over = ExtResource("115_8b6e6")
-texture_progress = ExtResource("68_71q8t")
-metadata/_edit_use_anchors_ = true
 
 [node name="Hide" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
 layout_mode = 0
@@ -1449,6 +1482,19 @@ scroll_active = false
 libraries = {
 "": SubResource("AnimationLibrary_2vtfk")
 }
+
+[node name="Stamina" type="TextureProgressBar" parent="."]
+offset_left = -16.0
+offset_top = -27.0
+offset_right = 48.0
+offset_bottom = 6.0
+scale = Vector2(0.5, 0.25)
+max_value = 1000.0
+value = 999.0
+nine_patch_stretch = true
+texture_over = ExtResource("115_8b6e6")
+texture_progress = ExtResource("68_71q8t")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="Range" to="." method="_on_kill_range_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_kille_range_exited"]
