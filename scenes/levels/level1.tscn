@@ -508,7 +508,6 @@ baby_text = NodePath("Text/BABIES")
 
 [node name="Stamina" parent="Player" index="9"]
 visible = false
-modulate = Color(1, 1, 1, 0)
 
 [node name="ml_01" type="StaticBody2D" parent="."]
 position = Vector2(-28, 415)

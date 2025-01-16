@@ -51,13 +51,8 @@ func _physics_process(_delta: float) -> void:
 	update_hunger_status()
 	update_health_status()
 
-	if !paused:
-		hide_regeneration()
-
-	if !hide_available:
-		hide.play("unavailable")
-	else:
-		hide.play("available")
+	# if !paused:
+	# 	hide_regeneration()
 
 func _input(event: InputEvent):
 	if (event is InputEventKey):

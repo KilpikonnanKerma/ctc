@@ -1335,20 +1335,6 @@ animation = &"HP_REGEN"
 frame = 2
 frame_progress = 0.0106871
 
-[node name="Hide" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 67.0
-offset_right = 74.0
-offset_bottom = 100.0
-scale = Vector2(1, 0.5)
-max_value = 1000.0
-value = 1000.0
-nine_patch_stretch = true
-texture_over = ExtResource("115_8b6e6")
-texture_progress = ExtResource("68_71q8t")
-metadata/_edit_use_anchors_ = true
-
 [node name="Hunger" type="TextureProgressBar" parent="Camera/CanvasLayer/HUD"]
 layout_mode = 1
 anchors_preset = -1
