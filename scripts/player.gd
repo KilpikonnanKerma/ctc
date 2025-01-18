@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 @export_range(0,1) var acceleration = 0.1
 @export_range(0,1) var deceleration = 0.5
+@export var jump_buffer_time: float = 0.1
 
 @export var main: Node2D
-
 @export var globals: Node
 
 @onready var vignette = $Camera/CanvasLayer/Vignette
@@ -19,8 +19,6 @@ extends CharacterBody2D
 
 @onready var hp = $Camera/CanvasLayer/HUD/HealthBar/Health
 
-var blood_splatter01 = preload("res://scenes/props/blood_splatter01.tscn")
-
 var run_speed = 200.0
 
 var last_ate = 0
@@ -34,6 +32,9 @@ const JUMP_VELOCITY = -300.0
 var hiding: bool = false
 var is_on_ladder: bool = false
 var is_on_level_switch_area = false
+
+var jump_available: bool = true
+var jump_buffer: bool = false
 
 var is_eating
 var enemy_body
@@ -69,6 +70,10 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor() && !is_on_ladder:
 		velocity += get_gravity() * delta
+	else:
+		if jump_buffer:								# if jump has been pressed while in air, the jump_buffer will activate and jump the second the player lands
+			jump()
+			jump_buffer = false
 
 	var direction := Input.get_axis("mv_left", "mv_right")
 
@@ -92,8 +97,12 @@ func _physics_process(delta: float) -> void:
 			vignette.hide()
 			is_eating = false
 
-			if Input.is_action_just_pressed("jump") and is_on_floor() && !is_on_ladder:
-				velocity.y = JUMP_VELOCITY
+			if Input.is_action_just_pressed("jump"): # and is_on_floor() && !is_on_ladder:
+				if jump_available:
+					jump()
+				else:
+					jump_buffer = true
+					get_tree().create_timer(jump_buffer_time).timeout.connect(_on_jump_buffer_timeout)
 
 			if Input.is_action_just_pressed("hide") and is_on_floor() && !is_on_ladder && main.hide_available && !main.is_on_hide_area && !is_on_level_switch_area:
 				state = PlayerState.TRS_TO_HIDE
@@ -183,16 +192,15 @@ func _physics_process(delta: float) -> void:
 		PlayerState.DYING:
 			stop_movement()
 
-
 	move_and_slide()
-	# for index in get_slide_collision_count():
-	# 	var collision := get_slide_collision(index)
-	# 	var body := collision.get_collider()
-	# 	print("Collided with: ", body.name)
 
 func _input(event: InputEvent):
 	if(event.is_action_pressed("mv_down") and state == PlayerState.NORMAL && !hiding):
 		position.y += 1
+
+func jump() -> void:
+	velocity.y = JUMP_VELOCITY
+	jump_available = false
 
 func stop_movement():
 	velocity.x = 0
@@ -218,6 +226,9 @@ func eat(body):
 # func blood_splatter(pos): # maybe todo
 # 	var instance = blood_splatter01.instantiate()
 # 	instance.position = pos
+
+func _on_jump_buffer_timeout() -> void:
+	jump_buffer = false
 
 func _on_hide_transition_finished():
 	if state == PlayerState.TRS_TO_HIDE:
