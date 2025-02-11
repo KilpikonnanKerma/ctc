@@ -8,7 +8,7 @@ No. Atleast not actively. I may continue this project sometime. I've made the pr
 
 ## How can I play it?
 1. Install Godot (preferably version 4.3 - You can find it on Steam, where you can install it easily)
-2. Clone this repo
+2. Download the source code for this repo from the releases page.
 3. Open the project in Godot
 4. Press play or build the project to play it.
 
